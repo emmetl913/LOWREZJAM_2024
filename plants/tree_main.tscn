@@ -5,10 +5,10 @@
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="3_56vxf"]
 [ext_resource type="LabelSettings" uid="uid://bf8m6t4hiop7d" path="res://assets/fonts/default_label_settings.tres" id="4_kbp4e"]
 
-[sub_resource type="Gradient" id="Gradient_xxcry"]
+[sub_resource type="Gradient" id="Gradient_opgbf"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_uny3x"]
-gradient = SubResource("Gradient_xxcry")
+gradient = SubResource("Gradient_opgbf")
 width = 60
 height = 16
 fill_to = Vector2(0, 0)
@@ -26,11 +26,11 @@ texture_normal = ExtResource("1_5m5sc")
 [node name="Gen_Energy_Timer" type="Timer" parent="."]
 
 [node name="Test_Control_Interface" type="Node2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(2, -5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Test_Control_Interface"]
-position = Vector2(31, 29)
-scale = Vector2(1, 1.75)
+position = Vector2(29, 29)
+scale = Vector2(0.917747, 1.75)
 texture = SubResource("GradientTexture2D_uny3x")
 
 [node name="rate_test_label" type="Label" parent="Test_Control_Interface"]
@@ -62,9 +62,9 @@ theme_override_fonts/font = ExtResource("3_56vxf")
 label_settings = ExtResource("4_kbp4e")
 
 [node name="prod_add" type="Button" parent="Test_Control_Interface/Prod_Interface"]
-offset_left = 53.0
+offset_left = 50.0
 offset_top = 35.0
-offset_right = 85.0
+offset_right = 82.0
 offset_bottom = 67.0
 scale = Vector2(0.125, 0.125)
 text = "+"
@@ -88,9 +88,9 @@ theme_override_fonts/font = ExtResource("3_56vxf")
 label_settings = ExtResource("4_kbp4e")
 
 [node name="energy_add" type="Button" parent="Test_Control_Interface/Energy_Interface"]
-offset_left = 53.0
+offset_left = 50.0
 offset_top = 29.0
-offset_right = 85.0
+offset_right = 82.0
 offset_bottom = 61.0
 scale = Vector2(0.125, 0.125)
 text = "+"

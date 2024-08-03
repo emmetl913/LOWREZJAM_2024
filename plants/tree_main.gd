@@ -19,9 +19,11 @@ func _ready():
 	$Test_Control_Interface/Energy_Interface/Label.text = "Energy Production Rate: %.2f" % energy_rate
 	
 	$Test_Control_Interface/rate_test_label.text = "Energy: %.2f" % stored_energy + "\nProduction Rate: %.2f" % (energy_rate / 1.0) + " e/s"
+	# Begin energry production on creation of tree
 	$Gen_Energy_Timer.start()
 
 func _process(_delta):
+	# Restart the timer as long as there isn't a negative prod_interval and the timer isn't already running
 	if start_energy_prod and prod_interval>0:
 		$Gen_Energy_Timer.wait_time = prod_interval
 		$Gen_Energy_Timer.start()
@@ -33,27 +35,29 @@ func _on_gen_energy_timer_timeout():
 	if prod_interval <= 0:
 		$Gen_Energy_Timer.stop()
 		pass
+	# Increment the stored energy when timer ends
 	stored_energy += energy_rate
 	$Test_Control_Interface/rate_test_label.text = "Energy: %.2f" % stored_energy + "\nProduction Rate: %.2f" % (energy_rate / prod_interval) + " e/s"
+	# Reset for the prod timer
 	start_energy_prod = true
 
 
+# //////////////////////////////////////////////
+# Debug Buttons for Testing
+# //////////////////////////////////////////////
 func _on_prod_sub_pressed():
 	prod_interval -= 0.1
-
 
 func _on_prod_add_pressed():
 	prod_interval += 0.1
 
-
 func _on_energy_sub_pressed():
 	energy_rate -= 0.25
-
 
 func _on_energy_add_pressed():
 	energy_rate += 0.25
 
-
+# Open and close the debug interface as needed when player presses on the sprite
 func _on_tree_sprite_pressed():
 	if $Test_Control_Interface.visible:
 		print("Closing Tree Interface")
