@@ -67,7 +67,7 @@ func _on_power_menu_toggle_pressed():
 # Tool Belt Seed Resources
 # /////////////////////////
 func _on_sunflower_mouse_entered():
-	seed_text.text = "It's a sunflower seed, plant these to produce xx e/s"
+	seed_text.text = "A sunflower seed, these grow into mature sunflowers that produce more energy                            "
 func _on_sunflower_mouse_exited():
 	seed_text.text = " "
 
