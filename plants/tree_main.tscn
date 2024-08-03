@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cray6xpq4vkl"]
 
-[ext_resource type="Texture2D" uid="uid://fiqgtxjc251p" path="res://assets/sprites/brown_pixel_16x16.png" id="1_5m5sc"]
 [ext_resource type="Script" path="res://plants/tree_main.gd" id="1_kag2c"]
+[ext_resource type="Texture2D" uid="uid://dtxj3uybd6b01" path="res://assets/sprites/temp_tree.png" id="2_c7i5k"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="3_56vxf"]
 [ext_resource type="LabelSettings" uid="uid://bf8m6t4hiop7d" path="res://assets/fonts/default_label_settings.tres" id="4_kbp4e"]
 
@@ -20,8 +20,8 @@ prod_interval = 0.5
 unlocked_forest = Array[bool]([false, false, false, false])
 
 [node name="Tree_Sprite" type="TextureButton" parent="."]
-scale = Vector2(0.5, 0.5)
-texture_normal = ExtResource("1_5m5sc")
+texture_filter = 1
+texture_normal = ExtResource("2_c7i5k")
 
 [node name="Gen_Energy_Timer" type="Timer" parent="."]
 
