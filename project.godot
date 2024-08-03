@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="LOWREZJAM 2024"
-run/main_scene="res://Scenes/Game.scn"
+run/main_scene="res://worlds/meadow.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
