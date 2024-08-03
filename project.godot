@@ -13,3 +13,13 @@ config_version=5
 config/name="LOWREZJAM 2024"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=64
+window/size/viewport_height=64
+window/size/window_width_override=768
+window/size/window_height_override=768
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
+window/vsync/vsync_mode=0
