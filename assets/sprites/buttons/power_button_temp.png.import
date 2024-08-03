@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kwc2jjawqo53"
-path="res://.godot/imported/quit_button_hover_temp.png-6d61d848e513ef876947e26f555d58fe.ctex"
+uid="uid://dh1rn4d4eeejt"
+path="res://.godot/imported/power_button_temp.png-bec56935cf4edb78a8082d79ebe2fab3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/quit_button_hover_temp.png"
-dest_files=["res://.godot/imported/quit_button_hover_temp.png-6d61d848e513ef876947e26f555d58fe.ctex"]
+source_file="res://assets/sprites/buttons/power_button_temp.png"
+dest_files=["res://.godot/imported/power_button_temp.png-bec56935cf4edb78a8082d79ebe2fab3.ctex"]
 
 [params]
 

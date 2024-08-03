@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://dqrmukxmemk4n"]
 
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="1_0j1jv"]
-[ext_resource type="Texture2D" uid="uid://crx1k08qbk2uh" path="res://assets/sprites/start_button_temp.png" id="1_v6q4g"]
+[ext_resource type="Texture2D" uid="uid://crx1k08qbk2uh" path="res://assets/sprites/buttons/start_button_temp.png" id="1_v6q4g"]
 [ext_resource type="Script" path="res://menus/main_menu.gd" id="1_v8w2w"]
-[ext_resource type="Texture2D" uid="uid://bapnnb7ibc3qc" path="res://assets/sprites/start_button_hover_temp.png" id="2_hwsae"]
-[ext_resource type="Texture2D" uid="uid://jele44o4boh7" path="res://assets/sprites/quit_button_temp.png" id="3_j12et"]
-[ext_resource type="Texture2D" uid="uid://kwc2jjawqo53" path="res://assets/sprites/quit_button_hover_temp.png" id="4_otau6"]
+[ext_resource type="Texture2D" uid="uid://bapnnb7ibc3qc" path="res://assets/sprites/buttons/start_button_hover_temp.png" id="2_hwsae"]
+[ext_resource type="Texture2D" uid="uid://jele44o4boh7" path="res://assets/sprites/buttons/quit_button_temp.png" id="3_j12et"]
+[ext_resource type="Texture2D" uid="uid://kwc2jjawqo53" path="res://assets/sprites/buttons/quit_button_hover_temp.png" id="4_otau6"]
 
 [sub_resource type="Gradient" id="Gradient_65wc5"]
 
