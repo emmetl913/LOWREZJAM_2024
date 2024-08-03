@@ -4,6 +4,9 @@ extends Node2D
 var camera_initial_position: Vector2
 var mouse_initial_position: Vector2
 
+var limit_x = Vector2(-64,64)
+var limit_y = Vector2(-64,64)
+
 @onready var camera = $CursorCamera
 
 func _input(event):
@@ -16,7 +19,9 @@ func _input(event):
 	elif event is InputEventMouseMotion:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 			var mouse_diff = event.position - mouse_initial_position
-			camera.position = camera_initial_position - mouse_diff
+			var temp_diff_loc = camera_initial_position - mouse_diff
+			if temp_diff_loc.x > limit_x.x+32 and temp_diff_loc.x < limit_x.y-32 and temp_diff_loc.y > limit_y.x+32 and temp_diff_loc.y < limit_y.y-32:
+				camera.position = temp_diff_loc
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

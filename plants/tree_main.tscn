@@ -26,7 +26,7 @@ texture_normal = ExtResource("2_c7i5k")
 [node name="Gen_Energy_Timer" type="Timer" parent="."]
 
 [node name="Test_Control_Interface" type="Node2D" parent="."]
-position = Vector2(2, -5)
+position = Vector2(-17, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="Test_Control_Interface"]
 position = Vector2(29, 29)

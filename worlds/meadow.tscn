@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bef63fudsi14e"]
+[gd_scene load_steps=13 format=3 uid="uid://bef63fudsi14e"]
 
 [ext_resource type="Script" path="res://worlds/meadow.gd" id="1_bko1o"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_ksmiv"]
@@ -29,8 +29,8 @@ fill_to = Vector2(0, 0)
 script = ExtResource("1_bko1o")
 
 [node name="TileMap" type="TileMap" parent="."]
-texture_filter = 1
 visible = false
+texture_filter = 1
 scale = Vector2(0.5, 0.5)
 tile_set = SubResource("TileSet_v7h3w")
 format = 2
