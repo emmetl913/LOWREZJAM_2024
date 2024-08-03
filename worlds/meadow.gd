@@ -20,8 +20,10 @@ func _input(event):
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 			var mouse_diff = event.position - mouse_initial_position
 			var temp_diff_loc = camera_initial_position - mouse_diff
-			if temp_diff_loc.x > limit_x.x+32 and temp_diff_loc.x < limit_x.y-32 and temp_diff_loc.y > limit_y.x+32 and temp_diff_loc.y < limit_y.y-32:
-				camera.position = temp_diff_loc
+			if temp_diff_loc.x > limit_x.x+32 and temp_diff_loc.x < limit_x.y-32:
+				camera.position.x = temp_diff_loc.x
+			if temp_diff_loc.y > limit_y.x+32 and temp_diff_loc.y < limit_y.y-32:
+				camera.position.y = temp_diff_loc.y
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
