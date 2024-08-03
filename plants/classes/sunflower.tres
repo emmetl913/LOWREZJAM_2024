@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Base_Plant" load_steps=3 format=3 uid="uid://du4euqgwusyht"]
+
+[ext_resource type="Script" path="res://plants/classes/base/base_plant.gd" id="1_0v553"]
+[ext_resource type="Texture2D" uid="uid://bgvkn4m2c43uc" path="res://assets/sprites/yellow_pixel_8x8.png" id="1_4u886"]
+
+[resource]
+script = ExtResource("1_0v553")
+RESOURCE_NAME = "ENERGY"
+PROD_VAL = 5
+PROD_INTERVAL = 1.0
+WEIGHT = 10
+HEALTH = 10
+TEXTURE = ExtResource("1_4u886")

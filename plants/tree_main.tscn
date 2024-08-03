@@ -1,0 +1,103 @@
+[gd_scene load_steps=7 format=3 uid="uid://cray6xpq4vkl"]
+
+[ext_resource type="Texture2D" uid="uid://fiqgtxjc251p" path="res://assets/sprites/brown_pixel_16x16.png" id="1_5m5sc"]
+[ext_resource type="Script" path="res://plants/tree_main.gd" id="1_kag2c"]
+[ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="3_56vxf"]
+[ext_resource type="LabelSettings" uid="uid://bf8m6t4hiop7d" path="res://assets/fonts/default_label_settings.tres" id="4_kbp4e"]
+
+[sub_resource type="Gradient" id="Gradient_xxcry"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uny3x"]
+gradient = SubResource("Gradient_xxcry")
+width = 60
+height = 16
+fill_to = Vector2(0, 0)
+
+[node name="Tree_Main" type="Node2D"]
+script = ExtResource("1_kag2c")
+energy_rate = 0.5
+prod_interval = 0.5
+unlocked_forest = Array[bool]([false, false, false, false])
+
+[node name="Tree_Sprite" type="TextureButton" parent="."]
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("1_5m5sc")
+
+[node name="Gen_Energy_Timer" type="Timer" parent="."]
+
+[node name="Test_Control_Interface" type="Node2D" parent="."]
+position = Vector2(0, 8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Test_Control_Interface"]
+position = Vector2(31, 29)
+scale = Vector2(1, 1.75)
+texture = SubResource("GradientTexture2D_uny3x")
+
+[node name="rate_test_label" type="Label" parent="Test_Control_Interface"]
+texture_filter = 1
+offset_left = 2.0
+offset_top = 17.0
+offset_right = 58.0
+offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("3_56vxf")
+label_settings = ExtResource("4_kbp4e")
+autowrap_mode = 3
+
+[node name="Prod_Interface" type="Node2D" parent="Test_Control_Interface"]
+
+[node name="prod_sub" type="Button" parent="Test_Control_Interface/Prod_Interface"]
+offset_left = 3.0
+offset_top = 35.0
+offset_right = 35.0
+offset_bottom = 67.0
+scale = Vector2(0.125, 0.125)
+text = "-"
+
+[node name="Label" type="Label" parent="Test_Control_Interface/Prod_Interface"]
+offset_left = 9.0
+offset_top = 35.0
+offset_right = 49.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("3_56vxf")
+label_settings = ExtResource("4_kbp4e")
+
+[node name="prod_add" type="Button" parent="Test_Control_Interface/Prod_Interface"]
+offset_left = 53.0
+offset_top = 35.0
+offset_right = 85.0
+offset_bottom = 67.0
+scale = Vector2(0.125, 0.125)
+text = "+"
+
+[node name="Energy_Interface" type="Node2D" parent="Test_Control_Interface"]
+
+[node name="energy_sub" type="Button" parent="Test_Control_Interface/Energy_Interface"]
+offset_left = 3.0
+offset_top = 29.0
+offset_right = 35.0
+offset_bottom = 60.0
+scale = Vector2(0.125, 0.125)
+text = "-"
+
+[node name="Label" type="Label" parent="Test_Control_Interface/Energy_Interface"]
+offset_left = 9.0
+offset_top = 29.0
+offset_right = 49.0
+offset_bottom = 52.0
+theme_override_fonts/font = ExtResource("3_56vxf")
+label_settings = ExtResource("4_kbp4e")
+
+[node name="energy_add" type="Button" parent="Test_Control_Interface/Energy_Interface"]
+offset_left = 53.0
+offset_top = 29.0
+offset_right = 85.0
+offset_bottom = 61.0
+scale = Vector2(0.125, 0.125)
+text = "+"
+
+[connection signal="pressed" from="Tree_Sprite" to="." method="_on_tree_sprite_pressed"]
+[connection signal="timeout" from="Gen_Energy_Timer" to="." method="_on_gen_energy_timer_timeout"]
+[connection signal="pressed" from="Test_Control_Interface/Prod_Interface/prod_sub" to="." method="_on_prod_sub_pressed"]
+[connection signal="pressed" from="Test_Control_Interface/Prod_Interface/prod_add" to="." method="_on_prod_add_pressed"]
+[connection signal="pressed" from="Test_Control_Interface/Energy_Interface/energy_sub" to="." method="_on_energy_sub_pressed"]
+[connection signal="pressed" from="Test_Control_Interface/Energy_Interface/energy_add" to="." method="_on_energy_add_pressed"]
