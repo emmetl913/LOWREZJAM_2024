@@ -1,25 +1,21 @@
 extends Node2D
 
-enum State {}
+enum State { passive, aggressive, vicious }
 
 @export var damage: int
 
-var state: State
-var timer
+var state: State = State.passive
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	timer = $".."
-	timer.time_period_change.connect(change_behavior)
-	
-	pass # Replace with function body.
+	($"../Day-Night Cycle").time_period_change.connect(change_behavior)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 	
-func change_behavior(period: meadow.Time_Period):
-	print(meadow.Time_Period.keys()[period])
-	
-	pass
+func change_behavior(period: Day_Night_Cycle.Time_Period):
+	if(period == Day_Night_Cycle.Time_Period.dusk || period == Day_Night_Cycle.Time_Period.dawn):
+		state = State.vicious
+	elif(period == Day_Night_Cycle.Time_Period.midnight):
+		state = State.aggressive
+	else:
+		state = State.passive

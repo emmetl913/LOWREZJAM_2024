@@ -1,10 +1,4 @@
-class_name meadow
-
 extends Node2D
-
-signal time_period_change(period: Time_Period)
-
-enum Time_Period {morning, afternoon, evening, dusk, midnight, dawn}
 
 @onready var toolbelt_open : bool = false
 var camera_initial_position: Vector2
@@ -24,10 +18,7 @@ var stored_energy : float
 @onready var seeds_menu = $CursorCamera/ToolBelt/Seeds_Menu
 @onready var options_menu = $CursorCamera/ToolBelt/Options_Menu
 
-var period_time: float = 0
-var time_period: Time_Period = Time_Period.morning
 
-const PERIOD_SEC: int = 45
 
 func _ready():
 	$Tree_Sun_Prod.wait_time = tree.prod_interval
@@ -38,8 +29,6 @@ func _ready():
 	options_menu.visible = true
 
 func _process(delta):
-	Day_Time_Process(delta)
-	
 	updateEnergyMenu()
 
 func updateEnergyMenu():
@@ -92,16 +81,3 @@ func _on_main_menu_mouse_entered():
 	options_text.text = "Press to return to the main menu"
 func _on_main_menu_mouse_exited():
 	options_text.text = " "
-	
-func Day_Time_Process(delta: float):
-	period_time += delta
-	
-	if(period_time >= PERIOD_SEC):
-		if(time_period + 1 == Time_Period.size()):
-			time_period = 0
-		else:
-			time_period += 1
-			
-		time_period_change.emit(time_period)
-		
-		period_time -= PERIOD_SEC
