@@ -7,45 +7,79 @@ var mouse_initial_position: Vector2
 var limit_x = Vector2(-64,64)
 var limit_y = Vector2(-64,64)
 
+var stored_energy : float
+# Get References to important children on startup
+@onready var tree = $Tree_Main
 @onready var camera = $CursorCamera
+@onready var seed_text = $CursorCamera/ToolBelt/Seeds_Menu/Plant_Info
+@onready var options_text = $CursorCamera/ToolBelt/Options_Menu/Options_Tooltip
+@onready var energy_text = $CursorCamera/ToolBelt/Energy_Menu/Energy_Stored
+@onready var energy_menu = $CursorCamera/ToolBelt/Energy_Menu
+@onready var seeds_menu = $CursorCamera/ToolBelt/Seeds_Menu
+@onready var options_menu = $CursorCamera/ToolBelt/Options_Menu
 
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.is_action_pressed("drag"):
-			camera_initial_position = camera.position
-			mouse_initial_position = event.position
-		if event.is_action_released("drag"):
-			set_process(false)
-	elif event is InputEventMouseMotion:
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-			var mouse_diff = event.position - mouse_initial_position
-			var temp_diff_loc = camera_initial_position - mouse_diff
-			if temp_diff_loc.x > limit_x.x+32 and temp_diff_loc.x < limit_x.y-32 and temp_diff_loc.y > limit_y.x+32 and temp_diff_loc.y < limit_y.y-32:
-				camera.position = temp_diff_loc
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
+	$Tree_Sun_Prod.wait_time = tree.prod_interval
+	$Tree_Sun_Prod.start()
 	$CursorCamera/ToolBelt.position.y += 14
-	set_process(false)
+	energy_menu.visible = false
+	seeds_menu.visible = false
+	options_menu.visible = true
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		set_process(true)
-	else:
-		set_process(false)
+	updateEnergyMenu()
 
+func updateEnergyMenu():
+	energy_text.text = "Sun Power: %.2f" % stored_energy + "\n- From Tree: %.2f" % (tree.energy_rate/tree.prod_interval)
+	pass
+func _on_tree_sun_prod_timeout():
+	stored_energy += tree.energy_rate
+	$Tree_Sun_Prod.wait_time = tree.prod_interval
+	$Tree_Sun_Prod.start()
 
-func _on_sunflower_mouse_entered():
-	$CursorCamera/ToolBelt/Sprite2D/Plant_Info.text = "It's a sunflower seed, plant these to produce xx e/s"
-
-
+# /////////////////////////
+# Tool Belt Toggle Buttons
+# /////////////////////////
 func _on_tool_belt_toggle_pressed():
 	toolbelt_open = not toolbelt_open
 	if toolbelt_open:
+		options_menu.visible = true
+		seeds_menu.visible = false
+		energy_menu.visible = false
 		$CursorCamera/ToolBelt.position.y = lerp($CursorCamera/ToolBelt.position.y, $CursorCamera/ToolBelt.position.y-14, 1)
-		get_tree().paused = true
+		$CursorCamera/ToolBelt/ToolBelt_Toggle.texture_normal = load("res://assets/sprites/buttons/down.png")
 	else:
 		$CursorCamera/ToolBelt.position.y = lerp($CursorCamera/ToolBelt.position.y, $CursorCamera/ToolBelt.position.y+14, 1)
-		get_tree().paused = false
+		$CursorCamera/ToolBelt/ToolBelt_Toggle.texture_normal = load("res://assets/sprites/buttons/up.png")
+func _on_seeds_menu_toggle_pressed():
+	if toolbelt_open:
+		seeds_menu.visible = true
+		options_menu.visible = false
+		energy_menu.visible = false
+func _on_power_menu_toggle_pressed():
+	if toolbelt_open:
+		seeds_menu.visible = false
+		options_menu.visible = false
+		energy_menu.visible = true
+
+# /////////////////////////
+# Tool Belt Seed Resources
+# /////////////////////////
+func _on_sunflower_mouse_entered():
+	seed_text.text = "It's a sunflower seed, plant these to produce xx e/s"
+func _on_sunflower_mouse_exited():
+	seed_text.text = " "
+
+# //////////////////////////
+# Options Menu Button Config
+# //////////////////////////
+func _on_main_menu_pressed():
+	get_tree().change_scene_to_file("res://menus/main_menu.tscn")
+func _on_main_menu_mouse_entered():
+	options_text.text = "Press to return to the main menu"
+func _on_main_menu_mouse_exited():
+	options_text.text = " "
+
+
+

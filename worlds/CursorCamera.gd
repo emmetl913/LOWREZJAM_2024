@@ -1,28 +1,33 @@
 extends Camera2D
 
+var camera_initial_position: Vector2
+var mouse_initial_position: Vector2
 
-# Size of the deadzone
-var deadzone_size = Vector2(52, 52)
-# Camera movement speed
-var camera_speed = 50
-var limit_x = Vector2(-100,100)
-var limit_y = Vector2(-100,100)
+var limit_x = Vector2(-64,64)
+var limit_y = Vector2(-64,64)
+
+func _ready():
+	set_process(false)
+
+func _input(event):
+	# Code for interfacing with the click and drag camera
+	if event is InputEventMouseButton:
+		if event.is_action_pressed("drag"):
+			camera_initial_position = position
+			mouse_initial_position = event.position
+		if event.is_action_released("drag"):
+			set_process(false)
+	elif event is InputEventMouseMotion:
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			var mouse_diff = event.position - mouse_initial_position
+			var temp_diff_loc = camera_initial_position - mouse_diff
+			if temp_diff_loc.x > limit_x.x+32 and temp_diff_loc.x < limit_x.y-32:
+				position.x = temp_diff_loc.x
+			if temp_diff_loc.y > limit_y.x+32 and temp_diff_loc.y < limit_y.y-32:
+				position.y = temp_diff_loc.y
 
 func _process(delta):
-	var mouse_global_pos = get_global_mouse_position()
-	#print("Mouse pos:", mouse_global_pos)
-	#print("toolbelt pos: ", $ToolBelt.position)
-	#print("Global pos: ", global_position)
-	var camera_pos = global_position
-	
-	# Calculate the distance between the camera and the mouse
-	var distance = mouse_global_pos - camera_pos
-	
-	# Check if the mouse is outside the deadzone
-	if abs(distance.x) > deadzone_size.x / 2 or abs(distance.y) > deadzone_size.y / 2:
-		# Calculate the target position
-		var target_pos = camera_pos + distance.normalized() * camera_speed * delta
-		# Move camera 
-		#$ToolBelt.position = clamp()
-		if target_pos.x > limit_x.x+32 and target_pos.x < limit_x.y-32 and target_pos.y > limit_y.x+32 and target_pos.y < limit_y.y-32:
-			global_position = target_pos
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		set_process(true)
+	else:
+		set_process(false)

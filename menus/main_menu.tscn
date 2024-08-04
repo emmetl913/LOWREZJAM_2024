@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://dqrmukxmemk4n"]
+
+[ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="1_0j1jv"]
+[ext_resource type="Texture2D" uid="uid://crx1k08qbk2uh" path="res://assets/sprites/buttons/start_button_temp.png" id="1_v6q4g"]
+[ext_resource type="Script" path="res://menus/main_menu.gd" id="1_v8w2w"]
+[ext_resource type="Texture2D" uid="uid://bapnnb7ibc3qc" path="res://assets/sprites/buttons/start_button_hover_temp.png" id="2_hwsae"]
+[ext_resource type="Texture2D" uid="uid://jele44o4boh7" path="res://assets/sprites/buttons/quit_button_temp.png" id="3_j12et"]
+[ext_resource type="Texture2D" uid="uid://kwc2jjawqo53" path="res://assets/sprites/buttons/quit_button_hover_temp.png" id="4_otau6"]
+
+[sub_resource type="Gradient" id="Gradient_65wc5"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nha13"]
+gradient = SubResource("Gradient_65wc5")
+fill_to = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3fe3t"]
+font_size = 9
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v8w2w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+texture = SubResource("GradientTexture2D_nha13")
+
+[node name="Title" type="Label" parent="Sprite2D"]
+texture_filter = 1
+offset_left = -27.0
+offset_top = -22.0
+offset_right = 29.0
+theme_override_fonts/font = ExtResource("1_0j1jv")
+text = "Title of the Game"
+label_settings = SubResource("LabelSettings_3fe3t")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Play" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 28.0
+offset_bottom = 52.0
+texture_normal = ExtResource("1_v6q4g")
+texture_hover = ExtResource("2_hwsae")
+
+[node name="Quit" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 36.0
+offset_top = 40.0
+offset_right = 48.0
+offset_bottom = 52.0
+texture_normal = ExtResource("3_j12et")
+texture_hover = ExtResource("4_otau6")
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

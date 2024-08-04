@@ -3,7 +3,7 @@ extends Node2D
 # The rate at which the tree produces energy in energy_rate/second
 @export var energy_rate : float 
 @export var prod_interval : float
-@export var stored_energy : float
+@export var lifetime_produced : float
 # The max helath of the tree
 @export var health : int 
 # An array consisting of whether or not an area has been unlocked on the map
@@ -18,7 +18,7 @@ func _ready():
 	$Test_Control_Interface/Prod_Interface/Label.text = "Production Interval: %.2f" % prod_interval
 	$Test_Control_Interface/Energy_Interface/Label.text = "Energy Production Rate: %.2f" % energy_rate
 	
-	$Test_Control_Interface/rate_test_label.text = "Energy: %.2f" % stored_energy + "\nProduction Rate: %.2f" % (energy_rate / 1.0) + " e/s"
+	$Test_Control_Interface/rate_test_label.text = "Energy: %.2f" % lifetime_produced + "\nProduction Rate: %.2f" % (energy_rate / 1.0) + " e/s"
 	# Begin energry production on creation of tree
 	$Gen_Energy_Timer.start()
 
@@ -36,8 +36,8 @@ func _on_gen_energy_timer_timeout():
 		$Gen_Energy_Timer.stop()
 		pass
 	# Increment the stored energy when timer ends
-	stored_energy += energy_rate
-	$Test_Control_Interface/rate_test_label.text = "Energy: %.2f" % stored_energy + "\nProduction Rate: %.2f" % (energy_rate / prod_interval) + " e/s"
+	lifetime_produced += energy_rate
+	$Test_Control_Interface/rate_test_label.text = "Energy: %.2f" % lifetime_produced + "\nProduction Rate: %.2f" % (energy_rate / prod_interval) + " e/s"
 	# Reset for the prod timer
 	start_energy_prod = true
 
