@@ -2,8 +2,11 @@ extends Node2D
 
 enum Time_Period {morning, afternoon, evening, dusk, midnight, dawn}
 
+@export var animal_minspawnchance: int
+@export var animal_maxspawnchance: int
 @onready var sunflower_reference = preload("res://plants/classes/sunflower.tres")
 @onready var plant_instance = preload("res://plants/classes/base/base_plant.tscn")
+@onready var deer = preload("res://entities/animals/deer.tscn")
 
 @onready var map_data = []
 var map_width = 16
@@ -131,6 +134,7 @@ func _input(event):
 			$CursorCamera/ToolBelt/Seeds_Menu/Sunflower_Total.text = "x%02d" % seeds[0]
 			print("You're trying to plant seed with menu open: ", held_seed_id, " you now have ", seeds[0], " seeds")
 			var new_coords = getMapAsGridCoords()
+			map_data[new_coords.x-1][new_coords.y-1] = held_seed_id
 			var res = getPlantResourceByPlantID(held_seed_id)
 			var new_plant = plant_instance.instantiate()
 			setUpNewPlant(res, new_plant, new_coords)
@@ -171,8 +175,22 @@ func setUpNewPlant(res : Resource, new_plant, coords : Vector2):
 	new_plant._set_growth_timer(new_plant.GROWTH_TIME)
 	new_plant._set_prod_timer(res.PROD_INTERVAL)
 	new_plant._start_growth()
+	_try_spawn_animal(res.PLANT_ID)
 	total_sunflowers += 1
 
+func _try_spawn_animal(plantID: int):
+	if randi_range(animal_minspawnchance,animal_maxspawnchance) == 1:
+		_spawn_animal(plantID, randf_range(0,5))
+
+func _spawn_animal(plantID: int, timeToSpawn: float):
+	var new_animal = _get_animal_by_plant_id(plantID).instantiate()
+	new_animal._set_parent(self)
+	new_animal.enter_screen_timer = timeToSpawn
+	add_child(new_animal, true)
+func _get_animal_by_plant_id(plantID: int):
+	if plantID == 0:
+		return deer
+	
 func getPlantResourceByPlantID(id : int):
 	if id == 0:
 		return load("res://plants/classes/sunflower.tres")

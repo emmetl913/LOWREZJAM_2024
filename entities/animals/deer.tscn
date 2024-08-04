@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dqhr6rgl1jajx"]
 
 [ext_resource type="Script" path="res://entities/animals/deer.gd" id="1_3cto8"]
-[ext_resource type="Texture2D" uid="uid://canh283ofh031" path="res://assets/sprites/deertemp.png" id="1_hq6ph"]
 [ext_resource type="Script" path="res://entities/animals/animal.gd" id="1_i840l"]
+[ext_resource type="Texture2D" uid="uid://ccxctypctmvtb" path="res://assets/sprites/deertemp1.png" id="3_gc1os"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gdoti"]
 
@@ -10,7 +10,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_hq6ph")
+"texture": ExtResource("3_gc1os")
 }],
 "loop": true,
 "name": &"default",
@@ -23,7 +23,7 @@ script = ExtResource("1_i840l")
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_3cto8")
 speed = 10.0
-max_distance_from_plant = 15.0
+max_distance_from_plant = 7.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("RectangleShape2D_gdoti")
@@ -34,11 +34,20 @@ z_index = 1
 sprite_frames = SubResource("SpriteFrames_ccq1h")
 
 [node name="pwint" type="Timer" parent="CharacterBody2D"]
-wait_time = 0.1
+wait_time = 1.055
 autostart = true
 
 [node name="RecalculateMoveDir" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="EnterScreen" type="Timer" parent="."]
+one_shot = true
+
+[node name="RandomlyChoosePlant" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="timeout" from="CharacterBody2D/pwint" to="CharacterBody2D" method="_on_pwint_timeout"]
 [connection signal="timeout" from="RecalculateMoveDir" to="CharacterBody2D" method="_on_recalculate_move_dir_timeout"]
+[connection signal="timeout" from="EnterScreen" to="CharacterBody2D" method="_on_enter_screen_timeout"]
+[connection signal="timeout" from="RandomlyChoosePlant" to="." method="_on_randomly_choose_plant_timeout"]
