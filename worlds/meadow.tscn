@@ -73,7 +73,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color(0.729412, 0.843137, 0.988235, 0.137255)
+color = Color(1, 1, 1, 0)
 
 [node name="Debug_Label" type="Label" parent="CursorCamera"]
 visible = false
