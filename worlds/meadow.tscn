@@ -14,8 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://dew2q8k2q1l2i" path="res://assets/sprites/buttons/exit_to_mm_temp_button.png" id="10_p3v3i"]
 [ext_resource type="Texture2D" uid="uid://ngbdld7ow7e2" path="res://assets/sprites/buttons/exit_to_mm_temp_button_hover.png" id="11_doao0"]
 [ext_resource type="Texture2D" uid="uid://bsbte62wt5lyp" path="res://assets/sprites/Sun Dial.png" id="14_o8xln"]
-[ext_resource type="Script" path="res://spirits/Spirit.gd" id="14_yopxr"]
-[ext_resource type="Script" path="res://managers/Day_Night_Cycle.gd" id="15_t7viv"]
+[ext_resource type="Script" path="res://spirits/spirit.gd" id="14_yopxr"]
+[ext_resource type="Script" path="res://managers/day_night_cycle.gd" id="15_t7viv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3nj7g"]
 texture = ExtResource("3_oex1i")

@@ -18,9 +18,9 @@ func _ready():
 	film.color = TIME_COLORS[time_period]
 
 func _process(delta):
-	Day_Time_Process(delta)
+	_day_time_process(delta)
 
-func Day_Time_Process(delta: float):
+func _day_time_process(delta: float):
 	period_time += delta
 	
 	if(period_time >= PERIOD_SEC):
