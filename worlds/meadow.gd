@@ -35,7 +35,6 @@ var planted_plants: Array[PackedScene]
 var period_time: float = 0
 var time_period: Time_Period = Time_Period.morning
 
-const PERIOD_SEC: int = 45
 
 func _ready():
 	setupMap()
@@ -54,8 +53,6 @@ func setupMap():
 			map_data[i].append(-1) # Value for an empty space is -1
 
 func _process(delta):
-	Day_Time_Process(delta)
-	
 	updateEnergyMenu()
 
 func updateEnergyMenu():
