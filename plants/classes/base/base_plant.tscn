@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct76s45r8mn2q"]
+
+[ext_resource type="Script" path="res://plants/classes/base/base_plant_script.gd" id="1_dj43l"]
+
+[node name="BasePlant" type="Node2D"]
+script = ExtResource("1_dj43l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Growth_Timer" type="Timer" parent="."]
+
+[node name="Prod_Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Growth_Timer" to="." method="_on_growth_timer_timeout"]
+[connection signal="timeout" from="Prod_Timer" to="." method="_on_prod_timer_timeout"]
