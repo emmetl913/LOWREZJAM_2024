@@ -57,9 +57,12 @@ func _on_pwint_timeout():
 	print(plant_position, " plant")
 	print(position, " deer")
 
+#kill animal with this ;P
+ #animal._take_damage(1)
 func _set_plant_position():
 	plant_position = animal._get_plant_position()
 	
 func _on_enter_screen_timeout():
 	can_move = true
 	plant_position = animal._get_plant_position()
+	

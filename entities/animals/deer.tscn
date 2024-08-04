@@ -19,6 +19,7 @@ animations = [{
 
 [node name="Deer" type="Node2D"]
 script = ExtResource("1_i840l")
+health = 1
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_3cto8")
@@ -34,7 +35,7 @@ z_index = 1
 sprite_frames = SubResource("SpriteFrames_ccq1h")
 
 [node name="pwint" type="Timer" parent="CharacterBody2D"]
-wait_time = 1.055
+wait_time = 15.0
 autostart = true
 
 [node name="RecalculateMoveDir" type="Timer" parent="."]
