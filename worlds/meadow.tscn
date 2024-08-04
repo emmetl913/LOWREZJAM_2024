@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bef63fudsi14e"]
+[gd_scene load_steps=19 format=3 uid="uid://bef63fudsi14e"]
 
 [ext_resource type="Script" path="res://worlds/meadow.gd" id="1_bko1o"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_ksmiv"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dh1rn4d4eeejt" path="res://assets/sprites/buttons/power_button_temp.png" id="9_4kucm"]
 [ext_resource type="Texture2D" uid="uid://dew2q8k2q1l2i" path="res://assets/sprites/buttons/exit_to_mm_temp_button.png" id="10_p3v3i"]
 [ext_resource type="Texture2D" uid="uid://ngbdld7ow7e2" path="res://assets/sprites/buttons/exit_to_mm_temp_button_hover.png" id="11_doao0"]
+[ext_resource type="Script" path="res://spirits/spirit.gd" id="14_yopxr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3nj7g"]
 texture = ExtResource("3_oex1i")
@@ -168,6 +169,9 @@ label_settings = ExtResource("3_w168r")
 autowrap_mode = 3
 
 [node name="Tree_Sun_Prod" type="Timer" parent="."]
+
+[node name="Test Spirit" type="Node2D" parent="."]
+script = ExtResource("14_yopxr")
 
 [connection signal="pressed" from="CursorCamera/ToolBelt/ToolBelt_Toggle" to="." method="_on_tool_belt_toggle_pressed"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu_Toggle" to="." method="_on_seeds_menu_toggle_pressed"]

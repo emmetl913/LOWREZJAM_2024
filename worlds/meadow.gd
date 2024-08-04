@@ -1,4 +1,8 @@
+class_name meadow
+
 extends Node2D
+
+signal time_period_change(period: Time_Period)
 
 enum Time_Period {morning, afternoon, evening, dusk, midnight, dawn}
 
@@ -98,4 +102,6 @@ func Day_Time_Process(delta: float):
 		else:
 			time_period += 1
 			
+		time_period_change.emit(time_period)
+		
 		period_time -= PERIOD_SEC
