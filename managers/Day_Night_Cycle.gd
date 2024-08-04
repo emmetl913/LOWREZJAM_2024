@@ -1,6 +1,6 @@
-extends Node
-
 class_name Day_Night_Cycle
+
+extends Node
 
 enum Time_Period { morning, afternoon, evening, dusk, midnight, dawn }
 signal time_period_change(period: Time_Period)
@@ -14,14 +14,14 @@ var TIME_COLORS: Array[int] = [ 0x3e89e21e, 0x0, 0xf165002b, 0x031a364b, 0xbad7f
 var period_time: float = 0
 var time_period: Time_Period = Time_Period.morning
 
-func _ready():
+func _ready() -> void:
 	time_indicator.frame = 0
 	film.color = TIME_COLORS[time_period]
 
-func _process(delta):
+func _process(delta) -> void:
 	_day_time_process(delta)
 
-func _day_time_process(delta: float):
+func _day_time_process(delta: float) -> void:
 	period_time += delta
 	
 	if(period_time >= PERIOD_SEC):
