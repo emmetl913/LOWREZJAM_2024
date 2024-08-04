@@ -16,6 +16,8 @@ var new_y
 @export var GROWTH_TIME : int
 @export var RESOURCES_STORED : int
 
+var parent
+
 func _set_seed_texture(new : Texture):
 	SEED_TEXTURE = new
 func _get_seed_texture():
@@ -24,6 +26,8 @@ func _set_mature_texture(new : Texture):
 	MATURE_TEXTURE = new
 func _get_mature_texture():
 	return MATURE_TEXTURE
+func _set_parent(par : Node2D):
+	parent = par
 
 func _set_growth_timer(new : int):
 	$Growth_Timer.wait_time = new
@@ -31,7 +35,6 @@ func _set_prod_timer(new : int):
 	$Prod_Timer.wait_time = new
 func _start_growth():
 	print("Growth Begun, should take ", $Growth_Timer.wait_time, " to mature")
-	$Growth_Timer.start()
 
 func setPosition():
 	if GRID_COORDS.x > 8:
@@ -51,6 +54,9 @@ func _on_growth_timer_timeout():
 	print("Plant has matured")
 	$Prod_Timer.start()
 func _on_prod_timer_timeout():
-	RESOURCES_STORED += PROD_VAL
+	if RESOURCE_NAME == "ENERGY":
+		parent.stored_energy += PROD_VAL
+	else:
+		RESOURCES_STORED += PROD_VAL
 	print("Plant has produced ", PROD_VAL, " resources")
 	$Prod_Timer.start()

@@ -2,11 +2,13 @@ extends Node2D
 
 enum Time_Period {morning, afternoon, evening, dusk, midnight, dawn}
 
+@onready var sunflower_reference = preload("res://plants/classes/sunflower.tres")
 @onready var plant_instance = preload("res://plants/classes/base/base_plant.tscn")
 
 @onready var map_data = []
 var map_width = 16
 var map_height = 16
+@onready var total_sunflowers : int = 0
 
 var held_seed_id : int = -1
 @onready var is_holding_seed : bool = false
@@ -57,7 +59,7 @@ func _process(delta):
 	#print(get_local_mouse_position())
 
 func updateEnergyMenu():
-	energy_text.text = "Sun Power: %.2f" % stored_energy + "\n- From Tree: %.2f" % (tree.energy_rate/tree.prod_interval)
+	energy_text.text = "Sun Power: %.2f" % stored_energy + "\n- From Tree: %.2f" % (tree.energy_rate/tree.prod_interval) + "    From %02d" % total_sunflowers + " sunflowers: %.2f" % ((sunflower_reference.PROD_VAL/sunflower_reference.PROD_INTERVAL)*total_sunflowers)
 	pass
 func _on_tree_sun_prod_timeout():
 	stored_energy += tree.energy_rate
@@ -164,10 +166,12 @@ func setUpNewPlant(res : Resource, new_plant, coords : Vector2):
 	new_plant.GRID_COORDS = coords
 	new_plant.GROWTH_TIME = res.GROWTH_TIME
 	new_plant.RESOURCES_STORED = res.RESOURCES_STORED
+	new_plant._set_parent(self)
 	new_plant.setPosition()
 	new_plant._set_growth_timer(new_plant.GROWTH_TIME)
 	new_plant._set_prod_timer(res.PROD_INTERVAL)
 	new_plant._start_growth()
+	total_sunflowers += 1
 
 func getPlantResourceByPlantID(id : int):
 	if id == 0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bef63fudsi14e"]
+[gd_scene load_steps=23 format=3 uid="uid://bef63fudsi14e"]
 
 [ext_resource type="Script" path="res://worlds/meadow.gd" id="1_bko1o"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_ksmiv"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://dby4wixwjy120" path="res://util/mouse_dragger.tscn" id="14_gar52"]
 [ext_resource type="Texture2D" uid="uid://bsbte62wt5lyp" path="res://assets/sprites/Sun Dial.png" id="14_o8xln"]
 [ext_resource type="Script" path="res://spirits/spirit.gd" id="14_yopxr"]
-[ext_resource type="PackedScene" uid="uid://ct76s45r8mn2q" path="res://plants/classes/base/base_plant.tscn" id="15_iw3rq"]
 [ext_resource type="Script" path="res://managers/day_night_cycle.gd" id="15_t7viv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3nj7g"]
@@ -134,6 +133,7 @@ texture_normal = ExtResource("9_4kucm")
 stretch_mode = 0
 
 [node name="Seeds_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
+visible = false
 position = Vector2(0, 26)
 texture = SubResource("GradientTexture2D_irbrn")
 
@@ -190,7 +190,6 @@ label_settings = ExtResource("3_w168r")
 autowrap_mode = 3
 
 [node name="Energy_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
-visible = false
 position = Vector2(0, 26)
 texture = SubResource("GradientTexture2D_irbrn")
 
@@ -215,9 +214,6 @@ region_rect = Rect2(0, 0, 32, 48)
 [node name="Tree_Sun_Prod" type="Timer" parent="."]
 
 [node name="Mouse_Dragger" parent="." instance=ExtResource("14_gar52")]
-
-[node name="BasePlant" parent="." instance=ExtResource("15_iw3rq")]
-visible = false
 
 [node name="Test Spirit" type="Node2D" parent="."]
 script = ExtResource("14_yopxr")
