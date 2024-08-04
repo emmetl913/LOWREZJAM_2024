@@ -1,5 +1,5 @@
-class_name Day_Night_Cycle
 extends Node
+class_name Day_Night_Cycle
 
 enum Time_Period { morning, afternoon, evening, dusk, midnight, dawn }
 signal time_period_change(period: Time_Period)

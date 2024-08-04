@@ -1,10 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://bef63fudsi14e"]
+[gd_scene load_steps=19 format=3 uid="uid://bef63fudsi14e"]
 
 [ext_resource type="Script" path="res://worlds/meadow.gd" id="1_bko1o"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_ksmiv"]
 [ext_resource type="Texture2D" uid="uid://ban1edih61yuw" path="res://assets/sprites/temp_background.png" id="3_3dw8h"]
 [ext_resource type="PackedScene" uid="uid://cray6xpq4vkl" path="res://plants/tree_main.tscn" id="3_3tjh2"]
-[ext_resource type="Texture2D" uid="uid://ctn1gn4pduwxs" path="res://assets/sprites/temp_tile.png" id="3_oex1i"]
 [ext_resource type="LabelSettings" uid="uid://bf8m6t4hiop7d" path="res://assets/fonts/default_label_settings.tres" id="3_w168r"]
 [ext_resource type="Script" path="res://worlds/CursorCamera.gd" id="5_ggpfp"]
 [ext_resource type="Texture2D" uid="uid://h705hy2tkeq7" path="res://assets/sprites/buttons/up.png" id="7_0f76k"]
@@ -14,22 +13,16 @@
 [ext_resource type="Texture2D" uid="uid://dew2q8k2q1l2i" path="res://assets/sprites/buttons/exit_to_mm_temp_button.png" id="10_p3v3i"]
 [ext_resource type="Texture2D" uid="uid://ngbdld7ow7e2" path="res://assets/sprites/buttons/exit_to_mm_temp_button_hover.png" id="11_doao0"]
 [ext_resource type="Texture2D" uid="uid://bsbte62wt5lyp" path="res://assets/sprites/Sun Dial.png" id="14_o8xln"]
-[ext_resource type="Script" path="res://spirits/spirit.gd" id="14_yopxr"]
+[ext_resource type="Script" path="res://entities/spirits/spirit.gd" id="14_yopxr"]
 [ext_resource type="Script" path="res://managers/day_night_cycle.gd" id="15_t7viv"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3nj7g"]
-texture = ExtResource("3_oex1i")
-texture_region_size = Vector2i(8, 8)
-0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_v7h3w"]
 tile_size = Vector2i(8, 8)
-sources/0 = SubResource("TileSetAtlasSource_3nj7g")
 
-[sub_resource type="Gradient" id="Gradient_xxcry"]
+[sub_resource type="Gradient" id="Gradient_tya42"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_irbrn"]
-gradient = SubResource("Gradient_xxcry")
+gradient = SubResource("Gradient_tya42")
 height = 16
 fill_to = Vector2(0, 0)
 
@@ -74,6 +67,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
 
 [node name="Debug_Label" type="Label" parent="CursorCamera"]
 visible = false
@@ -91,6 +85,7 @@ autowrap_mode = 3
 process_mode = 3
 layout_mode = 3
 anchors_preset = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="ToolBelt_Toggle" type="TextureButton" parent="CursorCamera/ToolBelt"]
 texture_filter = 1
@@ -102,6 +97,7 @@ offset_bottom = 22.0
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("7_0f76k")
 stretch_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Seeds_Menu_Toggle" type="TextureButton" parent="CursorCamera/ToolBelt"]
 texture_filter = 1
@@ -113,6 +109,7 @@ offset_bottom = 22.0
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("8_j78vt")
 stretch_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Power_Menu_Toggle" type="TextureButton" parent="CursorCamera/ToolBelt"]
 texture_filter = 1
@@ -124,6 +121,7 @@ offset_bottom = 22.0
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("9_4kucm")
 stretch_mode = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="Seeds_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
 position = Vector2(0, 26)
@@ -136,6 +134,7 @@ offset_right = -26.0
 offset_bottom = -3.0
 texture_normal = ExtResource("7_87csh")
 stretch_mode = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="Plant_Info" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
 texture_filter = 1
@@ -146,6 +145,7 @@ offset_bottom = 5.0
 theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = ExtResource("3_w168r")
 autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="Options_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
 position = Vector2(0, 26)
@@ -159,6 +159,7 @@ offset_right = 29.0
 offset_bottom = 2.0
 texture_normal = ExtResource("10_p3v3i")
 texture_hover = ExtResource("11_doao0")
+metadata/_edit_use_anchors_ = true
 
 [node name="Options_Tooltip" type="Label" parent="CursorCamera/ToolBelt/Options_Menu"]
 texture_filter = 1
@@ -169,6 +170,7 @@ offset_bottom = 10.0
 theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = ExtResource("3_w168r")
 autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="Energy_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
 position = Vector2(0, 26)
@@ -183,6 +185,7 @@ offset_bottom = 1.0
 theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = ExtResource("3_w168r")
 autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="Time Indicator" type="Sprite2D" parent="CursorCamera"]
 position = Vector2(-24, -24)
