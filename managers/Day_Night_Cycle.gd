@@ -30,8 +30,11 @@ func Day_Time_Process(delta: float):
 		else:
 			time_period += 1
 		
+		period_time -= PERIOD_SEC
 		time_indicator.frame = time_period;
-		film.color = Color.hex(TIME_COLORS[time_period])
+		
 		time_period_change.emit(time_period)
 		
-		period_time -= PERIOD_SEC
+		while(!film.color.is_equal_approx(TIME_COLORS[time_period])):
+			film.color = film.color.lerp(TIME_COLORS[time_period], 0.25 * delta)
+			await get_tree().process_frame
