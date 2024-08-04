@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bp6ubf7acq5oj"]
 
-[ext_resource type="Script" path="res://spirits/entity_spawn_system.gd" id="1_nupyt"]
+[ext_resource type="Script" path="res://entities/entity_spawn_system.gd" id="1_nupyt"]
 
 [node name="Entity Spawn System" type="Node"]
 script = ExtResource("1_nupyt")
