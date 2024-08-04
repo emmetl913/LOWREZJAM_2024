@@ -35,15 +35,16 @@ func _start_growth():
 
 func setPosition():
 	if GRID_COORDS.x > 8:
-		new_x = (GRID_COORDS.x-8)*8
+		new_x = ((GRID_COORDS.x-8)*8)-4
 	else:
-		new_x = ((GRID_COORDS.x-8)+1)*8
+		new_x = (((abs(GRID_COORDS.x-8)+1)*8)-4)*-1
 	if GRID_COORDS.y > 8:
-		new_y = (GRID_COORDS.y-8)*8
+		new_y = ((GRID_COORDS.y-8)*8)-4
 	else:
-		new_y = ((GRID_COORDS.y-8)+1)*8
+		new_y = (((GRID_COORDS.y-8)+1)*8)-12
 	position = Vector2(new_x, new_y)
 	print("New seed position set at: ", position.x," , ", position.y)
+	$Sprite2D.texture = DISPLAY_TEXTURE
 
 func _on_growth_timer_timeout():
 	DISPLAY_TEXTURE = MATURE_TEXTURE

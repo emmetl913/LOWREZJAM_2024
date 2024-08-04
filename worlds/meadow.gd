@@ -54,6 +54,7 @@ func setupMap():
 
 func _process(delta):
 	updateEnergyMenu()
+	#print(get_local_mouse_position())
 
 func updateEnergyMenu():
 	energy_text.text = "Sun Power: %.2f" % stored_energy + "\n- From Tree: %.2f" % (tree.energy_rate/tree.prod_interval)
@@ -105,17 +106,7 @@ func _on_main_menu_mouse_entered():
 	options_text.text = "Press to return to the main menu"
 func _on_main_menu_mouse_exited():
 	options_text.text = " "
-	
-func Day_Time_Process(delta: float):
-	period_time += delta
-	
-	if(period_time >= PERIOD_SEC):
-		if(time_period + 1 == Time_Period.size()):
-			time_period = 0
-		else:
-			time_period += 1
-			
-		period_time -= PERIOD_SEC
+
 # //////////////////////
 # Seed Interface Buttons
 # //////////////////////
@@ -133,13 +124,14 @@ func _on_sunflower_pressed():
 
 func _input(event):
 	if is_holding_seed and event.is_action_pressed("select"):
-		print("You're trying to plant seed: ", held_seed_id)
-		var new_coords = getMapAsGridCoords()
-		var res = getPlantResourceByPlantID(held_seed_id)
-		var new_plant = plant_instance.instantiate()
-		setUpNewPlant(res, new_plant, new_coords)
-		add_child(new_plant, true)
-
+		print(get_local_mouse_position().y , " : ", $CursorCamera.position.y+30)
+		if !toolbelt_open or toolbelt_open and get_global_mouse_position().y <= $CursorCamera.position.y+30:
+			print("You're trying to plant seed with menu open: ", held_seed_id)
+			var new_coords = getMapAsGridCoords()
+			var res = getPlantResourceByPlantID(held_seed_id)
+			var new_plant = plant_instance.instantiate()
+			setUpNewPlant(res, new_plant, new_coords)
+			add_child(new_plant, true)
 var new_x : int
 var new_y : int
 func getMapAsGridCoords():
@@ -166,6 +158,7 @@ func setUpNewPlant(res : Resource, new_plant, coords : Vector2):
 	new_plant.WEIGHT = res.WEIGHT
 	new_plant.HEALTH = res.HEALTH
 	new_plant.SEED_TEXTURE = res.SEED_TEXTURE
+	new_plant.DISPLAY_TEXTURE = res.SEED_TEXTURE
 	new_plant.MATURE_TEXTURE = res.MATURE_TEXTURE
 	new_plant.GRID_COORDS = coords
 	new_plant.GROWTH_TIME = res.GROWTH_TIME
