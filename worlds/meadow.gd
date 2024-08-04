@@ -115,18 +115,19 @@ func _on_sunflower_pressed():
 		seeds[0] += 1
 		$Mouse_Dragger/Sprite2D.texture = null
 		is_holding_seed = false
+		held_seed_id = -1
 	else:
-		seeds[0] -= 1
 		$Mouse_Dragger/Sprite2D.texture = load("res://assets/sprites/yellow_pixel_4x4.png")
 		is_holding_seed = true
 		held_seed_id = 0
-	$CursorCamera/ToolBelt/Seeds_Menu/Sunflower_Total.text = "x%02d" % seeds[0]
 
 func _input(event):
-	if is_holding_seed and event.is_action_pressed("select"):
-		print(get_local_mouse_position().y , " : ", $CursorCamera.position.y+30)
-		if !toolbelt_open or toolbelt_open and get_global_mouse_position().y <= $CursorCamera.position.y+30:
-			print("You're trying to plant seed with menu open: ", held_seed_id)
+	if is_holding_seed and event.is_action_pressed("select") and seeds[held_seed_id] > 0:
+		print(get_local_mouse_position().y , " : ", $CursorCamera.position.y+15)
+		if !toolbelt_open or toolbelt_open and get_global_mouse_position().y <= $CursorCamera.position.y+15:
+			seeds[0] -= 1
+			$CursorCamera/ToolBelt/Seeds_Menu/Sunflower_Total.text = "x%02d" % seeds[0]
+			print("You're trying to plant seed with menu open: ", held_seed_id, " you now have ", seeds[0], " seeds")
 			var new_coords = getMapAsGridCoords()
 			var res = getPlantResourceByPlantID(held_seed_id)
 			var new_plant = plant_instance.instantiate()
@@ -164,6 +165,9 @@ func setUpNewPlant(res : Resource, new_plant, coords : Vector2):
 	new_plant.GROWTH_TIME = res.GROWTH_TIME
 	new_plant.RESOURCES_STORED = res.RESOURCES_STORED
 	new_plant.setPosition()
+	new_plant._set_growth_timer(new_plant.GROWTH_TIME)
+	new_plant._set_prod_timer(res.PROD_INTERVAL)
+	new_plant._start_growth()
 
 func getPlantResourceByPlantID(id : int):
 	if id == 0:

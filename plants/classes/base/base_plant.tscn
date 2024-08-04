@@ -8,6 +8,7 @@ script = ExtResource("1_dj43l")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="Growth_Timer" type="Timer" parent="."]
+autostart = true
 
 [node name="Prod_Timer" type="Timer" parent="."]
 

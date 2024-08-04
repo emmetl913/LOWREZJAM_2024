@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bef63fudsi14e"]
+[gd_scene load_steps=24 format=3 uid="uid://bef63fudsi14e"]
 
 [ext_resource type="Script" path="res://worlds/meadow.gd" id="1_bko1o"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_ksmiv"]
@@ -18,7 +18,6 @@
 [ext_resource type="Script" path="res://spirits/spirit.gd" id="14_yopxr"]
 [ext_resource type="PackedScene" uid="uid://ct76s45r8mn2q" path="res://plants/classes/base/base_plant.tscn" id="15_iw3rq"]
 [ext_resource type="Script" path="res://managers/day_night_cycle.gd" id="15_t7viv"]
-[ext_resource type="Texture2D" uid="uid://c47osafe65rrk" path="res://assets/sprites/sunflower.png" id="17_xlj7p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3nj7g"]
 texture = ExtResource("3_oex1i")
@@ -218,16 +217,7 @@ region_rect = Rect2(0, 0, 32, 48)
 [node name="Mouse_Dragger" parent="." instance=ExtResource("14_gar52")]
 
 [node name="BasePlant" parent="." instance=ExtResource("15_iw3rq")]
-position = Vector2(16, 8)
-RESOURCE_NAME = "energy"
-PROD_VAL = 5
-PROD_INTERVAL = 60.0
-WEIGHT = 10
-HEALTH = 5
-SEED_TEXTURE = ExtResource("7_87csh")
-MATURE_TEXTURE = ExtResource("17_xlj7p")
-DISPLAY_TEXTURE = ExtResource("7_87csh")
-GROWTH_TIME = 120
+visible = false
 
 [node name="Test Spirit" type="Node2D" parent="."]
 script = ExtResource("14_yopxr")

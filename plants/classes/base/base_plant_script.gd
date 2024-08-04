@@ -26,12 +26,12 @@ func _get_mature_texture():
 	return MATURE_TEXTURE
 
 func _set_growth_timer(new : int):
-	$Growth_Timer.timeout = new
+	$Growth_Timer.wait_time = new
 func _set_prod_timer(new : int):
-	$Prod_Timer.timeout = new
+	$Prod_Timer.wait_time = new
 func _start_growth():
+	print("Growth Begun, should take ", $Growth_Timer.wait_time, " to mature")
 	$Growth_Timer.start()
-	DISPLAY_TEXTURE = SEED_TEXTURE
 
 func setPosition():
 	if GRID_COORDS.x > 8:
@@ -47,8 +47,10 @@ func setPosition():
 	$Sprite2D.texture = DISPLAY_TEXTURE
 
 func _on_growth_timer_timeout():
-	DISPLAY_TEXTURE = MATURE_TEXTURE
+	$Sprite2D.texture = MATURE_TEXTURE
+	print("Plant has matured")
 	$Prod_Timer.start()
 func _on_prod_timer_timeout():
 	RESOURCES_STORED += PROD_VAL
+	print("Plant has produced ", PROD_VAL, " resources")
 	$Prod_Timer.start()
