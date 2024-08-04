@@ -4,12 +4,14 @@ extends Node
 # Film for different time periods
 # Time indicator
 
-enum Time_Period {morning, afternoon, evening, dusk, midnight, dawn}
+enum Time_Period { morning, afternoon, evening, dusk, midnight, dawn }
 signal time_period_change(period: Time_Period)
 
 const PERIOD_SEC: int = 45
+var TIME_COLORS: Array[int] = [ 0x3e89e21e, 0x0, 0xf165002b, 0x031a364b, 0xbad7fc23, 0x031a364b ]
 
 @onready var time_indicator: Sprite2D = $"../CursorCamera/Time Indicator"
+@onready var film: ColorRect = $"../CursorCamera/Film"
 
 var period_time: float = 0
 var time_period: Time_Period = Time_Period.morning
@@ -29,6 +31,7 @@ func Day_Time_Process(delta: float):
 			time_period += 1
 		
 		time_indicator.frame = time_period;
+		film.color = Color.hex(TIME_COLORS[time_period])
 		time_period_change.emit(time_period)
 		
 		period_time -= PERIOD_SEC

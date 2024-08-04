@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dew2q8k2q1l2i" path="res://assets/sprites/buttons/exit_to_mm_temp_button.png" id="10_p3v3i"]
 [ext_resource type="Texture2D" uid="uid://ngbdld7ow7e2" path="res://assets/sprites/buttons/exit_to_mm_temp_button_hover.png" id="11_doao0"]
 [ext_resource type="Texture2D" uid="uid://bsbte62wt5lyp" path="res://assets/sprites/Sun Dial.png" id="14_o8xln"]
-[ext_resource type="Script" path="res://spirits/spirit.gd" id="14_yopxr"]
+[ext_resource type="Script" path="res://spirits/Spirit.gd" id="14_yopxr"]
 [ext_resource type="Script" path="res://managers/Day_Night_Cycle.gd" id="15_t7viv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3nj7g"]
@@ -60,6 +60,20 @@ limit_bottom = 64
 limit_smoothed = true
 editor_draw_limits = true
 script = ExtResource("5_ggpfp")
+
+[node name="Film" type="ColorRect" parent="CursorCamera"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.729412, 0.843137, 0.988235, 0.137255)
 
 [node name="Debug_Label" type="Label" parent="CursorCamera"]
 visible = false
