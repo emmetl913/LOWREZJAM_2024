@@ -1,5 +1,4 @@
 class_name Day_Night_Cycle
-
 extends Node
 
 enum Time_Period { morning, afternoon, evening, dusk, midnight, dawn }

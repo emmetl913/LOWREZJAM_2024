@@ -1,3 +1,4 @@
+class_name Entity_Spawn_System
 extends Node
 
 @export var main: Node
@@ -9,14 +10,7 @@ func _spawn_entity(entity_file_path: String) -> void:
 	var entity: Node2D = load(entity_file_path).instantiate()
 	
 	main.add_child(entity)
-	entity.global_position = _on_unit_circle() * OFF_SCREEN
-	
-	pass
+	entity.global_position = Function_Lib._on_unit_circle() * OFF_MAP
 
-func _random_timer(timer: Timer, shortest: float, longest: float) -> void:
+static func _random_timer(timer: Timer, shortest: float, longest: float) -> void:
 	timer.set_wait_time(RandomNumberGenerator.new().randf_range(shortest, longest))
-
-
-static func _on_unit_circle() -> Vector2:
-	return Vector2(RandomNumberGenerator.new().randf_range(-1, 1),
-	RandomNumberGenerator.new().randf_range(-1, 1)).normalized()

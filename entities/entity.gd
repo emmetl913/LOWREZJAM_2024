@@ -1,6 +1,6 @@
 class_name Entity
 
-extends Node2D
+extends CharacterBody2D
 
 @export var health: int
 @export var primary_damage: int
