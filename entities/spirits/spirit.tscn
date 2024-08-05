@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dspt07bwdtglm"]
+[gd_scene load_steps=5 format=3 uid="uid://dspt07bwdtglm"]
 
 [ext_resource type="Texture2D" uid="uid://dj5d7mulp1asp" path="res://assets/sprites/Spirit.png" id="1_mpjyt"]
-[ext_resource type="Script" path="res://entities/spirits/spirit_move.gd" id="1_r0rxd"]
 [ext_resource type="Script" path="res://entities/spirits/spirit.gd" id="2_aybnr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5j50q"]
@@ -9,21 +8,13 @@ size = Vector2(10, 10)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oea61"]
 
-[node name="Spirit" type="Node2D" groups=["Spirit"]]
+[node name="Spirit" type="CharacterBody2D" groups=["Spirit"]]
 script = ExtResource("2_aybnr")
-health = 3
-primary_damage = 1
-secondary_damage = 2
-attack_speed = 1.0
 
-[node name="Spirit" type="CharacterBody2D" parent="." groups=["Spirit"]]
-script = ExtResource("1_r0rxd")
-speed = 10.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spirit"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5j50q")
 
-[node name="Sprite2D" type="Sprite2D" parent="Spirit"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_mpjyt")
 
 [node name="Sight" type="Area2D" parent="." groups=["Spirit"]]

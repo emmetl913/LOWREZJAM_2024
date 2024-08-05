@@ -2,10 +2,12 @@ extends CharacterBody2D
 
 var animal
 var move_timer
+
 var can_move = false
 var can_attack = true
 var is_attacking = false
 var target
+
 @export var speed: float
 @export var max_distance_from_plant: float
 @export var dash_speed: float
@@ -14,7 +16,6 @@ var dir: Vector2
 var plant_position: Vector2
 
 func _ready():
-	position = _random_spawn_position()
 	dir = Vector2.RIGHT
 	animal = get_parent()
 	move_timer = animal.get_node("RecalculateMoveDir")
@@ -80,24 +81,12 @@ func _move(delta: float):
 func _set_dir_to_plant(plant_position: Vector2):
 	dir = plant_position - position
 	dir = dir.normalized()
-	dir.rotated(randf_range(-15,15))
 
 func _on_recalculate_move_dir_timeout():
-	if !_is_far_from_plant(plant_position):
-		dir = dir.rotated(randf_range(-360, 360))
-		dir = dir.normalized()
+	dir = dir.rotated(randf_range(-360, 360))
+	dir = dir.normalized()
 
 
 func _on_pwint_timeout():
 	print(plant_position, " plant")
 	print(position, " deer")
-
-#kill animal with this ;P
- #animal._take_damage(1)
-func _set_plant_position():
-	plant_position = animal._get_plant_position()
-	
-func _on_enter_screen_timeout():
-	can_move = true
-	plant_position = animal._get_plant_position()
-	

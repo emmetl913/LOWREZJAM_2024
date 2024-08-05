@@ -14,8 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://ngbdld7ow7e2" path="res://assets/sprites/buttons/exit_to_mm_temp_button_hover.png" id="11_doao0"]
 [ext_resource type="PackedScene" uid="uid://dby4wixwjy120" path="res://util/mouse_dragger.tscn" id="14_gar52"]
 [ext_resource type="Texture2D" uid="uid://bsbte62wt5lyp" path="res://assets/sprites/Sun Dial.png" id="14_o8xln"]
-[ext_resource type="Script" path="res://entities/spirits/spirit.gd" id="14_yopxr"]
 [ext_resource type="Script" path="res://managers/day_night_cycle.gd" id="15_t7viv"]
+[ext_resource type="PackedScene" uid="uid://bp6ubf7acq5oj" path="res://managers/entity_spawn_system.tscn" id="17_cf0qp"]
 
 [sub_resource type="TileSet" id="TileSet_v7h3w"]
 tile_size = Vector2i(8, 8)
@@ -35,7 +35,6 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Meadow" type="Node2D"]
 script = ExtResource("1_bko1o")
-animal_maxspawnchance = 2
 seeds = Array[int]([10, 0, 0, 0, 0])
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -216,11 +215,11 @@ region_rect = Rect2(0, 0, 32, 48)
 [node name="Mouse_Dragger" parent="." instance=ExtResource("14_gar52")]
 metadata/_edit_use_anchors_ = true
 
-[node name="Test Spirit" type="Node2D" parent="."]
-script = ExtResource("14_yopxr")
-
 [node name="Day-Night Cycle" type="Node" parent="."]
 script = ExtResource("15_t7viv")
+
+[node name="Entity Spawn System" parent="." node_paths=PackedStringArray("main") instance=ExtResource("17_cf0qp")]
+main = NodePath("..")
 
 [connection signal="pressed" from="CursorCamera/ToolBelt/ToolBelt_Toggle" to="." method="_on_tool_belt_toggle_pressed"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu_Toggle" to="." method="_on_seeds_menu_toggle_pressed"]

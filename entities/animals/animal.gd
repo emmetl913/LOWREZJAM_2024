@@ -3,7 +3,6 @@ extends Entity
 class_name Animal
 
 @export var favorite_plant_id: int
-
 var plant_position: Vector2
 var plant_health: int
 
