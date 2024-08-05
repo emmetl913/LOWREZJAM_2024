@@ -12,4 +12,3 @@ autostart = true
 script = ExtResource("2_vauoj")
 
 [connection signal="timeout" from="Spirit Timer" to="." method="_spawn_entity" binds= [&"res://entities/spirits/spirit.tscn"]]
-[connection signal="timeout" from="Spirit Timer" to="." method="_random_timer" binds= [NodePath("."), 4.0, 10.0]]
