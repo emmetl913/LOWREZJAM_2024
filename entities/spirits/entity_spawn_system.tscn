@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp6ubf7acq5oj"]
+
+[ext_resource type="Script" path="res://entities/spirits/entity_spawn_system.gd" id="1_nupyt"]
+
+[node name="Entity Spawn System" type="Node"]
+script = ExtResource("1_nupyt")
+
+[node name="Spirit Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Spirit Timer" to="." method="_random_timer" binds= [NodePath("."), 4.0, 10.0]]
+[connection signal="timeout" from="Spirit Timer" to="." method="_spawn_entity" binds= [&"res://entities/spirits/spirit.tscn"]]
