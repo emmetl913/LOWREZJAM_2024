@@ -1,26 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdcrk8dai8g0m"]
+[gd_scene load_steps=4 format=3 uid="uid://bdcrk8dai8g0m"]
 
 [ext_resource type="Script" path="res://worlds/brandonstest.gd" id="1_mf4ro"]
 [ext_resource type="PackedScene" uid="uid://dqhr6rgl1jajx" path="res://entities/animals/deer.tscn" id="1_x5sg4"]
-[ext_resource type="Texture2D" uid="uid://c310c4ujahmxn" path="res://assets/sprites/yellow_pixel_4x4.png" id="2_72den"]
-[ext_resource type="Script" path="res://worlds/CursorCamera.gd" id="7_kelbj"]
+[ext_resource type="PackedScene" uid="uid://dspt07bwdtglm" path="res://entities/spirits/spirit.tscn" id="4_h34ql"]
 
 [node name="Brandonstest" type="Node2D"]
 script = ExtResource("1_mf4ro")
 
 [node name="Deer" parent="." instance=ExtResource("1_x5sg4")]
 
-[node name="FakePlant" type="Node2D" parent="."]
-position = Vector2(30, 23)
-
-[node name="Sprite2D" type="Sprite2D" parent="FakePlant"]
-texture = ExtResource("2_72den")
-
-[node name="CursorCamera" type="Camera2D" parent="."]
-limit_left = -64
-limit_top = -64
-limit_right = 64
-limit_bottom = 64
-limit_smoothed = true
-editor_draw_limits = true
-script = ExtResource("7_kelbj")
+[node name="Spirit" parent="." instance=ExtResource("4_h34ql")]
+position = Vector2(-48, -19)

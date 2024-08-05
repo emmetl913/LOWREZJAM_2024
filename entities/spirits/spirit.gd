@@ -23,3 +23,4 @@ func _change_behavior(period: Day_Night_Cycle.Time_Period) -> void:
 # primary attack is slash
 # secondary attack is unique per spirit (knockback, wind: tornado)
 # defeated spirit drops seeds
+
