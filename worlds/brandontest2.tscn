@@ -1,21 +1,22 @@
-[gd_scene load_steps=21 format=3 uid="uid://bef63fudsi14e"]
+[gd_scene load_steps=22 format=3 uid="uid://dt8i712q08s6t"]
 
-[ext_resource type="Script" path="res://worlds/meadow.gd" id="1_bko1o"]
-[ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_ksmiv"]
-[ext_resource type="Texture2D" uid="uid://ban1edih61yuw" path="res://assets/sprites/temp_background.png" id="3_3dw8h"]
-[ext_resource type="PackedScene" uid="uid://cray6xpq4vkl" path="res://plants/tree_main.tscn" id="3_3tjh2"]
-[ext_resource type="LabelSettings" uid="uid://bf8m6t4hiop7d" path="res://assets/fonts/default_label_settings.tres" id="3_w168r"]
-[ext_resource type="Script" path="res://util/CursorCamera.gd" id="5_ggpfp"]
-[ext_resource type="Texture2D" uid="uid://h705hy2tkeq7" path="res://assets/sprites/buttons/up.png" id="7_0f76k"]
-[ext_resource type="Texture2D" uid="uid://c310c4ujahmxn" path="res://assets/sprites/yellow_pixel_4x4.png" id="7_87csh"]
-[ext_resource type="Texture2D" uid="uid://vw2dq1jquvce" path="res://assets/sprites/buttons/plants_button_temp.png" id="8_j78vt"]
-[ext_resource type="Texture2D" uid="uid://dh1rn4d4eeejt" path="res://assets/sprites/buttons/power_button_temp.png" id="9_4kucm"]
-[ext_resource type="Texture2D" uid="uid://dew2q8k2q1l2i" path="res://assets/sprites/buttons/exit_to_mm_temp_button.png" id="10_p3v3i"]
-[ext_resource type="Texture2D" uid="uid://ngbdld7ow7e2" path="res://assets/sprites/buttons/exit_to_mm_temp_button_hover.png" id="11_doao0"]
-[ext_resource type="PackedScene" uid="uid://dby4wixwjy120" path="res://util/mouse_dragger.tscn" id="14_gar52"]
-[ext_resource type="Texture2D" uid="uid://bsbte62wt5lyp" path="res://assets/sprites/Sun Dial.png" id="14_o8xln"]
-[ext_resource type="Script" path="res://managers/day_night_cycle.gd" id="15_t7viv"]
-[ext_resource type="PackedScene" uid="uid://bp6ubf7acq5oj" path="res://managers/entity_spawn_system.tscn" id="17_cf0qp"]
+[ext_resource type="Script" path="res://worlds/meadow.gd" id="1_crc1t"]
+[ext_resource type="Texture2D" uid="uid://ban1edih61yuw" path="res://assets/sprites/temp_background.png" id="2_x82d8"]
+[ext_resource type="PackedScene" uid="uid://cray6xpq4vkl" path="res://plants/tree_main.tscn" id="3_0cupi"]
+[ext_resource type="Script" path="res://util/CursorCamera.gd" id="4_2pugi"]
+[ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="5_6wua4"]
+[ext_resource type="LabelSettings" uid="uid://bf8m6t4hiop7d" path="res://assets/fonts/default_label_settings.tres" id="6_m0oiv"]
+[ext_resource type="Texture2D" uid="uid://h705hy2tkeq7" path="res://assets/sprites/buttons/up.png" id="7_kyo0e"]
+[ext_resource type="Texture2D" uid="uid://vw2dq1jquvce" path="res://assets/sprites/buttons/plants_button_temp.png" id="8_kpkwp"]
+[ext_resource type="Texture2D" uid="uid://dh1rn4d4eeejt" path="res://assets/sprites/buttons/power_button_temp.png" id="9_pka21"]
+[ext_resource type="Texture2D" uid="uid://c310c4ujahmxn" path="res://assets/sprites/yellow_pixel_4x4.png" id="10_0k15e"]
+[ext_resource type="Texture2D" uid="uid://dew2q8k2q1l2i" path="res://assets/sprites/buttons/exit_to_mm_temp_button.png" id="11_42ss3"]
+[ext_resource type="Texture2D" uid="uid://ngbdld7ow7e2" path="res://assets/sprites/buttons/exit_to_mm_temp_button_hover.png" id="12_o5jra"]
+[ext_resource type="Texture2D" uid="uid://bsbte62wt5lyp" path="res://assets/sprites/Sun Dial.png" id="13_iuhkc"]
+[ext_resource type="PackedScene" uid="uid://dby4wixwjy120" path="res://util/mouse_dragger.tscn" id="14_sp15l"]
+[ext_resource type="Script" path="res://entities/spirits/spirit.gd" id="15_6jofw"]
+[ext_resource type="Script" path="res://managers/day_night_cycle.gd" id="16_3qooh"]
+[ext_resource type="PackedScene" uid="uid://bp6ubf7acq5oj" path="res://managers/entity_spawn_system.tscn" id="18_hfe1m"]
 
 [sub_resource type="TileSet" id="TileSet_v7h3w"]
 tile_size = Vector2i(8, 8)
@@ -34,7 +35,9 @@ outline_size = 1
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Meadow" type="Node2D"]
-script = ExtResource("1_bko1o")
+script = ExtResource("1_crc1t")
+animal_minspawnchance = 1
+animal_maxspawnchance = 1
 seeds = Array[int]([10, 0, 0, 0, 0])
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -47,9 +50,9 @@ layer_0/tile_data = PackedInt32Array(-131073, 0, 0, -131074, 0, 0, -65538, 0, 0,
 
 [node name="TempBackground" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("3_3dw8h")
+texture = ExtResource("2_x82d8")
 
-[node name="Tree_Main" parent="." instance=ExtResource("3_3tjh2")]
+[node name="Tree_Main" parent="." instance=ExtResource("3_0cupi")]
 process_mode = 3
 position = Vector2(-8, -8)
 
@@ -60,7 +63,7 @@ limit_right = 64
 limit_bottom = 64
 limit_smoothed = true
 editor_draw_limits = true
-script = ExtResource("5_ggpfp")
+script = ExtResource("4_2pugi")
 
 [node name="Film" type="ColorRect" parent="CursorCamera"]
 anchors_preset = 15
@@ -84,9 +87,9 @@ offset_left = -4.0
 offset_top = -2.0
 offset_right = 52.0
 offset_bottom = 14.0
-theme_override_fonts/font = ExtResource("2_ksmiv")
+theme_override_fonts/font = ExtResource("5_6wua4")
 text = "center"
-label_settings = ExtResource("3_w168r")
+label_settings = ExtResource("6_m0oiv")
 autowrap_mode = 3
 
 [node name="ToolBelt" type="Control" parent="CursorCamera"]
@@ -104,7 +107,7 @@ offset_top = 14.0
 offset_right = -14.0
 offset_bottom = 22.0
 scale = Vector2(0.5, 0.5)
-texture_normal = ExtResource("7_0f76k")
+texture_normal = ExtResource("7_kyo0e")
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
@@ -115,7 +118,7 @@ offset_left = -21.0
 offset_top = 14.0
 offset_right = -5.0
 offset_bottom = 22.0
-texture_normal = ExtResource("8_j78vt")
+texture_normal = ExtResource("8_kpkwp")
 metadata/_edit_use_anchors_ = true
 
 [node name="Power_Menu_Toggle" type="TextureButton" parent="CursorCamera/ToolBelt"]
@@ -126,7 +129,7 @@ offset_top = 14.0
 offset_right = 4.0
 offset_bottom = 22.0
 scale = Vector2(0.5, 0.5)
-texture_normal = ExtResource("9_4kucm")
+texture_normal = ExtResource("9_pka21")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
@@ -140,7 +143,7 @@ offset_left = -30.0
 offset_top = -7.0
 offset_right = -26.0
 offset_bottom = -3.0
-texture_normal = ExtResource("7_87csh")
+texture_normal = ExtResource("10_0k15e")
 stretch_mode = 0
 
 [node name="Sunflower_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
@@ -149,7 +152,7 @@ offset_left = -28.0
 offset_top = -5.0
 offset_right = -20.0
 offset_bottom = 3.0
-theme_override_fonts/font = ExtResource("2_ksmiv")
+theme_override_fonts/font = ExtResource("5_6wua4")
 label_settings = SubResource("LabelSettings_sepq4")
 autowrap_mode = 3
 
@@ -159,8 +162,8 @@ offset_left = -30.0
 offset_top = -2.0
 offset_right = 34.0
 offset_bottom = 6.0
-theme_override_fonts/font = ExtResource("2_ksmiv")
-label_settings = ExtResource("3_w168r")
+theme_override_fonts/font = ExtResource("5_6wua4")
+label_settings = ExtResource("6_m0oiv")
 autowrap_mode = 3
 
 [node name="Options_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
@@ -174,8 +177,8 @@ offset_left = 21.0
 offset_top = -6.0
 offset_right = 29.0
 offset_bottom = 2.0
-texture_normal = ExtResource("10_p3v3i")
-texture_hover = ExtResource("11_doao0")
+texture_normal = ExtResource("11_42ss3")
+texture_hover = ExtResource("12_o5jra")
 
 [node name="Options_Tooltip" type="Label" parent="CursorCamera/ToolBelt/Options_Menu"]
 texture_filter = 1
@@ -183,8 +186,8 @@ offset_left = -31.0
 offset_top = 2.0
 offset_right = 33.0
 offset_bottom = 10.0
-theme_override_fonts/font = ExtResource("2_ksmiv")
-label_settings = ExtResource("3_w168r")
+theme_override_fonts/font = ExtResource("5_6wua4")
+label_settings = ExtResource("6_m0oiv")
 autowrap_mode = 3
 
 [node name="Energy_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
@@ -197,28 +200,31 @@ offset_left = -31.0
 offset_top = -7.0
 offset_right = 33.0
 offset_bottom = 1.0
-theme_override_fonts/font = ExtResource("2_ksmiv")
-label_settings = ExtResource("3_w168r")
+theme_override_fonts/font = ExtResource("5_6wua4")
+label_settings = ExtResource("6_m0oiv")
 autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="Time Indicator" type="Sprite2D" parent="CursorCamera"]
 z_index = 1
 position = Vector2(-24, -24)
-texture = ExtResource("14_o8xln")
+texture = ExtResource("13_iuhkc")
 hframes = 2
 vframes = 3
 region_rect = Rect2(0, 0, 32, 48)
 
 [node name="Tree_Sun_Prod" type="Timer" parent="."]
 
-[node name="Mouse_Dragger" parent="." instance=ExtResource("14_gar52")]
+[node name="Mouse_Dragger" parent="." instance=ExtResource("14_sp15l")]
 metadata/_edit_use_anchors_ = true
 
-[node name="Day-Night Cycle" type="Node" parent="."]
-script = ExtResource("15_t7viv")
+[node name="Test Spirit" type="Node2D" parent="."]
+script = ExtResource("15_6jofw")
 
-[node name="Entity Spawn System" parent="." node_paths=PackedStringArray("main") instance=ExtResource("17_cf0qp")]
+[node name="Day-Night Cycle" type="Node" parent="."]
+script = ExtResource("16_3qooh")
+
+[node name="Entity Spawn System" parent="." node_paths=PackedStringArray("main") instance=ExtResource("18_hfe1m")]
 main = NodePath("..")
 
 [connection signal="pressed" from="CursorCamera/ToolBelt/ToolBelt_Toggle" to="." method="_on_tool_belt_toggle_pressed"]
