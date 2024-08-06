@@ -26,7 +26,7 @@ func _input(event):
 			if temp_diff_loc.y > limit_y.x+32 and temp_diff_loc.y < limit_y.y-32:
 				position.y = temp_diff_loc.y
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		set_process(true)
 	else:
