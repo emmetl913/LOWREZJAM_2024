@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Base_Plant" load_steps=4 format=3 uid="uid://b2iobgy36w44g"]
+
+[ext_resource type="Texture2D" uid="uid://dbbq2t0ao56ic" path="res://assets/sprites/mature_poppy.png" id="1_j6xfi"]
+[ext_resource type="Texture2D" uid="uid://diupao06mgiwt" path="res://assets/sprites/poppy_seed.png" id="2_vjqs1"]
+[ext_resource type="Script" path="res://plants/classes/base/base_plant.gd" id="3_vkg0m"]
+
+[resource]
+script = ExtResource("3_vkg0m")
+PLANT_ID = 4
+RESOURCE_NAME = "FOOD"
+PROD_VAL = 5
+PROD_INTERVAL = 5.0
+WEIGHT = 10
+HEALTH = 10
+SEED_TEXTURE = ExtResource("2_vjqs1")
+MATURE_TEXTURE = ExtResource("1_j6xfi")
+GRID_COORDS = Vector2(-1, -1)
+GROWTH_TIME = 3
+RESOURCES_STORED = 0
