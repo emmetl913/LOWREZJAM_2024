@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bef63fudsi14e"]
+[gd_scene load_steps=25 format=3 uid="uid://bef63fudsi14e"]
 
 [ext_resource type="Script" path="res://worlds/meadow.gd" id="1_bko1o"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_ksmiv"]
@@ -13,8 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://dew2q8k2q1l2i" path="res://assets/sprites/buttons/exit_to_mm_temp_button.png" id="10_p3v3i"]
 [ext_resource type="Texture2D" uid="uid://cc50neu71ceb5" path="res://assets/sprites/carrot_seed.png" id="11_1mrda"]
 [ext_resource type="Texture2D" uid="uid://ngbdld7ow7e2" path="res://assets/sprites/buttons/exit_to_mm_temp_button_hover.png" id="11_doao0"]
+[ext_resource type="Texture2D" uid="uid://diupao06mgiwt" path="res://assets/sprites/poppy_seed.png" id="12_bmanu"]
+[ext_resource type="Texture2D" uid="uid://c0u67y4pk72k7" path="res://assets/sprites/blueberry_seed.png" id="13_w718l"]
 [ext_resource type="PackedScene" uid="uid://dby4wixwjy120" path="res://util/mouse_dragger.tscn" id="14_gar52"]
 [ext_resource type="Texture2D" uid="uid://bsbte62wt5lyp" path="res://assets/sprites/Sun Dial.png" id="14_o8xln"]
+[ext_resource type="Texture2D" uid="uid://bujaahxnmv2a2" path="res://assets/sprites/apple_seed.png" id="14_vfal4"]
 [ext_resource type="Script" path="res://managers/day_night_cycle.gd" id="15_t7viv"]
 [ext_resource type="PackedScene" uid="uid://bp6ubf7acq5oj" path="res://managers/entity_spawn_system.tscn" id="17_cf0qp"]
 
@@ -36,7 +39,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Meadow" type="Node2D"]
 script = ExtResource("1_bko1o")
-seeds = Array[int]([10, 0, 0, 0, 0])
+seeds = Array[int]([10, 10, 5, 5, 5])
 
 [node name="TileMap" type="TileMap" parent="."]
 visible = false
@@ -171,6 +174,59 @@ theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = SubResource("LabelSettings_sepq4")
 autowrap_mode = 3
 
+[node name="Blueberry" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+offset_left = -16.0
+offset_top = -7.0
+offset_right = -12.0
+offset_bottom = -3.0
+texture_normal = ExtResource("13_w718l")
+stretch_mode = 0
+
+[node name="Blueberry_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+texture_filter = 1
+offset_left = -14.0
+offset_top = -5.0
+offset_right = -6.0
+offset_bottom = 3.0
+theme_override_fonts/font = ExtResource("2_ksmiv")
+label_settings = SubResource("LabelSettings_sepq4")
+autowrap_mode = 3
+
+[node name="Apple" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+offset_left = -9.0
+offset_top = -7.0
+offset_right = -5.0
+offset_bottom = -3.0
+texture_normal = ExtResource("14_vfal4")
+stretch_mode = 0
+
+[node name="Apple_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+texture_filter = 1
+offset_left = -7.0
+offset_top = -5.0
+offset_right = 1.0
+offset_bottom = 3.0
+theme_override_fonts/font = ExtResource("2_ksmiv")
+label_settings = SubResource("LabelSettings_sepq4")
+autowrap_mode = 3
+
+[node name="Poppy" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+offset_left = -2.0
+offset_top = -7.0
+offset_right = 2.0
+offset_bottom = -3.0
+texture_normal = ExtResource("12_bmanu")
+stretch_mode = 0
+
+[node name="Poppy_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+texture_filter = 1
+offset_top = -5.0
+offset_right = 8.0
+offset_bottom = 3.0
+theme_override_fonts/font = ExtResource("2_ksmiv")
+label_settings = SubResource("LabelSettings_sepq4")
+autowrap_mode = 3
+
 [node name="Plant_Info" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
 texture_filter = 1
 offset_left = -30.0
@@ -249,6 +305,15 @@ main = NodePath("..")
 [connection signal="mouse_entered" from="CursorCamera/ToolBelt/Seeds_Menu/Carrot" to="." method="_on_carrot_mouse_entered"]
 [connection signal="mouse_exited" from="CursorCamera/ToolBelt/Seeds_Menu/Carrot" to="." method="_on_carrot_mouse_exited"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu/Carrot" to="." method="_on_carrot_pressed"]
+[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Seeds_Menu/Blueberry" to="." method="_on_blueberry_mouse_entered"]
+[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Seeds_Menu/Blueberry" to="." method="_on_blueberry_mouse_exited"]
+[connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu/Blueberry" to="." method="_on_blueberry_pressed"]
+[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Seeds_Menu/Apple" to="." method="_on_apple_mouse_entered"]
+[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Seeds_Menu/Apple" to="." method="_on_apple_mouse_exited"]
+[connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu/Apple" to="." method="_on_apple_pressed"]
+[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Seeds_Menu/Poppy" to="." method="_on_poppy_mouse_entered"]
+[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Seeds_Menu/Poppy" to="." method="_on_poppy_mouse_exited"]
+[connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu/Poppy" to="." method="_on_poppy_pressed"]
 [connection signal="mouse_entered" from="CursorCamera/ToolBelt/Options_Menu/Main_Menu" to="." method="_on_main_menu_mouse_entered"]
 [connection signal="mouse_exited" from="CursorCamera/ToolBelt/Options_Menu/Main_Menu" to="." method="_on_main_menu_mouse_exited"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Options_Menu/Main_Menu" to="." method="_on_main_menu_pressed"]

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Base_Plant" load_steps=4 format=3 uid="uid://4xj5c62ok636"]
+
+[ext_resource type="Texture2D" uid="uid://w2nlgtm5yxfp" path="res://assets/sprites/mature_blueberry.png" id="1_w5xs7"]
+[ext_resource type="Texture2D" uid="uid://c0u67y4pk72k7" path="res://assets/sprites/blueberry_seed.png" id="2_oa7iu"]
+[ext_resource type="Script" path="res://plants/classes/base/base_plant.gd" id="3_qg8ib"]
+
+[resource]
+script = ExtResource("3_qg8ib")
+PLANT_ID = 2
+RESOURCE_NAME = "FOOD"
+PROD_VAL = 5
+PROD_INTERVAL = 5.0
+WEIGHT = 10
+HEALTH = 10
+SEED_TEXTURE = ExtResource("2_oa7iu")
+MATURE_TEXTURE = ExtResource("1_w5xs7")
+GRID_COORDS = Vector2(-1, -1)
+GROWTH_TIME = 3
+RESOURCES_STORED = 0
