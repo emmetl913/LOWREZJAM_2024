@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bef63fudsi14e"]
+[gd_scene load_steps=22 format=3 uid="uid://bef63fudsi14e"]
 
 [ext_resource type="Script" path="res://worlds/meadow.gd" id="1_bko1o"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_ksmiv"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://vw2dq1jquvce" path="res://assets/sprites/buttons/plants_button_temp.png" id="8_j78vt"]
 [ext_resource type="Texture2D" uid="uid://dh1rn4d4eeejt" path="res://assets/sprites/buttons/power_button_temp.png" id="9_4kucm"]
 [ext_resource type="Texture2D" uid="uid://dew2q8k2q1l2i" path="res://assets/sprites/buttons/exit_to_mm_temp_button.png" id="10_p3v3i"]
+[ext_resource type="Texture2D" uid="uid://cc50neu71ceb5" path="res://assets/sprites/carrot_seed.png" id="11_1mrda"]
 [ext_resource type="Texture2D" uid="uid://ngbdld7ow7e2" path="res://assets/sprites/buttons/exit_to_mm_temp_button_hover.png" id="11_doao0"]
 [ext_resource type="PackedScene" uid="uid://dby4wixwjy120" path="res://util/mouse_dragger.tscn" id="14_gar52"]
 [ext_resource type="Texture2D" uid="uid://bsbte62wt5lyp" path="res://assets/sprites/Sun Dial.png" id="14_o8xln"]
@@ -131,7 +132,6 @@ stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Seeds_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
-visible = false
 position = Vector2(0, 26)
 texture = SubResource("GradientTexture2D_irbrn")
 
@@ -148,6 +148,24 @@ texture_filter = 1
 offset_left = -28.0
 offset_top = -5.0
 offset_right = -20.0
+offset_bottom = 3.0
+theme_override_fonts/font = ExtResource("2_ksmiv")
+label_settings = SubResource("LabelSettings_sepq4")
+autowrap_mode = 3
+
+[node name="Carrot" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+offset_left = -23.0
+offset_top = -7.0
+offset_right = -19.0
+offset_bottom = -3.0
+texture_normal = ExtResource("11_1mrda")
+stretch_mode = 0
+
+[node name="Carrot_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+texture_filter = 1
+offset_left = -21.0
+offset_top = -5.0
+offset_right = -13.0
 offset_bottom = 3.0
 theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = SubResource("LabelSettings_sepq4")
@@ -188,6 +206,7 @@ label_settings = ExtResource("3_w168r")
 autowrap_mode = 3
 
 [node name="Energy_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
+visible = false
 position = Vector2(0, 26)
 texture = SubResource("GradientTexture2D_irbrn")
 
@@ -227,6 +246,9 @@ main = NodePath("..")
 [connection signal="mouse_entered" from="CursorCamera/ToolBelt/Seeds_Menu/Sunflower" to="." method="_on_sunflower_mouse_entered"]
 [connection signal="mouse_exited" from="CursorCamera/ToolBelt/Seeds_Menu/Sunflower" to="." method="_on_sunflower_mouse_exited"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu/Sunflower" to="." method="_on_sunflower_pressed"]
+[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Seeds_Menu/Carrot" to="." method="_on_carrot_mouse_entered"]
+[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Seeds_Menu/Carrot" to="." method="_on_carrot_mouse_exited"]
+[connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu/Carrot" to="." method="_on_carrot_pressed"]
 [connection signal="mouse_entered" from="CursorCamera/ToolBelt/Options_Menu/Main_Menu" to="." method="_on_main_menu_mouse_entered"]
 [connection signal="mouse_exited" from="CursorCamera/ToolBelt/Options_Menu/Main_Menu" to="." method="_on_main_menu_mouse_exited"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Options_Menu/Main_Menu" to="." method="_on_main_menu_pressed"]
