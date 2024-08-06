@@ -3,6 +3,7 @@ extends Node2D
 enum Time_Period {morning, afternoon, evening, dusk, midnight, dawn}
 
 @onready var sunflower_reference = preload("res://plants/classes/sunflower.tres")
+@onready var carrot_reference = preload("res://plants/classes/carrot.tres")
 @onready var plant_instance = preload("res://plants/classes/base/base_plant.tscn")
 
 @onready var map_data = []
@@ -43,7 +44,7 @@ func _ready():
 	$Tree_Sun_Prod.wait_time = tree.prod_interval
 	$Tree_Sun_Prod.start()
 	$CursorCamera/ToolBelt.position.y += 14
-	$CursorCamera/ToolBelt/Seeds_Menu/Sunflower_Total.text = "x%02d" % seeds[0]
+	setup_seed_totals()
 	energy_menu.visible = false
 	seeds_menu.visible = false
 	options_menu.visible = true
@@ -98,6 +99,26 @@ func _on_sunflower_mouse_entered():
 	seed_text.text = "A sunflower seed, these grow into mature sunflowers that produce more energy                            "
 func _on_sunflower_mouse_exited():
 	seed_text.text = " "
+	
+func _on_carrot_mouse_entered():
+	seed_text.text = "A carrot seed. These grow into mature carrots that attract birds.                                       "
+func _on_carrot_mouse_exited():
+	seed_text.text = " "
+	
+func _on_blueberry_mouse_entered():
+	seed_text.text = "A blueberry seed. These grow into a blueberry bush that attracts squirrels.                             "
+func _on_blueberry_mouse_exited():
+	seed_text.text = " "
+
+func _on_apple_mouse_entered():
+	seed_text.text = "An apple seed. These grow into an apple tree that attracts ducks.                                       "
+func _on_apple_mouse_exited():
+	seed_text.text = " "
+
+func _on_poppy_mouse_entered():
+	seed_text.text = "A poppy seed. These grow into poppies that attract mountain lions.                                      "
+func _on_poppy_mouse_exited():
+	seed_text.text = " "
 
 # //////////////////////////
 # Options Menu Button Config
@@ -112,23 +133,40 @@ func _on_main_menu_mouse_exited():
 # //////////////////////
 # Seed Interface Buttons
 # //////////////////////
-func _on_sunflower_pressed():
+func on_seed_button_pressed(seedID: int, texture: Texture2D):
 	if is_holding_seed:
-		seeds[0] += 1
+		seeds[seedID] += 1
 		$Mouse_Dragger/Sprite2D.texture = null
 		is_holding_seed = false
 		held_seed_id = -1
 	else:
-		$Mouse_Dragger/Sprite2D.texture = load("res://assets/sprites/yellow_pixel_4x4.png")
+		$Mouse_Dragger/Sprite2D.texture = texture
 		is_holding_seed = true
-		held_seed_id = 0
+		held_seed_id = seedID
+	
+func _on_sunflower_pressed():
+	var texture = load("res://assets/sprites/yellow_pixel_4x4.png")
+	on_seed_button_pressed(0, texture)
+func _on_carrot_pressed():
+	var texture = load("res://assets/sprites/carrot_seed.png")
+	on_seed_button_pressed(1, texture)
+func _on_blueberry_pressed():
+	var texture = load("res://assets/sprites/blueberry_seed.png")
+	on_seed_button_pressed(2, texture)
+func _on_apple_pressed():
+	var texture = load("res://assets/sprites/apple_seed.png")
+	on_seed_button_pressed(3, texture)
+func _on_poppy_pressed():
+	var texture = load("res://assets/sprites/poppy_seed.png")
+	on_seed_button_pressed(4, texture)
+
 
 func _input(event):
 	if is_holding_seed and event.is_action_pressed("select") and seeds[held_seed_id] > 0:
 		print(get_local_mouse_position().y , " : ", $CursorCamera.position.y+15)
 		if !toolbelt_open or toolbelt_open and get_global_mouse_position().y <= $CursorCamera.position.y+15:
 			seeds[0] -= 1
-			$CursorCamera/ToolBelt/Seeds_Menu/Sunflower_Total.text = "x%02d" % seeds[0]
+			setup_seed_totals()
 			print("You're trying to plant seed with menu open: ", held_seed_id, " you now have ", seeds[0], " seeds")
 			var new_coords = getMapAsGridCoords()
 			var res = getPlantResourceByPlantID(held_seed_id)
@@ -176,3 +214,21 @@ func setUpNewPlant(res : Resource, new_plant, coords : Vector2):
 func getPlantResourceByPlantID(id : int):
 	if id == 0:
 		return load("res://plants/classes/sunflower.tres")
+	if id == 1:
+		return load("res://plants/classes/carrot.tres")
+	if id == 2:
+		return load("res://plants/classes/blueberry.tres")
+	if id == 3:
+		return load("res://plants/classes/apple.tres")
+	if id == 4:
+		return load("res://plants/classes/poppy.tres")
+
+func setup_seed_totals():
+	$CursorCamera/ToolBelt/Seeds_Menu/Sunflower_Total.text = "x%02d" % seeds[0]
+	$CursorCamera/ToolBelt/Seeds_Menu/Carrot_Total.text = "x%02d" % seeds[1]
+	$CursorCamera/ToolBelt/Seeds_Menu/Blueberry_Total.text = "x%02d" % seeds[2]
+	$CursorCamera/ToolBelt/Seeds_Menu/Apple_Total.text = "x%02d" % seeds[3]
+	$CursorCamera/ToolBelt/Seeds_Menu/Poppy_Total.text = "x%02d" % seeds[4]
+
+
+
