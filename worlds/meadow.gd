@@ -131,6 +131,7 @@ func _input(event):
 			$CursorCamera/ToolBelt/Seeds_Menu/Sunflower_Total.text = "x%02d" % seeds[0]
 			print("You're trying to plant seed with menu open: ", held_seed_id, " you now have ", seeds[0], " seeds")
 			var new_coords = getMapAsGridCoords()
+			map_data[new_coords.x][new_coords.y] = held_seed_id
 			var res = getPlantResourceByPlantID(held_seed_id)
 			var new_plant = plant_instance.instantiate()
 			setUpNewPlant(res, new_plant, new_coords)
