@@ -2,10 +2,10 @@ class_name Spirit_Sight
 extends Area2D
 
 var within_sight: Dictionary
-@onready var focus = $root/Meadow/Tree_Main
+@onready var focus: Node2D = $"/root/Meadow/Tree_Main"
 
 func _process(delta):
-	focus = null
+	#focus = Vector2.ZERO
 	
 	weight_options()
 

@@ -30,9 +30,20 @@ func _change_behavior(period: Day_Night_Cycle.Time_Period) -> void:
 func move(delta: float):
 	#var direction: Vector2 = ($Sight.focus.global_position - global_position).normalized()
 	#var offset: Vector2 = direction.orthogonal() * sin(Time.get_unix_time_from_system() * Frequency + phase_offset) * dampener
+	#print($Sight.focus.global_position)
+	
 	velocity = ($Sight.focus.global_position - global_position).normalized()
+	
+	#print(velocity)
+	
 	velocity += velocity.orthogonal() * sin(Time.get_unix_time_from_system() * Frequency + phase_offset) * dampener
+	
+	#print(velocity)
+	
 	velocity = velocity.normalized() * delta * speed
+	
+	#print(velocity)
+	
 	move_and_slide()
 	
 	$"Primary Attack".look_at(($Sight.focus.global_position - global_position).normalized())
