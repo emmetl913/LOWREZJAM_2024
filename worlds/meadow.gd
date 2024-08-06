@@ -193,7 +193,7 @@ func setUpNewPlant(res : Resource, new_plant, coords : Vector2):
 func getPlantResourceByPlantID(id : int):
 	if id == 0:
 		return load("res://plants/classes/sunflower.tres")
-	if id == 0:
+	if id == 1:
 		return load("res://plants/classes/carrot.tres")
 
 
