@@ -1,0 +1,2 @@
+class_name Spirit_Attack
+extends Area2D

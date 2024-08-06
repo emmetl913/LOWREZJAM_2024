@@ -7,8 +7,6 @@ const OFF_SCREEN: int = 50
 const OFF_MAP: int = 100
 
 func _spawn_entity(entity_file_path: String, quantity: int) -> void:
-	print("Quantity: ", quantity)
-	
 	var scene: PackedScene = load(entity_file_path)
 	var entity: CharacterBody2D
 	
