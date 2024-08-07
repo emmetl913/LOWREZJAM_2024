@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://c4gikjt3rphlg"]
+
+[ext_resource type="Script" path="res://menus/main_menu.gd" id="1_0au02"]
+[ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_h1bpb"]
+[ext_resource type="Texture2D" uid="uid://crx1k08qbk2uh" path="res://assets/sprites/buttons/start_button_temp.png" id="3_04som"]
+[ext_resource type="Texture2D" uid="uid://bapnnb7ibc3qc" path="res://assets/sprites/buttons/start_button_hover_temp.png" id="4_l8ffe"]
+[ext_resource type="Texture2D" uid="uid://jele44o4boh7" path="res://assets/sprites/buttons/quit_button_temp.png" id="5_3ssa8"]
+[ext_resource type="Texture2D" uid="uid://kwc2jjawqo53" path="res://assets/sprites/buttons/quit_button_hover_temp.png" id="6_2nl8f"]
+
+[sub_resource type="Gradient" id="Gradient_65wc5"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kp27e"]
+gradient = SubResource("Gradient_65wc5")
+fill_to = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cj74v"]
+line_spacing = 0.0
+font = ExtResource("2_h1bpb")
+font_size = 12
+
+[node name="Win_Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0au02")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+texture = SubResource("GradientTexture2D_kp27e")
+
+[node name="Title" type="Label" parent="Sprite2D"]
+texture_filter = 1
+offset_left = -29.0
+offset_top = -32.0
+offset_right = 29.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource("2_h1bpb")
+text = "You Brought Peace!"
+label_settings = SubResource("LabelSettings_cj74v")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Play" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 16.0
+offset_top = 43.0
+offset_right = 28.0
+offset_bottom = 55.0
+texture_normal = ExtResource("3_04som")
+texture_hover = ExtResource("4_l8ffe")
+
+[node name="Quit" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 36.0
+offset_top = 43.0
+offset_right = 48.0
+offset_bottom = 55.0
+texture_normal = ExtResource("5_3ssa8")
+texture_hover = ExtResource("6_2nl8f")
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
