@@ -2,11 +2,9 @@ class_name Spirit_Sight
 extends Area2D
 
 var within_sight: Dictionary
-@onready var focus = $root/Meadow/Tree_Main
+var focus: Node2D
 
 func _process(delta):
-	focus = null
-	
 	weight_options()
 
 func _on_body_entered(body):
@@ -17,6 +15,12 @@ func _on_body_exited(body):
 	if(body is Animal || body is Base_Plant):
 		within_sight.erase(body)
 
+
 func weight_options():
-	for key in within_sight:
-		pass
+	pass
+	#if within_sight.is_empty():
+		#focus = $Tree_Main
+		
+	
+	#for key in within_sight:
+		#focus = key
