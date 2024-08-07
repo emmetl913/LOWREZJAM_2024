@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqhr6rgl1jajx"]
+[gd_scene load_steps=8 format=3 uid="uid://dqhr6rgl1jajx"]
 
 [ext_resource type="Script" path="res://entities/animals/deer.gd" id="1_3cto8"]
 [ext_resource type="Script" path="res://entities/animals/animal.gd" id="1_i840l"]
 [ext_resource type="Texture2D" uid="uid://mmhh0a2wwenx" path="res://assets/sprites/deertemp1.png" id="3_5w80y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gdoti"]
-size = Vector2(8, 7)
+size = Vector2(7.555, 7)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ccq1h"]
 animations = [{
@@ -17,6 +17,9 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvj48"]
+size = Vector2(3, 7)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n0p4s"]
 radius = 16.0
@@ -30,7 +33,7 @@ attack_speed = 1.0
 script = ExtResource("1_3cto8")
 speed = 15.0
 attack_speed = 30.0
-max_distance_from_plant = 7.0
+max_distance_from_plant = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 0.5)
@@ -44,19 +47,27 @@ sprite_frames = SubResource("SpriteFrames_ccq1h")
 [node name="DealDamage" type="Area2D" parent="CharacterBody2D/AnimatedSprite2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AnimatedSprite2D/DealDamage"]
-position = Vector2(-3.445, 0.5)
-shape = SubResource("RectangleShape2D_gdoti")
+position = Vector2(-2.5, 0.5)
+shape = SubResource("RectangleShape2D_gvj48")
+
+[node name="AttackRange" type="Area2D" parent="CharacterBody2D/AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AnimatedSprite2D/AttackRange"]
+shape = SubResource("CircleShape2D_n0p4s")
 
 [node name="pwint" type="Timer" parent="CharacterBody2D"]
 wait_time = 0.5
 autostart = true
 
-[node name="AttackRange" type="Area2D" parent="CharacterBody2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackRange"]
-shape = SubResource("CircleShape2D_n0p4s")
-
 [node name="AttackSpeed" type="Timer" parent="CharacterBody2D"]
+one_shot = true
+
+[node name="RunAway" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.5
+one_shot = true
+
+[node name="FailedAttackReturnToPlant" type="Timer" parent="CharacterBody2D"]
+wait_time = 2.0
 one_shot = true
 
 [node name="RecalculateMoveDir" type="Timer" parent="."]
@@ -70,9 +81,11 @@ wait_time = 10.0
 autostart = true
 
 [connection signal="body_entered" from="CharacterBody2D/AnimatedSprite2D/DealDamage" to="CharacterBody2D" method="_on_deal_damage_body_entered"]
+[connection signal="body_entered" from="CharacterBody2D/AnimatedSprite2D/AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="CharacterBody2D/AnimatedSprite2D/AttackRange" to="." method="_on_attack_range_body_exited"]
 [connection signal="timeout" from="CharacterBody2D/pwint" to="CharacterBody2D" method="_on_pwint_timeout"]
-[connection signal="body_entered" from="CharacterBody2D/AttackRange" to="." method="_on_attack_range_body_entered"]
-[connection signal="body_exited" from="CharacterBody2D/AttackRange" to="." method="_on_attack_range_body_exited"]
 [connection signal="timeout" from="CharacterBody2D/AttackSpeed" to="CharacterBody2D" method="_on_attack_speed_timeout"]
+[connection signal="timeout" from="CharacterBody2D/RunAway" to="CharacterBody2D" method="_on_run_away_timeout"]
+[connection signal="timeout" from="CharacterBody2D/FailedAttackReturnToPlant" to="CharacterBody2D" method="_on_failed_attack_return_to_plant_timeout"]
 [connection signal="timeout" from="RecalculateMoveDir" to="CharacterBody2D" method="_on_recalculate_move_dir_timeout"]
 [connection signal="timeout" from="ChooseRandomFavoritePlant" to="." method="_on_choose_random_favorite_plant_timeout"]

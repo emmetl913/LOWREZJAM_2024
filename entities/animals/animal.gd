@@ -41,6 +41,10 @@ func _randomly_choose_plant_():
 	var random_plant_index = randi_range(0, list_of_favorite_plants.size()-1)
 	_set_plant(list_of_favorite_plants[random_plant_index], 1)
 
+func _on_randomly_choose_plant_timeout():
+	_randomly_choose_plant_()
+
+
 #plant health is designed in
 func _set_plant(plantPos: Vector2, plantHealth: int):
 	plant_position = plantPos
@@ -51,10 +55,6 @@ func _get_plant_position():
 	
 func _get_plant_health():
 	return plant_health
-
-func _on_randomly_choose_plant_timeout():
-	_randomly_choose_plant_()
-	get_child(0)._set_plant_position()
 
 
 func _on_choose_random_favorite_plant_timeout():
