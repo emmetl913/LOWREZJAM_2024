@@ -21,7 +21,7 @@ window/size/viewport_width=64
 window/size/viewport_height=64
 window/size/window_width_override=768
 window/size/window_height_override=768
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 window/vsync/vsync_mode=0
 
@@ -51,4 +51,5 @@ drag={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/default_filters/anisotropic_filtering_level=0
 anti_aliasing/screen_space_roughness_limiter/enabled=false

@@ -14,7 +14,9 @@ gradient = SubResource("Gradient_65wc5")
 fill_to = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3fe3t"]
-font_size = 9
+line_spacing = 0.0
+font = ExtResource("1_0j1jv")
+font_size = 12
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -32,10 +34,11 @@ texture = SubResource("GradientTexture2D_nha13")
 [node name="Title" type="Label" parent="Sprite2D"]
 texture_filter = 1
 offset_left = -27.0
-offset_top = -22.0
+offset_top = -32.0
 offset_right = 29.0
+offset_bottom = 13.0
 theme_override_fonts/font = ExtResource("1_0j1jv")
-text = "Title of the Game"
+text = "Peace to the Meadow"
 label_settings = SubResource("LabelSettings_3fe3t")
 horizontal_alignment = 1
 autowrap_mode = 3
