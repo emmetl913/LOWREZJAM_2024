@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dt8i712q08s6t"]
+[gd_scene load_steps=25 format=3 uid="uid://dt8i712q08s6t"]
 
 [ext_resource type="Script" path="res://worlds/meadow.gd" id="1_crc1t"]
 [ext_resource type="Texture2D" uid="uid://ban1edih61yuw" path="res://assets/sprites/temp_background.png" id="2_x82d8"]
@@ -10,13 +10,16 @@
 [ext_resource type="Texture2D" uid="uid://vw2dq1jquvce" path="res://assets/sprites/buttons/plants_button_temp.png" id="8_kpkwp"]
 [ext_resource type="Texture2D" uid="uid://dh1rn4d4eeejt" path="res://assets/sprites/buttons/power_button_temp.png" id="9_pka21"]
 [ext_resource type="Texture2D" uid="uid://c310c4ujahmxn" path="res://assets/sprites/yellow_pixel_4x4.png" id="10_0k15e"]
+[ext_resource type="Texture2D" uid="uid://cc50neu71ceb5" path="res://assets/sprites/carrot_seed.png" id="11_7d8qr"]
 [ext_resource type="Texture2D" uid="uid://dew2q8k2q1l2i" path="res://assets/sprites/buttons/exit_to_mm_temp_button.png" id="11_42ss3"]
+[ext_resource type="Texture2D" uid="uid://c0u67y4pk72k7" path="res://assets/sprites/blueberry_seed.png" id="12_4ayk8"]
 [ext_resource type="Texture2D" uid="uid://ngbdld7ow7e2" path="res://assets/sprites/buttons/exit_to_mm_temp_button_hover.png" id="12_o5jra"]
+[ext_resource type="Texture2D" uid="uid://bujaahxnmv2a2" path="res://assets/sprites/apple_seed.png" id="13_36vud"]
 [ext_resource type="Texture2D" uid="uid://bsbte62wt5lyp" path="res://assets/sprites/Sun Dial.png" id="13_iuhkc"]
 [ext_resource type="PackedScene" uid="uid://dby4wixwjy120" path="res://util/mouse_dragger.tscn" id="14_sp15l"]
-[ext_resource type="Script" path="res://entities/spirits/spirit.gd" id="15_6jofw"]
+[ext_resource type="Texture2D" uid="uid://diupao06mgiwt" path="res://assets/sprites/poppy_seed.png" id="14_y2u0d"]
 [ext_resource type="Script" path="res://managers/day_night_cycle.gd" id="16_3qooh"]
-[ext_resource type="PackedScene" uid="uid://bp6ubf7acq5oj" path="res://managers/entity_spawn_system.tscn" id="18_hfe1m"]
+[ext_resource type="PackedScene" uid="uid://ypclsfwmn8j3" path="res://entities/testenemyforanimalattack/testspiritforanimalattacks.tscn" id="20_6rdhw"]
 
 [sub_resource type="TileSet" id="TileSet_v7h3w"]
 tile_size = Vector2i(8, 8)
@@ -36,9 +39,8 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Meadow" type="Node2D"]
 script = ExtResource("1_crc1t")
-animal_minspawnchance = 1
-animal_maxspawnchance = 1
-seeds = Array[int]([10, 0, 0, 0, 0])
+animal_spawn_fraction = Vector2i(1, 1)
+seeds = Array[int]([10, 10, 5, 5, 5])
 
 [node name="TileMap" type="TileMap" parent="."]
 visible = false
@@ -134,7 +136,6 @@ stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Seeds_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
-visible = false
 position = Vector2(0, 26)
 texture = SubResource("GradientTexture2D_irbrn")
 
@@ -151,6 +152,77 @@ texture_filter = 1
 offset_left = -28.0
 offset_top = -5.0
 offset_right = -20.0
+offset_bottom = 3.0
+theme_override_fonts/font = ExtResource("5_6wua4")
+label_settings = SubResource("LabelSettings_sepq4")
+autowrap_mode = 3
+
+[node name="Carrot" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+offset_left = -23.0
+offset_top = -7.0
+offset_right = -19.0
+offset_bottom = -3.0
+texture_normal = ExtResource("11_7d8qr")
+stretch_mode = 0
+
+[node name="Carrot_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+texture_filter = 1
+offset_left = -21.0
+offset_top = -5.0
+offset_right = -13.0
+offset_bottom = 3.0
+theme_override_fonts/font = ExtResource("5_6wua4")
+label_settings = SubResource("LabelSettings_sepq4")
+autowrap_mode = 3
+
+[node name="Blueberry" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+offset_left = -16.0
+offset_top = -7.0
+offset_right = -12.0
+offset_bottom = -3.0
+texture_normal = ExtResource("12_4ayk8")
+stretch_mode = 0
+
+[node name="Blueberry_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+texture_filter = 1
+offset_left = -14.0
+offset_top = -5.0
+offset_right = -6.0
+offset_bottom = 3.0
+theme_override_fonts/font = ExtResource("5_6wua4")
+label_settings = SubResource("LabelSettings_sepq4")
+autowrap_mode = 3
+
+[node name="Apple" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+offset_left = -9.0
+offset_top = -7.0
+offset_right = -5.0
+offset_bottom = -3.0
+texture_normal = ExtResource("13_36vud")
+stretch_mode = 0
+
+[node name="Apple_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+texture_filter = 1
+offset_left = -7.0
+offset_top = -5.0
+offset_right = 1.0
+offset_bottom = 3.0
+theme_override_fonts/font = ExtResource("5_6wua4")
+label_settings = SubResource("LabelSettings_sepq4")
+autowrap_mode = 3
+
+[node name="Poppy" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+offset_left = -2.0
+offset_top = -7.0
+offset_right = 2.0
+offset_bottom = -3.0
+texture_normal = ExtResource("14_y2u0d")
+stretch_mode = 0
+
+[node name="Poppy_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+texture_filter = 1
+offset_top = -5.0
+offset_right = 8.0
 offset_bottom = 3.0
 theme_override_fonts/font = ExtResource("5_6wua4")
 label_settings = SubResource("LabelSettings_sepq4")
@@ -191,6 +263,7 @@ label_settings = ExtResource("6_m0oiv")
 autowrap_mode = 3
 
 [node name="Energy_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
+visible = false
 position = Vector2(0, 26)
 texture = SubResource("GradientTexture2D_irbrn")
 
@@ -218,14 +291,17 @@ region_rect = Rect2(0, 0, 32, 48)
 [node name="Mouse_Dragger" parent="." instance=ExtResource("14_sp15l")]
 metadata/_edit_use_anchors_ = true
 
-[node name="Test Spirit" type="Node2D" parent="."]
-script = ExtResource("15_6jofw")
-
 [node name="Day-Night Cycle" type="Node" parent="."]
 script = ExtResource("16_3qooh")
 
-[node name="Entity Spawn System" parent="." node_paths=PackedStringArray("main") instance=ExtResource("18_hfe1m")]
-main = NodePath("..")
+[node name="Spirit" parent="." instance=ExtResource("20_6rdhw")]
+position = Vector2(-67, 2)
+
+[node name="Spirit2" parent="." instance=ExtResource("20_6rdhw")]
+position = Vector2(-4, -59)
+
+[node name="Spirit3" parent="." instance=ExtResource("20_6rdhw")]
+position = Vector2(93, 1)
 
 [connection signal="pressed" from="CursorCamera/ToolBelt/ToolBelt_Toggle" to="." method="_on_tool_belt_toggle_pressed"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu_Toggle" to="." method="_on_seeds_menu_toggle_pressed"]
@@ -233,6 +309,18 @@ main = NodePath("..")
 [connection signal="mouse_entered" from="CursorCamera/ToolBelt/Seeds_Menu/Sunflower" to="." method="_on_sunflower_mouse_entered"]
 [connection signal="mouse_exited" from="CursorCamera/ToolBelt/Seeds_Menu/Sunflower" to="." method="_on_sunflower_mouse_exited"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu/Sunflower" to="." method="_on_sunflower_pressed"]
+[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Seeds_Menu/Carrot" to="." method="_on_carrot_mouse_entered"]
+[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Seeds_Menu/Carrot" to="." method="_on_carrot_mouse_exited"]
+[connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu/Carrot" to="." method="_on_carrot_pressed"]
+[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Seeds_Menu/Blueberry" to="." method="_on_blueberry_mouse_entered"]
+[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Seeds_Menu/Blueberry" to="." method="_on_blueberry_mouse_exited"]
+[connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu/Blueberry" to="." method="_on_blueberry_pressed"]
+[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Seeds_Menu/Apple" to="." method="_on_apple_mouse_entered"]
+[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Seeds_Menu/Apple" to="." method="_on_apple_mouse_exited"]
+[connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu/Apple" to="." method="_on_apple_pressed"]
+[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Seeds_Menu/Poppy" to="." method="_on_poppy_mouse_entered"]
+[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Seeds_Menu/Poppy" to="." method="_on_poppy_mouse_exited"]
+[connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu/Poppy" to="." method="_on_poppy_pressed"]
 [connection signal="mouse_entered" from="CursorCamera/ToolBelt/Options_Menu/Main_Menu" to="." method="_on_main_menu_mouse_entered"]
 [connection signal="mouse_exited" from="CursorCamera/ToolBelt/Options_Menu/Main_Menu" to="." method="_on_main_menu_mouse_exited"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Options_Menu/Main_Menu" to="." method="_on_main_menu_pressed"]
