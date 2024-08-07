@@ -108,3 +108,4 @@ func _on_run_away_timeout():
 func _on_failed_attack_return_to_plant_timeout():
 	is_attacking = false
 	is_wandering = true
+

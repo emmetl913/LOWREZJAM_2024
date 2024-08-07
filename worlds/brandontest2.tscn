@@ -295,13 +295,13 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("16_3qooh")
 
 [node name="Spirit" parent="." instance=ExtResource("20_6rdhw")]
-position = Vector2(-26, -7)
+position = Vector2(-67, 2)
 
 [node name="Spirit2" parent="." instance=ExtResource("20_6rdhw")]
-position = Vector2(20, -20)
+position = Vector2(-4, -59)
 
 [node name="Spirit3" parent="." instance=ExtResource("20_6rdhw")]
-position = Vector2(20, 3)
+position = Vector2(93, 1)
 
 [connection signal="pressed" from="CursorCamera/ToolBelt/ToolBelt_Toggle" to="." method="_on_tool_belt_toggle_pressed"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu_Toggle" to="." method="_on_seeds_menu_toggle_pressed"]
