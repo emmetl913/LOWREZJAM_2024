@@ -12,7 +12,7 @@ radius = 3.25
 radius = 15.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bar8g"]
-size = Vector2(3, 4)
+size = Vector2(4, 3)
 
 [node name="Spirit" type="CharacterBody2D" groups=["Spirit"]]
 script = ExtResource("2_aybnr")
@@ -33,10 +33,8 @@ shape = SubResource("CircleShape2D_oea61")
 script = ExtResource("4_8ifgy")
 
 [node name="Attack Zone" type="CollisionShape2D" parent="Primary Attack"]
-position = Vector2(4, 0)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_bar8g")
-
-[node name="Attack Timer" type="Timer" parent="Primary Attack"]
 
 [connection signal="body_entered" from="Sight" to="Sight" method="_on_body_entered"]
 [connection signal="body_exited" from="Sight" to="Sight" method="_on_body_exited"]

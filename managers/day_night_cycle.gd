@@ -37,7 +37,7 @@ func _day_time_process(delta: float) -> void:
 		
 		# Progressively tween between films (close hit justification)
 		while(!film.color.is_equal_approx(TIME_COLORS[time_period])):
-			film.color = film.color.lerp(TIME_COLORS[time_period], 0.5 * delta)
+			film.color = film.color.lerp(TIME_COLORS[time_period], 0.25 * delta)
 			await get_tree().process_frame
 		
 		film.color = TIME_COLORS[time_period] # Fix any close hit error
