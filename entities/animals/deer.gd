@@ -3,7 +3,12 @@ extends CharacterBody2D
 var animal
 var move_timer
 var can_move = true
+var can_attack = true
+var is_attacking = false
+var target
+
 @export var speed: float
+@export var attack_speed: float
 @export var max_distance_from_plant: float
 
 var dir: Vector2
@@ -15,13 +20,26 @@ func _ready():
 
 
 func _process(delta):
-	if can_move:
+	if can_move && !is_attacking:
 		_move(delta)
+	elif can_move && is_attacking:
+		_attack_move(delta)
+	
+	#Can we attack?
+	if can_attack && animal.enemies_in_range.size() > 0:
+		target = animal._select_closest_enemy()
+		#temp direction calculation:
+		dir = (target.position - position).normalized()
+		can_attack = false
+		is_attacking = true
+	else:
+		is_attacking == false
+	#Sprite Rotation!
 	if dir.x > 0:
 		$AnimatedSprite2D.flip_h = true
 	else:
 		$AnimatedSprite2D.flip_h = false
-		
+	
 func _is_far_from_plant(plant_position: Vector2):
 	if position.distance_to(plant_position) > max_distance_from_plant:
 		return true
@@ -35,6 +53,9 @@ func _move(delta: float):
 	elif move_timer.get_time_left() == 0:
 		move_timer.start(2)
 
+func _attack_move(delta: float):
+	var collision = move_and_collide(dir*attack_speed*delta)
+	
 func _set_dir_to_plant(plant_position: Vector2):
 	dir = plant_position - position
 	dir = dir.normalized()
@@ -52,3 +73,14 @@ func _on_pwint_timeout():
 
 func _on_enter_screen_timeout():
 	can_move = true
+
+
+func _on_deal_damage_body_entered(body):
+	if body.is_in_group("Spirit"):
+		body._take_damage(1)
+		$AttackSpeed.start($AttackSpeed.wait_time)
+		is_attacking = false
+
+
+func _on_attack_speed_timeout():
+	can_attack = true

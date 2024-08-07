@@ -16,6 +16,7 @@ size = Vector2(4, 3)
 
 [node name="Spirit" type="CharacterBody2D" groups=["Spirit"]]
 script = ExtResource("1_p5xma")
+health = 1
 
 [node name="Damage Zone" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_obhsy")

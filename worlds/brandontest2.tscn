@@ -39,7 +39,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Meadow" type="Node2D"]
 script = ExtResource("1_crc1t")
-animal_spawn_range = Vector2(1, 2)
+animal_spawn_fraction = Vector2i(1, 2)
 seeds = Array[int]([10, 10, 5, 5, 5])
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -295,6 +295,13 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("16_3qooh")
 
 [node name="Spirit" parent="." instance=ExtResource("20_6rdhw")]
+position = Vector2(-26, -7)
+
+[node name="Spirit2" parent="." instance=ExtResource("20_6rdhw")]
+position = Vector2(20, -20)
+
+[node name="Spirit3" parent="." instance=ExtResource("20_6rdhw")]
+position = Vector2(20, 3)
 
 [connection signal="pressed" from="CursorCamera/ToolBelt/ToolBelt_Toggle" to="." method="_on_tool_belt_toggle_pressed"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu_Toggle" to="." method="_on_seeds_menu_toggle_pressed"]

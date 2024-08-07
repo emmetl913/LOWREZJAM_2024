@@ -3,7 +3,7 @@ extends Node2D
 enum Time_Period {morning, afternoon, evening, dusk, midnight, dawn}
 
 #Set this to return 1 everytime if you want guaranteed animal spawns
-@export var animal_spawn_range: Vector2
+@export var animal_spawn_fraction: Vector2i
 
 @onready var sunflower_reference = preload("res://plants/classes/sunflower.tres")
 @onready var carrot_reference = preload("res://plants/classes/carrot.tres")
@@ -242,7 +242,7 @@ func setup_seed_totals():
 
 
 func _try_spawn_animal(plantID: int):
-	if randi_range(animal_spawn_range.x, animal_spawn_range.y) == 1:
+	if randi_range(animal_spawn_fraction.x, animal_spawn_fraction.y) == 1:
 		_spawn_animal(plantID, randf_range(0,5))
 
 func _spawn_animal(plantID: int, timeToSpawn: float):

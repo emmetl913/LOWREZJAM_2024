@@ -10,6 +10,8 @@ var plant_health: int
 var parent
 var enter_screen_timer: float
 
+var enemies_in_range: Array[Entity] = []
+
 func _ready():
 	_randomly_choose_plant_()
 	$EnterScreen.start(enter_screen_timer)
@@ -66,3 +68,23 @@ func _random_spawn_position():
 	if randi_range(0,1) == 1:
 		vec*= -1
 	return vec
+
+
+func _on_attack_range_body_entered(body):
+	if body.is_in_group("Spirit"):
+		enemies_in_range.append(body)
+
+
+func _on_attack_range_body_exited(body):
+	for i in enemies_in_range:
+		if body == i:
+			enemies_in_range.pop_at(enemies_in_range.find(i))
+
+func _select_closest_enemy():
+	var min_distance = 99999
+	var target = null
+	for i in enemies_in_range:
+		if i.position.distance_to(get_child(0).position) < min_distance :
+			min_distance = i.position.distance_to(get_child(0).position)
+			target = i
+	return target

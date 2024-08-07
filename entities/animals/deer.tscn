@@ -28,7 +28,8 @@ attack_speed = 1.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_3cto8")
-speed = 100.0
+speed = 15.0
+attack_speed = 30.0
 max_distance_from_plant = 7.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
@@ -70,6 +71,8 @@ autostart = true
 
 [connection signal="body_entered" from="CharacterBody2D/AnimatedSprite2D/DealDamage" to="CharacterBody2D" method="_on_deal_damage_body_entered"]
 [connection signal="timeout" from="CharacterBody2D/pwint" to="CharacterBody2D" method="_on_pwint_timeout"]
+[connection signal="body_entered" from="CharacterBody2D/AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="CharacterBody2D/AttackRange" to="." method="_on_attack_range_body_exited"]
 [connection signal="timeout" from="CharacterBody2D/AttackSpeed" to="CharacterBody2D" method="_on_attack_speed_timeout"]
 [connection signal="timeout" from="RecalculateMoveDir" to="CharacterBody2D" method="_on_recalculate_move_dir_timeout"]
 [connection signal="timeout" from="ChooseRandomFavoritePlant" to="." method="_on_choose_random_favorite_plant_timeout"]
