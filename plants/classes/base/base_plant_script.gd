@@ -18,6 +18,7 @@ var new_y
 
 var parent
 
+
 func _set_seed_texture(new : Texture):
 	SEED_TEXTURE = new
 func _get_seed_texture():
@@ -60,3 +61,4 @@ func _on_prod_timer_timeout():
 		RESOURCES_STORED += PROD_VAL
 	print("Plant has produced ", PROD_VAL, " resources")
 	$Prod_Timer.start()
+
