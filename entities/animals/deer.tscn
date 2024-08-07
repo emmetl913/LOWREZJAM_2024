@@ -29,7 +29,6 @@ attack_speed = 1.0
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_3cto8")
 speed = 10.0
-
 max_distance_from_plant = 7.0
 dash_speed = 50.0
 

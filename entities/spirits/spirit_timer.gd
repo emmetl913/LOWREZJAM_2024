@@ -24,11 +24,14 @@ func _set_timer(period: Day_Night_Cycle.Time_Period) -> void:
 			shortest = 2
 			longest = 3
 			quantity = 2
+			
+			if paused:
+				_random_timer()
+				
+				paused = !paused
 		Day_Night_Cycle.Time_Period.midnight:
 			shortest = 0.5
 			longest = 1.5
 			quantity = 3
 		_:
-			shortest = 7.5
-			longest = 10
-			quantity = 1
+			paused = true
