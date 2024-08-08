@@ -15,6 +15,7 @@ var phase_offset: float = Function_Lib._random_unit_wave_amplitude() * 90
 func _ready() -> void:
 	$"/root/Meadow/Day-Night Cycle".time_period_change.connect(_change_behavior)
 	_change_behavior($"/root/Meadow/Day-Night Cycle".time_period)
+	
 
 func _process(delta) -> void:
 	_move(delta)
@@ -38,7 +39,7 @@ func _move(delta: float):
 	move_and_collide((direction + offset).normalized() * delta * speed)
 	
 	$"Primary Attack".look_at(global_position.direction_to($Sight.focus.global_position))
-	
+
 	#velocity = -global_position.normalized()#($Sight.focus.global_position - global_position).normalized()
 	#print(velocity)
 	#velocity += velocity.orthogonal() * sin(Time.get_unix_time_from_system() * Frequency + phase_offset) * dampener

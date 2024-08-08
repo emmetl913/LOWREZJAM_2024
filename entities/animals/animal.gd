@@ -15,7 +15,7 @@ var enemies_in_range: Array[Spirit] = []
 
 func _ready():
 	$EnterScreen.start(enter_screen_timer)
-
+	$ChooseRandomFavoritePlant.start(randf_range(5,15))
 
 func _set_parent(par: Node2D):
 	parent = par
@@ -28,16 +28,6 @@ func _find_plants():
 				if parent.map_data[i][j].PLANT_ID == favorite_plant_id:
 					var wtfisgoingon = parent.map_data[i][j]
 					list_of_favorite_plants.append(wtfisgoingon)
-					#var new_x
-					#var new_y
-					#if i > 8:
-						#new_x = (((i+1)-8)*8)-4
-					#else:
-						#new_x = (((abs((i+1)-8)+1)*8)-4)*-1
-					#if j > 8:
-						#new_y = (((j+1)-8)*8)-4
-					#else:
-						#new_y = ((((j+1)-8)+1)*8)-12
 
 func _randomly_choose_plant_():
 	_find_plants()
@@ -65,6 +55,7 @@ func _on_choose_random_favorite_plant_timeout():
 	_randomly_choose_plant_()
 	var random_plant_index = randi_range(0, list_of_favorite_plants.size()-1)
 	_set_plant(list_of_favorite_plants[random_plant_index], 1)
+	$ChooseRandomFavoritePlant.start(randf_range(5,15))
 
 func _random_spawn_position():
 	var vec = Vector2.RIGHT.rotated(randf_range(0, PI))
@@ -92,3 +83,4 @@ func _select_closest_enemy():
 			min_distance = i.position.distance_to(get_child(0).position)
 			target = i
 	return target
+

@@ -56,8 +56,8 @@ shape = SubResource("RectangleShape2D_gvj48")
 shape = SubResource("CircleShape2D_n0p4s")
 
 [node name="pwint" type="Timer" parent="CharacterBody2D"]
-wait_time = 0.5
-autostart = true
+wait_time = 0.1
+one_shot = true
 
 [node name="AttackSpeed" type="Timer" parent="CharacterBody2D"]
 one_shot = true
@@ -67,7 +67,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="FailedAttackReturnToPlant" type="Timer" parent="CharacterBody2D"]
-wait_time = 2.0
+wait_time = 1.3
 one_shot = true
 
 [node name="RecalculateMoveDir" type="Timer" parent="."]
@@ -78,7 +78,7 @@ one_shot = true
 
 [node name="ChooseRandomFavoritePlant" type="Timer" parent="."]
 wait_time = 10.0
-autostart = true
+one_shot = true
 
 [connection signal="body_entered" from="CharacterBody2D/AnimatedSprite2D/DealDamage" to="CharacterBody2D" method="_on_deal_damage_body_entered"]
 [connection signal="body_entered" from="CharacterBody2D/AnimatedSprite2D/AttackRange" to="." method="_on_attack_range_body_entered"]
