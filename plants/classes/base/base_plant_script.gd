@@ -12,9 +12,11 @@ var new_y
 @export var HEALTH : int
 @export var SEED_TEXTURE : Texture: set = _set_seed_texture, get = _get_seed_texture
 @export var MATURE_TEXTURE : Texture: set = _set_mature_texture, get = _get_mature_texture
+@export var STAGE_TEXTURES: Array[Texture]
 @export var DISPLAY_TEXTURE : Texture
 @export var GRID_COORDS : Vector2
 @export var GROWTH_TIME : int
+@export var REGROW_TIME : int
 @export var RESOURCES_STORED : int
 
 var parent
@@ -52,11 +54,26 @@ func setPosition():
 	position = Vector2(new_x, new_y)
 	print("New seed position set at: ", position.x," , ", position.y)
 	$Sprite2D.texture = DISPLAY_TEXTURE
+	
+func eat():
+	print("resource eaten")
+	RESOURCES_STORED -= 1
+	updateTexture()
+	$Regrow_Timer.wait_time = REGROW_TIME
+	$Regrow_Timer.start()
+	
+func updateTexture():
+	$Sprite2D.texture = STAGE_TEXTURES[RESOURCES_STORED]
 
 func _on_growth_timer_timeout():
-	$Sprite2D.texture = MATURE_TEXTURE
-	print("Plant has matured")
-	$Prod_Timer.start()
+	if RESOURCE_NAME == "ENERGY":
+		$Sprite2D.texture = MATURE_TEXTURE
+		print("Plant has matured")
+		$Prod_Timer.start()
+	else:
+		RESOURCES_STORED = 4
+		updateTexture()
+
 func _on_prod_timer_timeout():
 	if RESOURCE_NAME == "ENERGY":
 		parent.stored_energy += PROD_VAL
@@ -65,3 +82,9 @@ func _on_prod_timer_timeout():
 	print("Plant has produced ", PROD_VAL, " resources")
 	$Prod_Timer.start()
 
+func _on_regrow_timer_timeout():
+	RESOURCES_STORED += 1;
+	updateTexture()
+	if RESOURCES_STORED < 4:
+		$Regrow_Timer.wait_time = REGROW_TIME
+		$Regrow_Timer.start()

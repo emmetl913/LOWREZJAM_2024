@@ -84,10 +84,10 @@ func _on_tool_belt_toggle_pressed():
 		seeds_menu.visible = false
 		energy_menu.visible = false
 		$CursorCamera/ToolBelt.position.y = lerp($CursorCamera/ToolBelt.position.y, $CursorCamera/ToolBelt.position.y-14, 1)
-		$CursorCamera/ToolBelt/ToolBelt_Toggle.texture_normal = load("res://assets/sprites/buttons/down.png")
+		$CursorCamera/ToolBelt/ToolBelt_Toggle.texture_normal = load("res://assets/sprites/toolbar/tool_close.png")
 	else:
 		$CursorCamera/ToolBelt.position.y = lerp($CursorCamera/ToolBelt.position.y, $CursorCamera/ToolBelt.position.y+14, 1)
-		$CursorCamera/ToolBelt/ToolBelt_Toggle.texture_normal = load("res://assets/sprites/buttons/up.png")
+		$CursorCamera/ToolBelt/ToolBelt_Toggle.texture_normal = load("res://assets/sprites/toolbar/tool_open.png")
 func _on_seeds_menu_toggle_pressed():
 	if toolbelt_open:
 		seeds_menu.visible = true
@@ -212,8 +212,10 @@ func setUpNewPlant(res : Resource, new_plant, coords : Vector2):
 	new_plant.SEED_TEXTURE = res.SEED_TEXTURE
 	new_plant.DISPLAY_TEXTURE = res.SEED_TEXTURE
 	new_plant.MATURE_TEXTURE = res.MATURE_TEXTURE
+	new_plant.STAGE_TEXTURES = res.STAGE_TEXTURES
 	new_plant.GRID_COORDS = coords
 	new_plant.GROWTH_TIME = res.GROWTH_TIME
+	new_plant.REGROW_TIME = res.REGROW_TIME
 	new_plant.RESOURCES_STORED = res.RESOURCES_STORED
 	new_plant._set_parent(self)
 	new_plant.setPosition()
