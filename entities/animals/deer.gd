@@ -10,7 +10,7 @@ var is_wandering = true
 var can_attack = false
 var is_attacking = false
 var target
-
+var prevhittargetsprite
 @export var speed: float
 @export var attack_speed: float
 @export var max_distance_from_plant: float
@@ -28,7 +28,6 @@ func _process(delta):
 		_move(delta)
 	elif can_move && is_attacking:
 		_attack_move(delta)
-	
 	
 	#If deer has just spawned: it is wandering
 	#Once deer reaches plant it can now attack and is no longer wandering
@@ -48,7 +47,7 @@ func _process(delta):
 		#of their target right when they choose it. This makes deer return to plant if they miss
 		#Otherwise this timer is cancelled on successful attack
 		$FailedAttackReturnToPlant.start($FailedAttackReturnToPlant.wait_time)
-	else:
+	elif animal.enemies_in_range.size() == 0:
 		is_attacking == false
 	#Sprite Rotation!
 	if dir.x > 0:
@@ -84,8 +83,9 @@ func _on_recalculate_move_dir_timeout():
 
 
 func _on_pwint_timeout():
-	print(animal._get_plant_position(), " plant")
-	print(position, " deer")
+	if is_instance_valid(prevhittargetsprite):
+		var tween: Tween = create_tween()
+		tween.tween_property(prevhittargetsprite, "self_modulate", Color(1,1,1,1), .1)
 
 func _on_enter_screen_timeout():
 	can_move = true
@@ -93,8 +93,12 @@ func _on_enter_screen_timeout():
 func _on_deal_damage_body_entered(body):
 	if body.is_in_group("Spirit") && is_attacking:
 		body._take_damage(1)
+		prevhittargetsprite = body.get_node("Visual Component")
+		var tween: Tween = create_tween()
+		tween.tween_property(prevhittargetsprite, "self_modulate", Color(1,0,0,1), .1)
 		$AttackSpeed.start($AttackSpeed.wait_time)
 		$RunAway.start($RunAway.wait_time)
+		$pwint.start(.1)
 		#Successful attack: Don't run failsafe 
 		$FailedAttackReturnToPlant.stop()
 		dir = -dir
@@ -109,3 +113,5 @@ func _on_failed_attack_return_to_plant_timeout():
 	is_attacking = false
 	is_wandering = true
 
+func _apply_knock_back():
+	pass

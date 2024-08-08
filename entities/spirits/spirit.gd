@@ -15,6 +15,7 @@ var phase_offset: float = Function_Lib._random_unit_wave_amplitude() * 90
 func _ready() -> void:
 	$"/root/Meadow/Day-Night Cycle".time_period_change.connect(_change_behavior)
 	_change_behavior($"/root/Meadow/Day-Night Cycle".time_period)
+	
 
 func _process(delta) -> void:
 	_move(delta)
@@ -34,19 +35,11 @@ func _move(delta: float):
 		direction = global_position.direction_to($Sight.focus.global_position + Vector2(8, 8))
 	else:
 		direction = global_position.direction_to($Sight.focus.global_position)
+	
 	var offset: Vector2 = direction.orthogonal() * sin(Time.get_unix_time_from_system() * Frequency + phase_offset) * dampener
 	move_and_collide((direction + offset).normalized() * delta * speed)
 	
 	$"Primary Attack".look_at(global_position.direction_to($Sight.focus.global_position))
-	
-	#velocity = -global_position.normalized()#($Sight.focus.global_position - global_position).normalized()
-	#print(velocity)
-	#velocity += velocity.orthogonal() * sin(Time.get_unix_time_from_system() * Frequency + phase_offset) * dampener
-	#print(velocity)
-	#velocity = velocity.normalized() * delta * speed
-	#print(velocity)
-	#move_and_slide()
-	#print("global_position (after): ", global_position)
 
 func _take_damage(damage: int):
 	health -= damage
@@ -58,7 +51,7 @@ func _death():
 	queue_free()
 
 
-# just at night
+
 # primary attack is slash
 # secondary attack is unique per spirit (knockback, wind: tornado)
 # defeated spirit drops seeds
