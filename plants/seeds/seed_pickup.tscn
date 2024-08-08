@@ -28,6 +28,7 @@ shape = SubResource("CircleShape2D_quqk0")
 
 [node name="SeedSprite" type="Sprite2D" parent="."]
 z_index = 1
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_muyre")
 
 [node name="CollectionRadius" type="Area2D" parent="."]

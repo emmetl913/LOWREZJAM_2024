@@ -40,6 +40,7 @@ func _on_mouse_detection_range_area_entered(area):
 func _on_mouse_detection_range_area_exited(area):
 	if area.is_in_group("Cursor"):
 		set_cursor_in_range(false)
+		starting_speed = 0
 
 
 func _on_collection_radius_area_entered(area):

@@ -11,7 +11,9 @@ enum Time_Period {morning, afternoon, evening, dusk, midnight, dawn}
 
 #List of all animal instances
 @onready var deer_instance = preload("res://entities/animals/deer.tscn")
-#@onready var birb_instance = preload("res://entities/animals/birb.tscn")
+@onready var leopard_instance = preload("res://entities/animals/leopard.tscn")
+@onready var bird_instance = preload("res://entities/animals/bird.tscn")
+@onready var squirrel_instance = preload("res://entities/animals/squirrel.tscn")
 
 @onready var map_data: Array[Array]
 var map_width = 16
@@ -68,6 +70,7 @@ func _process(_delta):
 
 func _add_seed(seed_id: int):
 	seeds[seed_id] += 1
+	setup_seed_totals()
 
 func updateEnergyMenu():
 	energy_text.text = "Sun Power: %.2f" % stored_energy + "\n- From Tree: %.2f" % (tree.energy_rate/tree.prod_interval) + "    From %02d" % total_sunflowers + " sunflowers: %.2f" % ((sunflower_reference.PROD_VAL/sunflower_reference.PROD_INTERVAL)*total_sunflowers)
@@ -102,34 +105,6 @@ func _on_power_menu_toggle_pressed():
 		options_menu.visible = false
 		energy_menu.visible = true
 
-# /////////////////////////
-# Tool Belt Seed Resources
-# /////////////////////////
-func _on_sunflower_mouse_entered():
-	seed_text.text = "A sunflower seed, these grow into mature sunflowers that produce more energy                            "
-func _on_sunflower_mouse_exited():
-	seed_text.text = " "
-	
-func _on_carrot_mouse_entered():
-	seed_text.text = "A carrot seed. These grow into mature carrots that attract birds.                                       "
-func _on_carrot_mouse_exited():
-	seed_text.text = " "
-	
-func _on_blueberry_mouse_entered():
-	seed_text.text = "A blueberry seed. These grow into a blueberry bush that attracts squirrels.                             "
-func _on_blueberry_mouse_exited():
-	seed_text.text = " "
-
-func _on_apple_mouse_entered():
-	seed_text.text = "An apple seed. These grow into an apple tree that attracts ducks.                                       "
-func _on_apple_mouse_exited():
-	seed_text.text = " "
-
-func _on_poppy_mouse_entered():
-	seed_text.text = "A poppy seed. These grow into poppies that attract mountain lions.                                      "
-func _on_poppy_mouse_exited():
-	seed_text.text = " "
-
 # //////////////////////////
 # Options Menu Button Config
 # //////////////////////////
@@ -145,7 +120,6 @@ func _on_main_menu_mouse_exited():
 # //////////////////////
 func on_seed_button_pressed(seedID: int, texture: Texture2D):
 	if is_holding_seed:
-		seeds[seedID] += 1
 		$Mouse_Dragger/Sprite2D.texture = null
 		is_holding_seed = false
 		held_seed_id = -1
@@ -173,9 +147,9 @@ func _on_poppy_pressed():
 
 func _input(event):
 	if is_holding_seed and event.is_action_pressed("select") and seeds[held_seed_id] > 0:
-		print(get_local_mouse_position().y , " : ", $CursorCamera.position.y+15)
+		print("HELD SEED COUNT: ", seeds[held_seed_id])
 		if !toolbelt_open or toolbelt_open and get_global_mouse_position().y <= $CursorCamera.position.y+15:
-			seeds[0] -= 1
+			seeds[held_seed_id] -= 1
 			setup_seed_totals()
 			print("You're trying to plant seed with menu open: ", held_seed_id, " you now have ", seeds[0], " seeds")
 			var new_coords = getMapAsGridCoords()
@@ -224,7 +198,8 @@ func setUpNewPlant(res : Resource, new_plant, coords : Vector2):
 	new_plant._set_growth_timer(new_plant.GROWTH_TIME)
 	new_plant._set_prod_timer(res.PROD_INTERVAL)
 	new_plant._start_growth()
-	total_sunflowers += 1
+	if new_plant.PLANT_ID == 0:
+		total_sunflowers += 1
 
 func getPlantResourceByPlantID(id : int):
 	if id == 0:
@@ -239,11 +214,11 @@ func getPlantResourceByPlantID(id : int):
 		return load("res://plants/classes/poppy.tres")
 
 func setup_seed_totals():
-	$CursorCamera/ToolBelt/Seeds_Menu/Sunflower_Total.text = "x%02d" % seeds[0]
-	$CursorCamera/ToolBelt/Seeds_Menu/Carrot_Total.text = "x%02d" % seeds[1]
-	$CursorCamera/ToolBelt/Seeds_Menu/Blueberry_Total.text = "x%02d" % seeds[2]
-	$CursorCamera/ToolBelt/Seeds_Menu/Apple_Total.text = "x%02d" % seeds[3]
-	$CursorCamera/ToolBelt/Seeds_Menu/Poppy_Total.text = "x%02d" % seeds[4]
+	$CursorCamera/ToolBelt/Seeds_Menu/Sunflower_Total.text = "%2d" % seeds[0]
+	$CursorCamera/ToolBelt/Seeds_Menu/Carrot_Total.text = "%2d" % seeds[1]
+	$CursorCamera/ToolBelt/Seeds_Menu/Blueberry_Total.text = "%2d" % seeds[2]
+	$CursorCamera/ToolBelt/Seeds_Menu/Apple_Total.text = "%2d" % seeds[3]
+	$CursorCamera/ToolBelt/Seeds_Menu/Poppy_Total.text = "%2d" % seeds[4]
 
 func _try_spawn_animal(plantID: int):
 	if randi_range(animal_spawn_fraction.x, animal_spawn_fraction.y) == 1:
@@ -259,4 +234,10 @@ func _spawn_animal(plantID: int, timeToSpawn: float):
 func _get_animal_by_plant_id(plantID: int):
 	if plantID == 1:
 		return deer_instance
+	if plantID == 2:
+		return bird_instance
+	if plantID == 3:
+		return squirrel_instance
+	if plantID == 4:
+		return leopard_instance
 

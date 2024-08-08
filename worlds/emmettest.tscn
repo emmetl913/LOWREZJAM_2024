@@ -25,10 +25,10 @@
 [sub_resource type="TileSet" id="TileSet_xleeq"]
 tile_size = Vector2i(8, 8)
 
-[sub_resource type="Gradient" id="Gradient_lwrot"]
+[sub_resource type="Gradient" id="Gradient_isnxh"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_i6nsc"]
-gradient = SubResource("Gradient_lwrot")
+gradient = SubResource("Gradient_isnxh")
 height = 16
 fill_to = Vector2(0, 0)
 
@@ -249,6 +249,7 @@ offset_right = 29.0
 offset_bottom = 2.0
 texture_normal = ExtResource("15_x0si3")
 texture_hover = ExtResource("16_nw2it")
+metadata/_edit_use_anchors_ = true
 
 [node name="Options_Tooltip" type="Label" parent="CursorCamera/ToolBelt/Options_Menu"]
 texture_filter = 1
@@ -259,6 +260,7 @@ offset_bottom = 5.0
 theme_override_fonts/font = ExtResource("5_6mr85")
 label_settings = ExtResource("6_pwuxj")
 autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="Energy_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
 visible = false
