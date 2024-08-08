@@ -2,9 +2,16 @@ extends Node2D
 
 enum Time_Period {morning, afternoon, evening, dusk, midnight, dawn}
 
+#Set this to return 1 everytime if you want guaranteed animal spawns
+@export var animal_spawn_fraction: Vector2i
+
 @onready var sunflower_reference = preload("res://plants/classes/sunflower.tres")
 @onready var carrot_reference = preload("res://plants/classes/carrot.tres")
 @onready var plant_instance = preload("res://plants/classes/base/base_plant.tscn")
+
+#List of all animal instances
+@onready var deer_instance = preload("res://entities/animals/deer.tscn")
+#@onready var birb_instance = preload("res://entities/animals/birb.tscn")
 
 @onready var map_data = []
 var map_width = 16
@@ -55,7 +62,7 @@ func setupMap():
 		for j in map_height:
 			map_data[i].append(-1) # Value for an empty space is -1
 
-func _process(delta):
+func _process(_delta):
 	updateEnergyMenu()
 	#print(get_local_mouse_position())
 
@@ -169,13 +176,14 @@ func _input(event):
 			setup_seed_totals()
 			print("You're trying to plant seed with menu open: ", held_seed_id, " you now have ", seeds[0], " seeds")
 			var new_coords = getMapAsGridCoords()
-			map_data[new_coords.x][new_coords.y] = held_seed_id
+			map_data[new_coords.x-1][new_coords.y-1] = held_seed_id
 			var res = getPlantResourceByPlantID(held_seed_id)
 			var new_plant = plant_instance.instantiate()
 			setUpNewPlant(res, new_plant, new_coords)
 			add_child(new_plant, true)
 var new_x : int
 var new_y : int
+
 func getMapAsGridCoords():
 	var mouse_loc = get_global_mouse_position()
 	var temp_x = mouse_loc.x / 8
@@ -210,6 +218,7 @@ func setUpNewPlant(res : Resource, new_plant, coords : Vector2):
 	new_plant._set_growth_timer(new_plant.GROWTH_TIME)
 	new_plant._set_prod_timer(res.PROD_INTERVAL)
 	new_plant._start_growth()
+	_try_spawn_animal(res.PLANT_ID)
 	total_sunflowers += 1
 
 func getPlantResourceByPlantID(id : int):
@@ -232,4 +241,16 @@ func setup_seed_totals():
 	$CursorCamera/ToolBelt/Seeds_Menu/Poppy_Total.text = "x%02d" % seeds[4]
 
 
+func _try_spawn_animal(plantID: int):
+	if randi_range(animal_spawn_fraction.x, animal_spawn_fraction.y) == 1:
+		_spawn_animal(plantID, randf_range(0,5))
 
+func _spawn_animal(plantID: int, timeToSpawn: float):
+	var new_animal = _get_animal_by_plant_id(plantID).instantiate()
+	new_animal._set_parent(self)
+	new_animal.enter_screen_timer = timeToSpawn
+	add_child(new_animal, true)
+func _get_animal_by_plant_id(plantID: int):
+	if plantID == 0:
+		return deer_instance
+	
