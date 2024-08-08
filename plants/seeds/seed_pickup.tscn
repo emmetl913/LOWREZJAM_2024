@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://d0a2wnc0rj63i"]
+
+[ext_resource type="Script" path="res://plants/seeds/item_pickup.gd" id="1_c557q"]
+[ext_resource type="Texture2D" uid="uid://c0u67y4pk72k7" path="res://assets/sprites/blueberry_seed.png" id="1_hl7hx"]
+[ext_resource type="Texture2D" uid="uid://c310c4ujahmxn" path="res://assets/sprites/yellow_pixel_4x4.png" id="2_muyre"]
+[ext_resource type="Texture2D" uid="uid://cc50neu71ceb5" path="res://assets/sprites/carrot_seed.png" id="3_8j748"]
+[ext_resource type="Texture2D" uid="uid://bujaahxnmv2a2" path="res://assets/sprites/apple_seed.png" id="5_adt3b"]
+[ext_resource type="Texture2D" uid="uid://diupao06mgiwt" path="res://assets/sprites/poppy_seed.png" id="6_jhn4l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_quqk0"]
+radius = 24.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wlplp"]
+size = Vector2(4, 4)
+
+[node name="SeedPickup" type="Node2D"]
+script = ExtResource("1_c557q")
+item_speed = 100.0
+item_acceleration = 0.01
+seedsprites = Array[Texture2D]([ExtResource("2_muyre"), ExtResource("3_8j748"), ExtResource("1_hl7hx"), ExtResource("5_adt3b"), ExtResource("6_jhn4l")])
+
+[node name="MouseDetectionRange" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseDetectionRange"]
+shape = SubResource("CircleShape2D_quqk0")
+
+[node name="SeedSprite" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("2_muyre")
+
+[node name="CollectionRadius" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectionRadius"]
+shape = SubResource("RectangleShape2D_wlplp")
+
+[connection signal="area_entered" from="MouseDetectionRange" to="." method="_on_mouse_detection_range_area_entered"]
+[connection signal="area_exited" from="MouseDetectionRange" to="." method="_on_mouse_detection_range_area_exited"]
+[connection signal="area_entered" from="CollectionRadius" to="." method="_on_collection_radius_area_entered"]

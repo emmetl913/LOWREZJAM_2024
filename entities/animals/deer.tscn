@@ -26,6 +26,7 @@ radius = 16.0
 
 [node name="Deer" type="Node2D" groups=["Animal"]]
 script = ExtResource("1_i840l")
+favorite_plant_id = 1
 health = 1
 attack_speed = 1.0
 
@@ -80,6 +81,10 @@ one_shot = true
 wait_time = 10.0
 one_shot = true
 
+[node name="DropSeedTimer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
 [connection signal="body_entered" from="CharacterBody2D/AnimatedSprite2D/DealDamage" to="CharacterBody2D" method="_on_deal_damage_body_entered"]
 [connection signal="body_entered" from="CharacterBody2D/AnimatedSprite2D/AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="CharacterBody2D/AnimatedSprite2D/AttackRange" to="." method="_on_attack_range_body_exited"]
@@ -89,3 +94,4 @@ one_shot = true
 [connection signal="timeout" from="CharacterBody2D/FailedAttackReturnToPlant" to="CharacterBody2D" method="_on_failed_attack_return_to_plant_timeout"]
 [connection signal="timeout" from="RecalculateMoveDir" to="CharacterBody2D" method="_on_recalculate_move_dir_timeout"]
 [connection signal="timeout" from="ChooseRandomFavoritePlant" to="." method="_on_choose_random_favorite_plant_timeout"]
+[connection signal="timeout" from="DropSeedTimer" to="." method="_on_drop_seed_timer_timeout"]

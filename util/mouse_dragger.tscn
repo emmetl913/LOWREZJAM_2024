@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dby4wixwjy120"]
+[gd_scene load_steps=4 format=3 uid="uid://dby4wixwjy120"]
 
 [ext_resource type="Script" path="res://util/mouse_dragger.gd" id="1_8xtmn"]
+[ext_resource type="Texture2D" uid="uid://c0u67y4pk72k7" path="res://assets/sprites/blueberry_seed.png" id="2_lyftb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4qmiy"]
+radius = 2.0
 
 [node name="Mouse_Dragger" type="Control"]
 layout_mode = 3
@@ -13,3 +17,15 @@ script = ExtResource("1_8xtmn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+
+[node name="Cursor" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 0.835294)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_lyftb")
+
+[node name="Area2D" type="Area2D" parent="." groups=["Cursor"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_4qmiy")

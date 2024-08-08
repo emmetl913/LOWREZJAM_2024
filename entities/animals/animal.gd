@@ -13,9 +13,17 @@ var enter_screen_timer: float
 
 var enemies_in_range: Array[Spirit] = []
 
+var seed_references: Array[PackedScene] = []
+
+@onready var sunflower_seed = preload("res://plants/seeds/seed_pickup.tscn")
+
+func _load_seed_references():
+	seed_references.append(sunflower_seed)
+
 func _ready():
 	$EnterScreen.start(enter_screen_timer)
 	$ChooseRandomFavoritePlant.start(randf_range(5,15))
+	_load_seed_references()
 
 func _set_parent(par: Node2D):
 	parent = par
@@ -84,3 +92,13 @@ func _select_closest_enemy():
 			target = i
 	return target
 
+
+func _drop_seed():
+	var new_seed = seed_references[randi_range(0, seed_references.size()-1)].instantiate()
+	new_seed.position = get_child(0).position
+	new_seed.parent = parent
+	parent.add_child(new_seed)
+
+
+func _on_drop_seed_timer_timeout():
+	_drop_seed()

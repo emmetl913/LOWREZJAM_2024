@@ -66,6 +66,9 @@ func _process(_delta):
 	updateEnergyMenu()
 	#print(get_local_mouse_position())
 
+func _add_seed(seed_id: int):
+	seeds[seed_id] += 1
+
 func updateEnergyMenu():
 	energy_text.text = "Sun Power: %.2f" % stored_energy + "\n- From Tree: %.2f" % (tree.energy_rate/tree.prod_interval) + "    From %02d" % total_sunflowers + " sunflowers: %.2f" % ((sunflower_reference.PROD_VAL/sunflower_reference.PROD_INTERVAL)*total_sunflowers)
 	pass
@@ -182,7 +185,8 @@ func _input(event):
 			add_child(new_plant, true)
 			new_plant.set_owner(self)
 			map_data[new_coords.x-1][new_coords.y-1] = new_plant
-			_try_spawn_animal(held_seed_id)
+			if held_seed_id != 0: #not a sunflower
+				_try_spawn_animal(held_seed_id)
 var new_x : int
 var new_y : int
 
@@ -241,7 +245,6 @@ func setup_seed_totals():
 	$CursorCamera/ToolBelt/Seeds_Menu/Apple_Total.text = "x%02d" % seeds[3]
 	$CursorCamera/ToolBelt/Seeds_Menu/Poppy_Total.text = "x%02d" % seeds[4]
 
-
 func _try_spawn_animal(plantID: int):
 	if randi_range(animal_spawn_fraction.x, animal_spawn_fraction.y) == 1:
 		_spawn_animal(plantID, randf_range(0,5))
@@ -254,6 +257,6 @@ func _spawn_animal(plantID: int, timeToSpawn: float):
 	add_child(new_animal, true)
 
 func _get_animal_by_plant_id(plantID: int):
-	if plantID == 0:
+	if plantID == 1:
 		return deer_instance
-	
+
