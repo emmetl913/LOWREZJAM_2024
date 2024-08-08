@@ -45,6 +45,7 @@ autowrap_mode = 3
 
 [node name="Play" type="TextureButton" parent="."]
 texture_filter = 1
+layout_mode = 0
 offset_left = 16.0
 offset_top = 43.0
 offset_right = 28.0
@@ -54,6 +55,7 @@ texture_hover = ExtResource("4_l8ffe")
 
 [node name="Quit" type="TextureButton" parent="."]
 texture_filter = 1
+layout_mode = 0
 offset_left = 36.0
 offset_top = 43.0
 offset_right = 48.0
