@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://d3na32ssj7r4t"]
+
+[ext_resource type="Script" path="res://plants/signs/Bush_Sign.gd" id="1_byd13"]
+[ext_resource type="Texture2D" uid="uid://bcxbys5rg4wa1" path="res://assets/sprites/sign_tempp.png" id="2_nt4ph"]
+[ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="3_gww4s"]
+[ext_resource type="Texture2D" uid="uid://dew2q8k2q1l2i" path="res://assets/sprites/buttons/exit_to_mm_temp_button.png" id="4_kajp1"]
+[ext_resource type="Texture2D" uid="uid://ngbdld7ow7e2" path="res://assets/sprites/buttons/exit_to_mm_temp_button_hover.png" id="5_c0dxm"]
+
+[sub_resource type="Gradient" id="Gradient_uowpi"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eig8h"]
+gradient = SubResource("Gradient_uowpi")
+width = 60
+height = 16
+fill_to = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l4uom"]
+line_spacing = 0.0
+font = ExtResource("3_gww4s")
+font_size = 8
+
+[node name="Bush_Sign" type="Node2D"]
+script = ExtResource("1_byd13")
+
+[node name="Sign_Texture" type="TextureButton" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_nt4ph")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 3.8147e-06)
+scale = Vector2(1, 1.5)
+texture = SubResource("GradientTexture2D_eig8h")
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = -28.0
+offset_top = -8.0
+offset_right = 20.0
+scale = Vector2(1, 0.75)
+label_settings = SubResource("LabelSettings_l4uom")
+autowrap_mode = 3
+
+[node name="Button" type="TextureButton" parent="Sprite2D"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = -7.33334
+offset_right = -32.0
+offset_bottom = 0.666664
+grow_horizontal = 0
+scale = Vector2(1, 0.75)
+texture_normal = ExtResource("4_kajp1")
+texture_hover = ExtResource("5_c0dxm")
+
+[connection signal="pressed" from="Sign_Texture" to="." method="_on_sign_texture_pressed"]
+[connection signal="pressed" from="Sprite2D/Button" to="." method="_on_button_pressed"]

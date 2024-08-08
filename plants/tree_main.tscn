@@ -5,10 +5,10 @@
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="3_56vxf"]
 [ext_resource type="LabelSettings" uid="uid://bf8m6t4hiop7d" path="res://assets/fonts/default_label_settings.tres" id="4_kbp4e"]
 
-[sub_resource type="Gradient" id="Gradient_uowpi"]
+[sub_resource type="Gradient" id="Gradient_tc52s"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_uny3x"]
-gradient = SubResource("Gradient_uowpi")
+gradient = SubResource("Gradient_tc52s")
 width = 60
 height = 16
 fill_to = Vector2(0, 0)

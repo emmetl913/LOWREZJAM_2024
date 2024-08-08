@@ -7,10 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://jele44o4boh7" path="res://assets/sprites/buttons/quit_button_temp.png" id="3_j12et"]
 [ext_resource type="Texture2D" uid="uid://kwc2jjawqo53" path="res://assets/sprites/buttons/quit_button_hover_temp.png" id="4_otau6"]
 
-[sub_resource type="Gradient" id="Gradient_65wc5"]
+[sub_resource type="Gradient" id="Gradient_vnbgt"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_nha13"]
-gradient = SubResource("Gradient_65wc5")
+gradient = SubResource("Gradient_vnbgt")
 fill_to = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3fe3t"]
@@ -33,10 +33,10 @@ texture = SubResource("GradientTexture2D_nha13")
 
 [node name="Title" type="Label" parent="Sprite2D"]
 texture_filter = 1
-offset_left = -27.0
+offset_left = -29.0
 offset_top = -32.0
 offset_right = 29.0
-offset_bottom = 13.0
+offset_bottom = 20.0
 theme_override_fonts/font = ExtResource("1_0j1jv")
 text = "Peace to the Meadow"
 label_settings = SubResource("LabelSettings_3fe3t")
@@ -47,9 +47,9 @@ autowrap_mode = 3
 texture_filter = 1
 layout_mode = 0
 offset_left = 16.0
-offset_top = 40.0
+offset_top = 43.0
 offset_right = 28.0
-offset_bottom = 52.0
+offset_bottom = 55.0
 texture_normal = ExtResource("1_v6q4g")
 texture_hover = ExtResource("2_hwsae")
 
@@ -57,9 +57,9 @@ texture_hover = ExtResource("2_hwsae")
 texture_filter = 1
 layout_mode = 0
 offset_left = 36.0
-offset_top = 40.0
+offset_top = 43.0
 offset_right = 48.0
-offset_bottom = 52.0
+offset_bottom = 55.0
 texture_normal = ExtResource("3_j12et")
 texture_hover = ExtResource("4_otau6")
 
