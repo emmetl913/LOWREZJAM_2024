@@ -19,6 +19,8 @@ var new_y
 
 var parent
 
+func _get_plant_id():
+	return PLANT_ID
 
 func _set_seed_texture(new : Texture):
 	SEED_TEXTURE = new
