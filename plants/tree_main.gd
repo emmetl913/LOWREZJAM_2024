@@ -1,3 +1,4 @@
+class_name Main_Tree
 extends Node2D
 
 # The rate at which the tree produces energy in energy_rate/second
