@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://entities/spirits/spirit_attack.gd" id="4_8ifgy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_obhsy"]
-radius = 3.25
+radius = 3.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oea61"]
 radius = 15.0
