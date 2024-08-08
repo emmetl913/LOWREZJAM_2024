@@ -38,6 +38,12 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectionRadius"]
 shape = SubResource("RectangleShape2D_wlplp")
 
+[node name="SeedLifeTime" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
 [connection signal="area_entered" from="MouseDetectionRange" to="." method="_on_mouse_detection_range_area_entered"]
 [connection signal="area_exited" from="MouseDetectionRange" to="." method="_on_mouse_detection_range_area_exited"]
 [connection signal="area_entered" from="CollectionRadius" to="." method="_on_collection_radius_area_entered"]
+[connection signal="timeout" from="SeedLifeTime" to="." method="_on_seed_life_time_timeout"]

@@ -11,7 +11,7 @@ var starting_speed: float = 0
 var selected_seed_id: int
 
 var parent
-
+var is_fading_away = false
 func _ready():
 	selected_seed_id = _randomly_choose_seed()
 	_assign_seed_type(selected_seed_id)
@@ -19,6 +19,12 @@ func _ready():
 func _process(delta):
 	if cursor_in_range:
 		_move_item_to_mouse(delta)
+	
+	#make color fade away for seeds when they start to go away
+	if $SeedLifeTime.time_left <= 3.0 && !is_fading_away:
+		is_fading_away = true
+		var tween: Tween = create_tween()
+		tween.tween_property($SeedSprite, "self_modulate", Color(1,1,1,0), 3)
 
 func set_cursor_in_range(isInRange: bool):
 	cursor_in_range = isInRange
@@ -53,3 +59,7 @@ func _randomly_choose_seed():
 	
 func _assign_seed_type(seed_id: int):
 	$SeedSprite.texture = seedsprites[seed_id]
+
+
+func _on_seed_life_time_timeout():
+	queue_free()
