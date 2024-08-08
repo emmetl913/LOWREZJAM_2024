@@ -56,11 +56,12 @@ func setPosition():
 	$Sprite2D.texture = DISPLAY_TEXTURE
 	
 func eat():
-	print("resource eaten")
-	RESOURCES_STORED -= 1
-	updateTexture()
-	$Regrow_Timer.wait_time = REGROW_TIME
-	$Regrow_Timer.start()
+	if RESOURCES_STORED > 0:
+		print("resource eaten")
+		RESOURCES_STORED -= 1
+		updateTexture()
+		$Regrow_Timer.wait_time = REGROW_TIME
+		$Regrow_Timer.start()
 	
 func updateTexture():
 	$Sprite2D.texture = STAGE_TEXTURES[RESOURCES_STORED]

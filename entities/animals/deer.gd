@@ -3,7 +3,7 @@ extends CharacterBody2D
 var animal
 var move_timer
 var can_move = true
-
+var can_eat = true
 var is_wandering = true
 
 #change to true if you want "wandering deer" to attack
@@ -11,6 +11,7 @@ var can_attack = false
 var is_attacking = false
 var target
 var prevhittargetsprite
+
 @export var speed: float
 @export var attack_speed: float
 @export var max_distance_from_plant: float
@@ -22,12 +23,28 @@ func _ready():
 	position = animal._random_spawn_position()
 	move_timer = animal.get_node("RecalculateMoveDir")
 
-
+#TODO: implement go nearest off screen
+func set_dir_to_leave_screen_by_closest_wall():
+	pass
 func _process(delta):
-	if can_move && !is_attacking:
+	if animal.must_leave:
+		_move_leave_meadow(delta)
+		if $SelfDestructSequence.is_stopped():
+			_set_dir_to_plant(animal._get_plant_position())
+			#Switch to set direction to nearest exit off screen
+			$SelfDestructSequence.start()
+	elif can_move && !is_attacking && !animal.must_eat:
 		_move(delta)
-	elif can_move && is_attacking:
+	elif can_move && is_attacking && !animal.must_eat:
 		_attack_move(delta)
+	elif can_move && animal.must_eat:
+		_set_dir_to_plant(animal._get_plant_position())
+		if !position.distance_to(animal._get_plant_position()) < animal.eating_range:
+			_move(delta)
+		else:
+			animal._animal_eat()
+			animal.must_eat = false
+			
 	
 	#If deer has just spawned: it is wandering
 	#Once deer reaches plant it can now attack and is no longer wandering
@@ -59,6 +76,8 @@ func _is_far_from_plant(plant_position: Vector2):
 	if position.distance_to(plant_position) > max_distance_from_plant:
 		return true
 	return false
+func _move_leave_meadow(delta: float):
+	var collision = move_and_collide(dir*speed*delta)
 	
 func _move(delta: float):
 	var collision = move_and_collide(dir*speed*delta)
@@ -70,7 +89,7 @@ func _move(delta: float):
 
 func _attack_move(delta: float):
 	var collision = move_and_collide(dir*attack_speed*delta)
-	
+
 func _set_dir_to_plant(plant_position: Vector2):
 	dir = plant_position - position
 	dir = dir.normalized()
@@ -115,3 +134,7 @@ func _on_failed_attack_return_to_plant_timeout():
 
 func _apply_knock_back():
 	pass
+
+
+func _on_self_destruct_sequence_timeout():
+	queue_free()

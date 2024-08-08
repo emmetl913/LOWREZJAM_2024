@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://bef63fudsi14e"]
+[gd_scene load_steps=24 format=3 uid="uid://bef63fudsi14e"]
 
 [ext_resource type="Script" path="res://worlds/meadow.gd" id="1_bko1o"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_ksmiv"]
+[ext_resource type="Texture2D" uid="uid://ban1edih61yuw" path="res://assets/sprites/temp_background.png" id="2_n2dbb"]
 [ext_resource type="PackedScene" uid="uid://cray6xpq4vkl" path="res://plants/tree_main.tscn" id="3_3tjh2"]
 [ext_resource type="LabelSettings" uid="uid://bf8m6t4hiop7d" path="res://assets/fonts/default_label_settings.tres" id="3_w168r"]
 [ext_resource type="Script" path="res://util/CursorCamera.gd" id="5_ggpfp"]
@@ -33,7 +34,7 @@ outline_color = Color(0, 0, 0, 1)
 [node name="Meadow" type="Node2D"]
 script = ExtResource("1_bko1o")
 animal_spawn_fraction = Vector2i(1, 1)
-seeds = Array[int]([1, 1, 0, 0, 0])
+seeds = Array[int]([1, 1, 30, 0, 50])
 
 [node name="TileMap" type="TileMap" parent="."]
 visible = false
@@ -46,8 +47,7 @@ layer_0/tile_data = PackedInt32Array(-131073, 0, 0, -131074, 0, 0, -65538, 0, 0,
 [node name="TempBackground" type="Sprite2D" parent="."]
 modulate = Color(0.164415, 0.342798, 0.28928, 1)
 texture_filter = 1
-scale = Vector2(32, 32)
-texture = ExtResource("7_87csh")
+texture = ExtResource("2_n2dbb")
 
 [node name="Tree_Main" parent="." instance=ExtResource("3_3tjh2")]
 process_mode = 3
