@@ -40,7 +40,7 @@ func _weight_options():
 					pass # give associated value per health
 				Plant:
 					pass # give mid
-			(key.health / 2).floor()
+			#(key.health / 2).floor()
 			
 			# self.health
 			match key:
