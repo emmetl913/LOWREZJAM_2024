@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entities/animals/deer.gd" id="1_3cto8"]
 [ext_resource type="Script" path="res://entities/animals/animal.gd" id="1_i840l"]
-[ext_resource type="Texture2D" uid="uid://mmhh0a2wwenx" path="res://assets/sprites/deertemp1.png" id="3_5w80y"]
+[ext_resource type="Texture2D" uid="uid://canh283ofh031" path="res://assets/sprites/deertemp.png" id="3_2lrgu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gdoti"]
 size = Vector2(7.555, 7)
@@ -11,7 +11,7 @@ size = Vector2(7.555, 7)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_5w80y")
+"texture": ExtResource("3_2lrgu")
 }],
 "loop": true,
 "name": &"default",
