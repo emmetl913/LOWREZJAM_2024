@@ -16,6 +16,7 @@ class_name Base_Plant
 @export var GROWTH_TIME : int
 @export var REGROW_TIME : int
 @export var RESOURCES_STORED : int
+@export var ENERGY_COST : int
 
 func _set_seed_texture(new : Texture):
 	SEED_TEXTURE = new

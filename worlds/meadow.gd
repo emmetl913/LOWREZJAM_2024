@@ -4,7 +4,8 @@ enum Time_Period {morning, afternoon, evening, dusk, midnight, dawn}
 
 #Set this to return 1 everytime if you want guaranteed animal spawns
 @export var animal_spawn_fraction: Vector2i
-
+@onready var bushes : Array[bool] = [false, false, false, false]
+@onready var bush_reference = preload("res://plants/bush.tscn")
 @onready var sunflower_reference = preload("res://plants/classes/sunflower.tres")
 @onready var carrot_reference = preload("res://plants/classes/carrot.tres")
 @onready var plant_instance = preload("res://plants/classes/base/base_plant.tscn")
@@ -46,9 +47,11 @@ var planted_plants: Array[PackedScene]
 
 var period_time: float = 0
 var time_period: Time_Period = Time_Period.morning
-
+var pauser : bool = false
 
 func _ready():
+	$Fade_Anim/AnimationPlayer.play("fade_to_normal")
+	setupBushes()
 	setupMap()
 	$Tree_Sun_Prod.wait_time = tree.prod_interval
 	$Tree_Sun_Prod.start()
@@ -58,6 +61,12 @@ func _ready():
 	seeds_menu.visible = false
 	options_menu.visible = true
 
+func setupBushes():
+	$Bushes/Bush_Sign_North.orientation = 0
+	$Bushes/Bush_Sign_South.orientation = 1
+	$Bushes/Bush_Sign_East.orientation = 2
+	$Bushes/Bush_Sign_West.orientation = 3
+
 func setupMap():
 	for i in map_width:
 		map_data.append([])
@@ -66,15 +75,17 @@ func setupMap():
 
 func _process(_delta):
 	updateEnergyMenu()
+	plantBushes()
 	#print(get_local_mouse_position())
 
 func _add_seed(seed_id: int):
+	$Audio/Pickup.play()
 	seeds[seed_id] += 1
 	setup_seed_totals()
 
 func updateEnergyMenu():
-	energy_text.text = "Sun Power: %.2f" % stored_energy + "\n- From Tree: %.2f" % (tree.energy_rate/tree.prod_interval) + "    From %02d" % total_sunflowers + " sunflowers: %.2f" % ((sunflower_reference.PROD_VAL/sunflower_reference.PROD_INTERVAL)*total_sunflowers)
-	pass
+	energy_text.text = "Sun Power: %.2f" % stored_energy + "\nSunflowers: %.2f" % ((sunflower_reference.PROD_VAL/sunflower_reference.PROD_INTERVAL)*total_sunflowers)
+	
 func _on_tree_sun_prod_timeout():
 	stored_energy += tree.energy_rate
 	$Tree_Sun_Prod.wait_time = tree.prod_interval
@@ -111,7 +122,7 @@ func _on_power_menu_toggle_pressed():
 func _on_main_menu_pressed():
 	get_tree().change_scene_to_file("res://menus/main_menu.tscn")
 func _on_main_menu_mouse_entered():
-	options_text.text = "Press to return to the main menu"
+	options_text.text = "Main Menu"
 func _on_main_menu_mouse_exited():
 	options_text.text = " "
 
@@ -195,6 +206,7 @@ func setUpNewPlant(res : Resource, new_plant, coords : Vector2):
 	new_plant.GROWTH_TIME = res.GROWTH_TIME
 	new_plant.REGROW_TIME = res.REGROW_TIME
 	new_plant.RESOURCES_STORED = res.RESOURCES_STORED
+	new_plant.ENERGY_COST = res.ENERGY_COST
 	new_plant._set_parent(self)
 	new_plant.setPosition()
 	new_plant._set_growth_timer(new_plant.GROWTH_TIME)
@@ -243,3 +255,68 @@ func _get_animal_by_plant_id(plantID: int):
 	if plantID == 4:
 		return leopard_instance
 
+func _on_animation_player_animation_finished(anim_name):
+	$Fade_Anim/Fade.visible = false
+	if anim_name == "fade_to_Black":
+		get_tree().change_scene_to_file("res://menus/win_screen.tscn")
+
+# Please do not look at the following code, thank you :3
+func plantBushes():
+	if $Bushes/Bush_Sign_North.bought and !bushes[0]:
+		$Bushes/Bush_Sign_North/Sprite2D.visible = false
+		print("Spawning north bushes")
+		for i in range(0,17):
+			var bush_inst = bush_reference.instantiate()
+			bush_inst.position = Vector2((i-8)*8 , -60)
+			add_child(bush_inst, true)
+		bushes[0] = true
+	elif $Bushes/Bush_Sign_South.bought and !bushes[1]:
+		$Bushes/Bush_Sign_South/Sprite2D.visible = false
+		print("Spawning south bushes")
+		for i in range(0,17):
+			var bush_inst = bush_reference.instantiate()
+			bush_inst.position = Vector2((i-8)*8 , 60)
+			add_child(bush_inst, true)
+		bushes[1] = true
+	elif $Bushes/Bush_Sign_East.bought and !bushes[2]:
+		$Bushes/Bush_Sign_East/Sprite2D.visible = false
+		print("Spawning east bushes")
+		for i in range(0,17):
+			var bush_inst = bush_reference.instantiate()
+			bush_inst.position = Vector2(60 , (i-8)*8)
+			add_child(bush_inst, true)
+		bushes[2] = true
+	elif $Bushes/Bush_Sign_West.bought and !bushes[3]:
+		$Bushes/Bush_Sign_West/Sprite2D.visible = false
+		print("Spawning west bushes")
+		for i in range(0,17):
+			var bush_inst = bush_reference.instantiate()
+			bush_inst.position = Vector2(-60 , (i-8)*8)
+			add_child(bush_inst, true)
+		bushes[3] = true
+	checkWin()
+
+func checkWin():
+	var cond = 0
+	for i in bushes.size():
+		if bushes[i]:
+			cond += 1
+	if cond == 4 and !pauser:
+		print("Win successful!")
+		$Bushes/Win_Timer.start()
+		pauser = true
+
+
+func _on_win_timer_timeout():
+	$Fade_Anim/Fade.visible = true
+	$Fade_Anim/AnimationPlayer.play("fade_to_Black")
+
+
+func _on_music_timer_timeout():
+	$Audio/AudioStreamPlayer.play()
+
+
+func _on_audio_stream_player_finished():
+	#$Audio/MusicTimer.wait_time = randi_range(5,15)
+	#$Audio/MusicTimer.start()
+	$Audio/AudioStreamPlayer.play()

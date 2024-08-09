@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bef63fudsi14e"]
+[gd_scene load_steps=34 format=3 uid="uid://bef63fudsi14e"]
 
 [ext_resource type="Script" path="res://worlds/meadow.gd" id="1_bko1o"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_ksmiv"]
@@ -20,6 +20,12 @@
 [ext_resource type="Texture2D" uid="uid://bujaahxnmv2a2" path="res://assets/sprites/apple_seed.png" id="14_vfal4"]
 [ext_resource type="Script" path="res://managers/day_night_cycle.gd" id="15_t7viv"]
 [ext_resource type="PackedScene" uid="uid://bp6ubf7acq5oj" path="res://managers/entity_spawn_system.tscn" id="17_cf0qp"]
+[ext_resource type="PackedScene" uid="uid://d3na32ssj7r4t" path="res://plants/signs/bush_sign.tscn" id="21_6cnu1"]
+[ext_resource type="AudioStream" uid="uid://osjm0uu7gqf5" path="res://assets/music/calm.wav" id="22_ujufr"]
+[ext_resource type="AudioStream" uid="uid://caxyj3xw1xq7w" path="res://assets/music/peaceful.wav" id="23_s8qc2"]
+[ext_resource type="AudioStream" uid="uid://dgq6bsjhe02gu" path="res://assets/music/strolling.wav" id="24_bnysd"]
+[ext_resource type="AudioStream" uid="uid://d1xqtf5s3t6op" path="res://assets/music/walking.wav" id="25_6807o"]
+[ext_resource type="AudioStream" uid="uid://4p160l6ujswr" path="res://assets/music/pickup.wav" id="26_dnlim"]
 
 [sub_resource type="TileSet" id="TileSet_v7h3w"]
 tile_size = Vector2i(8, 8)
@@ -29,6 +35,69 @@ line_spacing = 1.0
 font_size = 8
 font_color = Color(0, 0, 0, 1)
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_cfh5l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade_Anim/Fade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cqmex"]
+resource_name = "fade_to_Black"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade_Anim/Fade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_erkbl"]
+resource_name = "fade_to_normal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade_Anim/Fade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ntmuj"]
+_data = {
+"RESET": SubResource("Animation_cfh5l"),
+"fade_to_Black": SubResource("Animation_cqmex"),
+"fade_to_normal": SubResource("Animation_erkbl")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3byp5"]
+streams_count = 4
+stream_0/stream = ExtResource("22_ujufr")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("23_s8qc2")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("24_bnysd")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("25_6807o")
+stream_3/weight = 1.0
 
 [node name="Meadow" type="Node2D"]
 script = ExtResource("1_bko1o")
@@ -129,6 +198,7 @@ stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Seeds_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
+visible = false
 position = Vector2(0, 26)
 texture = ExtResource("10_yslyd")
 
@@ -259,32 +329,30 @@ texture_hover = ExtResource("11_doao0")
 
 [node name="Options_Tooltip" type="Label" parent="CursorCamera/ToolBelt/Options_Menu"]
 texture_filter = 1
-offset_left = -31.0
-offset_top = 2.0
-offset_right = 33.0
-offset_bottom = 10.0
+offset_left = -26.0
+offset_top = -6.0
+offset_right = 38.0
+offset_bottom = 2.0
 theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = ExtResource("3_w168r")
 autowrap_mode = 3
 
 [node name="Energy_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
-visible = false
 position = Vector2(0, 26)
 texture = ExtResource("10_yslyd")
 
 [node name="Energy_Stored" type="Label" parent="CursorCamera/ToolBelt/Energy_Menu"]
 texture_filter = 1
-offset_left = -31.0
-offset_top = -7.0
-offset_right = 33.0
-offset_bottom = 1.0
+offset_left = -30.0
+offset_top = -8.0
+offset_right = 34.0
 theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = ExtResource("3_w168r")
 autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="Time Indicator" type="Sprite2D" parent="CursorCamera"]
-z_index = 1
+z_index = 3
 position = Vector2(-24, -24)
 texture = ExtResource("14_o8xln")
 hframes = 2
@@ -301,6 +369,55 @@ script = ExtResource("15_t7viv")
 
 [node name="Entity Spawn System" parent="." node_paths=PackedStringArray("main") instance=ExtResource("17_cf0qp")]
 main = NodePath("..")
+
+[node name="Bushes" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Bush_Sign_North" parent="Bushes" instance=ExtResource("21_6cnu1")]
+position = Vector2(4, -60)
+
+[node name="Bush_Sign_South" parent="Bushes" instance=ExtResource("21_6cnu1")]
+position = Vector2(-4, 60)
+
+[node name="Bush_Sign_East" parent="Bushes" instance=ExtResource("21_6cnu1")]
+position = Vector2(60, -4)
+
+[node name="Bush_Sign_West" parent="Bushes" instance=ExtResource("21_6cnu1")]
+position = Vector2(-60, 4)
+
+[node name="Win_Timer" type="Timer" parent="Bushes"]
+wait_time = 2.0
+
+[node name="Fade_Anim" type="CanvasLayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Fade_Anim"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ntmuj")
+}
+
+[node name="Fade" type="ColorRect" parent="Fade_Anim"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
+stream = SubResource("AudioStreamRandomizer_3byp5")
+
+[node name="MusicTimer" type="Timer" parent="Audio"]
+one_shot = true
+autostart = true
+
+[node name="Pickup" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("26_dnlim")
 
 [connection signal="pressed" from="CursorCamera/ToolBelt/ToolBelt_Toggle" to="." method="_on_tool_belt_toggle_pressed"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu_Toggle" to="." method="_on_seeds_menu_toggle_pressed"]
@@ -324,3 +441,7 @@ main = NodePath("..")
 [connection signal="mouse_exited" from="CursorCamera/ToolBelt/Options_Menu/Main_Menu" to="." method="_on_main_menu_mouse_exited"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Options_Menu/Main_Menu" to="." method="_on_main_menu_pressed"]
 [connection signal="timeout" from="Tree_Sun_Prod" to="." method="_on_tree_sun_prod_timeout"]
+[connection signal="timeout" from="Bushes/Win_Timer" to="." method="_on_win_timer_timeout"]
+[connection signal="animation_finished" from="Fade_Anim/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="finished" from="Audio/AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="timeout" from="Audio/MusicTimer" to="." method="_on_music_timer_timeout"]

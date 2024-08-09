@@ -35,7 +35,9 @@ fill_to = Vector2(0, 0)
 [sub_resource type="LabelSettings" id="LabelSettings_16w4q"]
 line_spacing = 1.0
 font_size = 8
+outline_size = 1
 outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
 
 [node name="Meadow" type="Node2D"]
 script = ExtResource("1_3a3yg")
@@ -152,6 +154,7 @@ offset_left = -31.0
 offset_top = -5.0
 offset_right = -23.0
 offset_bottom = 3.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_6mr85")
 label_settings = SubResource("LabelSettings_16w4q")
 autowrap_mode = 3
@@ -296,23 +299,23 @@ script = ExtResource("19_p1hfy")
 
 [node name="Entity Spawn System" parent="." instance=ExtResource("20_5mirt")]
 
-[node name="Node" type="Control" parent="."]
+[node name="Bushes" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Bush_Sign_North" parent="Node" instance=ExtResource("21_yvxrj")]
+[node name="Bush_Sign_North" parent="Bushes" instance=ExtResource("21_yvxrj")]
 position = Vector2(4, -60)
 
-[node name="Bush_Sign_South" parent="Node" instance=ExtResource("21_yvxrj")]
+[node name="Bush_Sign_South" parent="Bushes" instance=ExtResource("21_yvxrj")]
 position = Vector2(-4, 60)
 
-[node name="Bush_Sign_East" parent="Node" instance=ExtResource("21_yvxrj")]
+[node name="Bush_Sign_East" parent="Bushes" instance=ExtResource("21_yvxrj")]
 position = Vector2(60, -4)
 
-[node name="Bush_Sign_West" parent="Node" instance=ExtResource("21_yvxrj")]
+[node name="Bush_Sign_West" parent="Bushes" instance=ExtResource("21_yvxrj")]
 position = Vector2(-60, 4)
 
-[node name="Win_Timer" type="Timer" parent="Node"]
+[node name="Win_Timer" type="Timer" parent="Bushes"]
 wait_time = 2.0
 
 [connection signal="pressed" from="CursorCamera/ToolBelt/ToolBelt_Toggle" to="." method="_on_tool_belt_toggle_pressed"]
@@ -326,4 +329,4 @@ wait_time = 2.0
 [connection signal="mouse_entered" from="CursorCamera/ToolBelt/Options_Menu/Main_Menu" to="." method="_on_main_menu_mouse_entered"]
 [connection signal="mouse_exited" from="CursorCamera/ToolBelt/Options_Menu/Main_Menu" to="." method="_on_main_menu_mouse_exited"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Options_Menu/Main_Menu" to="." method="_on_main_menu_pressed"]
-[connection signal="timeout" from="Node/Win_Timer" to="." method="_on_win_timer_timeout"]
+[connection signal="timeout" from="Bushes/Win_Timer" to="." method="_on_win_timer_timeout"]

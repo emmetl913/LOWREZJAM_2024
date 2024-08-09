@@ -31,6 +31,7 @@ grow_vertical = 2
 texture_normal = ExtResource("2_nt4ph")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
 position = Vector2(0, 3.8147e-06)
 scale = Vector2(1, 1.5)
 texture = SubResource("GradientTexture2D_eig8h")
