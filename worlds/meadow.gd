@@ -109,16 +109,28 @@ func _on_tool_belt_toggle_pressed():
 		energy_menu.visible = false
 		resource_menu.visible = false
 		
+		# Show buttons
+		$CursorCamera/ToolBelt/Seeds_Menu_Toggle.visible = true
+		$CursorCamera/ToolBelt/Power_Menu_Toggle.visible = true
+		$CursorCamera/ToolBelt/Resources_Menu_Toggle.visible = true
+		
 		# Order buttons
 		$CursorCamera/ToolBelt/ToolBelt_Toggle.z_index = 4
 		$CursorCamera/ToolBelt/Seeds_Menu_Toggle.z_index = 2
 		$CursorCamera/ToolBelt/Power_Menu_Toggle.z_index = 2
+		$CursorCamera/ToolBelt/Resources_Menu_Toggle.z_index = 2
 		
 		$CursorCamera/ToolBelt.position.y = lerp($CursorCamera/ToolBelt.position.y, $CursorCamera/ToolBelt.position.y-14, 1)
 		$CursorCamera/ToolBelt/ToolBelt_Toggle.texture_normal = load("res://assets/sprites/toolbar/tool_close.png")
 	else:
 		$CursorCamera/ToolBelt.position.y = lerp($CursorCamera/ToolBelt.position.y, $CursorCamera/ToolBelt.position.y+14, 1)
 		$CursorCamera/ToolBelt/ToolBelt_Toggle.texture_normal = load("res://assets/sprites/toolbar/tool_open.png")
+		
+		# Hide buttons
+		$CursorCamera/ToolBelt/Seeds_Menu_Toggle.visible = false
+		$CursorCamera/ToolBelt/Power_Menu_Toggle.visible = false
+		$CursorCamera/ToolBelt/Resources_Menu_Toggle.visible = false
+	
 func _on_seeds_menu_toggle_pressed():
 	if toolbelt_open:
 		resource_menu.visible = false
@@ -130,12 +142,21 @@ func _on_seeds_menu_toggle_pressed():
 		$CursorCamera/ToolBelt/ToolBelt_Toggle.z_index = 2
 		$CursorCamera/ToolBelt/Seeds_Menu_Toggle.z_index = 4
 		$CursorCamera/ToolBelt/Power_Menu_Toggle.z_index = 2
+		$CursorCamera/ToolBelt/Resources_Menu_Toggle.z_index = 2
+		
 func _on_power_menu_toggle_pressed():
 	if toolbelt_open:
 		resource_menu.visible = false
 		seeds_menu.visible = false
 		options_menu.visible = false
 		energy_menu.visible = true
+		
+		# Order buttons
+		$CursorCamera/ToolBelt/ToolBelt_Toggle.z_index = 2
+		$CursorCamera/ToolBelt/Seeds_Menu_Toggle.z_index = 2
+		$CursorCamera/ToolBelt/Power_Menu_Toggle.z_index = 4
+		$CursorCamera/ToolBelt/Resources_Menu_Toggle.z_index = 2
+		
 func _on_resources_menu_toggle_pressed():
 	if toolbelt_open:
 		resource_menu.visible = true
@@ -146,7 +167,8 @@ func _on_resources_menu_toggle_pressed():
 		# Order buttons
 		$CursorCamera/ToolBelt/ToolBelt_Toggle.z_index = 2
 		$CursorCamera/ToolBelt/Seeds_Menu_Toggle.z_index = 2
-		$CursorCamera/ToolBelt/Power_Menu_Toggle.z_index = 4
+		$CursorCamera/ToolBelt/Power_Menu_Toggle.z_index = 2
+		$CursorCamera/ToolBelt/Resources_Menu_Toggle.z_index = 4
 
 # //////////////////////////
 # Options Menu Button Config

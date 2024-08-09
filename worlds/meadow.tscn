@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bef63fudsi14e"]
+[gd_scene load_steps=38 format=3 uid="uid://bef63fudsi14e"]
 
 [ext_resource type="Script" path="res://worlds/meadow.gd" id="1_bko1o"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_ksmiv"]
@@ -182,6 +182,7 @@ stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Seeds_Menu_Toggle" type="TextureButton" parent="CursorCamera/ToolBelt"]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = -21.0
@@ -192,6 +193,7 @@ texture_normal = ExtResource("8_qwdxx")
 metadata/_edit_use_anchors_ = true
 
 [node name="Power_Menu_Toggle" type="TextureButton" parent="CursorCamera/ToolBelt"]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = -12.0
@@ -203,6 +205,8 @@ stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Resources_Menu_Toggle" type="TextureButton" parent="CursorCamera/ToolBelt"]
+visible = false
+z_index = 2
 texture_filter = 1
 layout_mode = 0
 offset_left = -3.0
@@ -381,6 +385,7 @@ autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="Resource_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
+z_index = 3
 position = Vector2(0, 26)
 texture = ExtResource("10_yslyd")
 
