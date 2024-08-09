@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0a2wnc0rj63i"]
+[gd_scene load_steps=10 format=3 uid="uid://d0a2wnc0rj63i"]
 
 [ext_resource type="Script" path="res://plants/seeds/item_pickup.gd" id="1_c557q"]
 [ext_resource type="Texture2D" uid="uid://c0u67y4pk72k7" path="res://assets/sprites/blueberry_seed.png" id="1_hl7hx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cc50neu71ceb5" path="res://assets/sprites/carrot_seed.png" id="3_8j748"]
 [ext_resource type="Texture2D" uid="uid://bujaahxnmv2a2" path="res://assets/sprites/apple_seed.png" id="5_adt3b"]
 [ext_resource type="Texture2D" uid="uid://diupao06mgiwt" path="res://assets/sprites/poppy_seed.png" id="6_jhn4l"]
+[ext_resource type="AudioStream" uid="uid://4p160l6ujswr" path="res://assets/music/pickup.wav" id="7_ppd2x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_quqk0"]
 radius = 24.0
@@ -42,6 +43,9 @@ shape = SubResource("RectangleShape2D_wlplp")
 wait_time = 10.0
 one_shot = true
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_ppd2x")
 
 [connection signal="area_entered" from="MouseDetectionRange" to="." method="_on_mouse_detection_range_area_entered"]
 [connection signal="area_exited" from="MouseDetectionRange" to="." method="_on_mouse_detection_range_area_exited"]

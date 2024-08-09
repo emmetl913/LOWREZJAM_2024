@@ -86,6 +86,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Title" type="Label" parent="Sprite2D"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 5.0
 offset_right = 63.0
 offset_bottom = 52.0

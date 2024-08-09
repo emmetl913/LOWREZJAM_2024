@@ -79,6 +79,7 @@ func _process(_delta):
 	#print(get_local_mouse_position())
 
 func _add_seed(seed_id: int):
+	$Audio/Pickup.play()
 	seeds[seed_id] += 1
 	setup_seed_totals()
 
@@ -205,6 +206,7 @@ func setUpNewPlant(res : Resource, new_plant, coords : Vector2):
 	new_plant.GROWTH_TIME = res.GROWTH_TIME
 	new_plant.REGROW_TIME = res.REGROW_TIME
 	new_plant.RESOURCES_STORED = res.RESOURCES_STORED
+	new_plant.ENERGY_COST = res.ENERGY_COST
 	new_plant._set_parent(self)
 	new_plant.setPosition()
 	new_plant._set_growth_timer(new_plant.GROWTH_TIME)
@@ -308,3 +310,13 @@ func checkWin():
 func _on_win_timer_timeout():
 	$Fade_Anim/Fade.visible = true
 	$Fade_Anim/AnimationPlayer.play("fade_to_Black")
+
+
+func _on_music_timer_timeout():
+	$Audio/AudioStreamPlayer.play()
+
+
+func _on_audio_stream_player_finished():
+	#$Audio/MusicTimer.wait_time = randi_range(5,15)
+	#$Audio/MusicTimer.start()
+	$Audio/AudioStreamPlayer.play()

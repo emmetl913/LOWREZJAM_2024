@@ -18,6 +18,7 @@ var new_y
 @export var GROWTH_TIME : int
 @export var REGROW_TIME : int
 @export var RESOURCES_STORED : int
+@export var ENERGY_COST : int
 
 var parent
 
@@ -88,3 +89,12 @@ func _on_regrow_timer_timeout():
 	if RESOURCES_STORED < 4:
 		$Regrow_Timer.wait_time = REGROW_TIME
 		$Regrow_Timer.start()
+
+
+func _on_energy_timer_timeout():
+	if parent.stored_energy > 0:
+		parent.stored_energy -= ENERGY_COST
+		if HEALTH < 5:
+			HEALTH += 1
+	else:
+		HEALTH -= 1

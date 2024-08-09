@@ -21,6 +21,10 @@ autostart = true
 [node name="Regrow_Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Energy_Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -29,4 +33,5 @@ shape = SubResource("RectangleShape2D_mkf8v")
 [connection signal="timeout" from="Growth_Timer" to="." method="_on_growth_timer_timeout"]
 [connection signal="timeout" from="Prod_Timer" to="." method="_on_prod_timer_timeout"]
 [connection signal="timeout" from="Regrow_Timer" to="." method="_on_regrow_timer_timeout"]
+[connection signal="timeout" from="Energy_Timer" to="." method="_on_energy_timer_timeout"]
 [connection signal="mouse_entered" from="StaticBody2D" to="." method="_on_static_body_2d_mouse_entered"]
