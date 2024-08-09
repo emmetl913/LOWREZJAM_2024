@@ -27,6 +27,7 @@ radius = 16.0
 [node name="Bird" type="Node2D" groups=["Animal"]]
 script = ExtResource("1_lwbbo")
 favorite_plant_id = 2
+eating_range = 3.0
 health = 1
 attack_speed = 1.0
 

@@ -27,6 +27,7 @@ radius = 16.0
 [node name="Squirrel" type="Node2D" groups=["Animal"]]
 script = ExtResource("1_8qqwo")
 favorite_plant_id = 3
+eating_range = 3.0
 health = 1
 attack_speed = 1.0
 
