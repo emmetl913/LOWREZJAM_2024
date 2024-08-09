@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://jele44o4boh7" path="res://assets/sprites/buttons/quit_button_temp.png" id="5_3ssa8"]
 [ext_resource type="Texture2D" uid="uid://kwc2jjawqo53" path="res://assets/sprites/buttons/quit_button_hover_temp.png" id="6_2nl8f"]
 [ext_resource type="AudioStream" uid="uid://3s8f8d0ey3q5" path="res://assets/music/groovy.wav" id="7_y311l"]
-[ext_resource type="AudioStream" uid="uid://cor26gmtcwr5p" path="res://assets/music/select.wav" id="8_5r38g"]
+[ext_resource type="AudioStream" uid="uid://cor26gmtcwr5p" path="res://assets/music/sfx/select.wav" id="8_5r38g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cj74v"]
 line_spacing = 0.0

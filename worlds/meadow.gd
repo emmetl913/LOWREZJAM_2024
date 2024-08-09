@@ -40,6 +40,7 @@ var stored_energy : float
 @onready var energy_menu = $CursorCamera/ToolBelt/Energy_Menu
 @onready var seeds_menu = $CursorCamera/ToolBelt/Seeds_Menu
 @onready var options_menu = $CursorCamera/ToolBelt/Options_Menu
+@onready var resource_menu = $CursorCamera/ToolBelt/Resource_Menu
 
 # Each cell represents a plant ID, check plants folder to find which ID belongs to which plant
 @export var seeds :Array[int] = [0, 0, 0, 0, 0]
@@ -100,6 +101,7 @@ func _on_tool_belt_toggle_pressed():
 		options_menu.visible = true
 		seeds_menu.visible = false
 		energy_menu.visible = false
+		resource_menu.visible = false
 		$CursorCamera/ToolBelt.position.y = lerp($CursorCamera/ToolBelt.position.y, $CursorCamera/ToolBelt.position.y-14, 1)
 		$CursorCamera/ToolBelt/ToolBelt_Toggle.texture_normal = load("res://assets/sprites/toolbar/tool_close.png")
 	else:
@@ -107,15 +109,22 @@ func _on_tool_belt_toggle_pressed():
 		$CursorCamera/ToolBelt/ToolBelt_Toggle.texture_normal = load("res://assets/sprites/toolbar/tool_open.png")
 func _on_seeds_menu_toggle_pressed():
 	if toolbelt_open:
+		resource_menu.visible = false
 		seeds_menu.visible = true
 		options_menu.visible = false
 		energy_menu.visible = false
 func _on_power_menu_toggle_pressed():
 	if toolbelt_open:
+		resource_menu.visible = false
 		seeds_menu.visible = false
 		options_menu.visible = false
 		energy_menu.visible = true
-
+func _on_resources_menu_toggle_pressed():
+	if toolbelt_open:
+		resource_menu.visible = true
+		seeds_menu.visible = false
+		options_menu.visible = false
+		energy_menu.visible = false
 # //////////////////////////
 # Options Menu Button Config
 # //////////////////////////
@@ -168,6 +177,7 @@ func _input(event):
 			var new_plant = plant_instance.instantiate()
 			setUpNewPlant(res, new_plant, new_coords)
 			add_child(new_plant, true)
+			$Audio/Plant.play()
 			new_plant.set_owner(self)
 			map_data[new_coords.x-1][new_coords.y-1] = new_plant
 			if held_seed_id != 0: #not a sunflower
@@ -320,3 +330,6 @@ func _on_audio_stream_player_finished():
 	#$Audio/MusicTimer.wait_time = randi_range(5,15)
 	#$Audio/MusicTimer.start()
 	$Audio/AudioStreamPlayer.play()
+
+
+
