@@ -49,6 +49,7 @@ var time_period: Time_Period = Time_Period.morning
 
 
 func _ready():
+	$Fade_Anim/AnimationPlayer.play("fade_to_normal")
 	setupMap()
 	$Tree_Sun_Prod.wait_time = tree.prod_interval
 	$Tree_Sun_Prod.start()
@@ -73,8 +74,8 @@ func _add_seed(seed_id: int):
 	setup_seed_totals()
 
 func updateEnergyMenu():
-	energy_text.text = "Sun Power: %.2f" % stored_energy + "\n- From Tree: %.2f" % (tree.energy_rate/tree.prod_interval) + "    From %02d" % total_sunflowers + " sunflowers: %.2f" % ((sunflower_reference.PROD_VAL/sunflower_reference.PROD_INTERVAL)*total_sunflowers)
-	pass
+	energy_text.text = "Sun Power: %.2f" % stored_energy + "\nSunflowers: %.2f" % ((sunflower_reference.PROD_VAL/sunflower_reference.PROD_INTERVAL)*total_sunflowers)
+	
 func _on_tree_sun_prod_timeout():
 	stored_energy += tree.energy_rate
 	$Tree_Sun_Prod.wait_time = tree.prod_interval
@@ -111,7 +112,7 @@ func _on_power_menu_toggle_pressed():
 func _on_main_menu_pressed():
 	get_tree().change_scene_to_file("res://menus/main_menu.tscn")
 func _on_main_menu_mouse_entered():
-	options_text.text = "Press to return to the main menu"
+	options_text.text = "Main Menu"
 func _on_main_menu_mouse_exited():
 	options_text.text = " "
 
@@ -243,3 +244,7 @@ func _get_animal_by_plant_id(plantID: int):
 	if plantID == 4:
 		return leopard_instance
 
+
+
+func _on_animation_player_animation_finished(anim_name):
+	$Fade_Anim/Fade.visible = false
