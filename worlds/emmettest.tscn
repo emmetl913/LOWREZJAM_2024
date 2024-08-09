@@ -35,7 +35,9 @@ fill_to = Vector2(0, 0)
 [sub_resource type="LabelSettings" id="LabelSettings_16w4q"]
 line_spacing = 1.0
 font_size = 8
+outline_size = 1
 outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
 
 [node name="Meadow" type="Node2D"]
 script = ExtResource("1_3a3yg")
@@ -152,6 +154,7 @@ offset_left = -31.0
 offset_top = -5.0
 offset_right = -23.0
 offset_bottom = 3.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_6mr85")
 label_settings = SubResource("LabelSettings_16w4q")
 autowrap_mode = 3
