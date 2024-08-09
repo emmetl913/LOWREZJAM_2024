@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4gikjt3rphlg"]
+[gd_scene load_steps=14 format=3 uid="uid://c4gikjt3rphlg"]
 
 [ext_resource type="Script" path="res://menus/main_menu.gd" id="1_0au02"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_h1bpb"]
@@ -6,17 +6,65 @@
 [ext_resource type="Texture2D" uid="uid://bapnnb7ibc3qc" path="res://assets/sprites/buttons/start_button_hover_temp.png" id="4_l8ffe"]
 [ext_resource type="Texture2D" uid="uid://jele44o4boh7" path="res://assets/sprites/buttons/quit_button_temp.png" id="5_3ssa8"]
 [ext_resource type="Texture2D" uid="uid://kwc2jjawqo53" path="res://assets/sprites/buttons/quit_button_hover_temp.png" id="6_2nl8f"]
-
-[sub_resource type="Gradient" id="Gradient_65wc5"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_kp27e"]
-gradient = SubResource("Gradient_65wc5")
-fill_to = Vector2(0, 0)
+[ext_resource type="AudioStream" uid="uid://3s8f8d0ey3q5" path="res://assets/music/groovy.wav" id="7_y311l"]
+[ext_resource type="AudioStream" uid="uid://cor26gmtcwr5p" path="res://assets/music/select.wav" id="8_5r38g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cj74v"]
 line_spacing = 0.0
 font = ExtResource("2_h1bpb")
 font_size = 12
+
+[sub_resource type="Animation" id="Animation_yolxe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fmu5f"]
+resource_name = "fade_to_black"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_myb65"]
+resource_name = "fade_to_normal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qvx1u"]
+_data = {
+"RESET": SubResource("Animation_yolxe"),
+"fade_to_black": SubResource("Animation_fmu5f"),
+"fade_to_normal": SubResource("Animation_myb65")
+}
 
 [node name="Win_Screen" type="Control"]
 layout_mode = 3
@@ -27,16 +75,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0au02")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(32, 32)
-texture = SubResource("GradientTexture2D_kp27e")
+[node name="Sprite2D" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Title" type="Label" parent="Sprite2D"]
 texture_filter = 1
-offset_left = -29.0
-offset_top = -32.0
-offset_right = 29.0
-offset_bottom = 20.0
+offset_left = 5.0
+offset_right = 63.0
+offset_bottom = 52.0
 theme_override_fonts/font = ExtResource("2_h1bpb")
 text = "You Brought Peace!"
 label_settings = SubResource("LabelSettings_cj74v")
@@ -63,5 +115,28 @@ offset_bottom = 55.0
 texture_normal = ExtResource("5_3ssa8")
 texture_hover = ExtResource("6_2nl8f")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qvx1u")
+}
+
+[node name="Fade" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_y311l")
+autoplay = true
+
+[node name="Select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_5r38g")
+
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

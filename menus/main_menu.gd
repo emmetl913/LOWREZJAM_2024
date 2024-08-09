@@ -19,6 +19,6 @@ func _on_play_pressed():
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "fade_to_normal":
-		$Fade.visible = not $Fade.visible
+		$Fade.visible = false
 	elif anim_name == "fade_to_black":
 		get_tree().change_scene_to_file("res://worlds/meadow.tscn")
