@@ -4,7 +4,6 @@ class_name Animal
 @export var favorite_plant_id: int
 
 var current_plant
-var plant_position: Vector2
 
 @onready var list_of_favorite_plants: Array[Node2D] = []
 var parent
@@ -41,18 +40,18 @@ func _find_plants():
 func _randomly_choose_plant_():
 	_find_plants()
 	var random_plant_index = randi_range(0, list_of_favorite_plants.size()-1)
-	_set_plant(list_of_favorite_plants[random_plant_index], 1)
+	_set_plant(list_of_favorite_plants[random_plant_index])
 	
 func _on_randomly_choose_plant_timeout():
 	_randomly_choose_plant_()
 
-
+#Set plant to closest edible plant
 func _set_plant_to_closest_plant():
 	var min_distance = 99999
 	var target = null
 	_find_plants()
 	for i in list_of_favorite_plants:
-		if i.position.distance_to(get_child(0).position) < min_distance :
+		if i.position.distance_to(get_child(0).position) < min_distance and _can_eat_plant(i):
 			min_distance = i.position.distance_to(get_child(0).position)
 			target = i
 	return target
@@ -71,21 +70,20 @@ func check_leave_meadow():
 			if i._get_plant_id() == favorite_plant_id && i.RESOURCES_STORED > 0:
 				any_plants_left = true 
 	if !any_plants_left:
-		must_leave = true
-	
-#plant health is designed in
-func _set_plant(plant: Node2D, plantFruitCount: int):
+		return  true
+	return false
+
+func _set_plant(plant: Node2D):
 	current_plant = plant
-	plant_position = plant.position
 
 func _get_plant_position():
-	return plant_position
+	return current_plant.position
 	
 
 func _on_choose_random_favorite_plant_timeout():
 	_randomly_choose_plant_()
 	var random_plant_index = randi_range(0, list_of_favorite_plants.size()-1)
-	_set_plant(list_of_favorite_plants[random_plant_index], 1)
+	_set_plant(list_of_favorite_plants[random_plant_index])
 	$ChooseRandomFavoritePlant.start(randf_range(5,15))
 
 func _random_spawn_position():
@@ -133,10 +131,11 @@ func _on_eat_plant_timeout():
 	must_eat = true
 
 func _animal_eat():
+	#Check if it still has resources
 	if _can_eat_plant(current_plant):
 		current_plant.eat()
-		#Check if it still has resources
-		if !_can_eat_plant(current_plant):
-			check_leave_meadow()
-			if !must_leave:
-				_set_plant_to_closest_plant()
+	#Plant has no resources. 
+	else: 
+		must_leave = check_leave_meadow()
+		if !must_leave:
+			_set_plant(_set_plant_to_closest_plant())

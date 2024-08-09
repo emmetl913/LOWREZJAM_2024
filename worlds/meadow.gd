@@ -4,6 +4,7 @@ enum Time_Period {morning, afternoon, evening, dusk, midnight, dawn}
 
 #Set this to return 1 everytime if you want guaranteed animal spawns
 @export var animal_spawn_fraction: Vector2i
+@export var guarantee_first_animal_spawn: bool
 @onready var bushes : Array[bool] = [false, false, false, false]
 @onready var bush_reference = preload("res://plants/bush.tscn")
 @onready var sunflower_reference = preload("res://plants/classes/sunflower.tres")
@@ -245,7 +246,10 @@ func setup_seed_totals():
 	$CursorCamera/ToolBelt/Seeds_Menu/Poppy_Total.text = "%2d" % seeds[4]
 
 func _try_spawn_animal(plantID: int):
-	if randi_range(animal_spawn_fraction.x, animal_spawn_fraction.y) == 1:
+	if guarantee_first_animal_spawn:
+		_spawn_animal(plantID, randf_range(0,5))
+		guarantee_first_animal_spawn = false
+	elif randi_range(animal_spawn_fraction.x, animal_spawn_fraction.y) == 1:
 		_spawn_animal(plantID, randf_range(0,5))
 
 func _spawn_animal(plantID: int, timeToSpawn: float):

@@ -22,6 +22,6 @@ MATURE_TEXTURE = ExtResource("1_446gp")
 STAGE_TEXTURES = Array[Texture]([ExtResource("3_fa2yo"), ExtResource("4_wb551"), ExtResource("5_6d51w"), ExtResource("6_td746"), ExtResource("7_oux1p")])
 GRID_COORDS = Vector2(-1, -1)
 GROWTH_TIME = 3
-REGROW_TIME = 10
+REGROW_TIME = 11
 RESOURCES_STORED = 0
 ENERGY_COST = 1
