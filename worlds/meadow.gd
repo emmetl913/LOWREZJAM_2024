@@ -77,8 +77,10 @@ func setupMap():
 
 func _process(_delta):
 	updateEnergyMenu()
+	updateEnergyIndicator()
+	
 	plantBushes()
-	#print(get_local_mouse_position())
+	#print(get_local_mouse_position()
 
 func _add_seed(seed_id: int):
 	$Audio/Pickup.play()
@@ -87,7 +89,10 @@ func _add_seed(seed_id: int):
 
 func updateEnergyMenu():
 	energy_text.text = "Sun Power: %.2f" % stored_energy + "\nSunflowers: %.2f" % ((sunflower_reference.PROD_VAL/sunflower_reference.PROD_INTERVAL)*total_sunflowers)
-	
+
+func updateEnergyIndicator():
+	$"CursorCamera/Energy Indicator/Label".text = str(int(stored_energy))
+
 func _on_tree_sun_prod_timeout():
 	stored_energy += tree.energy_rate
 	$Tree_Sun_Prod.wait_time = tree.prod_interval
@@ -103,6 +108,12 @@ func _on_tool_belt_toggle_pressed():
 		seeds_menu.visible = false
 		energy_menu.visible = false
 		resource_menu.visible = false
+		
+		# Order buttons
+		$CursorCamera/ToolBelt/ToolBelt_Toggle.z_index = 4
+		$CursorCamera/ToolBelt/Seeds_Menu_Toggle.z_index = 2
+		$CursorCamera/ToolBelt/Power_Menu_Toggle.z_index = 2
+		
 		$CursorCamera/ToolBelt.position.y = lerp($CursorCamera/ToolBelt.position.y, $CursorCamera/ToolBelt.position.y-14, 1)
 		$CursorCamera/ToolBelt/ToolBelt_Toggle.texture_normal = load("res://assets/sprites/toolbar/tool_close.png")
 	else:
@@ -114,6 +125,11 @@ func _on_seeds_menu_toggle_pressed():
 		seeds_menu.visible = true
 		options_menu.visible = false
 		energy_menu.visible = false
+		
+		# Order buttons
+		$CursorCamera/ToolBelt/ToolBelt_Toggle.z_index = 2
+		$CursorCamera/ToolBelt/Seeds_Menu_Toggle.z_index = 4
+		$CursorCamera/ToolBelt/Power_Menu_Toggle.z_index = 2
 func _on_power_menu_toggle_pressed():
 	if toolbelt_open:
 		resource_menu.visible = false
@@ -126,6 +142,12 @@ func _on_resources_menu_toggle_pressed():
 		seeds_menu.visible = false
 		options_menu.visible = false
 		energy_menu.visible = false
+		
+		# Order buttons
+		$CursorCamera/ToolBelt/ToolBelt_Toggle.z_index = 2
+		$CursorCamera/ToolBelt/Seeds_Menu_Toggle.z_index = 2
+		$CursorCamera/ToolBelt/Power_Menu_Toggle.z_index = 4
+
 # //////////////////////////
 # Options Menu Button Config
 # //////////////////////////
@@ -140,7 +162,7 @@ func _on_main_menu_mouse_exited():
 # Seed Interface Buttons
 # //////////////////////
 func on_seed_button_pressed(seedID: int, texture: Texture2D):
-	if is_holding_seed:
+	if is_holding_seed && seedID == held_seed_id:
 		$Mouse_Dragger/Sprite2D.texture = null
 		is_holding_seed = false
 		held_seed_id = -1
@@ -148,6 +170,7 @@ func on_seed_button_pressed(seedID: int, texture: Texture2D):
 		$Mouse_Dragger/Sprite2D.texture = texture
 		is_holding_seed = true
 		held_seed_id = seedID
+	update_highlight()
 	
 func _on_sunflower_pressed():
 	var texture = load("res://assets/sprites/yellow_pixel_4x4.png")
@@ -165,11 +188,18 @@ func _on_poppy_pressed():
 	var texture = load("res://assets/sprites/poppy_seed.png")
 	on_seed_button_pressed(4, texture)
 
+func update_highlight():
+	var highlight = $CursorCamera/ToolBelt/Seeds_Menu/Highlight
+	if held_seed_id == -1:
+		highlight.visible = false
+	else:
+		highlight.visible = true
+		highlight.position.x = 8 * held_seed_id
 
 func _input(event):
 	if is_holding_seed and event.is_action_pressed("select") and seeds[held_seed_id] > 0:
 		print("HELD SEED COUNT: ", seeds[held_seed_id])
-		if !toolbelt_open or toolbelt_open and get_global_mouse_position().y <= $CursorCamera.position.y+15:
+		if is_valid_planting_spot():
 			seeds[held_seed_id] -= 1
 			setup_seed_totals()
 			print("You're trying to plant seed with menu open: ", held_seed_id, " you now have ", seeds[0], " seeds")
@@ -183,6 +213,29 @@ func _input(event):
 			map_data[new_coords.x-1][new_coords.y-1] = new_plant
 			if held_seed_id != 0: #not a sunflower
 				_try_spawn_animal(held_seed_id)
+
+#Returns boolean true/false if the current mouse location is a valid planting spot
+func is_valid_planting_spot():
+	var mouse_pos = get_global_mouse_position()
+	var camera_pos = $CursorCamera.position
+	
+	#Checks if mouse is clicked over the toolbar
+	if (!toolbelt_open && mouse_pos.y > camera_pos.y + 28):
+		return false
+	if (toolbelt_open and mouse_pos.y > camera_pos.y + 15):
+		return false
+	
+	#Checks if mouse is clicked over the tree
+	if (mouse_pos.x < 10 && mouse_pos.x > -10 && mouse_pos.y < 10 && mouse_pos.y > -10):
+		return false
+	
+	#Checks if space is occupied
+	var positionCoords = getMapAsGridCoords()
+	if (map_data[positionCoords.x - 1][positionCoords.y - 1] != null):
+		return false
+	
+	return true
+
 var new_x : int
 var new_y : int
 

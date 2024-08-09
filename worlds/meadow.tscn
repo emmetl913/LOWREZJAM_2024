@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://ccq1kqhm81gbm" path="res://assets/sprites/toolbar/tool_menu_background.png" id="10_yslyd"]
 [ext_resource type="Texture2D" uid="uid://cc50neu71ceb5" path="res://assets/sprites/carrot_seed.png" id="11_1mrda"]
 [ext_resource type="Texture2D" uid="uid://ngbdld7ow7e2" path="res://assets/sprites/buttons/exit_to_mm_temp_button_hover.png" id="11_doao0"]
+[ext_resource type="Texture2D" uid="uid://66w7ogqp7mvk" path="res://assets/sprites/toolbar/seed_highlight.png" id="11_s35mj"]
 [ext_resource type="Texture2D" uid="uid://diupao06mgiwt" path="res://assets/sprites/poppy_seed.png" id="12_bmanu"]
 [ext_resource type="Texture2D" uid="uid://c0u67y4pk72k7" path="res://assets/sprites/blueberry_seed.png" id="13_w718l"]
 [ext_resource type="PackedScene" uid="uid://dby4wixwjy120" path="res://util/mouse_dragger.tscn" id="14_gar52"]
@@ -21,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://bujaahxnmv2a2" path="res://assets/sprites/apple_seed.png" id="14_vfal4"]
 [ext_resource type="Script" path="res://managers/day_night_cycle.gd" id="15_t7viv"]
 [ext_resource type="PackedScene" uid="uid://bp6ubf7acq5oj" path="res://managers/entity_spawn_system.tscn" id="17_cf0qp"]
+[ext_resource type="Texture2D" uid="uid://bnkrjc8ylndue" path="res://assets/sprites/energy_indicator.png" id="19_iurs6"]
 [ext_resource type="PackedScene" uid="uid://d3na32ssj7r4t" path="res://plants/signs/bush_sign.tscn" id="21_6cnu1"]
 [ext_resource type="AudioStream" uid="uid://osjm0uu7gqf5" path="res://assets/music/calm.wav" id="22_ujufr"]
 [ext_resource type="AudioStream" uid="uid://caxyj3xw1xq7w" path="res://assets/music/peaceful.wav" id="23_s8qc2"]
@@ -212,106 +214,113 @@ stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Seeds_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
-visible = false
+z_index = 3
 position = Vector2(0, 26)
 texture = ExtResource("10_yslyd")
 
+[node name="Highlight" type="Node2D" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="CursorCamera/ToolBelt/Seeds_Menu/Highlight"]
+position = Vector2(-16, -3)
+texture = ExtResource("11_s35mj")
+
 [node name="Sunflower" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
-z_index = 3
-offset_left = -30.0
-offset_top = -6.0
-offset_right = -26.0
-offset_bottom = -2.0
+z_index = 5
+offset_left = -18.0
+offset_top = -5.0
+offset_right = -14.0
+offset_bottom = -1.0
 texture_normal = ExtResource("7_87csh")
 stretch_mode = 0
 
 [node name="Sunflower_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
-z_index = 3
+z_index = 5
 texture_filter = 1
-offset_left = -32.0
-offset_top = -3.0
-offset_right = -24.0
-offset_bottom = 5.0
+offset_left = -20.0
+offset_top = -2.0
+offset_right = -12.0
+offset_bottom = 6.0
 theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = SubResource("LabelSettings_sepq4")
 autowrap_mode = 3
 
 [node name="Carrot" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
-z_index = 3
-offset_left = -23.0
-offset_top = -6.0
-offset_right = -19.0
-offset_bottom = -2.0
+z_index = 5
+offset_left = -10.0
+offset_top = -5.0
+offset_right = -6.0
+offset_bottom = -1.0
 texture_normal = ExtResource("11_1mrda")
 stretch_mode = 0
 
 [node name="Carrot_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
-z_index = 3
+z_index = 5
 texture_filter = 1
-offset_left = -25.0
-offset_top = -3.0
-offset_right = -17.0
-offset_bottom = 5.0
+offset_left = -12.0
+offset_top = -2.0
+offset_right = -4.0
+offset_bottom = 6.0
 theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = SubResource("LabelSettings_sepq4")
 autowrap_mode = 3
 
 [node name="Blueberry" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
-z_index = 3
-offset_left = -16.0
-offset_top = -6.0
-offset_right = -12.0
-offset_bottom = -2.0
+z_index = 5
+offset_left = -2.0
+offset_top = -5.0
+offset_right = 2.0
+offset_bottom = -1.0
 texture_normal = ExtResource("13_w718l")
 stretch_mode = 0
 
 [node name="Blueberry_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
-z_index = 3
+z_index = 5
 texture_filter = 1
-offset_left = -18.0
-offset_top = -3.0
-offset_right = -10.0
-offset_bottom = 5.0
+offset_left = -4.0
+offset_top = -2.0
+offset_right = 4.0
+offset_bottom = 6.0
 theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = SubResource("LabelSettings_sepq4")
 autowrap_mode = 3
 
 [node name="Apple" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
-z_index = 3
-offset_left = -9.0
-offset_top = -6.0
-offset_right = -5.0
-offset_bottom = -2.0
+z_index = 5
+offset_left = 6.0
+offset_top = -5.0
+offset_right = 10.0
+offset_bottom = -1.0
 texture_normal = ExtResource("14_vfal4")
 stretch_mode = 0
 
 [node name="Apple_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
-z_index = 3
+z_index = 5
 texture_filter = 1
-offset_left = -11.0
-offset_top = -3.0
-offset_right = -3.0
-offset_bottom = 5.0
+offset_left = 4.0
+offset_top = -2.0
+offset_right = 12.0
+offset_bottom = 6.0
 theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = SubResource("LabelSettings_sepq4")
 autowrap_mode = 3
 
 [node name="Poppy" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
-z_index = 3
-offset_left = -2.0
-offset_top = -6.0
-offset_right = 2.0
-offset_bottom = -2.0
+z_index = 5
+offset_left = 14.0
+offset_top = -5.0
+offset_right = 18.0
+offset_bottom = -1.0
 texture_normal = ExtResource("12_bmanu")
 stretch_mode = 0
 
 [node name="Poppy_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
-z_index = 3
+z_index = 5
 texture_filter = 1
-offset_left = -4.0
-offset_top = -3.0
-offset_right = 4.0
-offset_bottom = 5.0
+offset_left = 12.0
+offset_top = -2.0
+offset_right = 20.0
+offset_bottom = 6.0
 theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = SubResource("LabelSettings_sepq4")
 autowrap_mode = 3
@@ -329,10 +338,12 @@ autowrap_mode = 3
 
 [node name="Options_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
 visible = false
+z_index = 3
 position = Vector2(0, 26)
 texture = ExtResource("10_yslyd")
 
 [node name="Main_Menu" type="TextureButton" parent="CursorCamera/ToolBelt/Options_Menu"]
+z_index = 3
 texture_filter = 1
 offset_left = 21.0
 offset_top = -6.0
@@ -342,6 +353,7 @@ texture_normal = ExtResource("10_p3v3i")
 texture_hover = ExtResource("11_doao0")
 
 [node name="Options_Tooltip" type="Label" parent="CursorCamera/ToolBelt/Options_Menu"]
+z_index = 3
 texture_filter = 1
 offset_left = -26.0
 offset_top = -6.0
@@ -352,10 +364,13 @@ label_settings = ExtResource("3_w168r")
 autowrap_mode = 3
 
 [node name="Energy_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
+visible = false
+z_index = 3
 position = Vector2(0, 26)
 texture = ExtResource("10_yslyd")
 
 [node name="Energy_Stored" type="Label" parent="CursorCamera/ToolBelt/Energy_Menu"]
+z_index = 3
 texture_filter = 1
 offset_left = -30.0
 offset_top = -8.0
@@ -377,9 +392,26 @@ hframes = 2
 vframes = 3
 region_rect = Rect2(0, 0, 32, 48)
 
+[node name="Energy Indicator" type="Node2D" parent="CursorCamera"]
+z_index = 7
+position = Vector2(12, -32)
+
+[node name="Sprite2D" type="Sprite2D" parent="CursorCamera/Energy Indicator"]
+texture = ExtResource("19_iurs6")
+centered = false
+
+[node name="Label" type="Label" parent="CursorCamera/Energy Indicator"]
+offset_left = -20.0
+offset_top = -1.0
+offset_right = 20.0
+offset_bottom = 15.0
+label_settings = ExtResource("3_w168r")
+horizontal_alignment = 2
+
 [node name="Tree_Sun_Prod" type="Timer" parent="."]
 
 [node name="Mouse_Dragger" parent="." instance=ExtResource("14_gar52")]
+z_index = 10
 metadata/_edit_use_anchors_ = true
 
 [node name="Day-Night Cycle" type="Node" parent="."]
