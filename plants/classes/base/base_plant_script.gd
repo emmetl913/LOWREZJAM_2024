@@ -98,4 +98,11 @@ func _on_energy_timer_timeout():
 		if HEALTH < 5:
 			HEALTH += 1
 	else:
+		print("A plant has taken damage")
 		HEALTH -= 1
+	if HEALTH <= 0:
+		_death()
+
+func _death():
+	print("A plant has died?")
+	queue_free()

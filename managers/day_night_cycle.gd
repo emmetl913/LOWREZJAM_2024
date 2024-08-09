@@ -4,7 +4,7 @@ extends Node
 enum Time_Period { morning, afternoon, evening, dusk, midnight, dawn }
 signal time_period_change(period: Time_Period)
 
-const PERIOD_SEC: int = 45 # Time in seconds that a period will last
+const PERIOD_SEC: int = 15 # Time in seconds that a period will last
 var TIME_COLORS: Array[int] = [ 0x3e89e21e, 0x0, 0xf165002b, 0x031a364b, 0xbad7fc23, 0x031a364b ] # Color code for time-of-day films
 
 @onready var time_indicator: Sprite2D = $"../CursorCamera/Time Indicator"

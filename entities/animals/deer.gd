@@ -37,7 +37,7 @@ func _process(delta):
 		_move(delta)
 	elif can_move && is_attacking && !animal.must_eat:
 		_attack_move(delta)
-	elif can_move && animal.must_eat:
+	elif can_move && animal.must_eat and is_instance_valid(animal._get_plant()):
 		_set_dir_to_plant(animal._get_plant_position())
 		if !position.distance_to(animal._get_plant_position()) < animal.eating_range:
 			_move(delta)
@@ -52,7 +52,7 @@ func _process(delta):
 	#If deer has just spawned: it is wandering
 	#Once deer reaches plant it can now attack and is no longer wandering
 	#TODO: host plant dies: goes back to wandering 
-	if !_is_far_from_plant(animal._get_plant_position()) and is_wandering:
+	if is_instance_valid(animal._get_plant()) and !_is_far_from_plant(animal._get_plant_position()) and is_wandering:
 		is_wandering = false
 		can_attack = true
 
@@ -89,7 +89,7 @@ func _move_leave_meadow(delta: float):
 func _move(delta: float):
 	var collision = move_and_collide(dir*speed*delta)
 	
-	if _is_far_from_plant(animal._get_plant_position()):
+	if is_instance_valid(animal._get_plant()) and _is_far_from_plant(animal._get_plant_position()):
 		_set_dir_to_plant(animal._get_plant_position())
 	elif move_timer.get_time_left() == 0:
 		move_timer.start(10000)
