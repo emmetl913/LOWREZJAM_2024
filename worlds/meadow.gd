@@ -100,6 +100,12 @@ func _on_tool_belt_toggle_pressed():
 		options_menu.visible = true
 		seeds_menu.visible = false
 		energy_menu.visible = false
+		
+		# Order buttons
+		$CursorCamera/ToolBelt/ToolBelt_Toggle.z_index = 4
+		$CursorCamera/ToolBelt/Seeds_Menu_Toggle.z_index = 2
+		$CursorCamera/ToolBelt/Power_Menu_Toggle.z_index = 2
+		
 		$CursorCamera/ToolBelt.position.y = lerp($CursorCamera/ToolBelt.position.y, $CursorCamera/ToolBelt.position.y-14, 1)
 		$CursorCamera/ToolBelt/ToolBelt_Toggle.texture_normal = load("res://assets/sprites/toolbar/tool_close.png")
 	else:
@@ -110,11 +116,21 @@ func _on_seeds_menu_toggle_pressed():
 		seeds_menu.visible = true
 		options_menu.visible = false
 		energy_menu.visible = false
+		
+		# Order buttons
+		$CursorCamera/ToolBelt/ToolBelt_Toggle.z_index = 2
+		$CursorCamera/ToolBelt/Seeds_Menu_Toggle.z_index = 4
+		$CursorCamera/ToolBelt/Power_Menu_Toggle.z_index = 2
 func _on_power_menu_toggle_pressed():
 	if toolbelt_open:
 		seeds_menu.visible = false
 		options_menu.visible = false
 		energy_menu.visible = true
+		
+		# Order buttons
+		$CursorCamera/ToolBelt/ToolBelt_Toggle.z_index = 2
+		$CursorCamera/ToolBelt/Seeds_Menu_Toggle.z_index = 2
+		$CursorCamera/ToolBelt/Power_Menu_Toggle.z_index = 4
 
 # //////////////////////////
 # Options Menu Button Config
@@ -130,7 +146,7 @@ func _on_main_menu_mouse_exited():
 # Seed Interface Buttons
 # //////////////////////
 func on_seed_button_pressed(seedID: int, texture: Texture2D):
-	if is_holding_seed:
+	if is_holding_seed && seedID == held_seed_id:
 		$Mouse_Dragger/Sprite2D.texture = null
 		is_holding_seed = false
 		held_seed_id = -1
@@ -138,6 +154,7 @@ func on_seed_button_pressed(seedID: int, texture: Texture2D):
 		$Mouse_Dragger/Sprite2D.texture = texture
 		is_holding_seed = true
 		held_seed_id = seedID
+	update_highlight()
 	
 func _on_sunflower_pressed():
 	var texture = load("res://assets/sprites/yellow_pixel_4x4.png")
@@ -155,6 +172,13 @@ func _on_poppy_pressed():
 	var texture = load("res://assets/sprites/poppy_seed.png")
 	on_seed_button_pressed(4, texture)
 
+func update_highlight():
+	var highlight = $CursorCamera/ToolBelt/Seeds_Menu/Highlight
+	if held_seed_id == -1:
+		highlight.visible = false
+	else:
+		highlight.visible = true
+		highlight.position.x = 8 * held_seed_id
 
 func _input(event):
 	if is_holding_seed and event.is_action_pressed("select") and seeds[held_seed_id] > 0:
