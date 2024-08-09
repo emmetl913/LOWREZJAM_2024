@@ -183,7 +183,7 @@ func update_highlight():
 func _input(event):
 	if is_holding_seed and event.is_action_pressed("select") and seeds[held_seed_id] > 0:
 		print("HELD SEED COUNT: ", seeds[held_seed_id])
-		if !toolbelt_open or toolbelt_open and get_global_mouse_position().y <= $CursorCamera.position.y+15:
+		if is_valid_planting_spot():
 			seeds[held_seed_id] -= 1
 			setup_seed_totals()
 			print("You're trying to plant seed with menu open: ", held_seed_id, " you now have ", seeds[0], " seeds")
@@ -196,6 +196,30 @@ func _input(event):
 			map_data[new_coords.x-1][new_coords.y-1] = new_plant
 			if held_seed_id != 0: #not a sunflower
 				_try_spawn_animal(held_seed_id)
+
+#Returns boolean true/false if the current mouse location is a valid planting spot
+func is_valid_planting_spot():
+	var mouse_pos = get_global_mouse_position()
+	var camera_pos = $CursorCamera.position
+	
+	#Checks if mouse is clicked over the toolbar
+	if (!toolbelt_open && mouse_pos.y > camera_pos.y + 28):
+		return false
+	if (toolbelt_open and mouse_pos.y > camera_pos.y + 15):
+		return false
+	
+	#Checks if mouse is clicked over the tree
+	if (mouse_pos.x < 10 && mouse_pos.x > -10 && mouse_pos.y < 10 && mouse_pos.y > -10):
+		return false
+	
+	#Checks if space is occupied
+	var positionCoords = getMapAsGridCoords()
+	if (map_data[positionCoords.x - 1][positionCoords.y - 1] != null):
+		return false
+	
+	return true
+	
+
 var new_x : int
 var new_y : int
 

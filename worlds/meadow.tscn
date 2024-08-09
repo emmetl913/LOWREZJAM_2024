@@ -376,6 +376,7 @@ region_rect = Rect2(0, 0, 32, 48)
 [node name="Tree_Sun_Prod" type="Timer" parent="."]
 
 [node name="Mouse_Dragger" parent="." instance=ExtResource("14_gar52")]
+z_index = 10
 metadata/_edit_use_anchors_ = true
 
 [node name="Day-Night Cycle" type="Node" parent="."]
