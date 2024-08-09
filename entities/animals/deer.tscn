@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqhr6rgl1jajx"]
+[gd_scene load_steps=10 format=3 uid="uid://dqhr6rgl1jajx"]
 
 [ext_resource type="Script" path="res://entities/animals/deer.gd" id="1_3cto8"]
 [ext_resource type="Script" path="res://entities/animals/animal.gd" id="1_i840l"]
@@ -24,10 +24,31 @@ size = Vector2(3, 7)
 [sub_resource type="CircleShape2D" id="CircleShape2D_n0p4s"]
 radius = 16.0
 
+[sub_resource type="Animation" id="Animation_qiltk"]
+resource_name = "Eat"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p6bom"]
+_data = {
+"Eat": SubResource("Animation_qiltk")
+}
+
 [node name="Deer" type="Node2D" groups=["Animal"]]
 script = ExtResource("1_i840l")
 favorite_plant_id = 1
-eating_range = 3.0
+eating_range = 0.1
 health = 1
 attack_speed = 1.0
 
@@ -76,6 +97,12 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_p6bom")
+}
+
 [node name="RecalculateMoveDir" type="Timer" parent="."]
 wait_time = 2.0
 
@@ -91,7 +118,7 @@ wait_time = 5.0
 autostart = true
 
 [node name="EatPlant" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 4.0
 autostart = true
 
 [connection signal="body_entered" from="CharacterBody2D/AnimatedSprite2D/DealDamage" to="CharacterBody2D" method="_on_deal_damage_body_entered"]
@@ -102,6 +129,7 @@ autostart = true
 [connection signal="timeout" from="CharacterBody2D/RunAway" to="CharacterBody2D" method="_on_run_away_timeout"]
 [connection signal="timeout" from="CharacterBody2D/FailedAttackReturnToPlant" to="CharacterBody2D" method="_on_failed_attack_return_to_plant_timeout"]
 [connection signal="timeout" from="CharacterBody2D/SelfDestructSequence" to="CharacterBody2D" method="_on_self_destruct_sequence_timeout"]
+[connection signal="animation_finished" from="CharacterBody2D/AnimationPlayer" to="CharacterBody2D" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="RecalculateMoveDir" to="CharacterBody2D" method="_on_recalculate_move_dir_timeout"]
 [connection signal="timeout" from="ChooseRandomFavoritePlant" to="." method="_on_choose_random_favorite_plant_timeout"]
 [connection signal="timeout" from="DropSeedTimer" to="." method="_on_drop_seed_timer_timeout"]

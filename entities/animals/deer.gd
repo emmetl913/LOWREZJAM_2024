@@ -27,7 +27,7 @@ func _ready():
 func set_dir_to_leave_screen_by_closest_wall():
 	pass
 func _process(delta):
-	if animal.must_leave:
+	if animal.must_leave && can_move:
 		_move_leave_meadow(delta)
 		if $SelfDestructSequence.is_stopped():
 			_set_dir_to_plant(animal._get_plant_position())
@@ -42,6 +42,9 @@ func _process(delta):
 		if !position.distance_to(animal._get_plant_position()) < animal.eating_range:
 			_move(delta)
 		else:
+			can_move = false
+			#play eat animation. when eat animation is done set can_move = true
+			$AnimationPlayer.play("Eat")
 			animal._animal_eat()
 			animal.must_eat = false
 			
@@ -72,6 +75,10 @@ func _process(delta):
 	else:
 		$AnimatedSprite2D.flip_h = false
 	
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "Eat":
+		can_move = true
+
 func _is_far_from_plant(plant_position: Vector2):
 	if position.distance_to(plant_position) > max_distance_from_plant:
 		return true
@@ -85,7 +92,7 @@ func _move(delta: float):
 	if _is_far_from_plant(animal._get_plant_position()):
 		_set_dir_to_plant(animal._get_plant_position())
 	elif move_timer.get_time_left() == 0:
-		move_timer.start(2)
+		move_timer.start(10000)
 
 func _attack_move(delta: float):
 	var collision = move_and_collide(dir*attack_speed*delta)
@@ -96,7 +103,7 @@ func _set_dir_to_plant(plant_position: Vector2):
 	#dir.rotated(randf_range(-15,15))
 
 func _on_recalculate_move_dir_timeout():
-	if !_is_far_from_plant(animal.plant_position):
+	if !_is_far_from_plant(animal._get_plant_position()):
 		dir = dir.rotated(randf_range(-360, 360))
 		dir = dir.normalized()
 
@@ -135,6 +142,6 @@ func _on_failed_attack_return_to_plant_timeout():
 func _apply_knock_back():
 	pass
 
-
 func _on_self_destruct_sequence_timeout():
 	queue_free()
+
