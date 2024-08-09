@@ -75,8 +75,10 @@ func setupMap():
 
 func _process(_delta):
 	updateEnergyMenu()
+	updateEnergyIndicator()
+	
 	plantBushes()
-	#print(get_local_mouse_position())
+	#print(get_local_mouse_position()
 
 func _add_seed(seed_id: int):
 	$Audio/Pickup.play()
@@ -85,7 +87,10 @@ func _add_seed(seed_id: int):
 
 func updateEnergyMenu():
 	energy_text.text = "Sun Power: %.2f" % stored_energy + "\nSunflowers: %.2f" % ((sunflower_reference.PROD_VAL/sunflower_reference.PROD_INTERVAL)*total_sunflowers)
-	
+
+func updateEnergyIndicator():
+	$"CursorCamera/Energy Indicator/Label".text = str(int(stored_energy))
+
 func _on_tree_sun_prod_timeout():
 	stored_energy += tree.energy_rate
 	$Tree_Sun_Prod.wait_time = tree.prod_interval
@@ -218,7 +223,6 @@ func is_valid_planting_spot():
 		return false
 	
 	return true
-	
 
 var new_x : int
 var new_y : int

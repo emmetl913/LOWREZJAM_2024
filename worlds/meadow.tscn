@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bef63fudsi14e"]
+[gd_scene load_steps=36 format=3 uid="uid://bef63fudsi14e"]
 
 [ext_resource type="Script" path="res://worlds/meadow.gd" id="1_bko1o"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_ksmiv"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bujaahxnmv2a2" path="res://assets/sprites/apple_seed.png" id="14_vfal4"]
 [ext_resource type="Script" path="res://managers/day_night_cycle.gd" id="15_t7viv"]
 [ext_resource type="PackedScene" uid="uid://bp6ubf7acq5oj" path="res://managers/entity_spawn_system.tscn" id="17_cf0qp"]
+[ext_resource type="Texture2D" uid="uid://bnkrjc8ylndue" path="res://assets/sprites/energy_indicator.png" id="19_iurs6"]
 [ext_resource type="PackedScene" uid="uid://d3na32ssj7r4t" path="res://plants/signs/bush_sign.tscn" id="21_6cnu1"]
 [ext_resource type="AudioStream" uid="uid://osjm0uu7gqf5" path="res://assets/music/calm.wav" id="22_ujufr"]
 [ext_resource type="AudioStream" uid="uid://caxyj3xw1xq7w" path="res://assets/music/peaceful.wav" id="23_s8qc2"]
@@ -372,6 +373,22 @@ texture = ExtResource("14_o8xln")
 hframes = 2
 vframes = 3
 region_rect = Rect2(0, 0, 32, 48)
+
+[node name="Energy Indicator" type="Node2D" parent="CursorCamera"]
+z_index = 7
+position = Vector2(12, -32)
+
+[node name="Sprite2D" type="Sprite2D" parent="CursorCamera/Energy Indicator"]
+texture = ExtResource("19_iurs6")
+centered = false
+
+[node name="Label" type="Label" parent="CursorCamera/Energy Indicator"]
+offset_left = -20.0
+offset_top = -1.0
+offset_right = 20.0
+offset_bottom = 15.0
+label_settings = ExtResource("3_w168r")
+horizontal_alignment = 2
 
 [node name="Tree_Sun_Prod" type="Timer" parent="."]
 
