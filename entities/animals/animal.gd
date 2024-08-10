@@ -40,7 +40,7 @@ func _find_plants():
 func _randomly_choose_plant_():
 	_find_plants()
 	var random_plant_index = randi_range(0, list_of_favorite_plants.size()-1)
-	if random_plant_index >= 0:
+	if random_plant_index > 0:
 		_set_plant(list_of_favorite_plants[random_plant_index])
 	else:
 		check_leave_meadow()
