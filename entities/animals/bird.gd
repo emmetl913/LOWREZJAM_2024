@@ -37,8 +37,6 @@ func _process(delta):
 	elif can_move && !is_attacking && !animal.must_eat:
 		_move(delta)
 	elif can_move && is_attacking && !animal.must_eat:
-		if animal.favorite_plant_id == 3: #Squirrel
-			dir = (target.position - position).normalized()
 		_attack_move(delta)
 	elif can_move && animal.must_eat and is_instance_valid(animal._get_plant()):
 		_set_dir_to_plant(animal._get_plant_position())
@@ -98,6 +96,7 @@ func _move(delta: float):
 	#	move_timer.start(10000)
 
 func _attack_move(delta: float):
+	dir = Vector2(0,0)
 	var collision = move_and_collide(dir*attack_speed*delta)
 
 func _set_dir_to_plant(plant_position: Vector2):

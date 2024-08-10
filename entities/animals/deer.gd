@@ -34,13 +34,16 @@ func _process(delta):
 			_set_dir_to_plant(animal._get_plant_position())
 			dir *= -dir * screen_exit_speed
 			$SelfDestructSequence.start()
+	
 	elif can_move && !is_attacking && !animal.must_eat:
 		_move(delta)
+	
 	elif can_move && is_attacking && !animal.must_eat:
 		if animal.favorite_plant_id == 3: #Squirrel
 			if is_instance_valid(target):
 				dir = (target.position - position).normalized()
 		_attack_move(delta)
+	
 	elif can_move && animal.must_eat and is_instance_valid(animal._get_plant()):
 		_set_dir_to_plant(animal._get_plant_position())
 		if !position.distance_to(animal._get_plant_position()) < animal.eating_range:
@@ -51,26 +54,28 @@ func _process(delta):
 			$AnimationPlayer.play("Eat")
 			animal._animal_eat()
 			animal.must_eat = false
-			
+	
 	
 	#If deer has just spawned: it is wandering
 	#Once deer reaches plant it can now attack and is no longer wandering
 	#TODO: host plant dies: goes back to wandering 
-	if is_instance_valid(animal._get_plant()) and !_is_far_from_plant(animal._get_plant_position()) and is_wandering:
-		is_wandering = false
-		can_attack = true
+	if is_instance_valid(animal._get_plant()):
+		if !_is_far_from_plant(animal._get_plant_position()) and is_wandering:
+			is_wandering = false
+			can_attack = true
 
 	#Can we attack?
 	if can_attack && animal.enemies_in_range.size() > 0:
 		target = animal._select_closest_enemy()
-		#temp direction calculation:
-		dir = (target.position - position).normalized()
-		can_attack = false
-		is_attacking = true
-		#This is a failsafe: sometimes deer miss with current their dash being set to the position
-		#of their target right when they choose it. This makes deer return to plant if they miss
-		#Otherwise this timer is cancelled on successful attack
-		$FailedAttackReturnToPlant.start($FailedAttackReturnToPlant.wait_time)
+		if is_instance_valid(target):
+			#temp direction calculation:
+			dir = (target.position - position).normalized()
+			can_attack = false
+			is_attacking = true
+			#This is a failsafe: sometimes deer miss with current their dash being set to the position
+			#of their target right when they choose it. This makes deer return to plant if they miss
+			#Otherwise this timer is cancelled on successful attack
+			$FailedAttackReturnToPlant.start($FailedAttackReturnToPlant.wait_time)
 	elif animal.enemies_in_range.size() == 0:
 		is_attacking = false
 	#Sprite Rotation!
@@ -79,7 +84,7 @@ func _process(delta):
 	else:
 		$AnimatedSprite2D.flip_h = false
 	
-	#if velocity == Vector2(0,0):
+	
 	#	if move_timer.get_time_left() == 0:
 	#		move_timer.start(1)
 	

@@ -22,7 +22,7 @@ animations = [{
 size = Vector2(3, 7)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n0p4s"]
-radius = 16.0
+radius = 40.0
 
 [sub_resource type="Animation" id="Animation_qiltk"]
 resource_name = "Eat"
