@@ -58,6 +58,8 @@ func _set_plant_to_closest_plant():
 			if i.position.distance_to(get_node("CharacterBody2D").position) < min_distance and (_can_eat_plant(i) or i.get_child(0).texture == i.SEED_TEXTURE):
 				min_distance = i.position.distance_to(get_child(0).position)
 				target = i
+		else:
+			print("We could not find the characterbody2d idk why this is happening!!!!! Help me!")
 	if target == null:
 		must_leave = true
 		#target = current_plant
@@ -66,7 +68,9 @@ func _set_plant_to_closest_plant():
 	else:
 		return null
 func _can_eat_plant(plant: Node2D):
-	if plant.RESOURCES_STORED > 0:
+	if plant.RESOURCES_STORED > 0 and favorite_plant_id != 4:
+		return true
+	elif plant.RESOURCES_STORED >= 2: #leopards eat 2 bites at once
 		return true
 	return false
 	
@@ -146,15 +150,20 @@ func _on_drop_seed_timer_timeout():
 
 
 func _on_eat_plant_timeout():
-	must_eat = true
+	if favorite_plant_id != 4:
+		must_eat = true
 
 func _animal_eat():
 	#Check if it still has resources
 	if _can_eat_plant(current_plant):
 		current_plant.eat()
+		if favorite_plant_id == 4: #Leopards
+			current_plant.eat() #leopard take second bite chAoOmP
 	#Plant has no resources. 
 	else: 
 		check_leave_meadow()
 		#if !must_leave:
 		#	_set_plant(_set_plant_to_closest_plant())
 
+func _calculate_leave_meadow_direction():
+	return (get_node("CharacterBody2D").position - parent.get_node("CursorCamera").position).normalized()

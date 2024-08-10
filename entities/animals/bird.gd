@@ -34,9 +34,9 @@ func _process(delta):
 	if animal.must_leave && can_move:
 		_move_leave_meadow(delta)
 		if $SelfDestructSequence.is_stopped():
-			_set_dir_to_plant(animal._get_plant_position())
-			dir *= -dir * screen_exit_speed
+			dir = animal._calculate_leave_meadow_direction() * screen_exit_speed
 			$SelfDestructSequence.start()
+			$AnimatedSprite2D.modulate = Color(0,0,0,.6)
 	elif can_move && !is_attacking && !animal.must_eat:
 		_move(delta)
 	elif can_move && is_attacking && !animal.must_eat:
@@ -86,6 +86,7 @@ func _bird_shoot():
 	bullet.dir = (target.position - position).normalized()
 	bullet.bullet_speed = bullet_speed
 	bullet.position = position
+	bullet.target = target
 	get_parent().get_parent().add_child(bullet)
 
 func _on_animation_player_animation_finished(anim_name):
@@ -97,7 +98,7 @@ func _is_far_from_plant(plant_position: Vector2):
 		return true
 	return false
 func _move_leave_meadow(delta: float):
-	var collision = move_and_collide(dir*speed*delta)
+	var collision = move_and_collide(dir*delta)
 	
 func _move(delta: float):
 	var collision = move_and_collide(dir*speed*delta)

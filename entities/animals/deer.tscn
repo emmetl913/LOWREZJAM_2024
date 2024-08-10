@@ -56,7 +56,7 @@ attack_speed = 1.0
 script = ExtResource("1_3cto8")
 speed = 15.0
 attack_speed = 15.0
-screen_exit_speed = 40.0
+screen_exit_speed = 15.0
 max_distance_from_plant = 3.0
 knockback = 5.0
 
@@ -96,7 +96,7 @@ wait_time = 1.3
 one_shot = true
 
 [node name="SelfDestructSequence" type="Timer" parent="CharacterBody2D"]
-wait_time = 3.0
+wait_time = 15.0
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
@@ -117,7 +117,7 @@ one_shot = true
 autostart = true
 
 [node name="DropSeedTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 10.0
 autostart = true
 
 [node name="EatPlant" type="Timer" parent="."]

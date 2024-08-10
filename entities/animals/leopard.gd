@@ -11,18 +11,22 @@ var can_attack = false
 var is_attacking = false
 var target
 var prevhittargetsprite
+var in_stealth = true #if in stealth 
 
 @export var speed: float
 @export var attack_speed: float
 @export var screen_exit_speed: float
 @export var max_distance_from_plant: float
 @export var knockback: float
+var stealthColor: Color = Color(1,1,1,.5)
 var dir: Vector2
 
 func _ready():
 	animal = get_parent()
 	position = animal._random_spawn_position()
 	move_timer = animal.get_node("RecalculateMoveDir")
+	_enter_stealth()
+	animal.must_eat = true
 
 #TODO: implement go nearest off screen
 func set_dir_to_leave_screen_by_closest_wall():
@@ -38,9 +42,10 @@ func _process(delta):
 		_move(delta)
 	
 	elif can_move && is_attacking && !animal.must_eat:
-		if animal.favorite_plant_id == 3: #Squirrel
-			if is_instance_valid(target):
-				dir = (target.position - position).normalized()
+		if is_instance_valid(target): #homing melee attack
+			dir = (target.position - position).normalized()
+		#else:
+			#target = animal._select_closest_enemy():
 		_attack_move(delta)
 	
 	elif can_move && animal.must_eat and is_instance_valid(animal._get_plant()):
@@ -53,6 +58,7 @@ func _process(delta):
 			$AnimationPlayer.play("Eat")
 			animal._animal_eat()
 			animal.must_eat = false
+			_enter_stealth()
 	
 	
 	#If deer has just spawned: it is wandering
@@ -83,9 +89,12 @@ func _process(delta):
 	else:
 		$AnimatedSprite2D.flip_h = false
 	
-	
-	#	if move_timer.get_time_left() == 0:
-	#		move_timer.start(1)
+func _enter_stealth():
+	in_stealth = true
+	$AnimatedSprite2D.modulate = stealthColor
+func _exit_stealth():
+	in_stealth = false
+	$AnimatedSprite2D.modulate = Color(1,1,1,1)
 	
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Eat":
@@ -129,6 +138,9 @@ func _on_enter_screen_timeout():
 
 func _on_deal_damage_body_entered(body):
 	if body.is_in_group("Spirit") && is_attacking:
+		_exit_stealth()
+		if $PostStealthFrenzy.time_left <= 0:
+			$PostStealthFrenzy.start()
 		body._take_damage(1)
 		prevhittargetsprite = body.get_node("Visual Component")
 		var tween: Tween = create_tween()
@@ -138,8 +150,7 @@ func _on_deal_damage_body_entered(body):
 		$pwint.start(.1)
 		#Successful attack: Don't run failsafe 
 		$FailedAttackReturnToPlant.stop()
-		dir = -dir
-		#if animal.favorite_plant_id == 1: #Deer identification
+		#dir = -dir
 		#_apply_knock_back(body, knockback)
 func _on_attack_speed_timeout():
 	can_attack = true
@@ -157,3 +168,5 @@ func _apply_knock_back(target: Node2D, knockback_force: float):
 func _on_self_destruct_sequence_timeout():
 	queue_free()
 
+func _on_post_stealth_frenzy_timeout():
+	animal.must_eat = true
