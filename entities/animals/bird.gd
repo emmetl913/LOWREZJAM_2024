@@ -34,6 +34,10 @@ func _process(delta):
 	if animal.must_leave && can_move:
 		_move_leave_meadow(delta)
 		if $SelfDestructSequence.is_stopped():
+			can_attack = false
+			is_attacking = false
+			is_wandering = false
+			can_eat = false
 			dir = animal._calculate_leave_meadow_direction() * screen_exit_speed
 			$SelfDestructSequence.start()
 			$AnimatedSprite2D.modulate = Color(0,0,0,.6)

@@ -148,6 +148,8 @@ func _on_drop_seed_timer_timeout():
 	_drop_seed()
 
 
+func _start_eat_timer():
+	$EatPlant.start()
 
 func _on_eat_plant_timeout():
 	if favorite_plant_id != 4:
@@ -157,6 +159,7 @@ func _animal_eat():
 	#Check if it still has resources
 	if _can_eat_plant(current_plant):
 		current_plant.eat()
+		_start_eat_timer()
 		if favorite_plant_id == 4: #Leopards
 			current_plant.eat() #leopard take second bite chAoOmP
 	#Plant has no resources. 
