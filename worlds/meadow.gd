@@ -5,7 +5,7 @@ enum Time_Period {morning, afternoon, evening, dusk, midnight, dawn}
 #Set this to return 1 everytime if you want guaranteed animal spawns
 @export var animal_spawn_fraction: Vector2i
 @export var guarantee_first_animal_spawn: bool
-@onready var resources : Array[int] = [11111110, 1111111110, 1111111110, 111111111110]
+@onready var resources : Array[int] = [0, 0, 0, 0]
 @onready var bushes : Array[bool] = [false, false, false, false]
 @onready var bush_reference = preload("res://plants/bush.tscn")
 @onready var sunflower_reference = preload("res://plants/classes/sunflower.tres")
@@ -32,7 +32,7 @@ var mouse_initial_position: Vector2
 var limit_x = Vector2(-64,64)
 var limit_y = Vector2(-64,64)
 
-var stored_energy : float = 10000000000000000
+var stored_energy : float 
 # Get References to important children on startup
 @onready var tree = $Tree_Main
 @onready var camera = $CursorCamera

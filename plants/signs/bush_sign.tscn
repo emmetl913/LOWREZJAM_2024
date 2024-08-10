@@ -36,6 +36,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="Sprite2D"]
+layout_mode = 0
 offset_left = 1.0
 offset_right = 49.0
 offset_bottom = 10.0
@@ -61,6 +62,7 @@ position = Vector2(3, 11)
 texture = ExtResource("6_s5b17")
 
 [node name="Label2" type="Label" parent="Sprite2D"]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 8.0
 offset_right = 58.0
@@ -73,6 +75,7 @@ autowrap_mode = 3
 position = Vector2(5, 20)
 
 [node name="Label3" type="Label" parent="Sprite2D"]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 16.0
 offset_right = 58.0
