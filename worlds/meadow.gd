@@ -5,6 +5,7 @@ enum Time_Period {morning, afternoon, evening, dusk, midnight, dawn}
 #Set this to return 1 everytime if you want guaranteed animal spawns
 @export var animal_spawn_fraction: Vector2i
 @export var guarantee_first_animal_spawn: bool
+@onready var resources : Array[int] = [0, 0, 0, 0]
 @onready var bushes : Array[bool] = [false, false, false, false]
 @onready var bush_reference = preload("res://plants/bush.tscn")
 @onready var sunflower_reference = preload("res://plants/classes/sunflower.tres")
@@ -31,7 +32,7 @@ var mouse_initial_position: Vector2
 var limit_x = Vector2(-64,64)
 var limit_y = Vector2(-64,64)
 
-var stored_energy : float
+var stored_energy : float 
 # Get References to important children on startup
 @onready var tree = $Tree_Main
 @onready var camera = $CursorCamera
@@ -68,6 +69,10 @@ func setupBushes():
 	$Bushes/Bush_Sign_South.orientation = 1
 	$Bushes/Bush_Sign_East.orientation = 2
 	$Bushes/Bush_Sign_West.orientation = 3
+	$Bushes/Bush_Sign_North._set_parent(self, 0)
+	$Bushes/Bush_Sign_South._set_parent(self, 3)
+	$Bushes/Bush_Sign_East._set_parent(self, 2)
+	$Bushes/Bush_Sign_West._set_parent(self, 1)
 
 func setupMap():
 	for i in map_width:
@@ -78,9 +83,15 @@ func setupMap():
 func _process(_delta):
 	updateEnergyMenu()
 	updateEnergyIndicator()
-	
+	_update_resource_display()
 	plantBushes()
 	#print(get_local_mouse_position()
+
+func _update_resource_display():
+	$CursorCamera/ToolBelt/Resource_Menu/Carrot_Label.text = "%02d" % resources[0]
+	$CursorCamera/ToolBelt/Resource_Menu/Blueberry_Label.text = "%02d" % resources[1]
+	$CursorCamera/ToolBelt/Resource_Menu/Apple_Label.text = "%02d" % resources[2]
+	$CursorCamera/ToolBelt/Resource_Menu/Poppy_Label.text = "%02d" % resources[3]
 
 func _add_seed(seed_id: int):
 	$Audio/Pickup.play()

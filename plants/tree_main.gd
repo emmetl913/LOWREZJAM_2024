@@ -31,6 +31,8 @@ func _process(_delta):
 		start_energy_prod = not start_energy_prod
 	$Test_Control_Interface/Prod_Interface/Label.text = "Production Interval: %.2f" % prod_interval
 	$Test_Control_Interface/Energy_Interface/Label.text = "Energy Production Rate: %.2f" % energy_rate
+	if health <= 0:
+		get_tree().change_scene_to_file("res://menus/main_menu.tscn")
 
 func _on_gen_energy_timer_timeout():
 	if prod_interval <= 0:

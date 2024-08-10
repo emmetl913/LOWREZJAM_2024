@@ -20,6 +20,7 @@ size = Vector2(16, 16)
 script = ExtResource("1_kag2c")
 energy_rate = 0.5
 prod_interval = 0.5
+health = 15
 unlocked_forest = Array[bool]([false, false, false, false])
 
 [node name="Tree_Sprite" type="TextureButton" parent="."]

@@ -33,13 +33,14 @@ func _move(delta: float):
 	var direction: Vector2
 	if $Sight.focus == $/root/Meadow/Tree_Main:
 		direction = global_position.direction_to($Sight.focus.global_position + Vector2(8, 8))
-	else:
+	elif is_instance_valid($Sight.focus):
 		direction = global_position.direction_to($Sight.focus.global_position)
 	
 	var offset: Vector2 = direction.orthogonal() * sin(Time.get_unix_time_from_system() * Frequency + phase_offset) * dampener
 	move_and_collide((direction + offset).normalized() * delta * speed)
 	
-	$"Primary Attack".look_at(global_position.direction_to($Sight.focus.global_position))
+	if is_instance_valid($Sight.focus):
+		$"Primary Attack".look_at(global_position.direction_to($Sight.focus.global_position))
 
 func _take_damage(damage: int):
 	health -= damage

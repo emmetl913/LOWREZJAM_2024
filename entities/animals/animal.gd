@@ -40,8 +40,10 @@ func _find_plants():
 func _randomly_choose_plant_():
 	_find_plants()
 	var random_plant_index = randi_range(0, list_of_favorite_plants.size()-1)
-	_set_plant(list_of_favorite_plants[random_plant_index])
-	
+	if random_plant_index > 0:
+		_set_plant(list_of_favorite_plants[random_plant_index])
+	else:
+		check_leave_meadow()
 func _on_randomly_choose_plant_timeout():
 	_randomly_choose_plant_()
 
@@ -72,6 +74,9 @@ func check_leave_meadow():
 	if !any_plants_left:
 		return  true
 	return false
+
+func _get_plant():
+	return current_plant
 
 func _set_plant(plant: Node2D):
 	current_plant = plant

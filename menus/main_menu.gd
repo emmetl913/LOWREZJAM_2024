@@ -11,7 +11,6 @@ func _on_quit_pressed():
 
 
 func _on_play_pressed():
-	audio_tween.tween_property($MenuMusic, "volume_db", 0, 2)
 	$Select.play()
 	$Fade.visible = true
 	$AnimationPlayer.play("fade_to_black")
