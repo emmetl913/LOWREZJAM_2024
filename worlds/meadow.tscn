@@ -111,7 +111,7 @@ stream_3/weight = 1.0
 script = ExtResource("1_bko1o")
 animal_spawn_fraction = Vector2i(1, 3)
 guarantee_first_animal_spawn = true
-seeds = Array[int]([10, 10, 10, 0, 0])
+seeds = Array[int]([10, 10, 10, 10, 10])
 
 [node name="TileMap" type="TileMap" parent="."]
 visible = false

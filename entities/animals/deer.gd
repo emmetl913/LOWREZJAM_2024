@@ -14,6 +14,7 @@ var prevhittargetsprite
 
 @export var speed: float
 @export var attack_speed: float
+@export var screen_exit_speed: float
 @export var max_distance_from_plant: float
 @export var knockback: float
 var dir: Vector2
@@ -31,13 +32,14 @@ func _process(delta):
 		_move_leave_meadow(delta)
 		if $SelfDestructSequence.is_stopped():
 			_set_dir_to_plant(animal._get_plant_position())
-			#Switch to set direction to nearest exit off screen
+			dir *= -dir * screen_exit_speed
 			$SelfDestructSequence.start()
 	elif can_move && !is_attacking && !animal.must_eat:
 		_move(delta)
 	elif can_move && is_attacking && !animal.must_eat:
-		if animal.favorite_plant_id == 2: #Squirrel
-			dir = (target.position - position).normalized()
+		if animal.favorite_plant_id == 3: #Squirrel
+			if is_instance_valid(target):
+				dir = (target.position - position).normalized()
 		_attack_move(delta)
 	elif can_move && animal.must_eat and is_instance_valid(animal._get_plant()):
 		_set_dir_to_plant(animal._get_plant_position())
@@ -77,6 +79,10 @@ func _process(delta):
 	else:
 		$AnimatedSprite2D.flip_h = false
 	
+	#if velocity == Vector2(0,0):
+	#	if move_timer.get_time_left() == 0:
+	#		move_timer.start(1)
+	
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Eat":
 		can_move = true
@@ -93,8 +99,7 @@ func _move(delta: float):
 	
 	if is_instance_valid(animal._get_plant()) and _is_far_from_plant(animal._get_plant_position()):
 		_set_dir_to_plant(animal._get_plant_position())
-	elif move_timer.get_time_left() == 0:
-		move_timer.start(10000)
+
 
 func _attack_move(delta: float):
 	var collision = move_and_collide(dir*attack_speed*delta)
@@ -131,7 +136,7 @@ func _on_deal_damage_body_entered(body):
 		$FailedAttackReturnToPlant.stop()
 		dir = -dir
 		#if animal.favorite_plant_id == 1: #Deer identification
-		_apply_knock_back(body, knockback)
+		#_apply_knock_back(body, knockback)
 func _on_attack_speed_timeout():
 	can_attack = true
 

@@ -308,7 +308,7 @@ func setUpNewPlant(res : Resource, new_plant, coords : Vector2):
 	new_plant.setPosition()
 	new_plant._set_growth_timer(new_plant.GROWTH_TIME)
 	new_plant._set_prod_timer(res.PROD_INTERVAL)
-	new_plant._start_growth()
+	#new_plant._start_growth()
 	if new_plant.PLANT_ID == 0:
 		total_sunflowers += 1
 

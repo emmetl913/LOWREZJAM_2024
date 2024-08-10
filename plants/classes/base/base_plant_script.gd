@@ -40,8 +40,8 @@ func _set_growth_timer(new : int):
 	$Growth_Timer.wait_time = new
 func _set_prod_timer(new : int):
 	$Prod_Timer.wait_time = new
-func _start_growth():
-	print("Growth Begun, should take ", $Growth_Timer.wait_time, " to mature")
+#func _start_growth():
+#	print("Growth Begun, should take ", $Growth_Timer.wait_time, " to mature")
 
 func setPosition():
 	if GRID_COORDS.x > 8:
@@ -53,7 +53,7 @@ func setPosition():
 	else:
 		new_y = (((GRID_COORDS.y-8)+1)*8)-12
 	position = Vector2(new_x, new_y)
-	print("New seed position set at: ", position.x," , ", position.y)
+#	print("New seed position set at: ", position.x," , ", position.y)
 	$Sprite2D.texture = DISPLAY_TEXTURE
 	
 func eat():
@@ -71,7 +71,7 @@ func updateTexture():
 func _on_growth_timer_timeout():
 	if RESOURCE_NAME == "ENERGY":
 		$Sprite2D.texture = MATURE_TEXTURE
-		print("Plant has matured")
+#		print("Plant has matured")
 	else:
 		RESOURCES_STORED = 4
 		updateTexture()
@@ -82,7 +82,7 @@ func _on_prod_timer_timeout():
 		parent.stored_energy += PROD_VAL
 	else:
 		parent.resources[PLANT_ID-1] += PROD_VAL
-	print("Plant has produced ", PROD_VAL, " resources of ", RESOURCE_NAME, " type and ID ", PLANT_ID)
+	#print("Plant has produced ", PROD_VAL, " resources of ", RESOURCE_NAME, " type and ID ", PLANT_ID)
 	$Prod_Timer.start()
 
 func _on_regrow_timer_timeout():

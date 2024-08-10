@@ -33,7 +33,7 @@ func _find_plants():
 	for i in range(len(parent.map_data)):
 		for j in range(len(parent.map_data[i])):
 			if parent.map_data[i][j] != null:
-				if parent.map_data[i][j].PLANT_ID == favorite_plant_id:
+				if parent.map_data[i][j].PLANT_ID == favorite_plant_id and (_can_eat_plant(parent.map_data[i][j]) or parent.map_data[i][j].get_child(0).texture == parent.map_data[i][j].SEED_TEXTURE):
 					var plant = parent.map_data[i][j]
 					list_of_favorite_plants.append(plant)
 
@@ -53,7 +53,7 @@ func _set_plant_to_closest_plant():
 	var target = null
 	_find_plants()
 	for i in list_of_favorite_plants:
-		if i.position.distance_to(get_child(0).position) < min_distance and _can_eat_plant(i):
+		if i.position.distance_to(get_child(0).position) < min_distance and (_can_eat_plant(i) or i.get_child(0).texture == i.SEED_TEXTURE):
 			min_distance = i.position.distance_to(get_child(0).position)
 			target = i
 	return target
@@ -69,12 +69,11 @@ func check_leave_meadow():
 	var any_plants_left = false
 	for i in list_of_favorite_plants:
 		if i != null:
-			if i._get_plant_id() == favorite_plant_id && i.RESOURCES_STORED > 0:
+			if i._get_plant_id() == favorite_plant_id && (_can_eat_plant(i) or i.get_child(0).texture == i.SEED_TEXTURE):
 				any_plants_left = true 
 	if !any_plants_left:
-		return  true
-	return false
-
+		must_leave = true
+	
 func _get_plant():
 	return current_plant
 
@@ -82,14 +81,20 @@ func _set_plant(plant: Node2D):
 	current_plant = plant
 
 func _get_plant_position():
-	return current_plant.position
-	
+	if !is_instance_valid(current_plant):
+		check_leave_meadow()
+	if !must_leave:
+		_set_plant(_set_plant_to_closest_plant())
+		if current_plant != null:
+			return current_plant.position
+		else:
+			return Vector2(0,0)
+	#Failsafe for some reason it still returns null ;/
+	return Vector2(0,0)
 
 func _on_choose_random_favorite_plant_timeout():
 	_randomly_choose_plant_()
-	var random_plant_index = randi_range(0, list_of_favorite_plants.size()-1)
-	_set_plant(list_of_favorite_plants[random_plant_index])
-	$ChooseRandomFavoritePlant.start(randf_range(5,15))
+	#$ChooseRandomFavoritePlant.start(randf_range(5,15))
 
 func _random_spawn_position():
 	var vec = Vector2.RIGHT.rotated(randf_range(0, PI))
@@ -141,7 +146,7 @@ func _animal_eat():
 		current_plant.eat()
 	#Plant has no resources. 
 	else: 
-		must_leave = check_leave_meadow()
+		check_leave_meadow()
 		if !must_leave:
 			_set_plant(_set_plant_to_closest_plant())
 
