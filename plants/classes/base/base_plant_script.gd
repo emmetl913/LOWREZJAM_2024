@@ -75,6 +75,7 @@ func _on_growth_timer_timeout():
 	else:
 		RESOURCES_STORED = 4
 		updateTexture()
+		parent.resources[PLANT_ID-1] += 4
 	$Prod_Timer.start()
 
 func _on_prod_timer_timeout():
