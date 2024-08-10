@@ -69,7 +69,7 @@ func eat():
 		$Regrow_Timer.start()
 	
 func updateTexture():
-	if !withered:
+	if !withered && (RESOURCES_STORED >= 0 && RESOURCES_STORED <= 4):
 		$Sprite2D.texture = STAGE_TEXTURES[RESOURCES_STORED]
 
 func _on_growth_timer_timeout():
