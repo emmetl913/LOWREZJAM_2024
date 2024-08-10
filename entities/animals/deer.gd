@@ -68,7 +68,7 @@ func _process(delta):
 		#Otherwise this timer is cancelled on successful attack
 		$FailedAttackReturnToPlant.start($FailedAttackReturnToPlant.wait_time)
 	elif animal.enemies_in_range.size() == 0:
-		is_attacking == false
+		is_attacking = false
 	#Sprite Rotation!
 	if dir.x > 0:
 		$AnimatedSprite2D.flip_h = true

@@ -13,8 +13,8 @@
 script = ExtResource("3_vkg0m")
 PLANT_ID = 4
 RESOURCE_NAME = "FOOD"
-PROD_VAL = 5
-PROD_INTERVAL = 5.0
+PROD_VAL = 1
+PROD_INTERVAL = 2.0
 WEIGHT = 10
 HEALTH = 5
 SEED_TEXTURE = ExtResource("2_vjqs1")

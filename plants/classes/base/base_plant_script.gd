@@ -60,6 +60,7 @@ func eat():
 	if RESOURCES_STORED > 0:
 		print("resource eaten")
 		RESOURCES_STORED -= 1
+		parent.resources[PLANT_ID-1] -= 1
 		updateTexture()
 		$Regrow_Timer.wait_time = REGROW_TIME
 		$Regrow_Timer.start()
@@ -71,21 +72,22 @@ func _on_growth_timer_timeout():
 	if RESOURCE_NAME == "ENERGY":
 		$Sprite2D.texture = MATURE_TEXTURE
 		print("Plant has matured")
-		$Prod_Timer.start()
 	else:
 		RESOURCES_STORED = 4
 		updateTexture()
+	$Prod_Timer.start()
 
 func _on_prod_timer_timeout():
 	if RESOURCE_NAME == "ENERGY":
 		parent.stored_energy += PROD_VAL
 	else:
-		RESOURCES_STORED += PROD_VAL
-	print("Plant has produced ", PROD_VAL, " resources")
+		parent.resources[PLANT_ID-1] += PROD_VAL
+	print("Plant has produced ", PROD_VAL, " resources of ", RESOURCE_NAME, " type and ID ", PLANT_ID)
 	$Prod_Timer.start()
 
 func _on_regrow_timer_timeout():
 	RESOURCES_STORED += 1;
+	parent.resources[PLANT_ID-1] += 1
 	updateTexture()
 	if RESOURCES_STORED < 4:
 		$Regrow_Timer.wait_time = REGROW_TIME
