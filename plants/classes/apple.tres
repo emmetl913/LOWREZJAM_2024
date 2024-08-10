@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Base_Plant" load_steps=9 format=3 uid="uid://cyv1vth4201oo"]
+[gd_resource type="Resource" script_class="Base_Plant" load_steps=10 format=3 uid="uid://cyv1vth4201oo"]
 
 [ext_resource type="Texture2D" uid="uid://wpdtd3vxthpw" path="res://assets/sprites/mature_apple.png" id="1_26kio"]
 [ext_resource type="Texture2D" uid="uid://bujaahxnmv2a2" path="res://assets/sprites/apple_seed.png" id="2_dspei"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://car8pp2fy55yc" path="res://assets/sprites/plants/apple_2.png" id="5_ip3tl"]
 [ext_resource type="Texture2D" uid="uid://bdeapcubuuxwx" path="res://assets/sprites/plants/apple_3.png" id="6_c3jqg"]
 [ext_resource type="Texture2D" uid="uid://d0kjic5gxed78" path="res://assets/sprites/plants/apple_4.png" id="7_uejan"]
+[ext_resource type="Texture2D" uid="uid://bbob0ucuibib2" path="res://assets/sprites/plants/apple_withered.png" id="8_mdmt5"]
 
 [resource]
 script = ExtResource("3_ijatd")
@@ -20,6 +21,7 @@ HEALTH = 5
 SEED_TEXTURE = ExtResource("2_dspei")
 MATURE_TEXTURE = ExtResource("1_26kio")
 STAGE_TEXTURES = Array[Texture]([ExtResource("3_qw24o"), ExtResource("4_4j8ts"), ExtResource("5_ip3tl"), ExtResource("6_c3jqg"), ExtResource("7_uejan")])
+WITHERED_TEXTURE = ExtResource("8_mdmt5")
 GRID_COORDS = Vector2(-1, -1)
 GROWTH_TIME = 3
 REGROW_TIME = 10

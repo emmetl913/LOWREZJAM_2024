@@ -25,6 +25,14 @@ one_shot = true
 wait_time = 1.5
 autostart = true
 
+[node name="Wither_Buffer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Wither" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -34,4 +42,6 @@ shape = SubResource("RectangleShape2D_mkf8v")
 [connection signal="timeout" from="Prod_Timer" to="." method="_on_prod_timer_timeout"]
 [connection signal="timeout" from="Regrow_Timer" to="." method="_on_regrow_timer_timeout"]
 [connection signal="timeout" from="Energy_Timer" to="." method="_on_energy_timer_timeout"]
+[connection signal="timeout" from="Wither_Buffer" to="." method="_on_wither_buffer_timeout"]
+[connection signal="timeout" from="Wither" to="." method="_on_wither_timeout"]
 [connection signal="mouse_entered" from="StaticBody2D" to="." method="_on_static_body_2d_mouse_entered"]
