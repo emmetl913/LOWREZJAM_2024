@@ -139,3 +139,4 @@ func _animal_eat():
 		must_leave = check_leave_meadow()
 		if !must_leave:
 			_set_plant(_set_plant_to_closest_plant())
+

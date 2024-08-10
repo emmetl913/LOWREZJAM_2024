@@ -37,8 +37,13 @@ func _process(delta):
 		_move(delta)
 	elif can_move && is_attacking && !animal.must_eat:
 		if animal.favorite_plant_id == 2: #Squirrel
-			dir = (target.position - position).normalized()
-		_attack_move(delta)
+			if(target):
+				dir = (target.position - position).normalized()
+				_attack_move(delta)
+			else: 
+				_move(delta)
+		else:
+			_attack_move(delta)
 	elif can_move && animal.must_eat:
 		_set_dir_to_plant(animal._get_plant_position())
 		if !position.distance_to(animal._get_plant_position()) < animal.eating_range:

@@ -22,7 +22,7 @@ animations = [{
 size = Vector2(3, 7)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n0p4s"]
-radius = 16.0
+radius = 30.0167
 
 [sub_resource type="Animation" id="Animation_qiltk"]
 resource_name = "Eat"
@@ -55,8 +55,9 @@ attack_speed = 1.0
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("2_30fl8")
 speed = 15.0
-attack_speed = 30.0
-max_distance_from_plant = 3.0
+attack_speed = 45.0
+max_distance_from_plant = 2.0
+knockback = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 0.5)
@@ -84,6 +85,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="AttackSpeed" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.5
 one_shot = true
 
 [node name="RunAway" type="Timer" parent="CharacterBody2D"]
