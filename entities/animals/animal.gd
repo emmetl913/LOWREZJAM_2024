@@ -53,12 +53,14 @@ func _set_plant_to_closest_plant():
 	var target = null
 	_find_plants()
 	for i in list_of_favorite_plants:
-		if i.position.distance_to(get_node("CharacterBody2D").position) < min_distance and (_can_eat_plant(i) or i.get_child(0).texture == i.SEED_TEXTURE):
-			min_distance = i.position.distance_to(get_child(0).position)
-			target = i
+		#Dont know why but sometimes we aren't able to find an animal's characterbody2d ;0
+		if get_node("CharacterBody2D") != null:
+			if i.position.distance_to(get_node("CharacterBody2D").position) < min_distance and (_can_eat_plant(i) or i.get_child(0).texture == i.SEED_TEXTURE):
+				min_distance = i.position.distance_to(get_child(0).position)
+				target = i
 	if target == null:
-		_randomly_choose_plant_()
-		target = current_plant
+		must_leave = true
+		#target = current_plant
 	if is_instance_valid(target):
 		return target
 	else:

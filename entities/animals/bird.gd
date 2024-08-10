@@ -17,7 +17,10 @@ var prevhittargetsprite
 @export var screen_exit_speed: float
 @export var max_distance_from_plant: float
 @export var knockback: float
+@export var bullet_speed: float
 var dir: Vector2
+
+@onready var birdbullet = preload("res://entities/animals/bird_bullet.tscn")
 
 func _ready():
 	animal = get_parent()
@@ -64,10 +67,12 @@ func _process(delta):
 		dir = (target.position - position).normalized()
 		can_attack = false
 		is_attacking = true
+		_bird_shoot()
+		$AttackSpeed.start($AttackSpeed.wait_time)
 		#This is a failsafe: sometimes deer miss with current their dash being set to the position
 		#of their target right when they choose it. This makes deer return to plant if they miss
 		#Otherwise this timer is cancelled on successful attack
-		$FailedAttackReturnToPlant.start($FailedAttackReturnToPlant.wait_time)
+
 	elif animal.enemies_in_range.size() == 0:
 		is_attacking = false
 	#Sprite Rotation!
@@ -76,6 +81,13 @@ func _process(delta):
 	else:
 		$AnimatedSprite2D.flip_h = false
 	
+func _bird_shoot():
+	var bullet = birdbullet.instantiate()
+	bullet.dir = (target.position - position).normalized()
+	bullet.bullet_speed = bullet_speed
+	bullet.position = position
+	get_parent().get_parent().add_child(bullet)
+
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Eat":
 		can_move = true
@@ -118,18 +130,16 @@ func _on_pwint_timeout():
 func _on_enter_screen_timeout():
 	can_move = true
 
-func _on_deal_damage_body_entered(body):
-	if body.is_in_group("Spirit") && is_attacking:
-		body._take_damage(1)
-		prevhittargetsprite = body.get_node("Visual Component")
-		var tween: Tween = create_tween()
-		tween.tween_property(prevhittargetsprite, "self_modulate", Color(1,0,0,1), .1)
-		$AttackSpeed.start($AttackSpeed.wait_time)
-		$RunAway.start($RunAway.wait_time)
-		$pwint.start(.1)
+#func _on_deal_damage_body_entered(body):
+	#if body.is_in_group("Spirit") && is_attacking:
+	#	body._take_damage(1)
+	#	prevhittargetsprite = body.get_node("Visual Component")
+	#	var tween: Tween = create_tween()
+	#	tween.tween_property(prevhittargetsprite, "self_modulate", Color(1,0,0,1), .1)
+		#$RunAway.start($RunAway.wait_time)
+		#$pwint.start(.1)
 		#Successful attack: Don't run failsafe 
-		$FailedAttackReturnToPlant.stop()
-		dir = -dir
+	#	dir = -dir
 		#if animal.favorite_plant_id == 1: #Deer identification
 		#_apply_knock_back(body, knockback)
 func _on_attack_speed_timeout():

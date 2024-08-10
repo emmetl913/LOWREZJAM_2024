@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://clmkm6xumi801"]
+
+[ext_resource type="Script" path="res://entities/animals/bird_bullet.gd" id="1_vhsgj"]
+[ext_resource type="Texture2D" uid="uid://c0u67y4pk72k7" path="res://assets/sprites/blueberry_seed.png" id="1_wt7sx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m21m5"]
+size = Vector2(1.5, 1.5)
+
+[node name="BirdBullet" type="Area2D"]
+script = ExtResource("1_vhsgj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_m21m5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.470588, 0.278431, 1, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_wt7sx")
+
+[node name="Lifetime" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]
