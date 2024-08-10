@@ -13,12 +13,15 @@ var new_y
 @export var SEED_TEXTURE : Texture: set = _set_seed_texture, get = _get_seed_texture
 @export var MATURE_TEXTURE : Texture: set = _set_mature_texture, get = _get_mature_texture
 @export var STAGE_TEXTURES: Array[Texture]
+@export var WITHERED_TEXTURE: Texture
 @export var DISPLAY_TEXTURE : Texture
 @export var GRID_COORDS : Vector2
 @export var GROWTH_TIME : int
 @export var REGROW_TIME : int
 @export var RESOURCES_STORED : int
 @export var ENERGY_COST : int
+
+var withered
 
 var parent
 
@@ -66,15 +69,18 @@ func eat():
 		$Regrow_Timer.start()
 	
 func updateTexture():
-	$Sprite2D.texture = STAGE_TEXTURES[RESOURCES_STORED]
+	if !withered:
+		$Sprite2D.texture = STAGE_TEXTURES[RESOURCES_STORED]
 
 func _on_growth_timer_timeout():
+	withered = false
 	if RESOURCE_NAME == "ENERGY":
 		$Sprite2D.texture = MATURE_TEXTURE
 #		print("Plant has matured")
 	else:
 		RESOURCES_STORED = 4
 		updateTexture()
+		parent.resources[PLANT_ID-1] += 4
 	$Prod_Timer.start()
 
 func _on_prod_timer_timeout():
@@ -93,18 +99,52 @@ func _on_regrow_timer_timeout():
 		$Regrow_Timer.wait_time = REGROW_TIME
 		$Regrow_Timer.start()
 
-
 func _on_energy_timer_timeout():
+	parent.stored_energy -= ENERGY_COST
 	if parent.stored_energy > 0:
-		parent.stored_energy -= ENERGY_COST
 		if HEALTH < 5:
 			HEALTH += 1
 	else:
-		print("A plant has taken damage")
-		HEALTH -= 1
+		$Wither_Buffer.wait_time = 10
+		$Wither_Buffer.start()
+		
+		#pause energy/regrow timer so wither timer doesn't restart
+		$Energy_Timer.stop()
+		$Regrow_Timer.stop()
+		$Prod_Timer.stop()
+		
+		print("A plant is in danger of withering")
+
+# Withering is buffered so plants don't immediately die upon energy dipping below 0
+func _on_wither_buffer_timeout():
+	if parent.stored_energy <= 0:
+		wither()
+	else:
+		$Energy_Timer.start()
+		$Regrow_Timer.start()
+		$Prod_Timer.start()
+
+func take_damage():
+	print("A plant has taken damage")
+	HEALTH -= 1
 	if HEALTH <= 0:
 		_death()
+
+func wither():
+	withered = true
+	RESOURCES_STORED = 0
+	$Sprite2D.texture = WITHERED_TEXTURE
+	
+	#start wither timer - when it is up plant disappears
+	$Wither.start()
+
+func _on_wither_timeout():
+	print("wither timeout")
+	_death()
 
 func _death():
 	print("A plant has died?")
 	queue_free()
+
+
+

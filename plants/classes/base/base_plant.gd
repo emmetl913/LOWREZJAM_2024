@@ -11,6 +11,7 @@ class_name Base_Plant
 @export var SEED_TEXTURE : Texture: set = _set_seed_texture, get = _get_seed_texture
 @export var MATURE_TEXTURE : Texture: set = _set_mature_texture, get = _get_mature_texture
 @export var STAGE_TEXTURES : Array[Texture]
+@export var WITHERED_TEXTURE: Texture
 @export var DISPLAY_TEXTURE : Texture
 @export var GRID_COORDS : Vector2
 @export var GROWTH_TIME : int
