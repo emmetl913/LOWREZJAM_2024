@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Base_Plant" load_steps=9 format=3 uid="uid://fme1qmk7msuc"]
+[gd_resource type="Resource" script_class="Base_Plant" load_steps=10 format=3 uid="uid://fme1qmk7msuc"]
 
 [ext_resource type="Texture2D" uid="uid://l5cgqx71sx6y" path="res://assets/sprites/mature_carrot.png" id="1_446gp"]
 [ext_resource type="Texture2D" uid="uid://cc50neu71ceb5" path="res://assets/sprites/carrot_seed.png" id="2_2obkw"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dlbhfvch8uqi0" path="res://assets/sprites/plants/carrot_2.png" id="5_6d51w"]
 [ext_resource type="Texture2D" uid="uid://dm0v51rj4ayuv" path="res://assets/sprites/plants/carrot_3.png" id="6_td746"]
 [ext_resource type="Texture2D" uid="uid://sl6avjshbe26" path="res://assets/sprites/plants/carrot_4.png" id="7_oux1p"]
+[ext_resource type="Texture2D" uid="uid://dq0g1rexgwsok" path="res://assets/sprites/plants/carrot_withered.png" id="8_30syc"]
 
 [resource]
 script = ExtResource("3_qqyx3")
@@ -20,6 +21,7 @@ HEALTH = 5
 SEED_TEXTURE = ExtResource("2_2obkw")
 MATURE_TEXTURE = ExtResource("1_446gp")
 STAGE_TEXTURES = Array[Texture]([ExtResource("3_fa2yo"), ExtResource("4_wb551"), ExtResource("5_6d51w"), ExtResource("6_td746"), ExtResource("7_oux1p")])
+WITHERED_TEXTURE = ExtResource("8_30syc")
 GRID_COORDS = Vector2(-1, -1)
 GROWTH_TIME = 3
 REGROW_TIME = 11

@@ -299,6 +299,7 @@ func setUpNewPlant(res : Resource, new_plant, coords : Vector2):
 	new_plant.DISPLAY_TEXTURE = res.SEED_TEXTURE
 	new_plant.MATURE_TEXTURE = res.MATURE_TEXTURE
 	new_plant.STAGE_TEXTURES = res.STAGE_TEXTURES
+	new_plant.WITHERED_TEXTURE = res.WITHERED_TEXTURE
 	new_plant.GRID_COORDS = coords
 	new_plant.GROWTH_TIME = res.GROWTH_TIME
 	new_plant.REGROW_TIME = res.REGROW_TIME

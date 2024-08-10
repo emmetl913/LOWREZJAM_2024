@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Base_Plant" load_steps=9 format=3 uid="uid://4xj5c62ok636"]
+[gd_resource type="Resource" script_class="Base_Plant" load_steps=10 format=3 uid="uid://4xj5c62ok636"]
 
 [ext_resource type="Texture2D" uid="uid://w2nlgtm5yxfp" path="res://assets/sprites/mature_blueberry.png" id="1_w5xs7"]
 [ext_resource type="Texture2D" uid="uid://c0u67y4pk72k7" path="res://assets/sprites/blueberry_seed.png" id="2_oa7iu"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b0danfgnfm08i" path="res://assets/sprites/plants/blueberry_2.png" id="5_5hl47"]
 [ext_resource type="Texture2D" uid="uid://djijk1kx8hm8o" path="res://assets/sprites/plants/blueberry_3.png" id="6_ilrdx"]
 [ext_resource type="Texture2D" uid="uid://bemikugl35p4a" path="res://assets/sprites/plants/blueberry_4.png" id="7_151bh"]
+[ext_resource type="Texture2D" uid="uid://gqsd1g2k24r0" path="res://assets/sprites/plants/blueberry_withered.png" id="8_qqdjy"]
 
 [resource]
 script = ExtResource("3_qg8ib")
@@ -20,6 +21,7 @@ HEALTH = 10
 SEED_TEXTURE = ExtResource("2_oa7iu")
 MATURE_TEXTURE = ExtResource("1_w5xs7")
 STAGE_TEXTURES = Array[Texture]([ExtResource("3_agkl7"), ExtResource("4_6ac24"), ExtResource("5_5hl47"), ExtResource("6_ilrdx"), ExtResource("7_151bh")])
+WITHERED_TEXTURE = ExtResource("8_qqdjy")
 GRID_COORDS = Vector2(-1, -1)
 GROWTH_TIME = 3
 REGROW_TIME = 10

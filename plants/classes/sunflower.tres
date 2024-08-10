@@ -16,6 +16,7 @@ HEALTH = 5
 SEED_TEXTURE = ExtResource("1_i2p8r")
 MATURE_TEXTURE = ExtResource("1_t3ubv")
 STAGE_TEXTURES = Array[Texture]([ExtResource("3_u32kl"), ExtResource("3_u32kl"), ExtResource("3_u32kl"), ExtResource("3_u32kl"), ExtResource("3_u32kl")])
+WITHERED_TEXTURE = ExtResource("3_u32kl")
 GRID_COORDS = Vector2(-1, -1)
 GROWTH_TIME = 3
 REGROW_TIME = 0
