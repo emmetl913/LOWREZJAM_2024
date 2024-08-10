@@ -44,6 +44,7 @@ func _on_sign_texture_pressed():
 
 func _on_button_pressed():
 	if parent.resources[plant_id] >= 250:
+		$Sprite2D.visible = false
 		bought = true
 		parent.resources[plant_id] -= 250
 		$Drain_timer.start()
