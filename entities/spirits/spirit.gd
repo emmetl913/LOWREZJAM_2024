@@ -57,6 +57,7 @@ func _move(delta: float):
 
 func _take_damage(damage: int):
 	health -= damage
+	$AnimationPlayer.play("Hurt")
 	
 	if (health <= 0):
 		_death()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dspt07bwdtglm"]
+[gd_scene load_steps=10 format=3 uid="uid://dspt07bwdtglm"]
 
 [ext_resource type="Texture2D" uid="uid://dj5d7mulp1asp" path="res://assets/sprites/Spirit.png" id="1_mpjyt"]
 [ext_resource type="Script" path="res://entities/spirits/spirit.gd" id="2_aybnr"]
@@ -14,8 +14,31 @@ radius = 15.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bar8g"]
 size = Vector2(3, 4)
 
+[sub_resource type="Animation" id="Animation_w8avu"]
+resource_name = "Hurt"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual Component:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f75ql"]
+_data = {
+"Hurt": SubResource("Animation_w8avu")
+}
+
 [node name="Spirit" type="CharacterBody2D" groups=["Spirit"]]
 script = ExtResource("2_aybnr")
+health = 2
 
 [node name="Damage Zone" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_obhsy")
@@ -37,6 +60,11 @@ position = Vector2(4, 0)
 shape = SubResource("RectangleShape2D_bar8g")
 
 [node name="Attack Timer" type="Timer" parent="Primary Attack"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f75ql")
+}
 
 [connection signal="body_entered" from="Sight" to="Sight" method="_on_body_entered"]
 [connection signal="body_exited" from="Sight" to="Sight" method="_on_body_exited"]

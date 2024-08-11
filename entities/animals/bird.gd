@@ -91,6 +91,7 @@ func _bird_shoot():
 	bullet.bullet_speed = bullet_speed
 	bullet.position = position
 	bullet.target = target
+	bullet.knockback = knockback
 	get_parent().get_parent().add_child(bullet)
 
 func _on_animation_player_animation_finished(anim_name):

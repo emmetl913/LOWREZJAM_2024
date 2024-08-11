@@ -46,7 +46,7 @@ func _process(delta):
 		_move(delta)
 	
 	elif can_move && is_attacking && !animal.must_eat:
-		if is_instance_valid(target): #homing melee attack
+		if is_instance_valid(target) and $RunAway.time_left == 0: #homing melee attack
 			dir = (target.position - position).normalized()
 		#else:
 			#target = animal._select_closest_enemy():
@@ -132,11 +132,6 @@ func _on_recalculate_move_dir_timeout():
 		dir = dir.normalized()
 
 
-func _on_pwint_timeout():
-	if is_instance_valid(prevhittargetsprite):
-		var tween: Tween = create_tween()
-		tween.tween_property(prevhittargetsprite, "self_modulate", Color(1,1,1,1), .1)
-
 func _on_enter_screen_timeout():
 	can_move = true
 
@@ -146,16 +141,12 @@ func _on_deal_damage_body_entered(body):
 		if $PostStealthFrenzy.time_left <= 0:
 			$PostStealthFrenzy.start()
 		body._take_damage(1)
-		prevhittargetsprite = body.get_node("Visual Component")
-		var tween: Tween = create_tween()
-		tween.tween_property(prevhittargetsprite, "self_modulate", Color(1,0,0,1), .1)
 		$AttackSpeed.start($AttackSpeed.wait_time)
 		$RunAway.start($RunAway.wait_time)
-		$pwint.start(.1)
 		#Successful attack: Don't run failsafe 
 		$FailedAttackReturnToPlant.stop()
-		#dir = -dir
-		#_apply_knock_back(body, knockback)
+		dir = -dir
+		_apply_knock_back(body, knockback)
 func _on_attack_speed_timeout():
 	can_attack = true
 

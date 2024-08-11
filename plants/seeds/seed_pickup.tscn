@@ -17,7 +17,7 @@ size = Vector2(4, 4)
 [node name="SeedPickup" type="Node2D"]
 script = ExtResource("1_c557q")
 item_speed = 100.0
-item_acceleration = 0.01
+item_acceleration = 0.05
 seedsprites = Array[Texture2D]([ExtResource("2_muyre"), ExtResource("3_8j748"), ExtResource("1_hl7hx"), ExtResource("5_adt3b"), ExtResource("6_jhn4l")])
 
 [node name="MouseDetectionRange" type="Area2D" parent="."]
