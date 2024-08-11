@@ -75,4 +75,5 @@ func _take_damage(damage: int):
 		_death()
 
 func _death():
+	print("Tree Death")
 	get_tree().quit() # REPLACE HERE WHAT YOU WANT TO HAPPEN WHEN THE PLAYER LOSSES THE GAME
