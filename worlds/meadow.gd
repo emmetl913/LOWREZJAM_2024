@@ -63,6 +63,7 @@ func _ready():
 	energy_menu.visible = false
 	seeds_menu.visible = false
 	options_menu.visible = true
+	update_highlight()
 
 func setupBushes():
 	$Bushes/Bush_Sign_North.orientation = 0
@@ -99,7 +100,7 @@ func _add_seed(seed_id: int):
 	setup_seed_totals()
 
 func updateEnergyMenu():
-	energy_text.text = "Sun Power: %.2f" % stored_energy + "\nSunflowers: %.2f" % ((sunflower_reference.PROD_VAL/sunflower_reference.PROD_INTERVAL)*total_sunflowers)
+	energy_text.text = "Sun Power: %d" % stored_energy + "\nSunflowers: %d" % ((sunflower_reference.PROD_VAL/sunflower_reference.PROD_INTERVAL)*total_sunflowers)
 
 func updateEnergyIndicator():
 	var label = $"CursorCamera/Energy Indicator/Label"
@@ -232,7 +233,7 @@ func update_highlight():
 		highlight.visible = false
 	else:
 		highlight.visible = true
-		highlight.position.x = 8 * held_seed_id
+		highlight.position.x = 9 * held_seed_id
 
 func _input(event):
 	if is_holding_seed and event.is_action_pressed("select") and seeds[held_seed_id] > 0:

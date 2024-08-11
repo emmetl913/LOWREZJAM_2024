@@ -1,27 +1,28 @@
-[gd_scene load_steps=44 format=3 uid="uid://bef63fudsi14e"]
+[gd_scene load_steps=45 format=3 uid="uid://bef63fudsi14e"]
 
 [ext_resource type="Script" path="res://worlds/meadow.gd" id="1_bko1o"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_ksmiv"]
 [ext_resource type="PackedScene" uid="uid://cray6xpq4vkl" path="res://plants/tree_main.tscn" id="3_3tjh2"]
 [ext_resource type="LabelSettings" uid="uid://bf8m6t4hiop7d" path="res://assets/fonts/default_label_settings.tres" id="3_w168r"]
 [ext_resource type="Script" path="res://util/CursorCamera.gd" id="5_ggpfp"]
-[ext_resource type="Texture2D" uid="uid://c310c4ujahmxn" path="res://assets/sprites/yellow_pixel_4x4.png" id="7_87csh"]
 [ext_resource type="Texture2D" uid="uid://bgsxux7ffl2ak" path="res://assets/sprites/toolbar/tool_open.png" id="7_844b8"]
 [ext_resource type="Texture2D" uid="uid://c04nqs6j331i7" path="res://assets/sprites/toolbar/tool_seeds.png" id="8_qwdxx"]
 [ext_resource type="Texture2D" uid="uid://bc71aeqfrjc4d" path="res://assets/sprites/toolbar/tool_energy.png" id="9_os0a2"]
 [ext_resource type="Texture2D" uid="uid://ci5s0lu82i81y" path="res://assets/sprites/toolbar/tool_resource.png" id="10_1io00"]
 [ext_resource type="Texture2D" uid="uid://dew2q8k2q1l2i" path="res://assets/sprites/buttons/exit_to_mm_temp_button.png" id="10_p3v3i"]
 [ext_resource type="Texture2D" uid="uid://ccq1kqhm81gbm" path="res://assets/sprites/toolbar/tool_menu_background.png" id="10_yslyd"]
-[ext_resource type="Texture2D" uid="uid://cc50neu71ceb5" path="res://assets/sprites/carrot_seed.png" id="11_1mrda"]
 [ext_resource type="Texture2D" uid="uid://ngbdld7ow7e2" path="res://assets/sprites/buttons/exit_to_mm_temp_button_hover.png" id="11_doao0"]
 [ext_resource type="Texture2D" uid="uid://66w7ogqp7mvk" path="res://assets/sprites/toolbar/seed_highlight.png" id="11_s35mj"]
-[ext_resource type="Texture2D" uid="uid://diupao06mgiwt" path="res://assets/sprites/poppy_seed.png" id="12_bmanu"]
-[ext_resource type="Texture2D" uid="uid://c0u67y4pk72k7" path="res://assets/sprites/blueberry_seed.png" id="13_w718l"]
+[ext_resource type="Texture2D" uid="uid://d0xy2pfsrpq0m" path="res://assets/sprites/plants/sunflower_seed.png" id="13_2jaid"]
 [ext_resource type="PackedScene" uid="uid://dby4wixwjy120" path="res://util/mouse_dragger.tscn" id="14_gar52"]
 [ext_resource type="Texture2D" uid="uid://bsbte62wt5lyp" path="res://assets/sprites/Sun Dial.png" id="14_o8xln"]
 [ext_resource type="Texture2D" uid="uid://bujaahxnmv2a2" path="res://assets/sprites/apple_seed.png" id="14_vfal4"]
+[ext_resource type="Texture2D" uid="uid://bdw52ri2m7x7q" path="res://assets/sprites/plants/carrot_seed.png" id="14_vfsc0"]
+[ext_resource type="Texture2D" uid="uid://d07u4h0a2am6x" path="res://assets/sprites/plants/blueberry_seed.png" id="15_8ymcu"]
 [ext_resource type="Script" path="res://managers/day_night_cycle.gd" id="15_t7viv"]
+[ext_resource type="Texture2D" uid="uid://nk2umuvna3ve" path="res://assets/sprites/plants/apple_seed.png" id="16_hldj8"]
 [ext_resource type="PackedScene" uid="uid://bp6ubf7acq5oj" path="res://managers/entity_spawn_system.tscn" id="17_cf0qp"]
+[ext_resource type="Texture2D" uid="uid://duaf7ryed24vk" path="res://assets/sprites/plants/poppy_seed.png" id="17_t1fq6"]
 [ext_resource type="Texture2D" uid="uid://sl6avjshbe26" path="res://assets/sprites/plants/carrot_4.png" id="19_7say1"]
 [ext_resource type="Texture2D" uid="uid://bnkrjc8ylndue" path="res://assets/sprites/energy_indicator.png" id="19_iurs6"]
 [ext_resource type="Texture2D" uid="uid://y3vfd876t6tg" path="res://assets/sprites/plants/poppy_4.png" id="20_71bno"]
@@ -227,33 +228,31 @@ stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Seeds_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
-visible = false
 z_index = 3
 position = Vector2(0, 26)
 texture = ExtResource("10_yslyd")
 
 [node name="Highlight" type="Node2D" parent="CursorCamera/ToolBelt/Seeds_Menu"]
-visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="CursorCamera/ToolBelt/Seeds_Menu/Highlight"]
-position = Vector2(-16, -3)
+position = Vector2(-18, -3)
 texture = ExtResource("11_s35mj")
 
 [node name="Sunflower" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
 z_index = 5
-offset_left = -18.0
+offset_left = -20.0
 offset_top = -5.0
-offset_right = -14.0
+offset_right = -16.0
 offset_bottom = -1.0
-texture_normal = ExtResource("7_87csh")
+texture_normal = ExtResource("13_2jaid")
 stretch_mode = 0
 
 [node name="Sunflower_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
 z_index = 5
 texture_filter = 1
-offset_left = -20.0
+offset_left = -22.0
 offset_top = -2.0
-offset_right = -12.0
+offset_right = -14.0
 offset_bottom = 6.0
 theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = SubResource("LabelSettings_sepq4")
@@ -261,19 +260,19 @@ autowrap_mode = 3
 
 [node name="Carrot" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
 z_index = 5
-offset_left = -10.0
+offset_left = -11.0
 offset_top = -5.0
-offset_right = -6.0
+offset_right = -7.0
 offset_bottom = -1.0
-texture_normal = ExtResource("11_1mrda")
+texture_normal = ExtResource("14_vfsc0")
 stretch_mode = 0
 
 [node name="Carrot_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
 z_index = 5
 texture_filter = 1
-offset_left = -12.0
+offset_left = -13.0
 offset_top = -2.0
-offset_right = -4.0
+offset_right = -5.0
 offset_bottom = 6.0
 theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = SubResource("LabelSettings_sepq4")
@@ -285,7 +284,7 @@ offset_left = -2.0
 offset_top = -5.0
 offset_right = 2.0
 offset_bottom = -1.0
-texture_normal = ExtResource("13_w718l")
+texture_normal = ExtResource("15_8ymcu")
 stretch_mode = 0
 
 [node name="Blueberry_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
@@ -301,19 +300,19 @@ autowrap_mode = 3
 
 [node name="Apple" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
 z_index = 5
-offset_left = 6.0
+offset_left = 7.0
 offset_top = -5.0
-offset_right = 10.0
+offset_right = 11.0
 offset_bottom = -1.0
-texture_normal = ExtResource("14_vfal4")
+texture_normal = ExtResource("16_hldj8")
 stretch_mode = 0
 
 [node name="Apple_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
 z_index = 5
 texture_filter = 1
-offset_left = 4.0
+offset_left = 5.0
 offset_top = -2.0
-offset_right = 12.0
+offset_right = 13.0
 offset_bottom = 6.0
 theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = SubResource("LabelSettings_sepq4")
@@ -321,19 +320,19 @@ autowrap_mode = 3
 
 [node name="Poppy" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
 z_index = 5
-offset_left = 14.0
+offset_left = 16.0
 offset_top = -5.0
-offset_right = 18.0
+offset_right = 20.0
 offset_bottom = -1.0
-texture_normal = ExtResource("12_bmanu")
+texture_normal = ExtResource("17_t1fq6")
 stretch_mode = 0
 
 [node name="Poppy_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
 z_index = 5
 texture_filter = 1
-offset_left = 12.0
+offset_left = 14.0
 offset_top = -2.0
-offset_right = 20.0
+offset_right = 22.0
 offset_bottom = 6.0
 theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = SubResource("LabelSettings_sepq4")
@@ -395,6 +394,7 @@ autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="Resource_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
+visible = false
 z_index = 3
 position = Vector2(0, 26)
 texture = ExtResource("10_yslyd")
@@ -484,6 +484,7 @@ script = ExtResource("15_t7viv")
 main = NodePath("..")
 
 [node name="Bushes" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 

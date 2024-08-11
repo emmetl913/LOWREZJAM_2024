@@ -1,11 +1,11 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bf8m6t4hiop7d"]
 
-[ext_resource type="FontFile" uid="uid://b4n4ol5uhwyfr" path="res://assets/fonts/cg-pixel-3x5.ttf" id="1_716oo"]
+[ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="1_slbvb"]
 
 [resource]
 line_spacing = -2.0
-font = ExtResource("1_716oo")
-font_size = 5
+font = ExtResource("1_slbvb")
+font_size = 8
 font_color = Color(0, 0, 0, 1)
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
