@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0a2wnc0rj63i"]
+[gd_scene load_steps=11 format=3 uid="uid://d0a2wnc0rj63i"]
 
 [ext_resource type="Script" path="res://plants/seeds/item_pickup.gd" id="1_c557q"]
-[ext_resource type="Texture2D" uid="uid://c0u67y4pk72k7" path="res://assets/sprites/blueberry_seed.png" id="1_hl7hx"]
+[ext_resource type="Texture2D" uid="uid://d0xy2pfsrpq0m" path="res://assets/sprites/plants/sunflower_seed.png" id="2_5qcjy"]
 [ext_resource type="Texture2D" uid="uid://c310c4ujahmxn" path="res://assets/sprites/yellow_pixel_4x4.png" id="2_muyre"]
-[ext_resource type="Texture2D" uid="uid://cc50neu71ceb5" path="res://assets/sprites/carrot_seed.png" id="3_8j748"]
-[ext_resource type="Texture2D" uid="uid://bujaahxnmv2a2" path="res://assets/sprites/apple_seed.png" id="5_adt3b"]
-[ext_resource type="Texture2D" uid="uid://diupao06mgiwt" path="res://assets/sprites/poppy_seed.png" id="6_jhn4l"]
+[ext_resource type="Texture2D" uid="uid://bdw52ri2m7x7q" path="res://assets/sprites/plants/carrot_seed.png" id="3_sy0ud"]
+[ext_resource type="Texture2D" uid="uid://d07u4h0a2am6x" path="res://assets/sprites/plants/blueberry_seed.png" id="4_uxs1v"]
+[ext_resource type="Texture2D" uid="uid://nk2umuvna3ve" path="res://assets/sprites/plants/apple_seed.png" id="5_lj7b3"]
+[ext_resource type="Texture2D" uid="uid://duaf7ryed24vk" path="res://assets/sprites/plants/poppy_seed.png" id="6_evv1r"]
 [ext_resource type="AudioStream" uid="uid://4p160l6ujswr" path="res://assets/music/sfx/pickup.wav" id="7_m5tk5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_quqk0"]
@@ -18,7 +19,7 @@ size = Vector2(4, 4)
 script = ExtResource("1_c557q")
 item_speed = 100.0
 item_acceleration = 0.05
-seedsprites = Array[Texture2D]([ExtResource("2_muyre"), ExtResource("3_8j748"), ExtResource("1_hl7hx"), ExtResource("5_adt3b"), ExtResource("6_jhn4l")])
+seedsprites = Array[Texture2D]([ExtResource("2_5qcjy"), ExtResource("3_sy0ud"), ExtResource("4_uxs1v"), ExtResource("5_lj7b3"), ExtResource("6_evv1r")])
 
 [node name="MouseDetectionRange" type="Area2D" parent="."]
 collision_layer = 2
@@ -29,7 +30,6 @@ shape = SubResource("CircleShape2D_quqk0")
 
 [node name="SeedSprite" type="Sprite2D" parent="."]
 z_index = 1
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_muyre")
 
 [node name="CollectionRadius" type="Area2D" parent="."]
