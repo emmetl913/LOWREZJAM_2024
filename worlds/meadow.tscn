@@ -484,7 +484,6 @@ script = ExtResource("15_t7viv")
 main = NodePath("..")
 
 [node name="Bushes" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 

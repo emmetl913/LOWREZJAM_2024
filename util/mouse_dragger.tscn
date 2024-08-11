@@ -17,7 +17,6 @@ script = ExtResource("1_8xtmn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(0.5, 0.5)
 
 [node name="Cursor" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 0.835294)

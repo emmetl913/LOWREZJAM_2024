@@ -212,19 +212,19 @@ func on_seed_button_pressed(seedID: int, texture: Texture2D):
 	update_highlight()
 	
 func _on_sunflower_pressed():
-	var texture = load("res://assets/sprites/yellow_pixel_4x4.png")
+	var texture = load("res://assets/sprites/plants/sunflower_seed.png")
 	on_seed_button_pressed(0, texture)
 func _on_carrot_pressed():
-	var texture = load("res://assets/sprites/carrot_seed.png")
+	var texture = load("res://assets/sprites/plants/carrot_seed.png")
 	on_seed_button_pressed(1, texture)
 func _on_blueberry_pressed():
-	var texture = load("res://assets/sprites/blueberry_seed.png")
+	var texture = load("res://assets/sprites/plants/blueberry_seed.png")
 	on_seed_button_pressed(2, texture)
 func _on_apple_pressed():
-	var texture = load("res://assets/sprites/apple_seed.png")
+	var texture = load("res://assets/plants/apple_seed.png")
 	on_seed_button_pressed(3, texture)
 func _on_poppy_pressed():
-	var texture = load("res://assets/sprites/poppy_seed.png")
+	var texture = load("res://assets/plants/poppy_seed.png")
 	on_seed_button_pressed(4, texture)
 
 func update_highlight():
