@@ -148,7 +148,7 @@ func _on_failed_attack_return_to_plant_timeout():
 	is_wandering = true
 
 func _apply_knock_back(target: Node2D, knockback_force: float):
-	target.set_knockback_force(knockback_force)
+	target.set_knockback_force(knockback_force, (target.position - position).normalized())
 
 func _on_self_destruct_sequence_timeout():
 	queue_free()

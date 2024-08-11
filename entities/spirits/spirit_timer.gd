@@ -4,10 +4,14 @@ var shortest: float
 var longest: float
 var quantity: int
 
+var spirit_array: Array[String] = ["res://entities/spirits/spirit.tscn", 
+"res://entities/spirits/spirit_tank.tscn",
+"res://entities/spirits/spirit_fast.tscn",]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	timeout.connect(func(): get_parent()._spawn_entity("res://entities/spirits/spirit.tscn", quantity))
-	
+	timeout.connect(func(): get_parent()._spawn_entity((spirit_array[randi_range(0,spirit_array.size()-1)]), quantity))
+	#timeout.connect(func(): get_parent()._spawn_entity(spirit_array[2], quantity))
 	$"/root/Meadow/Day-Night Cycle".time_period_change.connect(_set_timer)
 	_set_timer($"/root/Meadow/Day-Night Cycle".time_period)
 
@@ -32,8 +36,6 @@ func _set_timer(period: Day_Night_Cycle.Time_Period) -> void:
 		Day_Night_Cycle.Time_Period.midnight:
 			shortest = 0.5
 			longest = 1.5
-			quantity = 5
+			quantity = 2
 		_:
-			shortest = 4
-			longest = 6
-			quantity = 1
+			paused = true

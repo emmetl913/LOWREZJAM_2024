@@ -26,4 +26,4 @@ func _on_lifetime_timeout():
 
 func _apply_knock_back(target: Node2D, knockback_force: float):
 	if is_instance_valid(target):
-		target.set_knockback_force(knockback_force)
+		target.set_knockback_force(knockback_force, (target.position - position).normalized())

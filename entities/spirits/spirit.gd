@@ -13,6 +13,9 @@ const DAMPENER: float = .5
 var state: State
 var phase_offset: float = Function_Lib._random_unit_wave_amplitude() * 90
 var knockback_force: float = -1
+var abs_dir: Vector2 = Vector2(0,0)
+var direction: Vector2
+var knockback_dir: Vector2 = Vector2(1,1)
 
 func _ready() -> void:
 	$"/root/Meadow/Day-Night Cycle".time_period_change.connect(_change_behavior)
@@ -24,7 +27,8 @@ func _process(delta) -> void:
 		#ensure knockback_force doesn't go below -1 (that would speed a spirit up)
 		if knockback_force < -1:
 			knockback_force = -1
-	
+	if abs_dir.length() >= 1:
+		abs_dir /= 1.1
 	_move(delta)
 
 func _change_behavior(period: Day_Night_Cycle.Time_Period) -> void:
@@ -37,7 +41,7 @@ func _change_behavior(period: Day_Night_Cycle.Time_Period) -> void:
 			state = State.passive
 
 func _move(delta: float):
-	var direction: Vector2
+
 	
 	if $Sight.focus == null:
 		$Sight._weight_options()
@@ -50,8 +54,10 @@ func _move(delta: float):
 	var offset: Vector2 = direction.orthogonal() * sin(Time.get_unix_time_from_system() * FREQUENCY + phase_offset) * DAMPENER
 	# bug: the knockback should be staight back, this still permits ghost
 	# ociliation to occur during that frame
-	move_and_collide((direction + offset).normalized() * delta * speed * -knockback_force)
-	
+	if knockback_force != -1:
+		move_and_collide(delta * speed * -knockback_force * -knockback_dir)
+	else:
+		move_and_collide((direction + offset).normalized() * delta * speed * -knockback_force + abs_dir)
 	if is_instance_valid($Sight.focus):
 		$"Primary Attack".look_at(global_position.direction_to($Sight.focus.global_position))
 
@@ -65,9 +71,17 @@ func _take_damage(damage: int):
 func _death():
 	queue_free()
 
-func set_knockback_force(force: float):
+func set_knockback_force(force: float, knockbackDir: Vector2):
 	knockback_force = force
-
+	knockback_dir = knockbackDir
 # primary attack is slash
 # secondary attack is unique per spirit (knockback, wind: tornado)
 # defeated spirit drops seeds
+
+
+func _on_abs_dir_adder_timeout():
+	if name == "SpiritFast":
+		if randi_range(1,2) == 1:
+			abs_dir = direction.rotated(30) * 5
+		else:
+			abs_dir = direction.rotated(-30) * 5
