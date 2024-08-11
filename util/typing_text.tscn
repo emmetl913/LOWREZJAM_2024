@@ -12,22 +12,6 @@ streams_count = 1
 stream_0/stream = ExtResource("3_xgg84")
 stream_0/weight = 1.0
 
-[sub_resource type="Animation" id="Animation_6x23e"]
-resource_name = "fadeOut"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_8ycpb"]
 resource_name = "fadeIn"
 length = 0.5
@@ -42,6 +26,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6x23e"]
+resource_name = "fadeOut"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6xj52"]
@@ -74,7 +74,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 script = ExtResource("1_gsi8k")
-type_this = Array[String](["Welcome.", "You have awoken into a world of greenery.", "Where animals and plants are meant to flourish.", "But disaster has struck", "...", "Greenhouse Ghosts, Ozone Apparitions, and Methane Monsters are taking over!", "YOU MUST DEFEND THE MEADOW!", "DO NOT LET THE EARTH PERISH", "here is another option for intro:", "In a world that has crumbled from humanity's abuse.", "You, the enviroment must reclaim it from the dredges of pollution.", "DEFEAT THE GASEOUS GHOSTS!", "DO NOT LET THE EARTH PERISH!", "DEFEND THE MEADOW!"])
+type_this = Array[String](["Welcome.", "You have awoken into a world of greenery.", "Where animals and plants are meant to flourish.", "But disaster has struck.", "...", "Greenhouse Ghosts, Ozone Apparitions, and Methane Monsters are taking over!", "YOU MUST DEFEND THE MEADOW!", "DO NOT LET THE EARTH PERISH!"])
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Label"]
 stream = SubResource("AudioStreamRandomizer_gfp7q")
@@ -95,6 +95,7 @@ one_shot = true
 
 [node name="Label2" type="Label" parent="."]
 visible = false
+self_modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

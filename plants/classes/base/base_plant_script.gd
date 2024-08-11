@@ -151,4 +151,5 @@ func _take_damage(damage: int):
 	HEALTH -= damage
 	if HEALTH <= 0:
 		_death()
+	$AnimationPlayer.play("Hurt")
 
