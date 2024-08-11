@@ -102,7 +102,12 @@ func updateEnergyMenu():
 	energy_text.text = "Sun Power: %.2f" % stored_energy + "\nSunflowers: %.2f" % ((sunflower_reference.PROD_VAL/sunflower_reference.PROD_INTERVAL)*total_sunflowers)
 
 func updateEnergyIndicator():
-	$"CursorCamera/Energy Indicator/Label".text = str(int(stored_energy))
+	var label = $"CursorCamera/Energy Indicator/Label"
+	label.text = str(int(stored_energy))
+	if (stored_energy > -1):
+		label.label_settings.font_color = Color(0, 0, 0, 1)
+	else:
+		label.label_settings.font_color = Color(1, 0, 0, 1)
 
 func _on_tree_sun_prod_timeout():
 	stored_energy += tree.energy_rate

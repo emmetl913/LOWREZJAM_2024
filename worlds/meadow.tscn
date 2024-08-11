@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bef63fudsi14e"]
+[gd_scene load_steps=44 format=3 uid="uid://bef63fudsi14e"]
 
 [ext_resource type="Script" path="res://worlds/meadow.gd" id="1_bko1o"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_ksmiv"]
@@ -32,6 +32,7 @@
 [ext_resource type="AudioStream" uid="uid://caxyj3xw1xq7w" path="res://assets/music/peaceful.wav" id="23_s8qc2"]
 [ext_resource type="AudioStream" uid="uid://dgq6bsjhe02gu" path="res://assets/music/strolling.wav" id="24_bnysd"]
 [ext_resource type="AudioStream" uid="uid://d1xqtf5s3t6op" path="res://assets/music/walking.wav" id="25_6807o"]
+[ext_resource type="FontFile" uid="uid://b4n4ol5uhwyfr" path="res://assets/fonts/cg-pixel-3x5.ttf" id="25_k4pxq"]
 [ext_resource type="AudioStream" uid="uid://4p160l6ujswr" path="res://assets/music/sfx/pickup.wav" id="26_dnlim"]
 [ext_resource type="AudioStream" uid="uid://0pch8bwr15cl" path="res://assets/music/sfx/plant.wav" id="28_v5pog"]
 
@@ -43,6 +44,10 @@ line_spacing = 1.0
 font_size = 8
 font_color = Color(0, 0, 0, 1)
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5bct3"]
+font = ExtResource("25_k4pxq")
+font_size = 5
 
 [sub_resource type="Animation" id="Animation_cfh5l"]
 length = 0.001
@@ -460,10 +465,10 @@ centered = false
 
 [node name="Label" type="Label" parent="CursorCamera/Energy Indicator"]
 offset_left = -20.0
-offset_top = -1.0
+offset_top = 1.0
 offset_right = 20.0
-offset_bottom = 15.0
-label_settings = ExtResource("3_w168r")
+offset_bottom = 17.0
+label_settings = SubResource("LabelSettings_5bct3")
 horizontal_alignment = 2
 
 [node name="Tree_Sun_Prod" type="Timer" parent="."]
