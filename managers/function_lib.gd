@@ -5,3 +5,6 @@ static func _random_unit_wave_amplitude() -> float:
 
 static func _on_unit_circle() -> Vector2:
 	return Vector2(_random_unit_wave_amplitude(), _random_unit_wave_amplitude()).normalized()
+
+static func _choice() -> bool:
+	return bool(RandomNumberGenerator.new().randi_range(0, 1))

@@ -146,5 +146,9 @@ func _death():
 	print("A plant has died?")
 	queue_free()
 
-
+func _take_damage(damage: int):
+	print("A plant has taken ", damage, " damage")
+	HEALTH -= damage
+	if HEALTH <= 0:
+		_death()
 

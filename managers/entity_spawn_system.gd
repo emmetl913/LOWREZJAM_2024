@@ -13,5 +13,5 @@ func _spawn_entity(entity_file_path: String, quantity: int) -> void:
 		entity = scene.instantiate()
 		entity.global_position = Function_Lib._on_unit_circle() * OFF_MAP
 		main.add_child(entity)
-		
-		
+
+# make dynamic timer

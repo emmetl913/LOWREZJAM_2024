@@ -67,3 +67,12 @@ func _on_tree_sprite_pressed():
 	else:
 		print("Opening Tree Interface")
 	$Test_Control_Interface.visible = not $Test_Control_Interface.visible
+
+func _take_damage(damage: int):
+	health -= damage
+	
+	if (health <= 0):
+		_death()
+
+func _death():
+	get_tree().quit() # REPLACE HERE WHAT YOU WANT TO HAPPEN WHEN THE PLAYER LOSSES THE GAME

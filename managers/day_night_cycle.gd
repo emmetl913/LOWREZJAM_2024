@@ -41,3 +41,8 @@ func _day_time_process(delta: float) -> void:
 			await get_tree().process_frame
 		
 		film.color = TIME_COLORS[time_period] # Fix any close hit error
+
+# Bug: Film only overlays with world, not plants
+
+# If you want to access this manager use the following code snippet:
+# $"/root/Meadow/Day-Night Cycle".time_period_change.connect(-connecting_function-)

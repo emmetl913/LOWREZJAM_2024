@@ -221,10 +221,10 @@ func _on_blueberry_pressed():
 	var texture = load("res://assets/sprites/plants/blueberry_seed.png")
 	on_seed_button_pressed(2, texture)
 func _on_apple_pressed():
-	var texture = load("res://assets/plants/apple_seed.png")
+	var texture = load("res://assets/sprites/plants/apple_seed.png")
 	on_seed_button_pressed(3, texture)
 func _on_poppy_pressed():
-	var texture = load("res://assets/plants/poppy_seed.png")
+	var texture = load("res://assets/sprites/plants/poppy_seed.png")
 	on_seed_button_pressed(4, texture)
 
 func update_highlight():
