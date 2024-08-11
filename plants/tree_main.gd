@@ -76,4 +76,4 @@ func _take_damage(damage: int):
 
 func _death():
 	print("Tree Death")
-	get_tree().quit() # REPLACE HERE WHAT YOU WANT TO HAPPEN WHEN THE PLAYER LOSSES THE GAME
+	get_tree().change_scene_to_file("res://worlds/death_screen.tscn")
