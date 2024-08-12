@@ -25,7 +25,11 @@ func _ready():
 	$EnterScreen.start(enter_screen_timer)
 	$ChooseRandomFavoritePlant.start(randf_range(5,15))
 	_load_seed_references()
-
+func _process(delta):
+	if $CharacterBody2D/AnimatedSprite2D.flip_h:
+		$CharacterBody2D/AnimatedSprite2D/DealDamage/CollisionShape2D.position = Vector2(2.5,.5)
+	else:
+		$CharacterBody2D/AnimatedSprite2D/DealDamage/CollisionShape2D.position = Vector2(-2.5,.5)
 func _set_parent(par: Node2D):
 	parent = par
 
@@ -54,8 +58,8 @@ func _set_plant_to_closest_plant():
 	_find_plants()
 	for i in list_of_favorite_plants:
 		#Dont know why but sometimes we aren't able to find an animal's characterbody2d ;0
-		if get_node("CharacterBody2D") != null:
-			if i.position.distance_to(get_node("CharacterBody2D").position) < min_distance and (_can_eat_plant(i) or i.get_child(0).texture == i.SEED_TEXTURE):
+		if $CharacterBody2D != null:
+			if i.position.distance_to($CharacterBody2D.position) < min_distance and (_can_eat_plant(i) or i.get_child(0).texture == i.SEED_TEXTURE):
 				min_distance = i.position.distance_to(get_child(0).position)
 				target = i
 		else:

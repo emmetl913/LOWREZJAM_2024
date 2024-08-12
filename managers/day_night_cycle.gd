@@ -7,6 +7,8 @@ signal time_period_change(period: Time_Period)
 const PERIOD_SEC: int = 15 # Time in seconds that a period will last
 var TIME_COLORS: Array[int] = [ 0x3e89e21e, 0x0, 0xf165002b, 0x031a364b, 0xbad7fc23, 0x031a364b ] # Color code for time-of-day films
 
+var difficulty: float
+var day_count: int = 0
 @onready var time_indicator: Sprite2D = $"../CursorCamera/Time Indicator"
 @onready var film: ColorRect = $"../CursorCamera/Film"
 
@@ -18,6 +20,11 @@ func _ready() -> void:
 	time_indicator.frame = 0
 	film.color = TIME_COLORS[time_period]
 
+func _calculate_difficulty():
+	if day_count >= 2:
+		difficulty = -log(day_count) + 2
+	else:
+		difficulty = 10
 func _process(delta) -> void:
 	_day_time_process(delta)
 
@@ -27,6 +34,8 @@ func _day_time_process(delta: float) -> void:
 	if(period_time >= PERIOD_SEC): # if period has ended
 		if(time_period + 1 == Time_Period.size()): # Change period (w/ enumeration looping)
 			time_period = 0
+			day_count += 1
+			_calculate_difficulty()
 		else:
 			time_period += 1
 		

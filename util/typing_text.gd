@@ -29,7 +29,11 @@ func _on_type_speed_timeout():
 				type_index += 1
 				$AudioStreamPlayer2D.play()
 				text = typing_string
-				typespeed.start(typespeed.wait_time)
+				if typing_string == "...":
+					typespeed.start(0.125+.7)
+				else:
+					typespeed.start(0.125)
+
 			else:
 				type_this_index += 1
 				typetimegap.start(typetimegap.wait_time)

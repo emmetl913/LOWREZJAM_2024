@@ -52,7 +52,7 @@ eating_range = 0.1
 health = 1
 attack_speed = 1.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Animal"]]
 script = ExtResource("2_xwfpw")
 speed = 20.0
 attack_speed = 30.0

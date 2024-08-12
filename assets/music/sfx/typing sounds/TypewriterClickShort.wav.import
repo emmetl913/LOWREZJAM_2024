@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://j1k1snhms6hh"
+path="res://.godot/imported/TypewriterClickShort.wav-78643e3d129a503948a79e59654ecebc.sample"
+
+[deps]
+
+source_file="res://assets/music/sfx/typing sounds/TypewriterClickShort.wav"
+dest_files=["res://.godot/imported/TypewriterClickShort.wav-78643e3d129a503948a79e59654ecebc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
