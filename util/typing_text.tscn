@@ -2,14 +2,14 @@
 
 [ext_resource type="LabelSettings" uid="uid://dxljdn0dxi84g" path="res://assets/fonts/intro_label.tres" id="1_4vqec"]
 [ext_resource type="Script" path="res://util/typing_text.gd" id="1_gsi8k"]
-[ext_resource type="AudioStream" uid="uid://13j0rtskghy1" path="res://assets/music/sfx/typing sounds/TypewriterClick.wav" id="3_xgg84"]
+[ext_resource type="AudioStream" uid="uid://j1k1snhms6hh" path="res://assets/music/sfx/typing sounds/TypewriterClickShort.wav" id="3_eys0h"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gfp7q"]
 playback_mode = 1
 random_pitch = 3.0
 random_volume_offset_db = 3.0
 streams_count = 1
-stream_0/stream = ExtResource("3_xgg84")
+stream_0/stream = ExtResource("3_eys0h")
 stream_0/weight = 1.0
 
 [sub_resource type="Animation" id="Animation_8ycpb"]

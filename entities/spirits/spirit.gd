@@ -10,16 +10,19 @@ const DAMPENER: float = .5
 @export var health: int = 3
 @export var knockback_resistance: float = 10
 
+@onready var death_wisp = preload("res://entities/spirits/death_wisp.tscn")
+
 var state: State
 var phase_offset: float = Function_Lib._random_unit_wave_amplitude() * 90
 var knockback_force: float = -1
 var abs_dir: Vector2 = Vector2(0,0)
 var direction: Vector2
 var knockback_dir: Vector2 = Vector2(1,1)
-
+var sprite_color
 func _ready() -> void:
 	$"/root/Meadow/Day-Night Cycle".time_period_change.connect(_change_behavior)
 	_change_behavior($"/root/Meadow/Day-Night Cycle".time_period)
+	sprite_color = $"Visual Component".modulate
 
 func _process(delta) -> void:
 	if knockback_force > -1:
@@ -69,6 +72,10 @@ func _take_damage(damage: int):
 		_death()
 
 func _death():
+	var death_wisps = death_wisp.instantiate()
+	death_wisps.global_position = global_position
+	death_wisps._set_sprites_color(sprite_color)
+	get_parent().add_child(death_wisps)
 	queue_free()
 
 func set_knockback_force(force: float, knockbackDir: Vector2):
