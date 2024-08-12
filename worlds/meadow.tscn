@@ -1,6 +1,7 @@
 [gd_scene load_steps=45 format=3 uid="uid://bef63fudsi14e"]
 
 [ext_resource type="Script" path="res://worlds/meadow.gd" id="1_bko1o"]
+[ext_resource type="Texture2D" uid="uid://cokgtoewqm5oy" path="res://assets/sprites/background.png" id="2_fb8lr"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_ksmiv"]
 [ext_resource type="PackedScene" uid="uid://cray6xpq4vkl" path="res://plants/tree_main.tscn" id="3_3tjh2"]
 [ext_resource type="LabelSettings" uid="uid://bf8m6t4hiop7d" path="res://assets/fonts/default_label_settings.tres" id="3_w168r"]
@@ -16,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://d0xy2pfsrpq0m" path="res://assets/sprites/plants/sunflower_seed.png" id="13_2jaid"]
 [ext_resource type="PackedScene" uid="uid://dby4wixwjy120" path="res://util/mouse_dragger.tscn" id="14_gar52"]
 [ext_resource type="Texture2D" uid="uid://bsbte62wt5lyp" path="res://assets/sprites/Sun Dial.png" id="14_o8xln"]
-[ext_resource type="Texture2D" uid="uid://bujaahxnmv2a2" path="res://assets/sprites/apple_seed.png" id="14_vfal4"]
 [ext_resource type="Texture2D" uid="uid://bdw52ri2m7x7q" path="res://assets/sprites/plants/carrot_seed.png" id="14_vfsc0"]
 [ext_resource type="Texture2D" uid="uid://d07u4h0a2am6x" path="res://assets/sprites/plants/blueberry_seed.png" id="15_8ymcu"]
 [ext_resource type="Script" path="res://managers/day_night_cycle.gd" id="15_t7viv"]
@@ -130,8 +130,7 @@ layer_0/tile_data = PackedInt32Array(-131073, 0, 0, -131074, 0, 0, -65538, 0, 0,
 [node name="TempBackground" type="Sprite2D" parent="."]
 modulate = Color(0.127937, 0.349791, 0.276324, 1)
 texture_filter = 1
-scale = Vector2(32, 32)
-texture = ExtResource("14_vfal4")
+texture = ExtResource("2_fb8lr")
 
 [node name="Tree_Main" parent="." instance=ExtResource("3_3tjh2")]
 process_mode = 3
