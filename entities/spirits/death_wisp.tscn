@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpetmrgff1kb7"]
+
+[ext_resource type="Texture2D" uid="uid://d0m3fv4ulut41" path="res://assets/sprites/white_pixel.png" id="1_p4s28"]
+[ext_resource type="Script" path="res://entities/spirits/death_wisp.gd" id="1_v6dvi"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_v6dvi")
+wisp_speed = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+texture = ExtResource("1_p4s28")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = 2
+texture = ExtResource("1_p4s28")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+self_modulate = Color(0.290196, 0.690196, 1, 0.584314)
+z_index = 2
+texture = ExtResource("1_p4s28")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+z_index = 2
+texture = ExtResource("1_p4s28")

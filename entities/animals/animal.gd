@@ -25,11 +25,12 @@ func _ready():
 	$EnterScreen.start(enter_screen_timer)
 	$ChooseRandomFavoritePlant.start(randf_range(5,15))
 	_load_seed_references()
-func _process(delta):
-	if $CharacterBody2D/AnimatedSprite2D.flip_h:
-		$CharacterBody2D/AnimatedSprite2D/DealDamage/CollisionShape2D.position = Vector2(2.5,.5)
-	else:
-		$CharacterBody2D/AnimatedSprite2D/DealDamage/CollisionShape2D.position = Vector2(-2.5,.5)
+#func _process(delta):
+	#if is_instance_valid($CharacterBody2D):
+		#if $CharacterBody2D/AnimatedSprite2D.flip_h:
+			#$CharacterBody2D/AnimatedSprite2D/DealDamage/CollisionShape2D.position = Vector2(2.5,.5)
+		#else:
+			#$CharacterBody2D/AnimatedSprite2D/DealDamage/CollisionShape2D.position = Vector2(-2.5,.5)
 func _set_parent(par: Node2D):
 	parent = par
 

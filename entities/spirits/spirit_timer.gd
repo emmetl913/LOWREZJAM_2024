@@ -61,7 +61,5 @@ func _set_timer(period: Day_Night_Cycle.Time_Period) -> void:
 				longest = 1.5
 				quantity = 2
 			_:
-				shortest = 0.5
-				longest = 1.5
-				quantity = 2
+				paused = true
 			
