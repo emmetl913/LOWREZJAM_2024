@@ -10,6 +10,7 @@ const DAMPENER: float = .5
 @export var health: int = 3
 @export var knockback_resistance: float = 10
 
+@export var spirit_id: int
 @onready var death_wisp = preload("res://entities/spirits/death_wisp.tscn")
 
 var state: State
@@ -22,8 +23,13 @@ var sprite_color
 func _ready() -> void:
 	$"/root/Meadow/Day-Night Cycle".time_period_change.connect(_change_behavior)
 	_change_behavior($"/root/Meadow/Day-Night Cycle".time_period)
-	sprite_color = $"Visual Component".modulate
-
+	print("spirit name", name)
+	if spirit_id == 2:
+		sprite_color = Color(0.875, 0.424, 0.337)
+	elif spirit_id == 0:
+		sprite_color = Color(1, 1, 1)
+	elif spirit_id == 1:
+		sprite_color = Color(0.588, 1, 0.588)
 func _process(delta) -> void:
 	if knockback_force > -1:
 		knockback_force -= knockback_resistance * delta
@@ -75,6 +81,7 @@ func _death():
 	var death_wisps = death_wisp.instantiate()
 	death_wisps.global_position = global_position
 	death_wisps._set_sprites_color(sprite_color)
+	death_wisps._rotate_sprite_dir(knockback_dir.normalized())
 	get_parent().add_child(death_wisps)
 	queue_free()
 

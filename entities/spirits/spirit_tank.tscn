@@ -41,6 +41,7 @@ script = ExtResource("1_gqvlu")
 speed = 2.5
 health = 4
 knockback_resistance = 15.0
+spirit_id = 1
 
 [node name="Damage Zone" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_obhsy")

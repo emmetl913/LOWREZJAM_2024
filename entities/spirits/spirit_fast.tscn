@@ -41,6 +41,7 @@ script = ExtResource("1_5t0q1")
 speed = 12.5
 health = 1
 knockback_resistance = 0.0
+spirit_id = 2
 
 [node name="Damage Zone" type="CollisionShape2D" parent="."]
 visible = false
