@@ -23,6 +23,7 @@ func _ready():
 	animal = get_parent()
 	position = animal._random_spawn_position()
 	move_timer = animal.get_node("RecalculateMoveDir")
+	$AnimationPlayer.play("Move")
 
 #TODO: implement go nearest off screen
 func set_dir_to_leave_screen_by_closest_wall():
@@ -94,6 +95,7 @@ func _process(delta):
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Eat":
 		can_move = true
+		$AnimationPlayer.play("Move")
 
 func _is_far_from_plant(plant_position: Vector2):
 	if position.distance_to(plant_position) > max_distance_from_plant:
