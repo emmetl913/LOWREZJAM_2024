@@ -26,6 +26,7 @@ func _ready():
 	animal = get_parent()
 	position = animal._random_spawn_position()
 	move_timer = animal.get_node("RecalculateMoveDir")
+	$AnimationPlayer.play("Move")
 
 #TODO: implement go nearest off screen
 func set_dir_to_leave_screen_by_closest_wall():
@@ -37,6 +38,7 @@ func _process(delta):
 			can_attack = false
 			is_attacking = false
 			is_wandering = false
+			$AnimationPlayer.play("Idle")
 			can_eat = false
 			dir = animal._calculate_leave_meadow_direction() * screen_exit_speed
 			$SelfDestructSequence.start()
@@ -62,6 +64,7 @@ func _process(delta):
 	#TODO: host plant dies: goes back to wandering 
 	if is_instance_valid(animal._get_plant()) and !_is_far_from_plant(animal._get_plant_position()) and is_wandering:
 		is_wandering = false
+		$AnimationPlayer.play("Idle")
 		can_attack = true
 
 	#Can we attack?
@@ -97,6 +100,7 @@ func _bird_shoot():
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Eat":
 		can_move = true
+		$AnimationPlayer.play("Move")
 
 func _is_far_from_plant(plant_position: Vector2):
 	if position.distance_to(plant_position) > max_distance_from_plant:
@@ -157,6 +161,7 @@ func _on_run_away_timeout():
 func _on_failed_attack_return_to_plant_timeout():
 	is_attacking = false
 	is_wandering = true
+	$AnimationPlayer.play("Move")
 
 func _apply_knock_back(target: Node2D, knockback_force: float):
 	target.set_knockback_force(knockback_force)

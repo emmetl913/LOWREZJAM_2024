@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c11pxgnjh53nc"
-path="res://.godot/imported/plants_sheet.png-5e22afe2ae3ec832542dcab491868947.ctex"
+uid="uid://bo70ktrcqgbgm"
+path="res://.godot/imported/sprite_sheet.png-efc63d272fef2b02324f866f9e790f4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/plants/plants_sheet.png"
-dest_files=["res://.godot/imported/plants_sheet.png-5e22afe2ae3ec832542dcab491868947.ctex"]
+source_file="res://assets/sprites/animals/sprite_sheet.png"
+dest_files=["res://.godot/imported/sprite_sheet.png-efc63d272fef2b02324f866f9e790f4b.ctex"]
 
 [params]
 
