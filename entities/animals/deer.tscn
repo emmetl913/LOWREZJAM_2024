@@ -1,14 +1,75 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqhr6rgl1jajx"]
+[gd_scene load_steps=21 format=3 uid="uid://dqhr6rgl1jajx"]
 
 [ext_resource type="Script" path="res://entities/animals/deer.gd" id="1_3cto8"]
 [ext_resource type="Script" path="res://entities/animals/animal.gd" id="1_i840l"]
 [ext_resource type="Texture2D" uid="uid://canh283ofh031" path="res://assets/sprites/deertemp.png" id="3_2lrgu"]
+[ext_resource type="Texture2D" uid="uid://dwmsdck85wq3a" path="res://assets/sprites/animals/deer_eat.png" id="3_x81yo"]
+[ext_resource type="Texture2D" uid="uid://pkyvmr5d8e8s" path="res://assets/sprites/animals/deer_move.png" id="4_1o55t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gdoti"]
 size = Vector2(7.555, 7)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtnt7"]
+atlas = ExtResource("3_x81yo")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ina66"]
+atlas = ExtResource("3_x81yo")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30vcs"]
+atlas = ExtResource("3_x81yo")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aje7g"]
+atlas = ExtResource("4_1o55t")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cath"]
+atlas = ExtResource("4_1o55t")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0bdn"]
+atlas = ExtResource("4_1o55t")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oto5u"]
+atlas = ExtResource("4_1o55t")
+region = Rect2(8, 8, 8, 8)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ccq1h"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtnt7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ina66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30vcs")
+}],
+"loop": true,
+"name": &"Eat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aje7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cath")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0bdn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oto5u")
+}],
+"loop": true,
+"name": &"Move",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_2lrgu")
@@ -29,7 +90,7 @@ resource_name = "Eat"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -39,10 +100,92 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Eat"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterBody2D/AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 1]
+}
+
+[sub_resource type="Animation" id="Animation_4vrre"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Eat"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_48kv2"]
+resource_name = "Move"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Move"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p6bom"]
 _data = {
-"Eat": SubResource("Animation_qiltk")
+"Eat": SubResource("Animation_qiltk"),
+"Move": SubResource("Animation_48kv2"),
+"RESET": SubResource("Animation_4vrre")
 }
 
 [node name="Deer" type="Node2D" groups=["Animal"]]
@@ -68,6 +211,7 @@ disabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_ccq1h")
+animation = &"Eat"
 
 [node name="DealDamage" type="Area2D" parent="CharacterBody2D/AnimatedSprite2D"]
 
