@@ -145,7 +145,6 @@ texture = ExtResource("2_fb8lr")
 
 [node name="Tree_Main" parent="." instance=ExtResource("3_3tjh2")]
 process_mode = 3
-visible = false
 position = Vector2(-8, -8)
 
 [node name="CursorCamera" type="Camera2D" parent="."]
@@ -536,7 +535,7 @@ grow_vertical = 2
 texture_normal = ExtResource("31_cny1i")
 texture_hover = ExtResource("32_b3moe")
 
-[node name="Arrow" type="TextureRect" parent="Tutorial"]
+[node name="Toolbelt_Arrow" type="TextureRect" parent="Tutorial"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -549,8 +548,37 @@ grow_vertical = 2
 texture = ExtResource("33_8swku")
 stretch_mode = 2
 
+[node name="Energy_Arrow" type="TextureRect" parent="Tutorial"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -11.0
+offset_top = -24.0
+offset_right = -3.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
+texture = ExtResource("33_8swku")
+stretch_mode = 2
+
+[node name="Resources_Arrow" type="TextureRect" parent="Tutorial"]
+z_index = 5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 12.0
+offset_right = 30.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+texture = ExtResource("33_8swku")
+stretch_mode = 2
+
 [node name="Stepper" type="Timer" parent="Tutorial"]
-wait_time = 1.5
+wait_time = 2.0
 one_shot = true
 
 [node name="Day-Night Cycle" type="Node" parent="."]
@@ -560,7 +588,6 @@ script = ExtResource("15_t7viv")
 main = NodePath("..")
 
 [node name="Bushes" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 
@@ -580,7 +607,7 @@ position = Vector2(-60, 4)
 wait_time = 2.0
 
 [node name="Fade_Anim" type="CanvasLayer" parent="."]
-visible = false
+process_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Fade_Anim"]
 root_node = NodePath("../..")
@@ -599,6 +626,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Audio" type="Node" parent="."]
+process_mode = 3
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
 stream = SubResource("AudioStreamRandomizer_3byp5")
