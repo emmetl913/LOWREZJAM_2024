@@ -64,6 +64,7 @@ func _ready():
 	seeds_menu.visible = false
 	options_menu.visible = true
 	update_highlight()
+	get_tree().paused = true
 
 func setupBushes():
 	$Bushes/Bush_Sign_North.orientation = 0
