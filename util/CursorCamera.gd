@@ -1,10 +1,10 @@
 extends Camera2D
 
-var camera_initial_position: Vector2
-var mouse_initial_position: Vector2
+var camera_initial_position: Vector2i
+var mouse_initial_position: Vector2i
 
-var limit_x = Vector2(-64,64)
-var limit_y = Vector2(-64,64)
+var limit_x = Vector2i(-64,64)
+var limit_y = Vector2i(-64,64)
 
 func _ready():
 	set_process(false)
@@ -19,7 +19,7 @@ func _input(event):
 			set_process(false)
 	elif event is InputEventMouseMotion:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-			var mouse_diff = event.position - mouse_initial_position
+			var mouse_diff = Vector2i(event.position) - mouse_initial_position
 			var temp_diff_loc = camera_initial_position - mouse_diff
 			if temp_diff_loc.x > limit_x.x+32 and temp_diff_loc.x < limit_x.y-32:
 				position.x = temp_diff_loc.x
