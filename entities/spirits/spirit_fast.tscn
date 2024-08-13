@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://caang186eypbq"]
+[gd_scene load_steps=12 format=3 uid="uid://caang186eypbq"]
 
 [ext_resource type="Script" path="res://entities/spirits/spirit.gd" id="1_5t0q1"]
 [ext_resource type="Texture2D" uid="uid://dj5d7mulp1asp" path="res://assets/sprites/Spirit.png" id="2_l7eb5"]
 [ext_resource type="Script" path="res://entities/spirits/spirit_sight.gd" id="3_sufgq"]
 [ext_resource type="Script" path="res://entities/spirits/spirit_attack.gd" id="4_71skg"]
+[ext_resource type="AudioStream" uid="uid://cdaims6u1jn52" path="res://assets/music/sfx/spirit_damage.wav" id="5_okcsu"]
+[ext_resource type="AudioStream" uid="uid://dltwohri02tm5" path="res://assets/music/sfx/spirit_die.wav" id="6_tux1q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_obhsy"]
 radius = 3.0
@@ -77,6 +79,12 @@ libraries = {
 [node name="AbsDirAdder" type="Timer" parent="."]
 wait_time = 0.2
 autostart = true
+
+[node name="Damage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_okcsu")
+
+[node name="Die" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_tux1q")
 
 [connection signal="body_entered" from="Sight" to="Sight" method="_on_body_entered"]
 [connection signal="body_exited" from="Sight" to="Sight" method="_on_body_exited"]
