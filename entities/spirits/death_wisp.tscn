@@ -4,8 +4,10 @@
 [ext_resource type="Script" path="res://entities/spirits/death_wisp.gd" id="1_v6dvi"]
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(17, 11)
 script = ExtResource("1_v6dvi")
-wisp_speed = 0.5
+wisp_speed = 60.0
+fade_speed = 12.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 2
@@ -31,5 +33,15 @@ texture = ExtResource("1_p4s28")
 [node name="Despawn" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(-1, -1)
+texture = ExtResource("1_p4s28")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(-1, -1)
+texture = ExtResource("1_p4s28")
 
 [connection signal="timeout" from="Despawn" to="." method="_on_despawn_timeout"]

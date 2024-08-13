@@ -12,7 +12,6 @@
 [sub_resource type="LabelSettings" id="LabelSettings_cj74v"]
 line_spacing = 0.0
 font = ExtResource("2_h1bpb")
-font_size = 12
 
 [sub_resource type="Animation" id="Animation_yolxe"]
 length = 0.001
@@ -100,9 +99,9 @@ autowrap_mode = 3
 texture_filter = 1
 layout_mode = 0
 offset_left = 16.0
-offset_top = 43.0
+offset_top = 50.0
 offset_right = 28.0
-offset_bottom = 55.0
+offset_bottom = 62.0
 texture_normal = ExtResource("3_04som")
 texture_hover = ExtResource("4_l8ffe")
 
@@ -110,9 +109,9 @@ texture_hover = ExtResource("4_l8ffe")
 texture_filter = 1
 layout_mode = 0
 offset_left = 36.0
-offset_top = 43.0
+offset_top = 50.0
 offset_right = 48.0
-offset_bottom = 55.0
+offset_bottom = 62.0
 texture_normal = ExtResource("5_3ssa8")
 texture_hover = ExtResource("6_2nl8f")
 

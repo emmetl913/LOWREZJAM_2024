@@ -30,7 +30,7 @@ func _random_timer() -> void:
 	else:
 		set_wait_time(RandomNumberGenerator.new().randf_range(shortest, longest))
 func _set_timer(period: Day_Night_Cycle.Time_Period) -> void:
-	if day_night_cycle.difficulty > 2:
+	if day_night_cycle.day_count > 2:
 		match period:
 			Day_Night_Cycle.Time_Period.dusk, Day_Night_Cycle.Time_Period.dawn:
 				time_to_spawn = day_night_cycle.difficulty * 1.5
