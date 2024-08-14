@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Base_Plant" load_steps=10 format=3 uid="uid://4xj5c62ok636"]
+[gd_resource type="Resource" script_class="Base_Plant" load_steps=12 format=3 uid="uid://4xj5c62ok636"]
 
 [ext_resource type="Texture2D" uid="uid://w2nlgtm5yxfp" path="res://assets/sprites/mature_blueberry.png" id="1_w5xs7"]
 [ext_resource type="Texture2D" uid="uid://d07u4h0a2am6x" path="res://assets/sprites/plants/blueberry_seed.png" id="2_btivt"]
@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://b0danfgnfm08i" path="res://assets/sprites/plants/blueberry_2.png" id="5_5hl47"]
 [ext_resource type="Texture2D" uid="uid://djijk1kx8hm8o" path="res://assets/sprites/plants/blueberry_3.png" id="6_ilrdx"]
 [ext_resource type="Texture2D" uid="uid://bemikugl35p4a" path="res://assets/sprites/plants/blueberry_4.png" id="7_151bh"]
+[ext_resource type="Texture2D" uid="uid://cucueeuvqil5y" path="res://assets/sprites/plants/blueberry_third.png" id="8_k5ols"]
 [ext_resource type="Texture2D" uid="uid://gqsd1g2k24r0" path="res://assets/sprites/plants/blueberry_withered.png" id="8_qqdjy"]
+[ext_resource type="Texture2D" uid="uid://bbr3so50ywr23" path="res://assets/sprites/plants/blueberry_twothird.png" id="9_8n2pr"]
 
 [resource]
 script = ExtResource("3_qg8ib")
@@ -20,10 +22,12 @@ WEIGHT = 10
 HEALTH = 10
 SEED_TEXTURE = ExtResource("2_btivt")
 MATURE_TEXTURE = ExtResource("1_w5xs7")
+THIRD_TEXTURE = ExtResource("8_k5ols")
+TWOTHIRD_TEXTURE = ExtResource("9_8n2pr")
 STAGE_TEXTURES = Array[Texture]([ExtResource("3_agkl7"), ExtResource("4_6ac24"), ExtResource("5_5hl47"), ExtResource("6_ilrdx"), ExtResource("7_151bh")])
 WITHERED_TEXTURE = ExtResource("8_qqdjy")
 GRID_COORDS = Vector2(-1, -1)
-GROWTH_TIME = 3
+GROWTH_TIME = 1
 REGROW_TIME = 10
 RESOURCES_STORED = 0
 ENERGY_COST = 1

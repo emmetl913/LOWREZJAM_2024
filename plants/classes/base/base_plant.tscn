@@ -36,6 +36,7 @@ script = ExtResource("1_dj43l")
 texture = ExtResource("2_b1npb")
 
 [node name="Growth_Timer" type="Timer" parent="."]
+wait_time = 0.1
 one_shot = true
 autostart = true
 

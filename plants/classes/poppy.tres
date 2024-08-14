@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Base_Plant" load_steps=10 format=3 uid="uid://b2iobgy36w44g"]
+[gd_resource type="Resource" script_class="Base_Plant" load_steps=12 format=3 uid="uid://b2iobgy36w44g"]
 
 [ext_resource type="Texture2D" uid="uid://dbbq2t0ao56ic" path="res://assets/sprites/mature_poppy.png" id="1_j6xfi"]
 [ext_resource type="Texture2D" uid="uid://duaf7ryed24vk" path="res://assets/sprites/plants/poppy_seed.png" id="2_gbrcr"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dt72s8xxg7fw" path="res://assets/sprites/plants/poppy_3.png" id="6_yklvr"]
 [ext_resource type="Texture2D" uid="uid://y3vfd876t6tg" path="res://assets/sprites/plants/poppy_4.png" id="7_58elp"]
 [ext_resource type="Texture2D" uid="uid://dryxu41ypoinb" path="res://assets/sprites/plants/poppy_withered.png" id="8_h4asf"]
+[ext_resource type="Texture2D" uid="uid://b75sghy1xvfq2" path="res://assets/sprites/plants/poppy_third.png" id="8_vgulo"]
+[ext_resource type="Texture2D" uid="uid://ba5xqn334s883" path="res://assets/sprites/plants/poppy_twothird.png" id="9_b84kp"]
 
 [resource]
 script = ExtResource("3_vkg0m")
@@ -20,10 +22,12 @@ WEIGHT = 10
 HEALTH = 5
 SEED_TEXTURE = ExtResource("2_gbrcr")
 MATURE_TEXTURE = ExtResource("1_j6xfi")
+THIRD_TEXTURE = ExtResource("8_vgulo")
+TWOTHIRD_TEXTURE = ExtResource("9_b84kp")
 STAGE_TEXTURES = Array[Texture]([ExtResource("3_1j55k"), ExtResource("4_c80mr"), ExtResource("5_lfglo"), ExtResource("6_yklvr"), ExtResource("7_58elp")])
 WITHERED_TEXTURE = ExtResource("8_h4asf")
 GRID_COORDS = Vector2(-1, -1)
-GROWTH_TIME = 3
+GROWTH_TIME = 1
 REGROW_TIME = 10
 RESOURCES_STORED = 0
 ENERGY_COST = 1

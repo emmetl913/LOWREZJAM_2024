@@ -12,6 +12,8 @@ var new_y
 @export var HEALTH : int
 @export var SEED_TEXTURE : Texture: set = _set_seed_texture, get = _get_seed_texture
 @export var MATURE_TEXTURE : Texture: set = _set_mature_texture, get = _get_mature_texture
+@export var THIRD_TEXTURE : Texture: set = _set_third_texture, get = _get_third_texture
+@export var TWOTHIRD_TEXTURE : Texture: set = _set_twothird_texture, get = _get_twothird_texture
 @export var STAGE_TEXTURES: Array[Texture]
 @export var WITHERED_TEXTURE: Texture
 @export var DISPLAY_TEXTURE : Texture
@@ -20,10 +22,20 @@ var new_y
 @export var REGROW_TIME : int
 @export var RESOURCES_STORED : int
 @export var ENERGY_COST : int
+var plant_stage = [true, false, false, false, false]
 
 var withered
 
 var parent
+
+func _set_third_texture(text : Texture):
+	THIRD_TEXTURE = text
+func _get_third_texture():
+	return THIRD_TEXTURE
+func _set_twothird_texture(text : Texture):
+	TWOTHIRD_TEXTURE = text
+func _get_twothird_texture():
+	return TWOTHIRD_TEXTURE
 
 func _get_plant_id():
 	return PLANT_ID
@@ -72,16 +84,34 @@ func updateTexture():
 	if !withered && (RESOURCES_STORED >= 0 && RESOURCES_STORED <= 4):
 		$Sprite2D.texture = STAGE_TEXTURES[RESOURCES_STORED]
 
-func _on_growth_timer_timeout():
-	withered = false
-	if RESOURCE_NAME == "ENERGY":
+func adv_growth():
+	if plant_stage[0]:
+		$Sprite2D.texture = SEED_TEXTURE
+		plant_stage[0] = false
+		plant_stage[1] = true
+		$Growth_Timer.start()
+	elif plant_stage[1]:
+		$Sprite2D.texture = THIRD_TEXTURE
+		plant_stage[1] = false
+		plant_stage[2] = true
+		$Growth_Timer.start()
+	elif plant_stage[2]:
+		$Sprite2D.texture = TWOTHIRD_TEXTURE
+		plant_stage[2] = false
+		plant_stage[3] = true
+		$Growth_Timer.start()
+	elif plant_stage[3]:
 		$Sprite2D.texture = MATURE_TEXTURE
-#		print("Plant has matured")
-	else:
+		plant_stage[3] = false
+		plant_stage[4] = true
 		RESOURCES_STORED = 4
 		updateTexture()
 		parent.resources[PLANT_ID-1] += 4
-	$Prod_Timer.start()
+		$Prod_Timer.start()
+
+func _on_growth_timer_timeout():
+	withered = false
+	adv_growth()
 
 func _on_prod_timer_timeout():
 	if RESOURCE_NAME == "ENERGY":
