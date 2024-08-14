@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Base_Plant" load_steps=5 format=3 uid="uid://cd4tb2q0q61k2"]
+
+[ext_resource type="Texture2D" uid="uid://0votajsmlr3f" path="res://assets/sprites/sunflower2.png" id="1_8i7kp"]
+[ext_resource type="Texture2D" uid="uid://d0xy2pfsrpq0m" path="res://assets/sprites/plants/sunflower_seed.png" id="2_dqksu"]
+[ext_resource type="Texture2D" uid="uid://iy31i8uhyo61" path="res://assets/sprites/plants/sunflower.png" id="3_15gcc"]
+[ext_resource type="Script" path="res://plants/classes/base/base_plant.gd" id="4_8kw1g"]
+
+[resource]
+script = ExtResource("4_8kw1g")
+PLANT_ID = 0
+RESOURCE_NAME = "ENERGY"
+PROD_VAL = 5
+PROD_INTERVAL = 2.5
+WEIGHT = 10
+HEALTH = 5
+SEED_TEXTURE = ExtResource("2_dqksu")
+MATURE_TEXTURE = ExtResource("1_8i7kp")
+STAGE_TEXTURES = Array[Texture]([ExtResource("3_15gcc"), ExtResource("3_15gcc"), ExtResource("3_15gcc"), ExtResource("3_15gcc"), ExtResource("3_15gcc")])
+WITHERED_TEXTURE = ExtResource("1_8i7kp")
+GRID_COORDS = Vector2(-1, -1)
+GROWTH_TIME = 3
+REGROW_TIME = 0
+RESOURCES_STORED = 0
+ENERGY_COST = 0

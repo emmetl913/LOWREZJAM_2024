@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Base_Plant" load_steps=5 format=3 uid="uid://du4euqgwusyht"]
 
 [ext_resource type="Script" path="res://plants/classes/base/base_plant.gd" id="1_0v553"]
-[ext_resource type="Texture2D" uid="uid://c47osafe65rrk" path="res://assets/sprites/sunflower.png" id="1_t3ubv"]
+[ext_resource type="Texture2D" uid="uid://b3ulm2ii8sxdy" path="res://assets/sprites/sunflower1.png" id="1_k7dxb"]
 [ext_resource type="Texture2D" uid="uid://d0xy2pfsrpq0m" path="res://assets/sprites/plants/sunflower_seed.png" id="2_xpkus"]
 [ext_resource type="Texture2D" uid="uid://iy31i8uhyo61" path="res://assets/sprites/plants/sunflower.png" id="3_u32kl"]
 
@@ -14,9 +14,9 @@ PROD_INTERVAL = 2.5
 WEIGHT = 10
 HEALTH = 5
 SEED_TEXTURE = ExtResource("2_xpkus")
-MATURE_TEXTURE = ExtResource("1_t3ubv")
+MATURE_TEXTURE = ExtResource("1_k7dxb")
 STAGE_TEXTURES = Array[Texture]([ExtResource("3_u32kl"), ExtResource("3_u32kl"), ExtResource("3_u32kl"), ExtResource("3_u32kl"), ExtResource("3_u32kl")])
-WITHERED_TEXTURE = ExtResource("3_u32kl")
+WITHERED_TEXTURE = ExtResource("1_k7dxb")
 GRID_COORDS = Vector2(-1, -1)
 GROWTH_TIME = 3
 REGROW_TIME = 0
