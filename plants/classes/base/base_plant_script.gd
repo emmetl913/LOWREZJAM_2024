@@ -128,6 +128,7 @@ func take_damage():
 	print("A plant has taken damage")
 	HEALTH -= 1
 	if HEALTH <= 0:
+		$Die.play()
 		_death()
 
 func wither():

@@ -65,7 +65,7 @@ resource_name = "Eat"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -75,93 +75,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Eat"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CharacterBody2D/AnimatedSprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [1, 2, 1]
-}
-
-[sub_resource type="Animation" id="Animation_48kv2"]
-resource_name = "Move"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Move"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterBody2D/AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_4vrre"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Eat"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterBody2D/AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p6bom"]
 _data = {
-"Eat": SubResource("Animation_qiltk"),
-"Move": SubResource("Animation_48kv2"),
-"RESET": SubResource("Animation_4vrre")
+"Eat": SubResource("Animation_qiltk")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rdcy5"]
+streams_count = 2
+stream_0/stream = ExtResource("4_85ui3")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("5_vkeg3")
+stream_1/weight = 1.0
 
 [node name="Deer" type="Node2D" groups=["Animal"]]
 script = ExtResource("1_i840l")
@@ -186,7 +111,6 @@ disabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_ccq1h")
-animation = &"Eat"
 
 [node name="DealDamage" type="Area2D" parent="CharacterBody2D/AnimatedSprite2D"]
 
@@ -246,6 +170,12 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
+[node name="Noise" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_rdcy5")
+
+[node name="SFX_Randomizer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="CharacterBody2D/AnimatedSprite2D/DealDamage" to="CharacterBody2D" method="_on_deal_damage_body_entered"]
 [connection signal="body_entered" from="CharacterBody2D/AnimatedSprite2D/AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="CharacterBody2D/AnimatedSprite2D/AttackRange" to="." method="_on_attack_range_body_exited"]
@@ -261,3 +191,4 @@ autostart = true
 [connection signal="timeout" from="ChooseRandomFavoritePlant" to="." method="_on_choose_random_favorite_plant_timeout"]
 [connection signal="timeout" from="DropSeedTimer" to="." method="_on_drop_seed_timer_timeout"]
 [connection signal="timeout" from="EatPlant" to="." method="_on_eat_plant_timeout"]
+[connection signal="timeout" from="SFX_Randomizer" to="." method="_on_sfx_randomizer_timeout"]

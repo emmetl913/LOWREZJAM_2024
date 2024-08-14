@@ -34,22 +34,22 @@ func _input(event):
 			res_arrow.visible = false
 			clicked[0] = true
 		elif get_parent().held_seed_id == 1:
-			text.text = "Carrot. Produces Carrots"
+			text.text = "Carrot. Attracts Deer"
 			energy_arrow.visible = false
 			res_arrow.visible = true
 			clicked[1] = true
 		elif get_parent().held_seed_id == 2:
-			text.text = "Blueberry bush. Produces Blueberry"
+			text.text = "Blueberry bush. Attracts Birds"
 			energy_arrow.visible = false
 			res_arrow.visible = true
 			clicked[2] = true
 		elif get_parent().held_seed_id == 3:
-			text.text = "Apple Tree. Produces Apples"
+			text.text = "Apple Tree. Attracts Squirrels"
 			energy_arrow.visible = false
 			res_arrow.visible = true
 			clicked[3] = true
 		elif get_parent().held_seed_id == 4:
-			text.text = "Poppy Seed. Produces Poppy Flowers"
+			text.text = "Poppy Seed. Attracts Leopards"
 			energy_arrow.visible = false
 			res_arrow.visible = true
 			clicked[4] = true
@@ -81,20 +81,32 @@ func _on_stepper_timeout():
 		text.text = "Plant these around the garden"
 		stepper.start()
 	if step == 3:
-		text.text = "Click on each seed for more info"
+		text.text = "Click on each seed to continue"
 	if step == 5:
-		text.text = "Plant seeds to attract animals!"
+		text.text = "Seeds consume energy over time"
 		stepper.start()
 	if step == 6:
-		text.text = "Animals fight spirits at night"
+		text.text = "Plant more sunflowers for more energy"
 		stepper.start()
 	if step == 7:
-		text.text = "Pan the camera by holding RMB"
+		text.text = "Plant seeds to attract animals!"
 		stepper.start()
 	if step == 8:
-		text.text = "Buy bushes to SAVE THE MEADOW"
+		text.text = "Animals fight spirits at night"
 		stepper.start()
 	if step == 9:
+		text.text = "Pan the camera by holding RMB"
+		stepper.start()
+	if step == 10:
+		text.text = "There are signs around the map"
+		stepper.start()
+	if step == 11:
+		text.text = "Click on them to purchase a bush"
+		stepper.start()
+	if step == 12:
+		text.text = "Buy 4 bushes to SAVE THE MEADOW"
+		stepper.start()
+	if step == 13:
 		get_tree().paused = false
 		visible = false
 	step += 1
