@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Base_Plant" load_steps=10 format=3 uid="uid://cyv1vth4201oo"]
+[gd_resource type="Resource" script_class="Base_Plant" load_steps=12 format=3 uid="uid://cyv1vth4201oo"]
 
 [ext_resource type="Texture2D" uid="uid://wpdtd3vxthpw" path="res://assets/sprites/mature_apple.png" id="1_26kio"]
 [ext_resource type="Texture2D" uid="uid://nk2umuvna3ve" path="res://assets/sprites/plants/apple_seed.png" id="2_6cpqu"]
@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://car8pp2fy55yc" path="res://assets/sprites/plants/apple_2.png" id="5_ip3tl"]
 [ext_resource type="Texture2D" uid="uid://bdeapcubuuxwx" path="res://assets/sprites/plants/apple_3.png" id="6_c3jqg"]
 [ext_resource type="Texture2D" uid="uid://d0kjic5gxed78" path="res://assets/sprites/plants/apple_4.png" id="7_uejan"]
+[ext_resource type="Texture2D" uid="uid://dw7svmic27jj1" path="res://assets/sprites/plants/apple_third.png" id="8_3sf1m"]
 [ext_resource type="Texture2D" uid="uid://bbob0ucuibib2" path="res://assets/sprites/plants/apple_withered.png" id="8_mdmt5"]
+[ext_resource type="Texture2D" uid="uid://b7is1ptpdjqdv" path="res://assets/sprites/plants/apple_twothird Copy.png" id="9_6xvpt"]
 
 [resource]
 script = ExtResource("3_ijatd")
@@ -20,10 +22,12 @@ WEIGHT = 10
 HEALTH = 5
 SEED_TEXTURE = ExtResource("2_6cpqu")
 MATURE_TEXTURE = ExtResource("1_26kio")
+THIRD_TEXTURE = ExtResource("8_3sf1m")
+TWOTHIRD_TEXTURE = ExtResource("9_6xvpt")
 STAGE_TEXTURES = Array[Texture]([ExtResource("3_qw24o"), ExtResource("4_4j8ts"), ExtResource("5_ip3tl"), ExtResource("6_c3jqg"), ExtResource("7_uejan")])
 WITHERED_TEXTURE = ExtResource("8_mdmt5")
 GRID_COORDS = Vector2(-1, -1)
-GROWTH_TIME = 3
+GROWTH_TIME = 1
 REGROW_TIME = 10
 RESOURCES_STORED = 0
 ENERGY_COST = 1

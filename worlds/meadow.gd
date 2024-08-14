@@ -40,7 +40,7 @@ var stored_energy : float
 # Get References to important children on startup
 @onready var tree = $Tree_Main
 @onready var camera = $CursorCamera
-@onready var seed_text = $CursorCamera/ToolBelt/Seeds_Menu/Plant_Info
+#@onready var seed_text = $CursorCamera/ToolBelt/Seeds_Menu/Plant_Info
 @onready var options_text = $CursorCamera/ToolBelt/Seeds_Menu/Options_Tooltip
 @onready var energy_text = $CursorCamera/ToolBelt/Energy_Menu/Energy_Stored
 @onready var energy_menu = $CursorCamera/ToolBelt/Energy_Menu
@@ -338,10 +338,13 @@ func is_valid_planting_spot():
 	if (mouse_pos.x < 10 && mouse_pos.x > -10 && mouse_pos.y < 10 && mouse_pos.y > -10):
 		return false
 	
+	
 	#Checks if space is occupied
 	var positionCoords = getMapAsGridCoords()
 	if (map_data[positionCoords.x - 1][positionCoords.y - 1] != null):
-		return false
+		var tem = map_data[positionCoords.x - 1][positionCoords.y - 1]
+		tem.queue_free()
+		return true
 	
 	return true
 
@@ -374,6 +377,8 @@ func setUpNewPlant(res : Resource, new_plant, coords : Vector2):
 	new_plant.SEED_TEXTURE = res.SEED_TEXTURE
 	new_plant.DISPLAY_TEXTURE = res.SEED_TEXTURE
 	new_plant.MATURE_TEXTURE = res.MATURE_TEXTURE
+	new_plant.THIRD_TEXTURE = res.THIRD_TEXTURE
+	new_plant.TWOTHIRD_TEXTURE = res.TWOTHIRD_TEXTURE
 	new_plant.STAGE_TEXTURES = res.STAGE_TEXTURES
 	new_plant.WITHERED_TEXTURE = res.WITHERED_TEXTURE
 	new_plant.GRID_COORDS = coords
