@@ -585,7 +585,6 @@ script = ExtResource("15_t7viv")
 main = NodePath("..")
 
 [node name="Bushes" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 
@@ -606,7 +605,6 @@ wait_time = 2.0
 
 [node name="Fade_Anim" type="CanvasLayer" parent="."]
 process_mode = 3
-visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Fade_Anim"]
 root_node = NodePath("../..")
