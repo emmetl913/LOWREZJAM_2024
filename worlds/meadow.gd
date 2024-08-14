@@ -28,6 +28,7 @@ var held_seed_id : int = -1
 @onready var toolbelt_open : bool = false
 var camera_initial_position: Vector2
 var mouse_initial_position: Vector2
+var is_day : bool = true
 
 var limit_x = Vector2(-64,64)
 var limit_y = Vector2(-64,64)
@@ -335,10 +336,7 @@ func setUpNewPlant(res : Resource, new_plant, coords : Vector2):
 
 func getPlantResourceByPlantID(id : int):
 	if id == 0:
-		if randi_range(0,1) == 0:
-			return load("res://plants/classes/sunflower.tres")
-		else:
-			return load("res://plants/classes/sunflower2.tres")
+		return load("res://plants/classes/sunflower.tres")
 	if id == 1:
 		return load("res://plants/classes/carrot.tres")
 	if id == 2:
@@ -437,13 +435,27 @@ func _on_win_timer_timeout():
 
 
 func _on_music_timer_timeout():
-	$Audio/AudioStreamPlayer.play()
+	if is_day:
+		$Audio/AudioStreamPlayer.play()
+	else:
+		$Audio/Night_Music.play()
 
 
 func _on_audio_stream_player_finished():
-	#$Audio/MusicTimer.wait_time = randi_range(5,15)
-	#$Audio/MusicTimer.start()
-	$Audio/AudioStreamPlayer.play()
+	$Audio/MusicTimer.wait_time = randi_range(1,5)
+	$Audio/MusicTimer.start()
+
+func _on_night_music_finished():
+	$Audio/MusicTimer.wait_time = randi_range(1,5)
+	$Audio/MusicTimer.start()
+
+
+
+func _on_day_night_cycle_time_period_change(period):
+	if period == Time_Period.morning or period == Time_Period.afternoon or period == Time_Period.dawn:
+		is_day = true
+	else:
+		is_day = false
 
 
 

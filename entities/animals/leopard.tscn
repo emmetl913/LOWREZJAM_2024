@@ -1,54 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://llm28amxf6rf"]
+[gd_scene load_steps=13 format=3 uid="uid://llm28amxf6rf"]
 
 [ext_resource type="Script" path="res://entities/animals/animal.gd" id="1_e2vek"]
 [ext_resource type="Script" path="res://entities/animals/leopard.gd" id="2_xwfpw"]
 [ext_resource type="Texture2D" uid="uid://duqvi6y5wt5ml" path="res://assets/sprites/leopardtemp.png" id="3_lb63x"]
-[ext_resource type="Texture2D" uid="uid://bws25pcf2c680" path="res://assets/sprites/animals/leopard_eat.png" id="3_xyemt"]
-[ext_resource type="Texture2D" uid="uid://ypugi13v3y18" path="res://assets/sprites/animals/leopard_move.png" id="4_k68q1"]
+[ext_resource type="AudioStream" uid="uid://ithfhh2ycocs" path="res://assets/music/sfx/cat_1.wav" id="4_cb8ug"]
+[ext_resource type="AudioStream" uid="uid://cr8euweob8nw" path="res://assets/music/sfx/cat_2.wav" id="5_88mh2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gdoti"]
 size = Vector2(7.555, 7)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fxdey"]
-atlas = ExtResource("3_xyemt")
-region = Rect2(0, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eho20"]
-atlas = ExtResource("3_xyemt")
-region = Rect2(8, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wc7nl"]
-atlas = ExtResource("3_xyemt")
-region = Rect2(0, 8, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_opxob"]
-atlas = ExtResource("4_k68q1")
-region = Rect2(0, 0, 8, 8)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_ccq1h"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fxdey")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eho20")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wc7nl")
-}],
-"loop": true,
-"name": &"Eat",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_opxob")
-}],
-"loop": true,
-"name": &"Move",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_lb63x")
@@ -59,17 +21,17 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gvj48"]
-size = Vector2(8, 7)
+size = Vector2(3, 7)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n0p4s"]
 radius = 30.0
 
 [sub_resource type="Animation" id="Animation_qiltk"]
 resource_name = "Eat"
-length = 0.4
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -79,93 +41,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 0.498039)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Eat"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CharacterBody2D/AnimatedSprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 1]
-}
-
-[sub_resource type="Animation" id="Animation_ykh31"]
-resource_name = "Move"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Move"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterBody2D/AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_2kphv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Eat"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterBody2D/AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p6bom"]
 _data = {
-"Eat": SubResource("Animation_qiltk"),
-"Move": SubResource("Animation_ykh31"),
-"RESET": SubResource("Animation_2kphv")
+"Eat": SubResource("Animation_qiltk")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gkfiu"]
+streams_count = 2
+stream_0/stream = ExtResource("4_cb8ug")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("5_88mh2")
+stream_1/weight = 1.0
 
 [node name="Leopard" type="Node2D" groups=["Animal"]]
 script = ExtResource("1_e2vek")
@@ -190,12 +77,12 @@ disabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_ccq1h")
-animation = &"Eat"
+frame_progress = 0.909352
 
 [node name="DealDamage" type="Area2D" parent="CharacterBody2D/AnimatedSprite2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AnimatedSprite2D/DealDamage"]
-position = Vector2(0, 0.5)
+position = Vector2(-2.5, 0.5)
 shape = SubResource("RectangleShape2D_gvj48")
 
 [node name="AttackRange" type="Area2D" parent="CharacterBody2D/AnimatedSprite2D"]
@@ -248,6 +135,12 @@ autostart = true
 wait_time = 10.0
 autostart = true
 
+[node name="Noise" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_gkfiu")
+
+[node name="SFX_Randomizer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="CharacterBody2D/AnimatedSprite2D/DealDamage" to="CharacterBody2D" method="_on_deal_damage_body_entered"]
 [connection signal="body_entered" from="CharacterBody2D/AnimatedSprite2D/AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="CharacterBody2D/AnimatedSprite2D/AttackRange" to="." method="_on_attack_range_body_exited"]
@@ -262,3 +155,4 @@ autostart = true
 [connection signal="timeout" from="ChooseRandomFavoritePlant" to="." method="_on_choose_random_favorite_plant_timeout"]
 [connection signal="timeout" from="DropSeedTimer" to="." method="_on_drop_seed_timer_timeout"]
 [connection signal="timeout" from="EatPlant" to="." method="_on_eat_plant_timeout"]
+[connection signal="timeout" from="SFX_Randomizer" to="." method="_on_sfx_randomizer_timeout"]
