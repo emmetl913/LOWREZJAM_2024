@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dqrmukxmemk4n"]
+[gd_scene load_steps=14 format=3 uid="uid://dqrmukxmemk4n"]
 
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="1_0j1jv"]
 [ext_resource type="Texture2D" uid="uid://crx1k08qbk2uh" path="res://assets/sprites/buttons/start_button_temp.png" id="1_v6q4g"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://kwc2jjawqo53" path="res://assets/sprites/buttons/quit_button_hover_temp.png" id="4_otau6"]
 [ext_resource type="AudioStream" uid="uid://3s8f8d0ey3q5" path="res://assets/music/groovy.wav" id="7_pv2wr"]
 [ext_resource type="AudioStream" uid="uid://cor26gmtcwr5p" path="res://assets/music/sfx/select.wav" id="8_vw05y"]
-[ext_resource type="Texture2D" uid="uid://b6ou3u7f4wlhi" path="res://assets/sprites/volume.png" id="9_h3pt5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3fe3t"]
 line_spacing = 0.0
@@ -107,9 +106,9 @@ metadata/_edit_use_anchors_ = true
 texture_filter = 1
 layout_mode = 0
 offset_left = 16.0
-offset_top = 45.0
+offset_top = 50.0
 offset_right = 28.0
-offset_bottom = 57.0
+offset_bottom = 62.0
 texture_normal = ExtResource("1_v6q4g")
 texture_hover = ExtResource("2_hwsae")
 
@@ -117,9 +116,9 @@ texture_hover = ExtResource("2_hwsae")
 texture_filter = 1
 layout_mode = 0
 offset_left = 36.0
-offset_top = 45.0
+offset_top = 50.0
 offset_right = 48.0
-offset_bottom = 57.0
+offset_bottom = 62.0
 texture_normal = ExtResource("3_j12et")
 texture_hover = ExtResource("4_otau6")
 
@@ -145,28 +144,6 @@ autoplay = true
 [node name="Select" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_vw05y")
 
-[node name="HSlider" type="HSlider" parent="."]
-texture_filter = 2
-layout_mode = 0
-offset_left = 13.0
-offset_top = 58.0
-offset_right = 173.0
-offset_bottom = 74.0
-scale = Vector2(0.25, 0.25)
-rounded = true
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 56.0
-offset_right = 21.0
-offset_bottom = 68.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("9_h3pt5")
-stretch_mode = 1
-
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="drag_ended" from="HSlider" to="." method="_on_h_slider_drag_ended"]
-[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]

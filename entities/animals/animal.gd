@@ -177,6 +177,3 @@ func _calculate_leave_meadow_direction():
 	return (get_node("CharacterBody2D").position - parent.get_node("CursorCamera").position).normalized()
 
 
-func _on_sfx_randomizer_timeout():
-	$SFX_Randomizer.wait_time = randi_range(5, 15)
-	$Noise.play()
