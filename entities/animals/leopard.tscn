@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://llm28amxf6rf"]
+[gd_scene load_steps=18 format=3 uid="uid://llm28amxf6rf"]
 
 [ext_resource type="Script" path="res://entities/animals/animal.gd" id="1_e2vek"]
 [ext_resource type="Script" path="res://entities/animals/leopard.gd" id="2_xwfpw"]
@@ -25,18 +25,6 @@ region = Rect2(0, 8, 8, 8)
 atlas = ExtResource("4_k68q1")
 region = Rect2(0, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pgjki"]
-atlas = ExtResource("4_k68q1")
-region = Rect2(8, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kyagb"]
-atlas = ExtResource("4_k68q1")
-region = Rect2(0, 8, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nr578"]
-atlas = ExtResource("4_k68q1")
-region = Rect2(8, 8, 8, 8)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_ccq1h"]
 animations = [{
 "frames": [{
@@ -56,15 +44,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_opxob")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pgjki")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kyagb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nr578")
 }],
 "loop": true,
 "name": &"Move",

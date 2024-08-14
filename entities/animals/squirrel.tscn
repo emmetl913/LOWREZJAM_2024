@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cnvwsterbfka5"]
+[gd_scene load_steps=18 format=3 uid="uid://cnvwsterbfka5"]
 
 [ext_resource type="Script" path="res://entities/animals/animal.gd" id="1_8qqwo"]
 [ext_resource type="Script" path="res://entities/animals/deer.gd" id="2_30fl8"]
@@ -25,10 +25,6 @@ region = Rect2(0, 8, 8, 8)
 atlas = ExtResource("4_5j0qj")
 region = Rect2(0, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dy2wy"]
-atlas = ExtResource("4_5j0qj")
-region = Rect2(8, 0, 8, 8)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_ccq1h"]
 animations = [{
 "frames": [{
@@ -48,9 +44,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_anso8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dy2wy")
 }],
 "loop": true,
 "name": &"Move",

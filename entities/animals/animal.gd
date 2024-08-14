@@ -175,3 +175,5 @@ func _animal_eat():
 
 func _calculate_leave_meadow_direction():
 	return (get_node("CharacterBody2D").position - parent.get_node("CursorCamera").position).normalized()
+
+
