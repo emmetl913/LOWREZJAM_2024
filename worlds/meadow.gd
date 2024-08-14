@@ -38,7 +38,7 @@ var stored_energy : float
 @onready var tree = $Tree_Main
 @onready var camera = $CursorCamera
 @onready var seed_text = $CursorCamera/ToolBelt/Seeds_Menu/Plant_Info
-@onready var options_text = $CursorCamera/ToolBelt/Options_Menu/Options_Tooltip
+@onready var options_text = $CursorCamera/ToolBelt/Seeds_Menu/Options_Tooltip
 @onready var energy_text = $CursorCamera/ToolBelt/Energy_Menu/Energy_Stored
 @onready var energy_menu = $CursorCamera/ToolBelt/Energy_Menu
 @onready var seeds_menu = $CursorCamera/ToolBelt/Seeds_Menu
@@ -121,26 +121,39 @@ func _on_tree_sun_prod_timeout():
 # Tool Belt Toggle Buttons
 # /////////////////////////
 func _on_tool_belt_toggle_pressed():
-	toolbelt_open = not toolbelt_open
+	if options_menu.visible:
+		toolbelt_open = not toolbelt_open
 	if toolbelt_open:
-		options_menu.visible = true
-		seeds_menu.visible = false
-		energy_menu.visible = false
-		resource_menu.visible = false
-		
-		# Show buttons
-		$CursorCamera/ToolBelt/Seeds_Menu_Toggle.visible = true
-		$CursorCamera/ToolBelt/Power_Menu_Toggle.visible = true
-		$CursorCamera/ToolBelt/Resources_Menu_Toggle.visible = true
-		
-		# Order buttons
-		$CursorCamera/ToolBelt/ToolBelt_Toggle.z_index = 4
-		$CursorCamera/ToolBelt/Seeds_Menu_Toggle.z_index = 2
-		$CursorCamera/ToolBelt/Power_Menu_Toggle.z_index = 2
-		$CursorCamera/ToolBelt/Resources_Menu_Toggle.z_index = 2
-		
-		$CursorCamera/ToolBelt.position.y = lerp($CursorCamera/ToolBelt.position.y, $CursorCamera/ToolBelt.position.y-14, 1)
-		$CursorCamera/ToolBelt/ToolBelt_Toggle.texture_normal = load("res://assets/sprites/toolbar/tool_close.png")
+		if options_menu.visible:
+			options_menu.visible = true
+			seeds_menu.visible = false
+			energy_menu.visible = false
+			resource_menu.visible = false
+			
+			# Show buttons
+			$CursorCamera/ToolBelt/Seeds_Menu_Toggle.visible = true
+			$CursorCamera/ToolBelt/Power_Menu_Toggle.visible = true
+			$CursorCamera/ToolBelt/Resources_Menu_Toggle.visible = true
+			
+			# Order buttons
+			$CursorCamera/ToolBelt/ToolBelt_Toggle.z_index = 4
+			$CursorCamera/ToolBelt/Seeds_Menu_Toggle.z_index = 2
+			$CursorCamera/ToolBelt/Power_Menu_Toggle.z_index = 2
+			$CursorCamera/ToolBelt/Resources_Menu_Toggle.z_index = 2
+			
+			$CursorCamera/ToolBelt.position.y = lerp($CursorCamera/ToolBelt.position.y, $CursorCamera/ToolBelt.position.y-14, 1)
+			$CursorCamera/ToolBelt/ToolBelt_Toggle.texture_normal = load("res://assets/sprites/toolbar/tool_close.png")
+		else:
+			# Order buttons
+			$CursorCamera/ToolBelt/ToolBelt_Toggle.z_index = 4
+			$CursorCamera/ToolBelt/Seeds_Menu_Toggle.z_index = 2
+			$CursorCamera/ToolBelt/Power_Menu_Toggle.z_index = 2
+			$CursorCamera/ToolBelt/Resources_Menu_Toggle.z_index = 2
+			
+			options_menu.visible = true
+			seeds_menu.visible = false
+			energy_menu.visible = false
+			resource_menu.visible = false
 	else:
 		$CursorCamera/ToolBelt.position.y = lerp($CursorCamera/ToolBelt.position.y, $CursorCamera/ToolBelt.position.y+14, 1)
 		$CursorCamera/ToolBelt/ToolBelt_Toggle.texture_normal = load("res://assets/sprites/toolbar/tool_open.png")
@@ -230,7 +243,7 @@ func _on_poppy_pressed():
 	on_seed_button_pressed(4, texture)
 
 func update_highlight():
-	var highlight = $CursorCamera/ToolBelt/Seeds_Menu/Highlight
+	var highlight = $CursorCamera/ToolBelt/Options_Menu/Highlight
 	if held_seed_id == -1:
 		highlight.visible = false
 	else:
@@ -334,11 +347,11 @@ func getPlantResourceByPlantID(id : int):
 		return load("res://plants/classes/poppy.tres")
 
 func setup_seed_totals():
-	$CursorCamera/ToolBelt/Seeds_Menu/Sunflower_Total.text = "%2d" % seeds[0]
-	$CursorCamera/ToolBelt/Seeds_Menu/Carrot_Total.text = "%2d" % seeds[1]
-	$CursorCamera/ToolBelt/Seeds_Menu/Blueberry_Total.text = "%2d" % seeds[2]
-	$CursorCamera/ToolBelt/Seeds_Menu/Apple_Total.text = "%2d" % seeds[3]
-	$CursorCamera/ToolBelt/Seeds_Menu/Poppy_Total.text = "%2d" % seeds[4]
+	$CursorCamera/ToolBelt/Options_Menu/Sunflower_Total.text = "%2d" % seeds[0]
+	$CursorCamera/ToolBelt/Options_Menu/Carrot_Total.text = "%2d" % seeds[1]
+	$CursorCamera/ToolBelt/Options_Menu/Blueberry_Total.text = "%2d" % seeds[2]
+	$CursorCamera/ToolBelt/Options_Menu/Apple_Total.text = "%2d" % seeds[3]
+	$CursorCamera/ToolBelt/Options_Menu/Poppy_Total.text = "%2d" % seeds[4]
 
 func _try_spawn_animal(plantID: int):
 	if guarantee_first_animal_spawn_count > 0:

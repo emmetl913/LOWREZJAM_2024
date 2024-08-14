@@ -217,7 +217,6 @@ stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Seeds_Menu_Toggle" type="TextureButton" parent="CursorCamera/ToolBelt"]
-visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = -21.0
@@ -228,7 +227,6 @@ texture_normal = ExtResource("8_qwdxx")
 metadata/_edit_use_anchors_ = true
 
 [node name="Power_Menu_Toggle" type="TextureButton" parent="CursorCamera/ToolBelt"]
-visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = -12.0
@@ -240,7 +238,6 @@ stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Resources_Menu_Toggle" type="TextureButton" parent="CursorCamera/ToolBelt"]
-visible = false
 z_index = 2
 texture_filter = 1
 layout_mode = 0
@@ -252,18 +249,18 @@ texture_normal = ExtResource("10_1io00")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="Seeds_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
+[node name="Options_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
 z_index = 3
 position = Vector2(0, 26)
 texture = ExtResource("10_yslyd")
 
-[node name="Highlight" type="Node2D" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+[node name="Highlight" type="Node2D" parent="CursorCamera/ToolBelt/Options_Menu"]
 
-[node name="Sprite2D" type="Sprite2D" parent="CursorCamera/ToolBelt/Seeds_Menu/Highlight"]
+[node name="Sprite2D" type="Sprite2D" parent="CursorCamera/ToolBelt/Options_Menu/Highlight"]
 position = Vector2(-18, -3)
 texture = ExtResource("11_s35mj")
 
-[node name="Sunflower" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+[node name="Sunflower" type="TextureButton" parent="CursorCamera/ToolBelt/Options_Menu"]
 z_index = 5
 offset_left = -20.0
 offset_top = -5.0
@@ -272,7 +269,7 @@ offset_bottom = -1.0
 texture_normal = ExtResource("13_2jaid")
 stretch_mode = 0
 
-[node name="Sunflower_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+[node name="Sunflower_Total" type="Label" parent="CursorCamera/ToolBelt/Options_Menu"]
 z_index = 5
 texture_filter = 1
 offset_left = -22.0
@@ -283,7 +280,7 @@ theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = SubResource("LabelSettings_sepq4")
 autowrap_mode = 3
 
-[node name="Carrot" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+[node name="Carrot" type="TextureButton" parent="CursorCamera/ToolBelt/Options_Menu"]
 z_index = 5
 offset_left = -11.0
 offset_top = -5.0
@@ -292,7 +289,7 @@ offset_bottom = -1.0
 texture_normal = ExtResource("14_vfsc0")
 stretch_mode = 0
 
-[node name="Carrot_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+[node name="Carrot_Total" type="Label" parent="CursorCamera/ToolBelt/Options_Menu"]
 z_index = 5
 texture_filter = 1
 offset_left = -13.0
@@ -303,7 +300,7 @@ theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = SubResource("LabelSettings_sepq4")
 autowrap_mode = 3
 
-[node name="Blueberry" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+[node name="Blueberry" type="TextureButton" parent="CursorCamera/ToolBelt/Options_Menu"]
 z_index = 5
 offset_left = -2.0
 offset_top = -5.0
@@ -312,7 +309,7 @@ offset_bottom = -1.0
 texture_normal = ExtResource("15_8ymcu")
 stretch_mode = 0
 
-[node name="Blueberry_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+[node name="Blueberry_Total" type="Label" parent="CursorCamera/ToolBelt/Options_Menu"]
 z_index = 5
 texture_filter = 1
 offset_left = -4.0
@@ -323,7 +320,7 @@ theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = SubResource("LabelSettings_sepq4")
 autowrap_mode = 3
 
-[node name="Apple" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+[node name="Apple" type="TextureButton" parent="CursorCamera/ToolBelt/Options_Menu"]
 z_index = 5
 offset_left = 7.0
 offset_top = -5.0
@@ -332,7 +329,7 @@ offset_bottom = -1.0
 texture_normal = ExtResource("16_hldj8")
 stretch_mode = 0
 
-[node name="Apple_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+[node name="Apple_Total" type="Label" parent="CursorCamera/ToolBelt/Options_Menu"]
 z_index = 5
 texture_filter = 1
 offset_left = 5.0
@@ -343,7 +340,7 @@ theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = SubResource("LabelSettings_sepq4")
 autowrap_mode = 3
 
-[node name="Poppy" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+[node name="Poppy" type="TextureButton" parent="CursorCamera/ToolBelt/Options_Menu"]
 z_index = 5
 offset_left = 16.0
 offset_top = -5.0
@@ -352,7 +349,7 @@ offset_bottom = -1.0
 texture_normal = ExtResource("17_t1fq6")
 stretch_mode = 0
 
-[node name="Poppy_Total" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+[node name="Poppy_Total" type="Label" parent="CursorCamera/ToolBelt/Options_Menu"]
 z_index = 5
 texture_filter = 1
 offset_left = 14.0
@@ -363,7 +360,7 @@ theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = SubResource("LabelSettings_sepq4")
 autowrap_mode = 3
 
-[node name="Plant_Info" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
+[node name="Plant_Info" type="Label" parent="CursorCamera/ToolBelt/Options_Menu"]
 z_index = 3
 texture_filter = 1
 offset_left = -30.0
@@ -374,13 +371,13 @@ theme_override_fonts/font = ExtResource("2_ksmiv")
 label_settings = ExtResource("3_w168r")
 autowrap_mode = 3
 
-[node name="Options_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
+[node name="Seeds_Menu" type="Sprite2D" parent="CursorCamera/ToolBelt"]
 visible = false
 z_index = 3
 position = Vector2(0, 26)
 texture = ExtResource("10_yslyd")
 
-[node name="Main_Menu" type="TextureButton" parent="CursorCamera/ToolBelt/Options_Menu"]
+[node name="Main_Menu" type="TextureButton" parent="CursorCamera/ToolBelt/Seeds_Menu"]
 z_index = 3
 texture_filter = 1
 offset_left = 21.0
@@ -390,7 +387,7 @@ offset_bottom = 2.0
 texture_normal = ExtResource("10_p3v3i")
 texture_hover = ExtResource("11_doao0")
 
-[node name="Options_Tooltip" type="Label" parent="CursorCamera/ToolBelt/Options_Menu"]
+[node name="Options_Tooltip" type="Label" parent="CursorCamera/ToolBelt/Seeds_Menu"]
 z_index = 3
 texture_filter = 1
 offset_left = -26.0
@@ -603,6 +600,7 @@ script = ExtResource("15_t7viv")
 main = NodePath("..")
 
 [node name="Bushes" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 
@@ -623,6 +621,7 @@ wait_time = 2.0
 
 [node name="Fade_Anim" type="CanvasLayer" parent="."]
 process_mode = 3
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Fade_Anim"]
 root_node = NodePath("../..")
@@ -663,24 +662,24 @@ stream = ExtResource("28_v5pog")
 [connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu_Toggle" to="." method="_on_seeds_menu_toggle_pressed"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Power_Menu_Toggle" to="." method="_on_power_menu_toggle_pressed"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Resources_Menu_Toggle" to="." method="_on_resources_menu_toggle_pressed"]
-[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Seeds_Menu/Sunflower" to="." method="_on_sunflower_mouse_entered"]
-[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Seeds_Menu/Sunflower" to="." method="_on_sunflower_mouse_exited"]
-[connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu/Sunflower" to="." method="_on_sunflower_pressed"]
-[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Seeds_Menu/Carrot" to="." method="_on_carrot_mouse_entered"]
-[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Seeds_Menu/Carrot" to="." method="_on_carrot_mouse_exited"]
-[connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu/Carrot" to="." method="_on_carrot_pressed"]
-[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Seeds_Menu/Blueberry" to="." method="_on_blueberry_mouse_entered"]
-[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Seeds_Menu/Blueberry" to="." method="_on_blueberry_mouse_exited"]
-[connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu/Blueberry" to="." method="_on_blueberry_pressed"]
-[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Seeds_Menu/Apple" to="." method="_on_apple_mouse_entered"]
-[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Seeds_Menu/Apple" to="." method="_on_apple_mouse_exited"]
-[connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu/Apple" to="." method="_on_apple_pressed"]
-[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Seeds_Menu/Poppy" to="." method="_on_poppy_mouse_entered"]
-[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Seeds_Menu/Poppy" to="." method="_on_poppy_mouse_exited"]
-[connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu/Poppy" to="." method="_on_poppy_pressed"]
-[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Options_Menu/Main_Menu" to="." method="_on_main_menu_mouse_entered"]
-[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Options_Menu/Main_Menu" to="." method="_on_main_menu_mouse_exited"]
-[connection signal="pressed" from="CursorCamera/ToolBelt/Options_Menu/Main_Menu" to="." method="_on_main_menu_pressed"]
+[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Options_Menu/Sunflower" to="." method="_on_sunflower_mouse_entered"]
+[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Options_Menu/Sunflower" to="." method="_on_sunflower_mouse_exited"]
+[connection signal="pressed" from="CursorCamera/ToolBelt/Options_Menu/Sunflower" to="." method="_on_sunflower_pressed"]
+[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Options_Menu/Carrot" to="." method="_on_carrot_mouse_entered"]
+[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Options_Menu/Carrot" to="." method="_on_carrot_mouse_exited"]
+[connection signal="pressed" from="CursorCamera/ToolBelt/Options_Menu/Carrot" to="." method="_on_carrot_pressed"]
+[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Options_Menu/Blueberry" to="." method="_on_blueberry_mouse_entered"]
+[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Options_Menu/Blueberry" to="." method="_on_blueberry_mouse_exited"]
+[connection signal="pressed" from="CursorCamera/ToolBelt/Options_Menu/Blueberry" to="." method="_on_blueberry_pressed"]
+[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Options_Menu/Apple" to="." method="_on_apple_mouse_entered"]
+[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Options_Menu/Apple" to="." method="_on_apple_mouse_exited"]
+[connection signal="pressed" from="CursorCamera/ToolBelt/Options_Menu/Apple" to="." method="_on_apple_pressed"]
+[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Options_Menu/Poppy" to="." method="_on_poppy_mouse_entered"]
+[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Options_Menu/Poppy" to="." method="_on_poppy_mouse_exited"]
+[connection signal="pressed" from="CursorCamera/ToolBelt/Options_Menu/Poppy" to="." method="_on_poppy_pressed"]
+[connection signal="mouse_entered" from="CursorCamera/ToolBelt/Seeds_Menu/Main_Menu" to="." method="_on_main_menu_mouse_entered"]
+[connection signal="mouse_exited" from="CursorCamera/ToolBelt/Seeds_Menu/Main_Menu" to="." method="_on_main_menu_mouse_exited"]
+[connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu/Main_Menu" to="." method="_on_main_menu_pressed"]
 [connection signal="timeout" from="Tree_Sun_Prod" to="." method="_on_tree_sun_prod_timeout"]
 [connection signal="pressed" from="Tutorial/Confirm" to="Tutorial" method="_on_confirm_pressed"]
 [connection signal="pressed" from="Tutorial/No" to="Tutorial" method="_on_no_pressed"]
