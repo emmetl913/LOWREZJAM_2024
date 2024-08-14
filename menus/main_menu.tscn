@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dqrmukxmemk4n"]
+[gd_scene load_steps=16 format=3 uid="uid://dqrmukxmemk4n"]
 
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="1_0j1jv"]
 [ext_resource type="Texture2D" uid="uid://crx1k08qbk2uh" path="res://assets/sprites/buttons/start_button_temp.png" id="1_v6q4g"]
@@ -13,6 +13,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_3fe3t"]
 line_spacing = 0.0
 font = ExtResource("1_0j1jv")
+font_size = 12
 
 [sub_resource type="Animation" id="Animation_yolxe"]
 length = 0.001
@@ -66,6 +67,11 @@ _data = {
 "fade_to_normal": SubResource("Animation_myb65")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_a0k50"]
+line_spacing = 0.0
+font = ExtResource("1_0j1jv")
+font_size = 8
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -89,9 +95,9 @@ texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.515625
-anchor_top = 0.4375
+anchor_top = 0.46875
 anchor_right = 0.515625
-anchor_bottom = 0.4375
+anchor_bottom = 0.46875
 offset_left = -29.0
 offset_top = -31.0
 offset_right = 29.0
@@ -107,9 +113,9 @@ metadata/_edit_use_anchors_ = true
 texture_filter = 1
 layout_mode = 0
 offset_left = 16.0
-offset_top = 45.0
+offset_top = 39.0
 offset_right = 28.0
-offset_bottom = 57.0
+offset_bottom = 51.0
 texture_normal = ExtResource("1_v6q4g")
 texture_hover = ExtResource("2_hwsae")
 
@@ -117,9 +123,9 @@ texture_hover = ExtResource("2_hwsae")
 texture_filter = 1
 layout_mode = 0
 offset_left = 36.0
-offset_top = 45.0
+offset_top = 39.0
 offset_right = 48.0
-offset_bottom = 57.0
+offset_bottom = 51.0
 texture_normal = ExtResource("3_j12et")
 texture_hover = ExtResource("4_otau6")
 
@@ -132,21 +138,30 @@ libraries = {
 texture_filter = 2
 layout_mode = 0
 offset_left = 13.0
-offset_top = 58.0
+offset_top = 52.0
 offset_right = 173.0
-offset_bottom = 74.0
+offset_bottom = 68.0
 scale = Vector2(0.25, 0.25)
 rounded = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 3.0
-offset_top = 56.0
+offset_top = 50.0
 offset_right = 21.0
-offset_bottom = 68.0
+offset_bottom = 62.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_h3pt5")
 stretch_mode = 1
+
+[node name="Best" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 56.0
+offset_right = 53.0
+offset_bottom = 72.0
+text = "Best time: 0 days"
+label_settings = SubResource("LabelSettings_a0k50")
 
 [node name="Fade" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -154,6 +169,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)

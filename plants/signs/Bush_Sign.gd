@@ -37,16 +37,16 @@ func _on_sign_texture_pressed():
 		$Sprite2D/Label.text = "West Bush"
 		$Sprite2D/win_cond.texture = load("res://assets/sprites/plants/blueberry_4.png")
 	$Sprite2D/Label2.text = "12.5/s"
-	$Sprite2D/Label3.text = "250"
+	$Sprite2D/Label3.text = "600"
 	$Sprite2D.position.x += offset.x
 	$Sprite2D.position.y += offset.y
 
 
 func _on_button_pressed():
-	if parent.resources[plant_id] >= 250:
+	if parent.resources[plant_id] >= 600:
 		$Sprite2D.visible = false
 		bought = true
-		parent.resources[plant_id] -= 250
+		parent.resources[plant_id] -= 600
 		$Drain_timer.start()
 	else:
 		$AudioStreamPlayer.play()
