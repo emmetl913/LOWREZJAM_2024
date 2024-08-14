@@ -120,7 +120,7 @@ func _on_tree_sun_prod_timeout():
 # /////////////////////////
 # Tool Belt Toggle Buttons
 # /////////////////////////
-func _on_tool_belt_toggle_pressed():
+func open_toolbelt():
 	if options_menu.visible:
 		toolbelt_open = not toolbelt_open
 	if toolbelt_open:
@@ -162,7 +162,9 @@ func _on_tool_belt_toggle_pressed():
 		$CursorCamera/ToolBelt/Seeds_Menu_Toggle.visible = false
 		$CursorCamera/ToolBelt/Power_Menu_Toggle.visible = false
 		$CursorCamera/ToolBelt/Resources_Menu_Toggle.visible = false
-	
+func _on_tool_belt_toggle_pressed():
+	open_toolbelt()
+
 func _on_seeds_menu_toggle_pressed():
 	if toolbelt_open:
 		resource_menu.visible = false
@@ -216,7 +218,7 @@ func _on_main_menu_mouse_exited():
 # Seed Interface Buttons
 # //////////////////////
 func on_seed_button_pressed(seedID: int, texture: Texture2D):
-	if is_holding_seed && seedID == held_seed_id:
+	if is_holding_seed and seedID == held_seed_id:
 		$Mouse_Dragger/Sprite2D.texture = null
 		is_holding_seed = false
 		held_seed_id = -1
@@ -267,6 +269,29 @@ func _input(event):
 			map_data[new_coords.x-1][new_coords.y-1] = new_plant
 			if held_seed_id != 0: #not a sunflower
 				_try_spawn_animal(held_seed_id)
+	if event.is_action_pressed("sunflower_hotkey"):
+		is_holding_seed = true
+		held_seed_id = 0
+		$Mouse_Dragger/Sprite2D.texture = load("res://assets/sprites/plants/sunflower_seed.png")
+	elif event.is_action_pressed("carrot_hotkey"):
+		is_holding_seed = true
+		held_seed_id = 1
+		$Mouse_Dragger/Sprite2D.texture = load("res://assets/sprites/plants/carrot_seed.png")
+	elif event.is_action_pressed("blueberry_hotkey"):
+		is_holding_seed = true
+		held_seed_id = 2
+		$Mouse_Dragger/Sprite2D.texture = load("res://assets/sprites/plants/blueberry_seed.png")
+	elif event.is_action_pressed("apple_hotkey"):
+		is_holding_seed = true
+		held_seed_id = 3
+		$Mouse_Dragger/Sprite2D.texture = load("res://assets/sprites/plants/apple_seed.png")
+	elif event.is_action_pressed("poppy_hotkey"):
+		is_holding_seed = true
+		held_seed_id = 4
+		$Mouse_Dragger/Sprite2D.texture = load("res://assets/sprites/plants/poppy_seed.png")
+	if event.is_action_pressed("toolbelt_hotkey"):
+		open_toolbelt()
+	update_highlight()
 
 #Returns boolean true/false if the current mouse location is a valid planting spot
 func is_valid_planting_spot():
