@@ -1,16 +1,91 @@
-[gd_scene load_steps=13 format=3 uid="uid://bpev3in15e4e6"]
+[gd_scene load_steps=24 format=3 uid="uid://bpev3in15e4e6"]
 
 [ext_resource type="Script" path="res://entities/animals/animal.gd" id="1_lwbbo"]
 [ext_resource type="Script" path="res://entities/animals/bird.gd" id="2_m0q8o"]
 [ext_resource type="Texture2D" uid="uid://bcv2xox0qlwr6" path="res://assets/sprites/birdtemp.png" id="3_ammpp"]
-[ext_resource type="AudioStream" uid="uid://d3la4p5gd6m3o" path="res://assets/music/sfx/bird_1.wav" id="4_7wdjr"]
-[ext_resource type="AudioStream" uid="uid://1yxvar4vguro" path="res://assets/music/sfx/bird_2.wav" id="5_hncmj"]
+[ext_resource type="Texture2D" uid="uid://dmjniyeiliayj" path="res://assets/sprites/animals/bird_eat.png" id="3_xvwtj"]
+[ext_resource type="Texture2D" uid="uid://dys0agcgxw78l" path="res://assets/sprites/animals/bird_idle.png" id="4_43nb7"]
+[ext_resource type="Texture2D" uid="uid://qb5o3yvaxhrt" path="res://assets/sprites/animals/bird_move.png" id="5_cttnu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gdoti"]
 size = Vector2(7.555, 7)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1x1t2"]
+atlas = ExtResource("3_xvwtj")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdxpa"]
+atlas = ExtResource("3_xvwtj")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kufk7"]
+atlas = ExtResource("3_xvwtj")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxrj0"]
+atlas = ExtResource("4_43nb7")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dotn"]
+atlas = ExtResource("4_43nb7")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4vjr"]
+atlas = ExtResource("5_cttnu")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjvtp"]
+atlas = ExtResource("4_43nb7")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0ru7"]
+atlas = ExtResource("5_cttnu")
+region = Rect2(8, 0, 8, 8)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ccq1h"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1x1t2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdxpa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kufk7")
+}],
+"loop": true,
+"name": &"Eat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxrj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dotn")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4vjr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjvtp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4vjr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0ru7")
+}],
+"loop": true,
+"name": &"Move",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_ammpp")
@@ -28,10 +103,10 @@ radius = 32.0
 
 [sub_resource type="Animation" id="Animation_qiltk"]
 resource_name = "Eat"
-length = 0.3
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -41,18 +116,123 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Eat"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterBody2D/AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+
+[sub_resource type="Animation" id="Animation_uw20v"]
+resource_name = "Idle"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_hedxu"]
+resource_name = "Move"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Move"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 3]
+}
+
+[sub_resource type="Animation" id="Animation_xxihh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Eat"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p6bom"]
 _data = {
-"Eat": SubResource("Animation_qiltk")
+"Eat": SubResource("Animation_qiltk"),
+"Idle": SubResource("Animation_uw20v"),
+"Move": SubResource("Animation_hedxu"),
+"RESET": SubResource("Animation_xxihh")
 }
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r8vbg"]
-streams_count = 2
-stream_0/stream = ExtResource("4_7wdjr")
-stream_0/weight = 1.0
-stream_1/stream = ExtResource("5_hncmj")
-stream_1/weight = 1.0
 
 [node name="Bird" type="Node2D" groups=["Animal"]]
 script = ExtResource("1_lwbbo")
@@ -78,7 +258,7 @@ disabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_ccq1h")
-frame_progress = 0.724782
+animation = &"Eat"
 
 [node name="DealDamage" type="Area2D" parent="CharacterBody2D/AnimatedSprite2D"]
 
@@ -132,12 +312,6 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
-[node name="Noise" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_r8vbg")
-
-[node name="SFX_Randomizer" type="Timer" parent="."]
-autostart = true
-
 [connection signal="body_entered" from="CharacterBody2D/AnimatedSprite2D/DealDamage" to="CharacterBody2D" method="_on_deal_damage_body_entered"]
 [connection signal="body_entered" from="CharacterBody2D/AnimatedSprite2D/AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="CharacterBody2D/AnimatedSprite2D/AttackRange" to="." method="_on_attack_range_body_exited"]
@@ -150,4 +324,3 @@ autostart = true
 [connection signal="timeout" from="ChooseRandomFavoritePlant" to="." method="_on_choose_random_favorite_plant_timeout"]
 [connection signal="timeout" from="DropSeedTimer" to="." method="_on_drop_seed_timer_timeout"]
 [connection signal="timeout" from="EatPlant" to="." method="_on_eat_plant_timeout"]
-[connection signal="timeout" from="SFX_Randomizer" to="." method="_on_sfx_randomizer_timeout"]
