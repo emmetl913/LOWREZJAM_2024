@@ -270,25 +270,50 @@ func _input(event):
 			if held_seed_id != 0: #not a sunflower
 				_try_spawn_animal(held_seed_id)
 	if event.is_action_pressed("sunflower_hotkey"):
-		is_holding_seed = true
-		held_seed_id = 0
-		$Mouse_Dragger/Sprite2D.texture = load("res://assets/sprites/plants/sunflower_seed.png")
+		if held_seed_id == 0:
+			$Mouse_Dragger/Sprite2D.texture = null
+			is_holding_seed = false
+			held_seed_id = -1
+		else:
+			is_holding_seed = true
+			held_seed_id = 0
+			$Mouse_Dragger/Sprite2D.texture = load("res://assets/sprites/plants/sunflower_seed.png")
 	elif event.is_action_pressed("carrot_hotkey"):
-		is_holding_seed = true
-		held_seed_id = 1
-		$Mouse_Dragger/Sprite2D.texture = load("res://assets/sprites/plants/carrot_seed.png")
+		if held_seed_id == 1:
+			$Mouse_Dragger/Sprite2D.texture = null
+			is_holding_seed = false
+			held_seed_id = -1
+		else:
+			is_holding_seed = true
+			held_seed_id = 1
+			$Mouse_Dragger/Sprite2D.texture = load("res://assets/sprites/plants/carrot_seed.png")
 	elif event.is_action_pressed("blueberry_hotkey"):
-		is_holding_seed = true
-		held_seed_id = 2
-		$Mouse_Dragger/Sprite2D.texture = load("res://assets/sprites/plants/blueberry_seed.png")
+		if held_seed_id == 2:
+			$Mouse_Dragger/Sprite2D.texture = null
+			is_holding_seed = false
+			held_seed_id = -1
+		else:
+			is_holding_seed = true
+			held_seed_id = 2
+			$Mouse_Dragger/Sprite2D.texture = load("res://assets/sprites/plants/blueberry_seed.png")
 	elif event.is_action_pressed("apple_hotkey"):
-		is_holding_seed = true
-		held_seed_id = 3
-		$Mouse_Dragger/Sprite2D.texture = load("res://assets/sprites/plants/apple_seed.png")
+		if held_seed_id == 3:
+			$Mouse_Dragger/Sprite2D.texture = null
+			is_holding_seed = false
+			held_seed_id = -1
+		else:
+			is_holding_seed = true
+			held_seed_id = 3
+			$Mouse_Dragger/Sprite2D.texture = load("res://assets/sprites/plants/apple_seed.png")
 	elif event.is_action_pressed("poppy_hotkey"):
-		is_holding_seed = true
-		held_seed_id = 4
-		$Mouse_Dragger/Sprite2D.texture = load("res://assets/sprites/plants/poppy_seed.png")
+		if held_seed_id == 4:
+			$Mouse_Dragger/Sprite2D.texture = null
+			is_holding_seed = false
+			held_seed_id = -1
+		else:
+			is_holding_seed = true
+			held_seed_id = 4
+			$Mouse_Dragger/Sprite2D.texture = load("res://assets/sprites/plants/poppy_seed.png")
 	if event.is_action_pressed("toolbelt_hotkey"):
 		open_toolbelt()
 	update_highlight()
