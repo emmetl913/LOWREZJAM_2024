@@ -21,9 +21,7 @@ func _ready():
 func _input(event):
 	if step == 1 and get_parent().toolbelt_open:
 		tool_arrow.visible = false
-		text.text = "Press the tree icon"
-		step += 1
-	if step == 2 and get_parent().seeds_menu.visible and can_start:
+		step+=1
 		text.text = "These are your seeds!"
 		can_start = false
 		stepper.start()
@@ -86,7 +84,7 @@ func _on_stepper_timeout():
 		text.text = "Seeds consume energy over time"
 		stepper.start()
 	if step == 6:
-		text.text = "Plant more sunflowers for more energy"
+		text.text = "Plant sunflower to gain energy"
 		stepper.start()
 	if step == 7:
 		text.text = "Plant seeds to attract animals!"
