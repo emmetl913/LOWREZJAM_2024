@@ -145,6 +145,7 @@ func _on_wither_timeout():
 
 func _death():
 	print("A plant has died?")
+	get_parent().plant_count -= 1
 	queue_free()
 
 func _take_damage(damage: int):

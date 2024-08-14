@@ -2,6 +2,9 @@ extends Node2D
 
 enum Time_Period {morning, afternoon, evening, dusk, midnight, dawn}
 
+var animal_array: Array
+var plant_count: int = 0
+var total_seed_count: int = 0
 #Set this to return 1 everytime if you want guaranteed animal spawns
 @export var animal_spawn_fraction: Vector2
 @export var guarantee_first_animal_spawn_count: int
@@ -66,6 +69,8 @@ func _ready():
 	options_menu.visible = true
 	update_highlight()
 	get_tree().paused = true
+
+
 
 func setupBushes():
 	$Bushes/Bush_Sign_North.orientation = 0
@@ -383,6 +388,28 @@ func setUpNewPlant(res : Resource, new_plant, coords : Vector2):
 	#new_plant._start_growth()
 	if new_plant.PLANT_ID == 0:
 		total_sunflowers += 1
+	plant_count += 1
+
+
+func get_seed_total():
+	var total = 0
+	for seed in seeds:
+		total+= seed
+	return total
+	
+func calc_seed_timer():
+	var new_wait_time: = 1.0
+	if get_seed_total() > 30 and animal_array.size() <= 5:
+		new_wait_time =  10
+	elif animal_array.size() < 5:
+		new_wait_time = 3.0
+	elif animal_array.size() <= 10:
+		new_wait_time = randf_range(6,12)
+	elif animal_array.size() <= 15:
+		new_wait_time = 16 #lower these if too hard
+	elif animal_array.size() <= 30:
+		new_wait_time = 36
+	return new_wait_time
 
 func getPlantResourceByPlantID(id : int):
 	if id == 0:
@@ -419,6 +446,7 @@ func _spawn_animal(plantID: int, timeToSpawn: float):
 	new_animal._randomly_choose_plant_()
 	new_animal.enter_screen_timer = timeToSpawn
 	add_child(new_animal, true)
+	animal_array.append(new_animal)
 
 func _get_animal_by_plant_id(plantID: int):
 	if plantID == 1:

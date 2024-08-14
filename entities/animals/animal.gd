@@ -24,6 +24,8 @@ func _load_seed_references():
 func _ready():
 	$EnterScreen.start(enter_screen_timer)
 	$ChooseRandomFavoritePlant.start(randf_range(5,15))
+	$DropSeedTimer.autostart = false
+	$DropSeedTimer.start(get_parent().calc_seed_timer())
 	_load_seed_references()
 #func _process(delta):
 	#if is_instance_valid($CharacterBody2D):
@@ -67,7 +69,7 @@ func _set_plant_to_closest_plant():
 			print("We could not find the characterbody2d idk why this is happening!!!!! Help me!")
 	if target == null:
 		must_leave = true
-		#target = current_plant
+		target = current_plant
 	if is_instance_valid(target):
 		return target
 	else:
@@ -89,6 +91,7 @@ func check_leave_meadow():
 				any_plants_left = true 
 	if !any_plants_left:
 		must_leave = true
+		get_parent().animal_array.pop_at(get_parent().animal_array.find(self))
 	else:
 		_set_plant(_set_plant_to_closest_plant())
 func _get_plant():
@@ -151,6 +154,9 @@ func _drop_seed():
 
 func _on_drop_seed_timer_timeout():
 	_drop_seed()
+
+	$DropSeedTimer.start(get_parent().calc_seed_timer())
+
 
 
 func _start_eat_timer():
