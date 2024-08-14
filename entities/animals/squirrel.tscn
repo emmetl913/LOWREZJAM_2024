@@ -1,16 +1,54 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnvwsterbfka5"]
+[gd_scene load_steps=18 format=3 uid="uid://cnvwsterbfka5"]
 
 [ext_resource type="Script" path="res://entities/animals/animal.gd" id="1_8qqwo"]
 [ext_resource type="Script" path="res://entities/animals/deer.gd" id="2_30fl8"]
 [ext_resource type="Texture2D" uid="uid://bii244egyc6mf" path="res://assets/sprites/squirreltemp.png" id="3_c8o3q"]
-[ext_resource type="AudioStream" uid="uid://cqev3akkdfwhh" path="res://assets/music/sfx/squirrel_1.wav" id="4_w0g43"]
-[ext_resource type="AudioStream" uid="uid://b6th7a7ps2e3x" path="res://assets/music/sfx/squirrel_2.wav" id="5_jueig"]
+[ext_resource type="Texture2D" uid="uid://dtc26tkknaejj" path="res://assets/sprites/animals/squirrel_eat.png" id="3_rneiv"]
+[ext_resource type="Texture2D" uid="uid://bnde6xtuib0pn" path="res://assets/sprites/animals/squirrel_move.png" id="4_5j0qj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gdoti"]
 size = Vector2(7.555, 7)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mu5r"]
+atlas = ExtResource("3_rneiv")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_243ja"]
+atlas = ExtResource("3_rneiv")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bsmg"]
+atlas = ExtResource("3_rneiv")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anso8"]
+atlas = ExtResource("4_5j0qj")
+region = Rect2(0, 0, 8, 8)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ccq1h"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mu5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_243ja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bsmg")
+}],
+"loop": true,
+"name": &"Eat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anso8")
+}],
+"loop": true,
+"name": &"Move",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_c8o3q")
@@ -21,17 +59,17 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gvj48"]
-size = Vector2(3, 7)
+size = Vector2(8, 7)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n0p4s"]
 radius = 30.0167
 
 [sub_resource type="Animation" id="Animation_qiltk"]
 resource_name = "Eat"
-length = 0.3
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -41,18 +79,93 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Eat"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterBody2D/AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+
+[sub_resource type="Animation" id="Animation_mjynh"]
+resource_name = "Move"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Move"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_1tf60"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Eat"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p6bom"]
 _data = {
-"Eat": SubResource("Animation_qiltk")
+"Eat": SubResource("Animation_qiltk"),
+"Move": SubResource("Animation_mjynh"),
+"RESET": SubResource("Animation_1tf60")
 }
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_godgh"]
-streams_count = 2
-stream_0/stream = ExtResource("4_w0g43")
-stream_0/weight = 1.0
-stream_1/stream = ExtResource("5_jueig")
-stream_1/weight = 1.0
 
 [node name="Squirrel" type="Node2D" groups=["Animal"]]
 script = ExtResource("1_8qqwo")
@@ -77,12 +190,12 @@ disabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_ccq1h")
-frame_progress = 0.724782
+animation = &"Eat"
 
 [node name="DealDamage" type="Area2D" parent="CharacterBody2D/AnimatedSprite2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AnimatedSprite2D/DealDamage"]
-position = Vector2(-2.5, 0.5)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_gvj48")
 
 [node name="AttackRange" type="Area2D" parent="CharacterBody2D/AnimatedSprite2D"]
@@ -131,12 +244,6 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
-[node name="Noise" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_godgh")
-
-[node name="SFX_Randomizer" type="Timer" parent="."]
-autostart = true
-
 [connection signal="body_entered" from="CharacterBody2D/AnimatedSprite2D/DealDamage" to="CharacterBody2D" method="_on_deal_damage_body_entered"]
 [connection signal="body_entered" from="CharacterBody2D/AnimatedSprite2D/AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="CharacterBody2D/AnimatedSprite2D/AttackRange" to="." method="_on_attack_range_body_exited"]
@@ -148,4 +255,3 @@ autostart = true
 [connection signal="timeout" from="ChooseRandomFavoritePlant" to="." method="_on_choose_random_favorite_plant_timeout"]
 [connection signal="timeout" from="DropSeedTimer" to="." method="_on_drop_seed_timer_timeout"]
 [connection signal="timeout" from="EatPlant" to="." method="_on_eat_plant_timeout"]
-[connection signal="timeout" from="SFX_Randomizer" to="." method="_on_sfx_randomizer_timeout"]

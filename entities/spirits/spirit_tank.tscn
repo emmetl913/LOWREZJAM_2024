@@ -1,11 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dk746qpflou7s"]
+[gd_scene load_steps=10 format=3 uid="uid://dk746qpflou7s"]
 
 [ext_resource type="Script" path="res://entities/spirits/spirit.gd" id="1_gqvlu"]
 [ext_resource type="Texture2D" uid="uid://dj5d7mulp1asp" path="res://assets/sprites/Spirit.png" id="2_k6e4n"]
 [ext_resource type="Script" path="res://entities/spirits/spirit_sight.gd" id="3_qrauc"]
 [ext_resource type="Script" path="res://entities/spirits/spirit_attack.gd" id="4_idv8k"]
-[ext_resource type="AudioStream" uid="uid://cdaims6u1jn52" path="res://assets/music/sfx/spirit_damage.wav" id="5_inetn"]
-[ext_resource type="AudioStream" uid="uid://dltwohri02tm5" path="res://assets/music/sfx/spirit_die.wav" id="6_8xvrw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_obhsy"]
 radius = 3.0
@@ -71,12 +69,6 @@ shape = SubResource("RectangleShape2D_bar8g")
 libraries = {
 "": SubResource("AnimationLibrary_f75ql")
 }
-
-[node name="Damage" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_inetn")
-
-[node name="Die" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_8xvrw")
 
 [connection signal="body_entered" from="Sight" to="Sight" method="_on_body_entered"]
 [connection signal="body_exited" from="Sight" to="Sight" method="_on_body_exited"]

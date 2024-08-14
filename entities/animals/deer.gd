@@ -5,7 +5,7 @@ var move_timer
 var can_move = true
 var can_eat = true
 var is_wandering = true
-
+var can_start_stopping = false
 #change to true if you want "wandering deer" to attack
 var can_attack = false
 var is_attacking = false
@@ -17,6 +17,7 @@ var prevhittargetsprite
 @export var screen_exit_speed: float
 @export var max_distance_from_plant: float
 @export var knockback: float
+@export var slow_speed: float
 var dir: Vector2
 
 func _ready():
@@ -88,10 +89,12 @@ func _process(delta):
 	else:
 		$AnimatedSprite2D.flip_h = false
 	
-	
-	#	if move_timer.get_time_left() == 0:
-	#		move_timer.start(1)
-	
+	if !animal.must_eat && animal.enemies_in_range.size() == 0 and can_start_stopping and !_is_far_from_plant(animal._get_plant_position()):
+		can_move = false
+		if $MoveAgain.time_left == 0:
+			$MoveAgain.start()
+			can_start_stopping = false
+
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Eat":
 		can_move = true
@@ -128,6 +131,7 @@ func _on_recalculate_move_dir_timeout():
 
 func _on_enter_screen_timeout():
 	can_move = true
+	$StartStoppingRandomly.start()
 
 func _on_deal_damage_body_entered(body):
 	if body.is_in_group("Spirit") && is_attacking:
@@ -155,3 +159,13 @@ func _apply_knock_back(target: Node2D, knockback_force: float):
 func _on_self_destruct_sequence_timeout():
 	queue_free()
 
+
+
+func _on_move_again_timeout():
+	can_move = true
+	if $StartStoppingRandomly.time_left == 0:
+		$StartStoppingRandomly.start()
+
+
+func _on_start_stopping_randomly_timeout():
+	can_start_stopping = true
