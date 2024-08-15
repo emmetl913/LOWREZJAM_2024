@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://c8s6l7pbftwq4"]
 
 [ext_resource type="Script" path="res://worlds/death_screen.gd" id="1_s50xw"]
-[ext_resource type="Texture2D" uid="uid://bujaahxnmv2a2" path="res://assets/sprites/apple_seed.png" id="2_j6jbm"]
+[ext_resource type="Texture2D" uid="uid://cokgtoewqm5oy" path="res://assets/sprites/background.png" id="2_5haie"]
 [ext_resource type="PackedScene" uid="uid://cray6xpq4vkl" path="res://plants/tree_main.tscn" id="3_f3vax"]
 [ext_resource type="AudioStream" uid="uid://c7laf2iwjv6h3" path="res://assets/music/temp_lost.wav" id="27_i442l"]
 
@@ -125,19 +125,17 @@ script = ExtResource("1_s50xw")
 [node name="TempBackground" type="Sprite2D" parent="."]
 modulate = Color(0.127937, 0.349791, 0.276324, 1)
 texture_filter = 1
-scale = Vector2(32, 32)
-texture = ExtResource("2_j6jbm")
+texture = ExtResource("2_5haie")
 
 [node name="Tree_Main" parent="." instance=ExtResource("3_f3vax")]
 process_mode = 3
 position = Vector2(-8, -8)
 
-[node name="TextureRect" type="ColorRect" parent="."]
-offset_left = -18.0
-offset_top = 8.0
-offset_right = 22.0
-offset_bottom = 32.0
-color = Color(0.129412, 0.184314, 0.141176, 1)
+[node name="TextureRect2" type="Sprite2D" parent="."]
+modulate = Color(0.127937, 0.349791, 0.276324, 1)
+texture_filter = 1
+position = Vector2(0, 72)
+texture = ExtResource("2_5haie")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

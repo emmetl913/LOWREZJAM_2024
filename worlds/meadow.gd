@@ -483,7 +483,8 @@ func _on_animation_player_animation_finished(anim_name):
 func plantBushes():
 	if $Bushes/Bush_Sign_North.bought and !bushes[0]:
 		$Bushes/Bush_Sign_North/Sprite2D.visible = false
-		print("Spawning north bushes")
+		$"Entity Spawn System".spawn_sides[0] = false
+		print("Spawning north bushes, spawnable: ", $"Entity Spawn System".spawn_sides[0])
 		for i in range(0,17):
 			var bush_inst = bush_reference.instantiate()
 			bush_inst.position = Vector2((i-8)*8 , -60)
@@ -491,7 +492,8 @@ func plantBushes():
 		bushes[0] = true
 	elif $Bushes/Bush_Sign_South.bought and !bushes[1]:
 		$Bushes/Bush_Sign_South/Sprite2D.visible = false
-		print("Spawning south bushes")
+		$"Entity Spawn System".spawn_sides[1] = false
+		print("Spawning south bushes, spawnable: ", $"Entity Spawn System".spawn_sides[1])
 		for i in range(0,17):
 			var bush_inst = bush_reference.instantiate()
 			bush_inst.position = Vector2((i-8)*8 , 60)
@@ -499,7 +501,8 @@ func plantBushes():
 		bushes[1] = true
 	elif $Bushes/Bush_Sign_East.bought and !bushes[2]:
 		$Bushes/Bush_Sign_East/Sprite2D.visible = false
-		print("Spawning east bushes")
+		$"Entity Spawn System".spawn_sides[2] = false
+		print("Spawning east bushes, spawnable: ", $"Entity Spawn System".spawn_sides[2])
 		for i in range(0,17):
 			var bush_inst = bush_reference.instantiate()
 			bush_inst.position = Vector2(60 , (i-8)*8)
@@ -508,7 +511,8 @@ func plantBushes():
 		bushes[2] = true
 	elif $Bushes/Bush_Sign_West.bought and !bushes[3]:
 		$Bushes/Bush_Sign_West/Sprite2D.visible = false
-		print("Spawning west bushes")
+		$"Entity Spawn System".spawn_sides[3] = false
+		print("Spawning west bushes, spawnable: ", $"Entity Spawn System".spawn_sides[3])
 		for i in range(0,17):
 			var bush_inst = bush_reference.instantiate()
 			bush_inst.position = Vector2(-60 , (i-8)*8)
