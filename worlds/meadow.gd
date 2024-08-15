@@ -590,4 +590,4 @@ func _on_try_spawn_extra_helping_animals_timeout():
 		current_ratio = 1.0 * lep_count/poppies
 		if current_ratio <= animal_ratio_help:
 			_try_spawn_animal(4)
-		
+
