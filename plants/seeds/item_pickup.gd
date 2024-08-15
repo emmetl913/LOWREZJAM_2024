@@ -55,7 +55,21 @@ func _on_collection_radius_area_entered(area):
 		queue_free()
 
 func _randomly_choose_seed():
-	return randi_range(0, seedsprites.size()-1)
+	#Randomize seed
+	var seed_rand = randf_range(0, 1)
+	var seed_index : int
+	if (seed_rand < .25):
+		seed_index = 0 #sunflower
+	elif (seed_rand >= .25 && seed_rand < .48):
+		seed_index = 1 #carrot
+	elif (seed_rand >= .48 && seed_rand < .69):
+		seed_index = 2 #blueberry
+	elif (seed_rand >= .69 && seed_rand < .90):
+		seed_index = 3 #apple
+	else:
+		seed_index = 4 #poppy
+		
+	return seed_index
 	
 func _assign_seed_type(seed_id: int):
 	$SeedSprite.texture = seedsprites[seed_id]
