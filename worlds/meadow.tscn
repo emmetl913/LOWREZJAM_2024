@@ -620,6 +620,7 @@ wait_time = 2.0
 
 [node name="Fade_Anim" type="CanvasLayer" parent="."]
 process_mode = 3
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Fade_Anim"]
 root_node = NodePath("../..")

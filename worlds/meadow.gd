@@ -338,9 +338,14 @@ func is_valid_planting_spot():
 	if (mouse_pos.x < 10 && mouse_pos.x > -10 && mouse_pos.y < 10 && mouse_pos.y > -10):
 		return false
 	
+	var positionCoords = getMapAsGridCoords()
+	print(positionCoords)
+	
+	#Checks if space is on the edge
+	if (positionCoords.y == 1 || positionCoords.x == 1 || positionCoords.x == 16 || positionCoords.x == 16):
+		return false
 	
 	#Checks if space is occupied
-	var positionCoords = getMapAsGridCoords()
 	if (map_data[positionCoords.x - 1][positionCoords.y - 1] != null):
 		var tem = map_data[positionCoords.x - 1][positionCoords.y - 1]
 		tem.queue_free()
