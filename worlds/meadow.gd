@@ -406,19 +406,20 @@ func get_seed_total():
 	
 func calc_seed_timer():
 	var new_wait_time: = 1.0
-	var seed_spawn_rate_decrease_factor = 3.75
+	var seed_spawn_rate_decrease_factor = 7
+	var late_game_seed_spawn_rate_decrease_factor = 10
 	if get_seed_total() < 6 and animal_array.size() < 4:
-		new_wait_time =  8.0
-	elif get_seed_total() < 6 and animal_array.size() < 6:
 		new_wait_time =  10.0
+	elif get_seed_total() < 6 and animal_array.size() < 6:
+		new_wait_time =  14.0
 	elif animal_array.size() < 6:
 		new_wait_time = 6 * seed_spawn_rate_decrease_factor * randf_range(.25,2)
 	elif animal_array.size() <= 15:
-		new_wait_time = 12 *  randf_range(.25,2)
-	elif animal_array.size() <= 15:
-		new_wait_time = 16 * randf_range(.25,2) * seed_spawn_rate_decrease_factor
+		new_wait_time = 12 *  seed_spawn_rate_decrease_factor * randf_range(.25,2)
+	elif animal_array.size() <= 20:
+		new_wait_time = 16 * randf_range(.25,2) * late_game_seed_spawn_rate_decrease_factor
 	elif animal_array.size() <= 30:
-		new_wait_time = 30 * randf_range(.25,2) * seed_spawn_rate_decrease_factor
+		new_wait_time = 30 * randf_range(.25,2) * late_game_seed_spawn_rate_decrease_factor
 	return new_wait_time
 
 func getPlantResourceByPlantID(id : int):

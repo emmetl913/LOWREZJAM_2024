@@ -28,11 +28,11 @@ func _process(delta):
 
 func _random_timer() -> void:
 	#_set_timer($"/root/Meadow/Day-Night Cycle".time_period)
-	if time_to_spawn <= 0.2:
-		time_to_spawn = .2 
+	if time_to_spawn <= 1.5:
+		time_to_spawn = 1.5 
 	if  day_night_cycle.day_count == 0:
 		time_to_spawn = 7.0
-	set_wait_time(time_to_spawn/2)
+	set_wait_time(time_to_spawn/1.3)
 
 func _set_timer(period: Day_Night_Cycle.Time_Period) -> void:
 		match period:
