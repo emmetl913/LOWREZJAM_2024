@@ -13,6 +13,7 @@ const DAMPENER: float = .5
 @export var spirit_id: int
 @onready var death_wisp = preload("res://entities/spirits/death_wisp.tscn")
 
+var collision
 var state: State
 var phase_offset: float = Function_Lib._random_unit_wave_amplitude() * 90
 var knockback_force: float = -1
@@ -64,11 +65,16 @@ func _move(delta: float):
 	# bug: the knockback should be staight back, this still permits ghost
 	# ociliation to occur during that frame
 	if knockback_force != -1:
-		move_and_collide(delta * speed * -knockback_force * -knockback_dir)
+		collision = move_and_collide(delta * speed * -knockback_force * -knockback_dir)
 	else:
-		move_and_collide((direction + offset).normalized() * delta * speed * -knockback_force + abs_dir)
+		collision = move_and_collide((direction + offset).normalized() * delta * speed * -knockback_force + abs_dir)
 	if is_instance_valid($Sight.focus):
 		$"Primary Attack".look_at(global_position.direction_to($Sight.focus.global_position))
+	
+	if is_instance_valid(collision):
+		if collision.get_collider().is_in_group("Spirit"):
+			collision.get_collider().knockback_dir = knockback_dir / 2
+			collision.get_collider().knockback_force = knockback_force
 
 func _take_damage(damage: int):
 	health -= damage

@@ -53,7 +53,7 @@ func _input(event):
 			clicked[4] = true
 	var temp = true
 	for i in range(0,5):
-		print(i, " : ", clicked[i])
+		#print(i, " : ", clicked[i])
 		if clicked[i] == false:
 			temp = false
 	if temp and step == 4:

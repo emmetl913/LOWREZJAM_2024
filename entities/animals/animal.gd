@@ -147,7 +147,10 @@ func _select_closest_enemy():
 
 func _drop_seed():
 	if !must_leave:
-		var new_seed = seed_references[randi_range(0, seed_references.size()-1)].instantiate()
+		
+		
+		#Instantiate seed
+		var new_seed = seed_references[0].instantiate()
 		new_seed.position = get_child(0).position
 		new_seed.parent = parent
 		parent.add_child(new_seed)

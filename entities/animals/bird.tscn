@@ -115,7 +115,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_rmbct"]
 resource_name = "Idle"
-length = 0.1
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -210,8 +210,7 @@ disabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_ccq1h")
-animation = &"Move"
-frame = 1
+animation = &"Eat"
 
 [node name="DealDamage" type="Area2D" parent="CharacterBody2D/AnimatedSprite2D"]
 

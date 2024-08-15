@@ -69,6 +69,7 @@ func _on_tree_sprite_pressed():
 	$Test_Control_Interface.visible = not $Test_Control_Interface.visible
 
 func _take_damage(damage: int):
+	$AnimationPlayer.play("Hurt")
 	health -= damage
 	
 	if (health <= 0):

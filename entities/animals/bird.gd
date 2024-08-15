@@ -38,7 +38,6 @@ func _process(delta):
 			can_attack = false
 			is_attacking = false
 			is_wandering = false
-			$AnimationPlayer.play("Idle")
 			can_eat = false
 			dir = animal._calculate_leave_meadow_direction() * screen_exit_speed
 			$SelfDestructSequence.start()
@@ -64,7 +63,6 @@ func _process(delta):
 	#TODO: host plant dies: goes back to wandering 
 	if is_instance_valid(animal._get_plant()) and !_is_far_from_plant(animal._get_plant_position()) and is_wandering:
 		is_wandering = false
-		$AnimationPlayer.play("Idle")
 		can_attack = true
 
 	#Can we attack?
@@ -96,9 +94,17 @@ func _bird_shoot():
 	bullet.target = target
 	bullet.knockback = knockback
 	get_parent().get_parent().add_child(bullet)
+	
+	#go idle for 0.5 second
+	can_move = false
+	$AnimationPlayer.play("Idle")
+	
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Eat":
+		can_move = true
+		$AnimationPlayer.play("Move")
+	elif anim_name == "Idle":
 		can_move = true
 		$AnimationPlayer.play("Move")
 

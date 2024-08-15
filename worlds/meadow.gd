@@ -5,6 +5,8 @@ enum Time_Period {morning, afternoon, evening, dusk, midnight, dawn}
 var animal_array: Array
 var plant_count: int = 0
 var total_seed_count: int = 0
+
+@export var animal_ratio_help: float 
 #Set this to return 1 everytime if you want guaranteed animal spawns
 @export var animal_spawn_fraction: Vector2
 @export var guarantee_first_animal_spawn_count: int
@@ -347,9 +349,14 @@ func is_valid_planting_spot():
 	if (mouse_pos.x < 10 && mouse_pos.x > -10 && mouse_pos.y < 10 && mouse_pos.y > -10):
 		return false
 	
+	var positionCoords = getMapAsGridCoords()
+	print(positionCoords)
+	
+	#Checks if space is on the edge
+	if (positionCoords.y == 1 || positionCoords.x == 1 || positionCoords.x == 16 || positionCoords.x == 16):
+		return false
 	
 	#Checks if space is occupied
-	var positionCoords = getMapAsGridCoords()
 	if (map_data[positionCoords.x - 1][positionCoords.y - 1] != null):
 		var tem = map_data[positionCoords.x - 1][positionCoords.y - 1]
 		tem.queue_free()
@@ -416,16 +423,20 @@ func get_seed_total():
 	
 func calc_seed_timer():
 	var new_wait_time: = 1.0
-	if get_seed_total() > 30 and animal_array.size() <= 5:
-		new_wait_time =  10
-	elif animal_array.size() < 5:
-		new_wait_time = 3.0
-	elif animal_array.size() <= 10:
-		new_wait_time = randf_range(6,12)
+	var seed_spawn_rate_decrease_factor = 7
+	var late_game_seed_spawn_rate_decrease_factor = 10
+	if get_seed_total() < 6 and animal_array.size() < 4:
+		new_wait_time =  10.0
+	elif get_seed_total() < 6 and animal_array.size() < 6:
+		new_wait_time =  14.0
+	elif animal_array.size() < 6:
+		new_wait_time = 6 * seed_spawn_rate_decrease_factor * randf_range(.25,2)
 	elif animal_array.size() <= 15:
-		new_wait_time = 16 #lower these if too hard
+		new_wait_time = 12 *  seed_spawn_rate_decrease_factor * randf_range(.25,2)
+	elif animal_array.size() <= 20:
+		new_wait_time = 16 * randf_range(.25,2) * late_game_seed_spawn_rate_decrease_factor
 	elif animal_array.size() <= 30:
-		new_wait_time = 36
+		new_wait_time = 30 * randf_range(.25,2) * late_game_seed_spawn_rate_decrease_factor
 	return new_wait_time
 
 func getPlantResourceByPlantID(id : int):
@@ -484,7 +495,8 @@ func _on_animation_player_animation_finished(anim_name):
 func plantBushes():
 	if $Bushes/Bush_Sign_North.bought and !bushes[0]:
 		$Bushes/Bush_Sign_North/Sprite2D.visible = false
-		print("Spawning north bushes")
+		$"Entity Spawn System".spawn_sides[0] = false
+		print("Spawning north bushes, spawnable: ", $"Entity Spawn System".spawn_sides[0])
 		for i in range(0,17):
 			var bush_inst = bush_reference.instantiate()
 			bush_inst.position = Vector2((i-8)*8 , -60)
@@ -492,7 +504,8 @@ func plantBushes():
 		bushes[0] = true
 	elif $Bushes/Bush_Sign_South.bought and !bushes[1]:
 		$Bushes/Bush_Sign_South/Sprite2D.visible = false
-		print("Spawning south bushes")
+		$"Entity Spawn System".spawn_sides[1] = false
+		print("Spawning south bushes, spawnable: ", $"Entity Spawn System".spawn_sides[1])
 		for i in range(0,17):
 			var bush_inst = bush_reference.instantiate()
 			bush_inst.position = Vector2((i-8)*8 , 60)
@@ -500,15 +513,18 @@ func plantBushes():
 		bushes[1] = true
 	elif $Bushes/Bush_Sign_East.bought and !bushes[2]:
 		$Bushes/Bush_Sign_East/Sprite2D.visible = false
-		print("Spawning east bushes")
+		$"Entity Spawn System".spawn_sides[2] = false
+		print("Spawning east bushes, spawnable: ", $"Entity Spawn System".spawn_sides[2])
 		for i in range(0,17):
 			var bush_inst = bush_reference.instantiate()
 			bush_inst.position = Vector2(60 , (i-8)*8)
 			add_child(bush_inst, true)
+			print("this is my change!")
 		bushes[2] = true
 	elif $Bushes/Bush_Sign_West.bought and !bushes[3]:
 		$Bushes/Bush_Sign_West/Sprite2D.visible = false
-		print("Spawning west bushes")
+		$"Entity Spawn System".spawn_sides[3] = false
+		print("Spawning west bushes, spawnable: ", $"Entity Spawn System".spawn_sides[3])
 		for i in range(0,17):
 			var bush_inst = bush_reference.instantiate()
 			bush_inst.position = Vector2(-60 , (i-8)*8)
@@ -523,6 +539,7 @@ func checkWin():
 			cond += 1
 	if cond == 4 and !pauser:
 		print("Win successful!")
+		Besttime.save($"Day-Night Cycle".day_count)
 		$Bushes/Win_Timer.start()
 		pauser = true
 
@@ -539,3 +556,46 @@ func _on_day_night_cycle_time_period_change(period):
 		is_day = false
 		if period == Time_Period.dusk:
 			$Audio/MusicNight.play()
+
+	
+func _on_try_spawn_extra_helping_animals_timeout():
+	var deer_count = 0
+	var lep_count = 0
+	var bird_count = 0
+	var squirrel_count = 0
+	var carrots = 0
+	var blueberries = 0
+	var apples =0 
+	var poppies = 0
+	var current_ratio: float
+	animal_ratio_help = 3.0/10.0
+	for i in animal_array:
+		if i.favorite_plant_id == 1:
+			deer_count += 1
+			carrots = i.list_of_favorite_plants.size()
+		elif i.favorite_plant_id == 2:
+			bird_count += 1
+			blueberries = i.list_of_favorite_plants.size()
+		elif i.favorite_plant_id == 3:
+			squirrel_count += 1
+			apples = i.list_of_favorite_plants.size()
+		elif i.favorite_plant_id == 4:
+			lep_count += 1
+			poppies = i.list_of_favorite_plants.size()
+	if carrots > 0:
+		current_ratio = 1.0 * deer_count/carrots
+		if current_ratio <= animal_ratio_help:
+			_try_spawn_animal(1)
+	if blueberries > 0:
+		current_ratio = 1.0 * bird_count/blueberries
+		if current_ratio <= animal_ratio_help:
+			_try_spawn_animal(2)
+	if apples > 0:
+		current_ratio = 1.0 * squirrel_count/apples
+		if current_ratio <= animal_ratio_help:
+			_try_spawn_animal(3)
+	if poppies > 0:
+		current_ratio = 1.0 * lep_count/poppies
+		if current_ratio <= animal_ratio_help:
+			_try_spawn_animal(4)
+
