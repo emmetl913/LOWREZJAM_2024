@@ -163,6 +163,8 @@ func take_damage():
 
 func wither():
 	withered = true
+	if PLANT_ID == 0:
+		withered = false
 	RESOURCES_STORED = 0
 	$Sprite2D.texture = WITHERED_TEXTURE
 	
@@ -171,7 +173,8 @@ func wither():
 
 func _on_wither_timeout():
 	print("wither timeout")
-	_death()
+	if PLANT_ID != 0:
+		_death()
 
 func _death():
 	print("A plant has died?")

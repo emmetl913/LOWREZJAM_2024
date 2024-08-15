@@ -54,7 +54,7 @@ func _set_timer(period: Day_Night_Cycle.Time_Period) -> void:
 			_:
 				paused = true
 				is_duskdawn = false
-
+		#quantity *= 10
 
 func spirit_timer_on_timeout():
 	pass # Replace with function body.
