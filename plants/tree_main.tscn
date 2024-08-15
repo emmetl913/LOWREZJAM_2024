@@ -1,9 +1,46 @@
-[gd_scene load_steps=8 format=3 uid="uid://cray6xpq4vkl"]
+[gd_scene load_steps=11 format=3 uid="uid://cray6xpq4vkl"]
 
 [ext_resource type="Script" path="res://plants/tree_main.gd" id="1_kag2c"]
 [ext_resource type="Texture2D" uid="uid://c8rwsfjjawxeq" path="res://assets/sprites/tree_dark.png" id="2_fis8n"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="3_56vxf"]
 [ext_resource type="LabelSettings" uid="uid://bf8m6t4hiop7d" path="res://assets/fonts/default_label_settings.tres" id="4_kbp4e"]
+
+[sub_resource type="Animation" id="Animation_oky63"]
+resource_name = "Hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tree_Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vbag1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tree_Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yrtn0"]
+_data = {
+"Hurt": SubResource("Animation_oky63"),
+"RESET": SubResource("Animation_vbag1")
+}
 
 [sub_resource type="Gradient" id="Gradient_tc52s"]
 
@@ -28,6 +65,11 @@ texture_filter = 1
 texture_normal = ExtResource("2_fis8n")
 
 [node name="Gen_Energy_Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yrtn0")
+}
 
 [node name="Test_Control_Interface" type="Node2D" parent="."]
 position = Vector2(-17, 2)
