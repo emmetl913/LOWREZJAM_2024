@@ -408,17 +408,17 @@ func calc_seed_timer():
 	var new_wait_time: = 1.0
 	var seed_spawn_rate_decrease_factor = 3.75
 	if get_seed_total() < 6 and animal_array.size() < 4:
-		new_wait_time =  3.0
-	elif get_seed_total() < 6 and animal_array.size() < 6:
 		new_wait_time =  8.0
+	elif get_seed_total() < 6 and animal_array.size() < 6:
+		new_wait_time =  10.0
 	elif animal_array.size() < 6:
-		new_wait_time = 6 * seed_spawn_rate_decrease_factor
+		new_wait_time = 6 * seed_spawn_rate_decrease_factor * randf_range(.25,2)
 	elif animal_array.size() <= 15:
-		new_wait_time = randf_range(10,15)
+		new_wait_time = 12 *  randf_range(.25,2)
 	elif animal_array.size() <= 15:
-		new_wait_time = 20 *seed_spawn_rate_decrease_factor
+		new_wait_time = 16 * randf_range(.25,2) * seed_spawn_rate_decrease_factor
 	elif animal_array.size() <= 30:
-		new_wait_time = 40 * seed_spawn_rate_decrease_factor
+		new_wait_time = 30 * randf_range(.25,2) * seed_spawn_rate_decrease_factor
 	return new_wait_time
 
 func getPlantResourceByPlantID(id : int):
@@ -560,7 +560,7 @@ func _on_try_spawn_extra_helping_animals_timeout():
 	var apples =0 
 	var poppies = 0
 	var current_ratio: float
-	animal_ratio_help = 2.0/7.0
+	animal_ratio_help = 3.0/10.0
 	for i in animal_array:
 		if i.favorite_plant_id == 1:
 			deer_count += 1

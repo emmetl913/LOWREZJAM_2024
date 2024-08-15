@@ -22,9 +22,9 @@ func _ready() -> void:
 
 func _calculate_difficulty():
 	if day_count >= 2:
-		difficulty = -log(day_count) + 2
+		difficulty = (-5.0) * log(day_count) + 6
 	else:
-		difficulty = 10
+		difficulty = 7
 func _process(delta) -> void:
 	_day_time_process(delta)
 
