@@ -475,6 +475,7 @@ func _on_animation_player_animation_finished(anim_name):
 func plantBushes():
 	if $Bushes/Bush_Sign_North.bought and !bushes[0]:
 		$Bushes/Bush_Sign_North/Sprite2D.visible = false
+		$"Entity Spawn System".spawn_sides[0] = false
 		print("Spawning north bushes")
 		for i in range(0,17):
 			var bush_inst = bush_reference.instantiate()
@@ -483,6 +484,7 @@ func plantBushes():
 		bushes[0] = true
 	elif $Bushes/Bush_Sign_South.bought and !bushes[1]:
 		$Bushes/Bush_Sign_South/Sprite2D.visible = false
+		$"Entity Spawn System".spawn_sides[1] = false
 		print("Spawning south bushes")
 		for i in range(0,17):
 			var bush_inst = bush_reference.instantiate()
@@ -491,6 +493,7 @@ func plantBushes():
 		bushes[1] = true
 	elif $Bushes/Bush_Sign_East.bought and !bushes[2]:
 		$Bushes/Bush_Sign_East/Sprite2D.visible = false
+		$"Entity Spawn System".spawn_sides[2] = false
 		print("Spawning east bushes")
 		for i in range(0,17):
 			var bush_inst = bush_reference.instantiate()
@@ -500,6 +503,7 @@ func plantBushes():
 		bushes[2] = true
 	elif $Bushes/Bush_Sign_West.bought and !bushes[3]:
 		$Bushes/Bush_Sign_West/Sprite2D.visible = false
+		$"Entity Spawn System".spawn_sides[3] = false
 		print("Spawning west bushes")
 		for i in range(0,17):
 			var bush_inst = bush_reference.instantiate()
