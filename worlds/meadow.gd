@@ -496,6 +496,7 @@ func plantBushes():
 			var bush_inst = bush_reference.instantiate()
 			bush_inst.position = Vector2(60 , (i-8)*8)
 			add_child(bush_inst, true)
+			print("this is my change!")
 		bushes[2] = true
 	elif $Bushes/Bush_Sign_West.bought and !bushes[3]:
 		$Bushes/Bush_Sign_West/Sprite2D.visible = false
