@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cray6xpq4vkl"]
+[gd_scene load_steps=12 format=3 uid="uid://cray6xpq4vkl"]
 
 [ext_resource type="Script" path="res://plants/tree_main.gd" id="1_kag2c"]
 [ext_resource type="Texture2D" uid="uid://c8rwsfjjawxeq" path="res://assets/sprites/tree_dark.png" id="2_fis8n"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="3_56vxf"]
 [ext_resource type="LabelSettings" uid="uid://bf8m6t4hiop7d" path="res://assets/fonts/default_label_settings.tres" id="4_kbp4e"]
+[ext_resource type="AudioStream" uid="uid://clnxiocqmasa3" path="res://assets/music/sfx/tree_damage.wav" id="5_w4tau"]
 
 [sub_resource type="Animation" id="Animation_oky63"]
 resource_name = "Hurt"
@@ -146,6 +147,9 @@ text = "+"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_iq2i6")
+
+[node name="Damage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_w4tau")
 
 [connection signal="pressed" from="Tree_Sprite" to="." method="_on_tree_sprite_pressed"]
 [connection signal="timeout" from="Gen_Energy_Timer" to="." method="_on_gen_energy_timer_timeout"]

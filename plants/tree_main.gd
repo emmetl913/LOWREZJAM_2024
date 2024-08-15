@@ -70,6 +70,7 @@ func _on_tree_sprite_pressed():
 
 func _take_damage(damage: int):
 	$AnimationPlayer.play("Hurt")
+	$Damage.play()
 	health -= damage
 	
 	if (health <= 0):

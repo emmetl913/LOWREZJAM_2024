@@ -169,7 +169,7 @@ autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_1xkjt")
-volume_db = 9.0
+volume_db = 11.0
 autoplay = true
 
 [connection signal="animation_finished" from="Fade_Anim/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
