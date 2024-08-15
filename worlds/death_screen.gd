@@ -6,7 +6,7 @@ var twen
 func _ready():
 	twen = get_tree().create_tween()
 	$AnimationPlayer.play("shake")
-	twen.tween_property(tree, "position", Vector2(0,16), 5)
+	twen.tween_property(tree, "position", Vector2(0,16), 8)
 	$FadeTimer.start()
 
 func _process(delta):

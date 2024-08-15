@@ -62,6 +62,7 @@ func _input(event):
 		stepper.start()
 
 func _on_confirm_pressed():
+	$Click.play()
 	if step == 0:
 		$Confirm.visible = false
 		tool_arrow.visible = true
@@ -70,6 +71,7 @@ func _on_confirm_pressed():
 
 
 func _on_no_pressed():
+	$Click.play()
 	get_tree().paused = false
 	visible = false
 

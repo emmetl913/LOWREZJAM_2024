@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://worlds/death_screen.gd" id="1_s50xw"]
 [ext_resource type="Texture2D" uid="uid://bujaahxnmv2a2" path="res://assets/sprites/apple_seed.png" id="2_j6jbm"]
 [ext_resource type="PackedScene" uid="uid://cray6xpq4vkl" path="res://plants/tree_main.tscn" id="3_f3vax"]
-[ext_resource type="AudioStream" uid="uid://c7laf2iwjv6h3" path="res://assets/music/temp_lost.wav" id="27_i442l"]
+[ext_resource type="AudioStream" uid="uid://ck5vnpgic20mn" path="res://assets/music/gameover.wav" id="4_1xkjt"]
 
 [sub_resource type="Animation" id="Animation_kasw6"]
 length = 0.001
@@ -165,13 +165,13 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="FadeTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 6.0
 one_shot = true
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("27_i442l")
-volume_db = 10.0
+stream = ExtResource("4_1xkjt")
+volume_db = 9.0
 autoplay = true
 
 [connection signal="animation_finished" from="Fade_Anim/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

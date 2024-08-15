@@ -4,6 +4,10 @@ extends Node2D
 @export var wisp_speed: float
 @export var fade_speed: float
 var dir: Array[Vector2]
+
+func _ready() -> void:
+	$Die.play()
+
 func _set_sprites_color(color: Color):
 	sprites = [$Sprite2D, $Sprite2D2, $Sprite2D3, $Sprite2D4, $Sprite2D5, $Sprite2D6]
 	for i in sprites:

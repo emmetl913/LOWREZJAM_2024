@@ -91,6 +91,7 @@ func check_leave_meadow():
 				any_plants_left = true 
 	if !any_plants_left:
 		must_leave = true
+		$SFX_Randomizer.stop()
 		get_parent().animal_array.pop_at(get_parent().animal_array.find(self))
 	else:
 		_set_plant(_set_plant_to_closest_plant())
@@ -184,5 +185,8 @@ func _calculate_leave_meadow_direction():
 
 
 func _on_sfx_randomizer_timeout():
-	$SFX_Randomizer.wait_time = randi_range(5, 15)
+	$SFX_Randomizer.wait_time = randi_range(10, 30)
+	# timer must be restarted to update wait time
+	$SFX_Randomizer.stop()
+	$SFX_Randomizer.start()
 	$Noise.play()

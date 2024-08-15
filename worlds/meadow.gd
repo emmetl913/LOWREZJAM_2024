@@ -32,6 +32,7 @@ var held_seed_id : int = -1
 var camera_initial_position: Vector2
 var mouse_initial_position: Vector2
 var is_day : bool = true
+var tutorial_over : bool = false
 
 var limit_x = Vector2(-64,64)
 var limit_y = Vector2(-64,64)
@@ -58,6 +59,7 @@ var pauser : bool = false
 
 func _ready():
 	$Fade_Anim/AnimationPlayer.play("fade_to_normal")
+	$Audio/Breeze.play()
 	setupBushes()
 	setupMap()
 	$Tree_Sun_Prod.wait_time = tree.prod_interval
@@ -89,6 +91,9 @@ func setupMap():
 			map_data[i].append(null) # Value for an empty space is -1
 
 func _process(_delta):
+	if not tutorial_over:
+		$Audio/MusicDay.play()
+		tutorial_over = true
 	updateEnergyMenu()
 	updateEnergyIndicator()
 	_update_resource_display()
@@ -135,6 +140,8 @@ func open_toolbelt():
 			energy_menu.visible = false
 			resource_menu.visible = false
 			
+			$Audio/MenuOpen.play()
+			
 			# Show buttons
 			$CursorCamera/ToolBelt/Seeds_Menu_Toggle.visible = true
 			$CursorCamera/ToolBelt/Power_Menu_Toggle.visible = true
@@ -148,7 +155,7 @@ func open_toolbelt():
 			
 			$CursorCamera/ToolBelt.position.y = lerp($CursorCamera/ToolBelt.position.y, $CursorCamera/ToolBelt.position.y-14, 1)
 			$CursorCamera/ToolBelt/ToolBelt_Toggle.texture_normal = load("res://assets/sprites/toolbar/tool_close.png")
-		else:
+		else:			
 			# Order buttons
 			$CursorCamera/ToolBelt/ToolBelt_Toggle.z_index = 4
 			$CursorCamera/ToolBelt/Seeds_Menu_Toggle.z_index = 2
@@ -160,6 +167,8 @@ func open_toolbelt():
 			energy_menu.visible = false
 			resource_menu.visible = false
 	else:
+		$Audio/MenuClose.play()
+		
 		$CursorCamera/ToolBelt.position.y = lerp($CursorCamera/ToolBelt.position.y, $CursorCamera/ToolBelt.position.y+14, 1)
 		$CursorCamera/ToolBelt/ToolBelt_Toggle.texture_normal = load("res://assets/sprites/toolbar/tool_open.png")
 		
@@ -395,6 +404,9 @@ func setUpNewPlant(res : Resource, new_plant, coords : Vector2):
 		total_sunflowers += 1
 	plant_count += 1
 
+func play_plant_die_sound():
+	$Audio/PlantDie.play()
+
 
 func get_seed_total():
 	var total = 0
@@ -514,34 +526,16 @@ func checkWin():
 		$Bushes/Win_Timer.start()
 		pauser = true
 
-
 func _on_win_timer_timeout():
 	$Fade_Anim/Fade.visible = true
 	$Fade_Anim/AnimationPlayer.play("fade_to_Black")
 
-
-func _on_music_timer_timeout():
-	if is_day:
-		$Audio/AudioStreamPlayer.play()
-	else:
-		$Audio/Night_Music.play()
-
-
-func _on_audio_stream_player_finished():
-	$Audio/MusicTimer.wait_time = randi_range(1,5)
-	$Audio/MusicTimer.start()
-
-func _on_night_music_finished():
-	$Audio/MusicTimer.wait_time = randi_range(1,5)
-	$Audio/MusicTimer.start()
-
-
-
 func _on_day_night_cycle_time_period_change(period):
 	if period == Time_Period.morning or period == Time_Period.afternoon or period == Time_Period.dawn:
 		is_day = true
+		if period == Time_Period.morning:
+			$Audio/MusicDay.play()
 	else:
 		is_day = false
-
-
-
+		if period == Time_Period.dusk:
+			$Audio/MusicNight.play()

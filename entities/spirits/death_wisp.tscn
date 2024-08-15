@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpetmrgff1kb7"]
+[gd_scene load_steps=4 format=3 uid="uid://dpetmrgff1kb7"]
 
 [ext_resource type="Texture2D" uid="uid://d0m3fv4ulut41" path="res://assets/sprites/white_pixel.png" id="1_p4s28"]
 [ext_resource type="Script" path="res://entities/spirits/death_wisp.gd" id="1_v6dvi"]
+[ext_resource type="AudioStream" uid="uid://dltwohri02tm5" path="res://assets/music/sfx/spirit_die.wav" id="3_cp38p"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(17, 11)
@@ -43,5 +44,9 @@ texture = ExtResource("1_p4s28")
 z_index = 2
 position = Vector2(-1, -1)
 texture = ExtResource("1_p4s28")
+
+[node name="Die" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_cp38p")
+volume_db = 5.0
 
 [connection signal="timeout" from="Despawn" to="." method="_on_despawn_timeout"]

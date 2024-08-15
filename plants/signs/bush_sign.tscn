@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bymiugsmehj1l" path="res://assets/sprites/buttons/buy.png" id="4_h4ibe"]
 [ext_resource type="Texture2D" uid="uid://cqc3jtpdwjo7y" path="res://assets/sprites/buttons/buy_hover.png" id="5_2opih"]
 [ext_resource type="Texture2D" uid="uid://c47osafe65rrk" path="res://assets/sprites/sunflower.png" id="6_s5b17"]
-[ext_resource type="AudioStream" uid="uid://cg3hfqmver20n" path="res://assets/music/sfx/youre_poor.wav" id="7_ftn1i"]
+[ext_resource type="AudioStream" uid="uid://cg3hfqmver20n" path="res://assets/music/sfx/poor.wav" id="7_ftn1i"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_l4uom"]
 line_spacing = 0.0

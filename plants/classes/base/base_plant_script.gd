@@ -158,7 +158,6 @@ func take_damage():
 	print("A plant has taken damage")
 	HEALTH -= 1
 	if HEALTH <= 0:
-		$Die.play()
 		_death()
 
 func wither():
@@ -182,6 +181,11 @@ func _take_damage(damage: int):
 	print("A plant has taken ", damage, " damage")
 	HEALTH -= damage
 	if HEALTH <= 0:
+		# kind of a hack because if we played the sound within the plant,
+		# queue_free() would cancel it
+		get_parent().play_plant_die_sound()
 		_death()
+	else:
+		$Damage.play()
 	$AnimationPlayer.play("Hurt")
 

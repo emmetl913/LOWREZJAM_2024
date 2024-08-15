@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bef63fudsi14e"]
+[gd_scene load_steps=58 format=3 uid="uid://bef63fudsi14e"]
 
 [ext_resource type="Script" path="res://worlds/meadow.gd" id="1_bko1o"]
 [ext_resource type="Texture2D" uid="uid://cokgtoewqm5oy" path="res://assets/sprites/background.png" id="2_fb8lr"]
@@ -28,11 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://y3vfd876t6tg" path="res://assets/sprites/plants/poppy_4.png" id="20_71bno"]
 [ext_resource type="PackedScene" uid="uid://d3na32ssj7r4t" path="res://plants/signs/bush_sign.tscn" id="21_6cnu1"]
 [ext_resource type="Texture2D" uid="uid://d0kjic5gxed78" path="res://assets/sprites/plants/apple_4.png" id="21_wt4mc"]
-[ext_resource type="AudioStream" uid="uid://osjm0uu7gqf5" path="res://assets/music/calm.wav" id="22_ujufr"]
 [ext_resource type="Texture2D" uid="uid://bemikugl35p4a" path="res://assets/sprites/plants/blueberry_4.png" id="22_x1rx4"]
-[ext_resource type="AudioStream" uid="uid://caxyj3xw1xq7w" path="res://assets/music/peaceful.wav" id="23_s8qc2"]
-[ext_resource type="AudioStream" uid="uid://dgq6bsjhe02gu" path="res://assets/music/strolling.wav" id="24_bnysd"]
-[ext_resource type="AudioStream" uid="uid://d1xqtf5s3t6op" path="res://assets/music/walking.wav" id="25_6807o"]
 [ext_resource type="FontFile" uid="uid://b4n4ol5uhwyfr" path="res://assets/fonts/cg-pixel-3x5.ttf" id="25_k4pxq"]
 [ext_resource type="AudioStream" uid="uid://4p160l6ujswr" path="res://assets/music/sfx/pickup.wav" id="26_dnlim"]
 [ext_resource type="Script" path="res://worlds/Tutorial.gd" id="28_gaeww"]
@@ -42,10 +38,15 @@
 [ext_resource type="Texture2D" uid="uid://d8m56s4gmp0l" path="res://assets/sprites/buttons/no.png" id="31_cny1i"]
 [ext_resource type="Texture2D" uid="uid://c0h4fyfl3urkr" path="res://assets/sprites/buttons/no_hover.png" id="32_b3moe"]
 [ext_resource type="Texture2D" uid="uid://d002p8o31ayoe" path="res://assets/sprites/arrow.png" id="33_8swku"]
-[ext_resource type="AudioStream" uid="uid://dh0utampksnbv" path="res://assets/music/night_music/haunted.wav" id="37_ujkq6"]
-[ext_resource type="AudioStream" uid="uid://ccp7wq3bxekq3" path="res://assets/music/night_music/running.wav" id="38_85crj"]
-[ext_resource type="AudioStream" uid="uid://cw0iq156r2dif" path="res://assets/music/night_music/spooky.wav" id="39_wxkqq"]
-[ext_resource type="AudioStream" uid="uid://cf0g27a5ktbfp" path="res://assets/music/night_music/waltz.wav" id="40_ye5mb"]
+[ext_resource type="AudioStream" uid="uid://djsm8gp1u6m27" path="res://assets/music/night/haunted.wav" id="37_kyw3c"]
+[ext_resource type="AudioStream" uid="uid://f5yf6frboh4c" path="res://assets/music/night/waltz.wav" id="38_011eu"]
+[ext_resource type="AudioStream" uid="uid://cle5tg4efyb7v" path="res://assets/music/day/calm.wav" id="39_og32u"]
+[ext_resource type="AudioStream" uid="uid://chwooihgrn5mb" path="res://assets/music/day/peaceful.wav" id="40_7raak"]
+[ext_resource type="AudioStream" uid="uid://denbp3acbprga" path="res://assets/music/sfx/click.wav" id="43_k8tv7"]
+[ext_resource type="AudioStream" uid="uid://dc4xcjhg6yg08" path="res://assets/music/sfx/breeze.wav" id="44_4aa5e"]
+[ext_resource type="AudioStream" uid="uid://b4hitsty0esi3" path="res://assets/music/sfx/menu_open.wav" id="44_bjft6"]
+[ext_resource type="AudioStream" uid="uid://b2gk3ql6dwq0r" path="res://assets/music/sfx/menu_close.wav" id="45_jcp0m"]
+[ext_resource type="AudioStream" uid="uid://dow65xw7no41a" path="res://assets/music/sfx/plant_die.wav" id="47_cus13"]
 
 [sub_resource type="TileSet" id="TileSet_v7h3w"]
 tile_size = Vector2i(8, 8)
@@ -118,32 +119,24 @@ _data = {
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ians0"]
-streams_count = 4
-stream_0/stream = ExtResource("37_ujkq6")
+streams_count = 2
+stream_0/stream = ExtResource("37_kyw3c")
 stream_0/weight = 1.0
-stream_1/stream = ExtResource("38_85crj")
+stream_1/stream = ExtResource("38_011eu")
 stream_1/weight = 1.0
-stream_2/stream = ExtResource("39_wxkqq")
-stream_2/weight = 1.0
-stream_3/stream = ExtResource("40_ye5mb")
-stream_3/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3byp5"]
-streams_count = 4
-stream_0/stream = ExtResource("22_ujufr")
+streams_count = 2
+stream_0/stream = ExtResource("39_og32u")
 stream_0/weight = 1.0
-stream_1/stream = ExtResource("23_s8qc2")
+stream_1/stream = ExtResource("40_7raak")
 stream_1/weight = 1.0
-stream_2/stream = ExtResource("24_bnysd")
-stream_2/weight = 1.0
-stream_3/stream = ExtResource("25_6807o")
-stream_3/weight = 1.0
 
 [node name="Meadow" type="Node2D"]
 script = ExtResource("1_bko1o")
 animal_spawn_fraction = Vector2(1, 2.5)
 guarantee_first_animal_spawn_count = 2
-seeds = Array[int]([3, 3, 0, 0, 0])
+seeds = Array[int]([32, 3, 0, 0, 0])
 
 [node name="TileMap" type="TileMap" parent="."]
 visible = false
@@ -593,6 +586,9 @@ stretch_mode = 2
 wait_time = 2.5
 one_shot = true
 
+[node name="Click" type="AudioStreamPlayer" parent="Tutorial"]
+stream = ExtResource("43_k8tv7")
+
 [node name="Day-Night Cycle" type="Node" parent="."]
 script = ExtResource("15_t7viv")
 
@@ -640,10 +636,10 @@ color = Color(0, 0, 0, 1)
 [node name="Audio" type="Node" parent="."]
 process_mode = 3
 
-[node name="Night_Music" type="AudioStreamPlayer" parent="Audio"]
+[node name="MusicNight" type="AudioStreamPlayer" parent="Audio"]
 stream = SubResource("AudioStreamRandomizer_ians0")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
+[node name="MusicDay" type="AudioStreamPlayer" parent="Audio"]
 stream = SubResource("AudioStreamRandomizer_3byp5")
 
 [node name="MusicTimer" type="Timer" parent="Audio"]
@@ -655,6 +651,18 @@ stream = ExtResource("26_dnlim")
 
 [node name="Plant" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("28_v5pog")
+
+[node name="MenuOpen" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("44_bjft6")
+
+[node name="MenuClose" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("45_jcp0m")
+
+[node name="Breeze" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("44_4aa5e")
+
+[node name="PlantDie" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("47_cus13")
 
 [connection signal="pressed" from="CursorCamera/ToolBelt/ToolBelt_Toggle" to="." method="_on_tool_belt_toggle_pressed"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu_Toggle" to="." method="_on_seeds_menu_toggle_pressed"]
@@ -685,6 +693,6 @@ stream = ExtResource("28_v5pog")
 [connection signal="time_period_change" from="Day-Night Cycle" to="." method="_on_day_night_cycle_time_period_change"]
 [connection signal="timeout" from="Bushes/Win_Timer" to="." method="_on_win_timer_timeout"]
 [connection signal="animation_finished" from="Fade_Anim/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="finished" from="Audio/Night_Music" to="." method="_on_night_music_finished"]
-[connection signal="finished" from="Audio/AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="finished" from="Audio/MusicNight" to="." method="_on_night_music_finished"]
+[connection signal="finished" from="Audio/MusicDay" to="." method="_on_audio_stream_player_finished"]
 [connection signal="timeout" from="Audio/MusicTimer" to="." method="_on_music_timer_timeout"]
