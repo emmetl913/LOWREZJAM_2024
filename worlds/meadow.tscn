@@ -656,6 +656,10 @@ stream = ExtResource("26_dnlim")
 [node name="Plant" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("28_v5pog")
 
+[node name="TrySpawnExtraHelpingAnimals" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="pressed" from="CursorCamera/ToolBelt/ToolBelt_Toggle" to="." method="_on_tool_belt_toggle_pressed"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Seeds_Menu_Toggle" to="." method="_on_seeds_menu_toggle_pressed"]
 [connection signal="pressed" from="CursorCamera/ToolBelt/Power_Menu_Toggle" to="." method="_on_power_menu_toggle_pressed"]
@@ -688,3 +692,4 @@ stream = ExtResource("28_v5pog")
 [connection signal="finished" from="Audio/Night_Music" to="." method="_on_night_music_finished"]
 [connection signal="finished" from="Audio/AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
 [connection signal="timeout" from="Audio/MusicTimer" to="." method="_on_music_timer_timeout"]
+[connection signal="timeout" from="TrySpawnExtraHelpingAnimals" to="." method="_on_try_spawn_extra_helping_animals_timeout"]

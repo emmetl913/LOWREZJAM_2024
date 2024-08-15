@@ -5,6 +5,8 @@ enum Time_Period {morning, afternoon, evening, dusk, midnight, dawn}
 var animal_array: Array
 var plant_count: int = 0
 var total_seed_count: int = 0
+
+@export var animal_ratio_help: float 
 #Set this to return 1 everytime if you want guaranteed animal spawns
 @export var animal_spawn_fraction: Vector2
 @export var guarantee_first_animal_spawn_count: int
@@ -405,9 +407,9 @@ func get_seed_total():
 func calc_seed_timer():
 	var new_wait_time: = 1.0
 	var seed_spawn_rate_decrease_factor = 3.75
-	if get_seed_total() > 6 and animal_array.size() < 4:
+	if get_seed_total() < 6 and animal_array.size() < 4:
 		new_wait_time =  3.0
-	elif get_seed_total() > 6 and animal_array.size() < 6:
+	elif get_seed_total() < 6 and animal_array.size() < 6:
 		new_wait_time =  8.0
 	elif animal_array.size() < 6:
 		new_wait_time = 6 * seed_spawn_rate_decrease_factor
@@ -547,5 +549,45 @@ func _on_day_night_cycle_time_period_change(period):
 	else:
 		is_day = false
 
-
-
+	
+func _on_try_spawn_extra_helping_animals_timeout():
+	var deer_count = 0
+	var lep_count = 0
+	var bird_count = 0
+	var squirrel_count = 0
+	var carrots = 0
+	var blueberries = 0
+	var apples =0 
+	var poppies = 0
+	var current_ratio: float
+	animal_ratio_help = 2.0/7.0
+	for i in animal_array:
+		if i.favorite_plant_id == 1:
+			deer_count += 1
+			carrots = i.list_of_favorite_plants.size()
+		elif i.favorite_plant_id == 2:
+			bird_count += 1
+			blueberries = i.list_of_favorite_plants.size()
+		elif i.favorite_plant_id == 3:
+			squirrel_count += 1
+			apples = i.list_of_favorite_plants.size()
+		elif i.favorite_plant_id == 4:
+			lep_count += 1
+			poppies = i.list_of_favorite_plants.size()
+	if carrots > 0:
+		current_ratio = 1.0 * deer_count/carrots
+		if current_ratio <= animal_ratio_help:
+			_try_spawn_animal(1)
+	if blueberries > 0:
+		current_ratio = 1.0 * bird_count/blueberries
+		if current_ratio <= animal_ratio_help:
+			_try_spawn_animal(2)
+	if apples > 0:
+		current_ratio = 1.0 * squirrel_count/apples
+		if current_ratio <= animal_ratio_help:
+			_try_spawn_animal(3)
+	if poppies > 0:
+		current_ratio = 1.0 * lep_count/poppies
+		if current_ratio <= animal_ratio_help:
+			_try_spawn_animal(4)
+		
