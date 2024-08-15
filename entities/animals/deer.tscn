@@ -217,7 +217,7 @@ one_shot = true
 autostart = true
 
 [node name="DropSeedTimer" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 10.0
 autostart = true
 
 [node name="EatPlant" type="Timer" parent="."]

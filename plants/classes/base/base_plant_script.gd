@@ -18,7 +18,7 @@ var new_y
 @export var WITHERED_TEXTURE: Texture
 @export var DISPLAY_TEXTURE : Texture
 @export var GRID_COORDS : Vector2
-@export var GROWTH_TIME : int
+@export var GROWTH_TIME : float
 @export var REGROW_TIME : int
 @export var RESOURCES_STORED : int
 @export var ENERGY_COST : int
