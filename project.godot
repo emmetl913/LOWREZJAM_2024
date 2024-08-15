@@ -15,6 +15,10 @@ run/main_scene="res://util/typing_text.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://assets/sprites/temp_tree.png"
 
+[autoload]
+
+Besttime="*res://besttime.gd"
+
 [display]
 
 window/size/viewport_width=64

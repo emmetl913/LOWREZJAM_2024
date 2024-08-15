@@ -517,6 +517,7 @@ func checkWin():
 			cond += 1
 	if cond == 4 and !pauser:
 		print("Win successful!")
+		Besttime.save($"Day-Night Cycle".day_count)
 		$Bushes/Win_Timer.start()
 		pauser = true
 

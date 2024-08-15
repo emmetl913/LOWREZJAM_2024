@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://c4gikjt3rphlg"]
 
-[ext_resource type="Script" path="res://menus/main_menu.gd" id="1_0au02"]
+[ext_resource type="Script" path="res://menus/win_screen.gd" id="1_7ml8x"]
 [ext_resource type="FontFile" uid="uid://mic3721t4goo" path="res://assets/fonts/6px-Normal.ttf" id="2_h1bpb"]
 [ext_resource type="Texture2D" uid="uid://crx1k08qbk2uh" path="res://assets/sprites/buttons/start_button_temp.png" id="3_04som"]
 [ext_resource type="Texture2D" uid="uid://bapnnb7ibc3qc" path="res://assets/sprites/buttons/start_button_hover_temp.png" id="4_l8ffe"]
@@ -72,7 +72,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_0au02")
+script = ExtResource("1_7ml8x")
 
 [node name="Sprite2D" type="ColorRect" parent="."]
 layout_mode = 1
