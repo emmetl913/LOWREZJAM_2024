@@ -112,14 +112,15 @@ metadata/_edit_use_anchors_ = true
 [node name="Play" type="TextureButton" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 16.0
+offset_left = 26.0
 offset_top = 39.0
-offset_right = 28.0
+offset_right = 38.0
 offset_bottom = 51.0
 texture_normal = ExtResource("1_v6q4g")
 texture_hover = ExtResource("2_hwsae")
 
 [node name="Quit" type="TextureButton" parent="."]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 36.0
