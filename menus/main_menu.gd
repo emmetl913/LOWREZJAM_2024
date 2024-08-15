@@ -4,7 +4,7 @@ extends Control
 
 func _ready():
 	Besttime.load_data()
-	$Best.text = "Best time: %01d days" % Besttime.best_days
+	$Best.text = "Best time: %01d" % Besttime.best_days + " days"
 	$HSlider.value = AudioServer.get_bus_volume_db(0)+50
 	$AnimationPlayer.play("fade_to_normal")
 

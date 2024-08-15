@@ -141,8 +141,6 @@ _data = {
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rdcy5"]
-random_pitch = 1.1
-random_volume_offset_db = 1.0
 streams_count = 2
 stream_0/stream = ExtResource("4_85ui3")
 stream_0/weight = 1.0
@@ -219,7 +217,7 @@ one_shot = true
 autostart = true
 
 [node name="DropSeedTimer" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 10.0
 autostart = true
 
 [node name="EatPlant" type="Timer" parent="."]

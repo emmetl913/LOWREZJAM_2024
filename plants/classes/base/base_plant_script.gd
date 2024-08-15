@@ -188,7 +188,7 @@ func _take_damage(damage: int):
 		# queue_free() would cancel it
 		get_parent().play_plant_die_sound()
 		_death()
-	else:
-		$Damage.play()
+	#else:
+		#$Damage.play()
 	$AnimationPlayer.play("Hurt")
 

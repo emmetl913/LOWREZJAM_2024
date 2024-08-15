@@ -2,7 +2,6 @@ extends Control
 
 
 func _ready():
-	Besttime.load_data()
 	$AnimationPlayer.play("fade_to_normal")
 
 func _on_quit_pressed():

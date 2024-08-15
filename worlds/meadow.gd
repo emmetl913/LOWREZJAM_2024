@@ -39,7 +39,7 @@ var tutorial_over : bool = false
 var limit_x = Vector2(-64,64)
 var limit_y = Vector2(-64,64)
 
-var stored_energy : float 
+var stored_energy : float
 # Get References to important children on startup
 @onready var tree = $Tree_Main
 @onready var camera = $CursorCamera
@@ -538,8 +538,8 @@ func checkWin():
 		if bushes[i]:
 			cond += 1
 	if cond == 4 and !pauser:
-		print("Win successful!")
-		Besttime.save($"Day-Night Cycle".day_count)
+		print("Win successful! On Day ", int($"Day-Night Cycle".day_count))
+		Besttime.save(int($"Day-Night Cycle".day_count))
 		$Bushes/Win_Timer.start()
 		pauser = true
 

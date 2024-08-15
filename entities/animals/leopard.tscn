@@ -141,8 +141,6 @@ _data = {
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gkfiu"]
-random_pitch = 1.1
-random_volume_offset_db = 1.0
 streams_count = 2
 stream_0/stream = ExtResource("4_cb8ug")
 stream_0/weight = 1.0
