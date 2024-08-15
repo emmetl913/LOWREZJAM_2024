@@ -3,7 +3,7 @@ extends Node
 
 @export var main: Node
 
-const OFF_MAP: int = 100
+const OFF_MAP: float =  sqrt(8192)
 
 func _spawn_entity(entity_file_path: String, quantity: int) -> void:
 	var scene: PackedScene = load(entity_file_path)
