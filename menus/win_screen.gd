@@ -1,11 +1,8 @@
 extends Control
 
-@onready var audio_tween = create_tween()
 
 func _ready():
 	Besttime.load_data()
-	$Best.text = "Best time: %01d days" % Besttime.best_days
-	$HSlider.value = AudioServer.get_bus_volume_db(0)+50
 	$AnimationPlayer.play("fade_to_normal")
 
 func _on_quit_pressed():
